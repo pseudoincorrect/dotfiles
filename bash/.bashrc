@@ -59,7 +59,11 @@ eval "$(fzf --bash)"
 PATH="$HOME/Programs/gitkraken:$PATH"
 PATH="$HOME/bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
-# PATH="$HOME/.cargo/bin:$PATH"
+PATH="$HOME/.cargo/bin:$PATH"
+
+########################################################################
+# RUST
+. "$HOME/.cargo/env"
 
 ########################################################################
 # GO
@@ -75,7 +79,7 @@ PATH="$GOROOT/bin:$PATH"
 export PATH
 
 ########################################################################
-# HELPER FUNCTION
+# HELPER FUNCTIONS
 
 # cheat.sh
 function cheat() {
@@ -91,21 +95,6 @@ function st() {
   PS1=${ORIG}${TITLE}
 }
 
-# launch nnn with quit on cd
-n() {
-  export NNN_OPS_PROG=0
-  [ "${NNNLVL:-0}" -eq 0 ] || {
-    echo "nnn is already running"
-    return
-  }
-  export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-  command nnn -eQruxH "$@"
-  [ ! -f "$NNN_TMPFILE" ] || {
-    . "$NNN_TMPFILE"
-    rm -f "$NNN_TMPFILE" >/dev/null
-  }
-}
-
 # use lf (Go file manager) with cd on exit
 lfcd () {
     # `command` is needed in case `lfcd` is aliased to `lf`
@@ -113,7 +102,7 @@ lfcd () {
 }
 
 # fzf directory navigation function using fd
-ccd() {
+fzcd() {
   local dir
   # Pass an optional fuzzy search query as the first argument
   dir=$(fd --type d -H . | fzf \
@@ -151,14 +140,14 @@ alias k9s23="k9s --kubeconfig ~/git/dev-environments/kubeconfig/k923gcp -n dev23
 alias k9s24="k9s --kubeconfig ~/git/dev-environments/kubeconfig/k924gcp -n dev24"
 alias k9s25="k9s --kubeconfig ~/git/dev-environments/kubeconfig/k925gcp -n dev25"
 alias k9s26="k9s --kubeconfig ~/git/dev-environments/kubeconfig/k926gcp -n dev26"
-# file explorers
+# file explorers/management
 alias ll='ls -alF --color=auto'
 alias ls='ls -ACF --color=auto'
 alias rm='rm -rf'
 alias 'cd..'='cd ..'
 alias 'cdd'='cd --'
-alias 'ranger'='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 alias 'lf'='lfcd'
+alias 'fcd'='fzcd'
 # Notes
 alias 'notes'='code ~/Documents/notes'
 # Clear the swap storage
@@ -178,14 +167,9 @@ alias "bluetoothbattery"="bluetoothctl info | grep Battery"
 # Vim
 alias "vim"="nvim"
 alias "vimter"='vim -c ":terminal"'
-alias "editvimrc"="nvim ~/.config/nvim/init.lua"
 # Go
 alias "gocilint"="golangci-lint run --out-format \"colored-line-number:stdout\""
 alias "gocover"="rm coverage.txt; go test -covermode=atomic -count 1 -coverpkg=./... -coverprofile=coverage.txt ./... ; go tool cover -html=coverage.txt -o coverage.html; /opt/microsoft/msedge/msedge coverage.html"
-
-########################################################################
-# DIRECTORY (CD) HISTORY
-source acd_func.sh
 
 ########################################################################
 # NODEJS
@@ -197,20 +181,16 @@ export NVM_DIR="$HOME/.nvm"
 cdnvm() {
   command cd "$@" || return $?
   nvm_path="$(nvm_find_up .nvmrc | command tr -d '\n')"
-
   # If there are no .nvmrc file, use the default nvm version
   if [[ ! $nvm_path = *[^[:space:]]* ]]; then
-
     declare default_version
     default_version="$(nvm version default)"
-
     # If there is no default version, set it to `node`
     # This will use the latest version on your machine
     if [ $default_version = 'N/A' ]; then
       nvm alias default node
       default_version=$(nvm version default)
     fi
-
     # If the current version is not the default version, set it to use the default version
     if [ "$(nvm current)" != "${default_version}" ]; then
       nvm use default
@@ -218,14 +198,12 @@ cdnvm() {
   elif [[ -s "${nvm_path}/.nvmrc" && -r "${nvm_path}/.nvmrc" ]]; then
     declare nvm_version
     nvm_version=$(<"${nvm_path}"/.nvmrc)
-
     declare locally_resolved_nvm_version
     # `nvm ls` will check all locally-available versions
     # If there are multiple matching versions, take the latest one
     # Remove the `->` and `*` characters and spaces
     # `locally_resolved_nvm_version` will be `N/A` if no local versions are found
     locally_resolved_nvm_version=$(nvm ls --no-colors "${nvm_version}" | command tail -1 | command tr -d '\->*' | command tr -d '[:space:]')
-
     # If it is not already installed, install it
     # `nvm install` will implicitly use the newly-installed version
     if [ "${locally_resolved_nvm_version}" = 'N/A' ]; then
@@ -235,7 +213,4 @@ cdnvm() {
     fi
   fi
 }
-
-alias cd='cdnvm'
 cdnvm "$PWD" || exit
-. "$HOME/.cargo/env"
