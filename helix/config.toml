@@ -1,0 +1,41 @@
+theme = "monokai_pro_spectrum"
+
+[editor]
+cursorline = true
+mouse = true
+true-color = true
+scrolloff = 15 
+auto-format = true
+
+[editor.soft-wrap]
+enable = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = true
+
+[editor.indent-guides]
+render = true
+
+[editor.statusline]
+left = ["mode", "spinner", "version-control", "file-name"]
+
+[keys.normal]
+"A-k" = ["goto_line_end","extend_line_below", "delete_selection", "move_line_up", "paste_before"]
+"A-j" = ["goto_line_end","extend_line_below", "delete_selection", "paste_after"]
+"C-s" = ["normal_mode", "commit_undo_checkpoint", ":w"]
+"C-r" = ":reload"
+s = "goto_word"
+  
+[keys.select]
+"A-k" = ["goto_line_end", "extend_line_below", "delete_selection", "move_line_up", "paste_before", "select_mode"]
+"A-j" = ["goto_line_end", "extend_line_below", "delete_selection", "paste_after", "select_mode" ]
+"C-s" = ["normal_mode", "commit_undo_checkpoint", ":w"]
+s = "goto_word"
+
+[keys.insert]
+"C-s" = ["normal_mode", "commit_undo_checkpoint", ":w"]

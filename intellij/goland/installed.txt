@@ -1,0 +1,12 @@
+com.codeium.intellij
+com.mnr.java.intellij.idea.plugin.base64helper
+com.bennycode.linessorterplus
+align-carets
+com.github.zcg.love-your-eye-theme
+com.nasller.CodeGlancePro
+com.werfad
+PythonCore
+izhangzhihao.rainbow.brackets
+intellij.prettierJS
+NodeJS
+mobi.hsz.idea.gitignore

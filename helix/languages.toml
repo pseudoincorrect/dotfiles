@@ -1,0 +1,29 @@
+[[language]]
+name = "rust"
+language-servers = ["rust-analyzer"]
+auto-format = false
+
+[[language]]
+name = "go"
+auto-format = true
+formatter = { command = "goimports" }
+
+[[language]]
+name = "typescript"
+auto-format = true
+language-servers = [
+  "typescript-language-server",
+  "eslint",
+]
+formatter = { command = "npx", args = ["prettier", "--parser", "typescript"] }
+
+[[language]]
+name = "json"
+auto-format = true
+
+[[language]]
+name = "python"
+auto-format = true
+roots = ["pyproject.toml", "setup.py", "Poetry.lock", ".git"]
+language-servers = [ "pyright" ]
+formatter = {command = 'black', args = ["-"]}

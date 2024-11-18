@@ -1,0 +1,12 @@
+<application>
+  <component name="UISettings">
+    <option name="DIFFERENTIATE_PROJECTS" value="false" />
+    <option name="EDITOR_TAB_PLACEMENT" value="0" />
+    <option name="OPEN_IN_PREVIEW_TAB_IF_POSSIBLE" value="true" />
+    <option name="OVERRIDE_NONIDEA_LAF_FONTS" value="true" />
+    <option name="SHOW_EDITOR_TOOLTIP" value="false" />
+    <option name="showTreeIndentGuides" value="true" />
+    <option name="UI_DENSITY" value="COMPACT" />
+    <option name="WIDESCREEN_SUPPORT" value="true" />
+  </component>
+</application>
