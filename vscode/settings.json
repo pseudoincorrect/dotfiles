@@ -1,5 +1,5 @@
 {
-  "editor.lineNumbers": "off",
+  "editor.lineNumbers": "relative",
   "workbench.editor.showTabs": "single",
   "security.workspace.trust.untrustedFiles": "open",
   "extensions.ignoreRecommendations": true,
@@ -30,23 +30,8 @@
   "outline.collapseItems": "alwaysCollapse",
   "codeium.enableCommandSideHintEducation": false,
   "codeium.enableCodeLens": false,
-  "outline-map.expand": "cursor",
-  "outline-map.hiddenItem": [
-    "module",
-    "namespace",
-    "package",
-    "property",
-    "field",
-    "enum",
-    "interface",
-    "variable",
-    "constant"
-  ],
-  "outline-map.defaultMaxDepth": 5,
-  "outline-map.region.registerSymbolProvider": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "cSpell.enabled": false,
   "editor.selectionClipboard": false,
   "breadcrumbs.icons": false,
   "breadcrumbs.showArrays": false,
@@ -72,7 +57,6 @@
   "breadcrumbs.showStructs": false,
   "breadcrumbs.showTypeParameters": false,
   "breadcrumbs.showVariables": false,
-  "outline-map.findRef.uesFindImpl": true,
   "workbench.activityBar.location": "top",
   "notebook.outline.showCodeCells": true,
   "window.openFoldersInNewWindow": "on",
@@ -83,11 +67,9 @@
   "files.autoSave": "afterDelay",
   "terminal.integrated.fontSize": 13,
   "workbench.editor.revealIfOpen": true,
-  "workbench.colorTheme": "Monokai Pro (Filter Spectrum)",
   "window.title": "${rootName}",
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "javascript.preferences.importModuleSpecifier": "non-relative",
-  "workbench.iconTheme": "Monokai Pro (Filter Spectrum) Icons",
   "window.zoomPerWindow": false,
   "window.zoomLevel": -1,
   "editor.minimap.showSlider": "always",
@@ -106,5 +88,53 @@
   "editor.minimap.renderCharacters": false,
   "editor.cursorSurroundingLines": 20,
   "editor.wordWrap": "on",
-  "terminal.integrated.scrollback": 5000
+  "terminal.integrated.scrollback": 5000,
+  "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always"
+  },
+  "projectManager.git.baseFolders": [
+    "/home/mclement/git",
+    "/home/mclement/Documents"
+  ],
+  "projectManager.removeCurrentProjectFromList": false,
+  "window.openFilesInNewWindow": "on",
+  "window.newWindowDimensions": "maximized",
+  "projectManager.git.maxDepthRecursion": 1,
+  "projectManager.showParentFolderInfoOnDuplicates": true,
+  "projectManager.ignoreProjectsWithinProjects": true,
+  "workbench.sideBar.location": "right",
+  "editor.unicodeHighlight.ambiguousCharacters": false,
+  "vim.leader": "space",
+  "vim.sneakUseIgnorecaseAndSmartcase": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-f>": false
+  },
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
+  },
+  "vim.easymotionKeys": "hklyuiopnm,qwertxcvbasdgjf;",
+  "vim.sneak": false,
+  "vim.sneakReplacesF": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  //   "vim.normalModeKeyBindingsNonRecursive": [
+  //   {
+  //     "before": [
+  //       "s"
+  //     ],
+  //     "after": [
+  //       "leader",
+  //       "leader",
+  //       "leader",
+  //       "b",
+  //       "d",
+  //       "w"
+  //     ]
+  //   }
+  // ]
 }
