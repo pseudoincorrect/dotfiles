@@ -16,7 +16,7 @@ normal = "block"
 select = "underline"
 
 [editor.file-picker]
-hidden = true
+hidden = false
 
 [editor.indent-guides]
 render = true
@@ -29,13 +29,12 @@ left = ["mode", "spinner", "version-control", "file-name"]
 "A-j" = ["goto_line_end","extend_line_below", "delete_selection", "paste_after"]
 "C-s" = ["normal_mode", "commit_undo_checkpoint", ":w"]
 "C-r" = ":reload"
-s = "goto_word"
+"C-R" = ":reload-all"
   
 [keys.select]
 "A-k" = ["goto_line_end", "extend_line_below", "delete_selection", "move_line_up", "paste_before", "select_mode"]
 "A-j" = ["goto_line_end", "extend_line_below", "delete_selection", "paste_after", "select_mode" ]
 "C-s" = ["normal_mode", "commit_undo_checkpoint", ":w"]
-s = "goto_word"
 
 [keys.insert]
 "C-s" = ["normal_mode", "commit_undo_checkpoint", ":w"]
