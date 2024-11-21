@@ -132,7 +132,7 @@ fzcd() {
 
 ########################################################################
 # EDITOR
-export EDITOR=nvim
+export EDITOR=helix
 
 ########################################################################
 # ALIASES
@@ -165,7 +165,7 @@ alias 'clearswap'='sudo swapoff -a; sudo swapon -a'
 # make python3 as default
 alias 'python'='python3'
 # edit .bashrc
-alias "editrc"="nvim ~/.bashrc"
+alias "editrc"="helix ~/.bashrc"
 alias "sourcerc"="source ~/.bashrc"
 alias "catrc"="cat ~/.bashrc"
 # docker compose
