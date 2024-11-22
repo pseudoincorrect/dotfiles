@@ -6,6 +6,8 @@ mouse = true
 true-color = true
 scrolloff = 15 
 auto-format = true
+line-number = "relative"
+auto-save = true
 
 [editor.soft-wrap]
 enable = true
@@ -22,19 +24,25 @@ hidden = false
 render = true
 
 [editor.statusline]
-left = ["mode", "spinner", "version-control", "file-name"]
+left = [ "mode", "spinner", "diagnostics" ]
+center = [ "file-name", "separator", "version-control" ]
+right = [ "position", "position-percentage", "total-line-numbers" ]
+separator = " │ "
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
 
 [keys.normal]
-"A-k" = ["goto_line_end","extend_line_below", "delete_selection", "move_line_up", "paste_before"]
-"A-j" = ["goto_line_end","extend_line_below", "delete_selection", "paste_after"]
 "C-s" = ["normal_mode", "commit_undo_checkpoint", ":w"]
-"C-r" = ":reload"
-"C-R" = ":reload-all"
-  
+"A-up" = ["goto_line_end","extend_line_below", "delete_selection", "move_line_up", "paste_before"]
+"A-down" = ["goto_line_end","extend_line_below", "delete_selection", "paste_after"]
+"f" = ["goto_word"]
+
 [keys.select]
-"A-k" = ["goto_line_end", "extend_line_below", "delete_selection", "move_line_up", "paste_before", "select_mode"]
-"A-j" = ["goto_line_end", "extend_line_below", "delete_selection", "paste_after", "select_mode" ]
 "C-s" = ["normal_mode", "commit_undo_checkpoint", ":w"]
+"A-up" = ["goto_line_end", "extend_line_below", "delete_selection", "move_line_up", "paste_before", "select_mode"]
+"A-down" = ["goto_line_end", "extend_line_below", "delete_selection", "paste_after", "select_mode" ]
+"f" = ["goto_word"]
 
 [keys.insert]
 "C-s" = ["normal_mode", "commit_undo_checkpoint", ":w"]
