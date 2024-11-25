@@ -1,0 +1,260 @@
+{
+    "groups": [],
+    "rules": [
+        {
+            "detection": "CONTAINS",
+            "id": "ym062ub",
+            "is_enabled": true,
+            "name": "Slack",
+            "tab": {
+                "group_id": null,
+                "icon": null,
+                "muted": false,
+                "pinned": false,
+                "protected": false,
+                "title": "Slack",
+                "title_matcher": null,
+                "unique": false,
+                "url_matcher": null
+            },
+            "url_fragment": "app.slack.co"
+        },
+        {
+            "detection": "CONTAINS",
+            "id": "f3zifha",
+            "is_enabled": true,
+            "name": "WhatsApp",
+            "tab": {
+                "group_id": null,
+                "icon": null,
+                "muted": false,
+                "pinned": true,
+                "protected": true,
+                "title": "WhatsApp",
+                "title_matcher": null,
+                "unique": false,
+                "url_matcher": null
+            },
+            "url_fragment": "https://web.whatsapp.com/"
+        },
+        {
+            "detection": "CONTAINS",
+            "id": "n9kf4a9",
+            "is_enabled": true,
+            "name": "Facebook",
+            "tab": {
+                "group_id": null,
+                "icon": null,
+                "muted": false,
+                "pinned": true,
+                "protected": true,
+                "title": "Facebook",
+                "title_matcher": null,
+                "unique": false,
+                "url_matcher": null
+            },
+            "url_fragment": "https://www.facebook.com"
+        },
+        {
+            "detection": "CONTAINS",
+            "id": "lwr1evp",
+            "is_enabled": true,
+            "name": "ChatGPT",
+            "tab": {
+                "group_id": null,
+                "icon": null,
+                "muted": false,
+                "pinned": true,
+                "protected": true,
+                "title": "ChatGPT",
+                "title_matcher": null,
+                "unique": false,
+                "url_matcher": null
+            },
+            "url_fragment": "https://chatgpt.com"
+        },
+        {
+            "detection": "CONTAINS",
+            "id": "g13rhab",
+            "is_enabled": true,
+            "name": "GMail",
+            "tab": {
+                "group_id": null,
+                "icon": null,
+                "muted": false,
+                "pinned": true,
+                "protected": true,
+                "title": "GMail",
+                "title_matcher": null,
+                "unique": false,
+                "url_matcher": null
+            },
+            "url_fragment": "https://mail.google.com/mail"
+        },
+        {
+            "detection": "CONTAINS",
+            "id": "idyiev9",
+            "is_enabled": true,
+            "name": "Outlook",
+            "tab": {
+                "group_id": null,
+                "icon": null,
+                "muted": false,
+                "pinned": true,
+                "protected": true,
+                "title": "Outlook",
+                "title_matcher": null,
+                "unique": false,
+                "url_matcher": null
+            },
+            "url_fragment": "https://outlook.office.com"
+        },
+        {
+            "detection": "CONTAINS",
+            "id": "1jtqggx",
+            "is_enabled": true,
+            "name": "Kibana",
+            "tab": {
+                "group_id": null,
+                "icon": null,
+                "muted": false,
+                "pinned": false,
+                "protected": false,
+                "title": "Kibana",
+                "title_matcher": null,
+                "unique": false,
+                "url_matcher": null
+            },
+            "url_fragment": "ki-mgmt"
+        },
+        {
+            "detection": "CONTAINS",
+            "id": "jyirdni",
+            "is_enabled": true,
+            "name": "ArgoCD",
+            "tab": {
+                "group_id": null,
+                "icon": null,
+                "muted": false,
+                "pinned": false,
+                "protected": false,
+                "title": "ArgoCD",
+                "title_matcher": null,
+                "unique": false,
+                "url_matcher": null
+            },
+            "url_fragment": "argocd.intdw.org"
+        },
+        {
+            "detection": "CONTAINS",
+            "id": "s48blg4",
+            "is_enabled": true,
+            "name": "Jira Board",
+            "tab": {
+                "group_id": null,
+                "icon": null,
+                "muted": false,
+                "pinned": false,
+                "protected": false,
+                "title": "JIRA - Board",
+                "title_matcher": null,
+                "unique": false,
+                "url_matcher": null
+            },
+            "url_fragment": "jira.intdw.org/secure/RapidBoard"
+        },
+        {
+            "detection": "CONTAINS",
+            "id": "kykff97",
+            "is_enabled": true,
+            "name": "Jira Ticket",
+            "tab": {
+                "group_id": null,
+                "icon": null,
+                "muted": false,
+                "pinned": false,
+                "protected": false,
+                "title": "JIRA - [ $0 ] ",
+                "title_matcher": null,
+                "unique": false,
+                "url_matcher": "((HP\\d+)|(TDW)|(SUPPORT))-\\d+"
+            },
+            "url_fragment": "jira.intdw.org/browse"
+        },
+        {
+            "detection": "CONTAINS",
+            "id": "k7bypw3",
+            "is_enabled": true,
+            "name": "Gitlab",
+            "tab": {
+                "group_id": null,
+                "icon": null,
+                "muted": false,
+                "pinned": false,
+                "protected": false,
+                "title": "$1",
+                "title_matcher": null,
+                "unique": false,
+                "url_matcher": "gitlab\\.intdw\\.org\\/[a-zA-Z-.0-9]+\\/([a-zA-Z-0-9]+)"
+            },
+            "url_fragment": "https://gitlab.intdw.org"
+        },
+        {
+            "detection": "REGEX",
+            "id": "ojcc83l",
+            "is_enabled": true,
+            "name": "Tempo",
+            "tab": {
+                "group_id": null,
+                "icon": null,
+                "muted": false,
+                "pinned": false,
+                "protected": false,
+                "title": "Tempo",
+                "title_matcher": null,
+                "unique": false,
+                "url_matcher": null
+            },
+            "url_fragment": "grafana\\.argos\\.cassiopea.*temp"
+        },
+        {
+            "detection": "REGEX",
+            "id": "ak7f082",
+            "is_enabled": true,
+            "name": "Loki",
+            "tab": {
+                "group_id": null,
+                "icon": null,
+                "muted": false,
+                "pinned": false,
+                "protected": false,
+                "title": "Loki",
+                "title_matcher": null,
+                "unique": false,
+                "url_matcher": ""
+            },
+            "url_fragment": "grafana\\.argos\\.cassiopea.*loki"
+        },
+        {
+            "detection": "REGEX",
+            "id": "9v35gfd",
+            "is_enabled": true,
+            "name": "Thanos",
+            "tab": {
+                "group_id": null,
+                "icon": null,
+                "muted": false,
+                "pinned": false,
+                "protected": false,
+                "title": "Thanos",
+                "title_matcher": null,
+                "unique": false,
+                "url_matcher": ""
+            },
+            "url_fragment": "grafana\\.argos\\.cassiopea.*prometheus"
+        }
+    ],
+    "settings": {
+        "theme": "dim"
+    }
+}
