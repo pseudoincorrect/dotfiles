@@ -37,6 +37,11 @@ mode.select = "SELECT"
 "A-up" = ["goto_line_end","extend_line_below", "delete_selection", "move_line_up", "paste_before"]
 "A-down" = ["goto_line_end","extend_line_below", "delete_selection", "paste_after"]
 "f" = ["goto_word"]
+"tab" = ["goto_next_buffer"]
+"S-tab" = ["goto_previous_buffer"]
+"C-q" = [":buffer-close"]
+"C-h" = ["jump_view_left"]
+"C-l" = ["jump_view_right"]
 
 [keys.select]
 "C-s" = ["normal_mode", "commit_undo_checkpoint", ":w"]
