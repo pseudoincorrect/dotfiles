@@ -40,7 +40,14 @@ PS1=' \[\033[01;36m\]\W\[\033[00m\] $ '
 
 ########################################################################
 # TITLE AS CURRENT DIRECTORY
-PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
+# Function to set the terminal title
+set_window_title_cwd() {
+  # Extract the last folder name of the current working directory
+  local dir_name="${PWD##*/}"
+  # Use escape sequences to set the terminal title
+  echo -ne "\033]0;${dir_name}\007"
+}
+PROMPT_COMMAND="set_window_title_cwd"
 
 ########################################################################
 # TAB COMPLETION
@@ -86,7 +93,7 @@ function cheat() {
   curl "https://cheat.sh/$1"
 }
 
-# set-title set the terminal title
+# manually set-title set the terminal title
 function st() {
   if [[ -z "$ORIG" ]]; then
     ORIG=$PS1
@@ -102,7 +109,7 @@ lfcd () {
 }
 
 # use Yazi and exit on cd
-function y() {
+function ycd() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
 	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
@@ -158,6 +165,7 @@ alias 'cd..'='cd ..'
 alias 'cdd'='cd --'
 alias 'lf'='lfcd'
 alias 'fcd'='fzcd'
+alias 'y'='yazi'
 # Notes
 alias 'notes'='code ~/Documents/notes'
 # Clear the swap storage
