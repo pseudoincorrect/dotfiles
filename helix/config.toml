@@ -8,6 +8,10 @@ scrolloff = 15
 auto-format = true
 line-number = "relative"
 auto-save = true
+gutters = ["diagnostics", "spacer", "diff"]
+jump-label-alphabet = "asdflkjureiwoqpvcbnty"
+completion-timeout = 0
+completion-trigger-len = 0
 
 [editor.soft-wrap]
 enable = true
@@ -26,7 +30,7 @@ render = true
 [editor.statusline]
 left = [ "mode", "spinner", "diagnostics" ]
 center = [ "file-name", "separator", "version-control" ]
-right = [ "position", "position-percentage", "total-line-numbers" ]
+right = [ "position", "position-percentage", "total-line-numbers", "selections"]
 separator = " │ "
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
@@ -36,18 +40,23 @@ mode.select = "SELECT"
 "C-s" = ["normal_mode", "commit_undo_checkpoint", ":w"]
 "A-up" = ["goto_line_end","extend_line_below", "delete_selection", "move_line_up", "paste_before"]
 "A-down" = ["goto_line_end","extend_line_below", "delete_selection", "paste_after"]
-"f" = ["goto_word"]
-"tab" = ["goto_next_buffer"]
-"S-tab" = ["goto_previous_buffer"]
-"C-q" = [":buffer-close"]
-"C-h" = ["jump_view_left"]
-"C-l" = ["jump_view_right"]
+"f" = "goto_word"
+"tab" = "buffer_picker"
+"S-tab" = "goto_last_accessed_file"
+"C-q" = ":buffer-close"
+"x" = "select_line_below"
+"X" = "select_line_above"
 
 [keys.select]
 "C-s" = ["normal_mode", "commit_undo_checkpoint", ":w"]
 "A-up" = ["goto_line_end", "extend_line_below", "delete_selection", "move_line_up", "paste_before", "select_mode"]
 "A-down" = ["goto_line_end", "extend_line_below", "delete_selection", "paste_after", "select_mode" ]
-"f" = ["goto_word"]
+"f" = "extend_to_word"
+"x" = "select_line_below"
+"X" = "select_line_above"
 
 [keys.insert]
 "C-s" = ["normal_mode", "commit_undo_checkpoint", ":w"]
+
+# TIPS
+# copy the current buffer-path: "%P"+d
