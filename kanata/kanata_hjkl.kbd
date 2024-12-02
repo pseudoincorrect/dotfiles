@@ -14,7 +14,7 @@ lctl      lmet   lalt             spc                  ralt        rmet         
 esc            f1   f2   f3   f4               f5    f6    f7    f8          f9   f10  f11   f12
 grv       1      2    3      4       5       6     7      8     9      0       -      =     bspc       
 tab       q      w    e      r       t       y     u      i     o      p       [      ]        \          
-caps      a      s    d      @vimnav g       h     j      k     l      ;       '           enter        
+@caps     a      s    d      @vimnav g       h     j      k     l      ;       '           enter        
 lsft      z      x    c      v       b       n     m      ,     .      /                    rsft               up
 lctl      lmet   lalt             spc                  ralt        rmet                     rctl          lft down rght
 
@@ -25,7 +25,7 @@ lctl      lmet   lalt             spc                  ralt        rmet         
 -             -     -   -     -             -     -    -     -          -    -    -    -
 -       -      -    -      -      -       -     -      -     -      -      -      -    -       
 -       -      -    -      -      -       home  bspc   esc   del    -      -      -    -          
-caps    -      -    -      -      -       left  down   up    right  end    -           -        
+lctl    -      -    -      -      -       left  down   up    right  end    -           -        
 lsft    -      -    -      -      -       -     enter  pgdn  pgup   -                  -         -
 -       -      -             -                                      -      -           -       - - -
 
@@ -33,5 +33,6 @@ lsft    -      -    -      -      -       -     enter  pgdn  pgup   -           
 
 
 (defalias
-    vimnav  (tap-hold-press 200 200 f (layer-toggle vimnav))
+    vimnav  (tap-hold-press 200 200 f   (layer-toggle vimnav))
+    caps    (tap-hold-press 200 200 esc lctl)
 )
