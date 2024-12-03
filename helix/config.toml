@@ -37,38 +37,30 @@ mode.select = "SELECT"
 separator = " │ "
 
 [keys.normal]
-"A-down" = ["goto_line_end","extend_line_below", "delete_selection", "paste_after"]
-"A-up" = ["goto_line_end","extend_line_below", "delete_selection", "move_line_up", "paste_before"]
-"C-h" = "jump_view_left"
-"C-j" = "jump_view_down"
-"C-k" = "jump_view_up"
-"C-l" = "jump_view_right"
-"C-q" = ":buffer-close"
-"C-s" = ["normal_mode", "commit_undo_checkpoint", ":w"]
-"f" = "goto_word"
-"S-tab" = "goto_last_accessed_file"
-"tab" = "buffer_picker"
-"X" = "select_line_above"
-"x" = "select_line_below"
+A-down = ["goto_line_end","extend_line_below", "delete_selection", "paste_after"]
+A-up = ["goto_line_end","extend_line_below", "delete_selection", "move_line_up", "paste_before"]
+C-s = ["normal_mode", "commit_undo_checkpoint", ":w"]
+f = "goto_word"
+F = "repeat_last_motion"
+S-tab = "file_picker"
+tab = "buffer_picker"
+X = "select_line_above"
+x = "select_line_below"
+t = ["goto_next_buffer"]
+T = ["goto_previous_buffer"]
+C-t = ":toggle file-picker.git-ignore"
 
 [keys.select]
-"A-down" = ["goto_line_end", "extend_line_below", "delete_selection", "paste_after", "select_mode" ]
-"A-up" = ["goto_line_end", "extend_line_below", "delete_selection", "move_line_up", "paste_before", "select_mode"]
-"C-h" = "jump_view_left"
-"C-j" = "jump_view_down"
-"C-k" = "jump_view_up"
-"C-l" = "jump_view_right"
-"C-s" = ["normal_mode", "commit_undo_checkpoint", ":w"]
-"f" = "extend_to_word"
-"X" = "select_line_above"
-"x" = "select_line_below"
+A-down = ["goto_line_end", "extend_line_below", "delete_selection", "paste_after", "select_mode" ]
+A-up = ["goto_line_end", "extend_line_below", "delete_selection", "move_line_up", "paste_before", "select_mode"]
+C-s = ["normal_mode", "commit_undo_checkpoint", ":w"]
+f = "extend_to_word"
+F = "repeat_last_motion"
+X = "select_line_above"
+x = "select_line_below"
 
 [keys.insert]
-"C-h" = ["normal_mode", "jump_view_left"]
-"C-j" = ["normal_mode", "jump_view_down"]
-"C-k" = ["normal_mode", "jump_view_up"]
-"C-l" = ["normal_mode", "jump_view_right"]
-"C-s" = ["normal_mode", "commit_undo_checkpoint", ":w"]
+C-s = ["normal_mode", "commit_undo_checkpoint", ":w"]
 
 # TIPS
 # copy the current buffer-path: "%P"+d
