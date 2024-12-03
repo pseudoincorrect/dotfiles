@@ -28,34 +28,46 @@ hidden = false
 render = true
 
 [editor.statusline]
-left = [ "mode", "spinner", "diagnostics" ]
-center = [ "file-name", "separator", "version-control" ]
 right = [ "position", "position-percentage", "total-line-numbers", "selections"]
-separator = " │ "
-mode.normal = "NORMAL"
+center = [ "file-name", "separator", "version-control" ]
+left = [ "mode", "spinner", "diagnostics" ]
 mode.insert = "INSERT"
+mode.normal = "NORMAL"
 mode.select = "SELECT"
+separator = " │ "
 
 [keys.normal]
-"C-s" = ["normal_mode", "commit_undo_checkpoint", ":w"]
-"A-up" = ["goto_line_end","extend_line_below", "delete_selection", "move_line_up", "paste_before"]
 "A-down" = ["goto_line_end","extend_line_below", "delete_selection", "paste_after"]
-"f" = "goto_word"
-"tab" = "buffer_picker"
-"S-tab" = "goto_last_accessed_file"
+"A-up" = ["goto_line_end","extend_line_below", "delete_selection", "move_line_up", "paste_before"]
+"C-h" = "jump_view_left"
+"C-j" = "jump_view_down"
+"C-k" = "jump_view_up"
+"C-l" = "jump_view_right"
 "C-q" = ":buffer-close"
-"x" = "select_line_below"
+"C-s" = ["normal_mode", "commit_undo_checkpoint", ":w"]
+"f" = "goto_word"
+"S-tab" = "goto_last_accessed_file"
+"tab" = "buffer_picker"
 "X" = "select_line_above"
+"x" = "select_line_below"
 
 [keys.select]
-"C-s" = ["normal_mode", "commit_undo_checkpoint", ":w"]
-"A-up" = ["goto_line_end", "extend_line_below", "delete_selection", "move_line_up", "paste_before", "select_mode"]
 "A-down" = ["goto_line_end", "extend_line_below", "delete_selection", "paste_after", "select_mode" ]
+"A-up" = ["goto_line_end", "extend_line_below", "delete_selection", "move_line_up", "paste_before", "select_mode"]
+"C-h" = "jump_view_left"
+"C-j" = "jump_view_down"
+"C-k" = "jump_view_up"
+"C-l" = "jump_view_right"
+"C-s" = ["normal_mode", "commit_undo_checkpoint", ":w"]
 "f" = "extend_to_word"
-"x" = "select_line_below"
 "X" = "select_line_above"
+"x" = "select_line_below"
 
 [keys.insert]
+"C-h" = ["normal_mode", "jump_view_left"]
+"C-j" = ["normal_mode", "jump_view_down"]
+"C-k" = ["normal_mode", "jump_view_up"]
+"C-l" = ["normal_mode", "jump_view_right"]
 "C-s" = ["normal_mode", "commit_undo_checkpoint", ":w"]
 
 # TIPS
