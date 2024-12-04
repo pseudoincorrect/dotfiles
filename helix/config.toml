@@ -1,4 +1,5 @@
 theme = "monokai_pro_spectrum"
+# theme = "catppuccin_latte"
 
 [editor]
 cursorline = true
@@ -41,14 +42,16 @@ A-down = ["goto_line_end","extend_line_below", "delete_selection", "paste_after"
 A-up = ["goto_line_end","extend_line_below", "delete_selection", "move_line_up", "paste_before"]
 C-s = ["normal_mode", "commit_undo_checkpoint", ":w"]
 f = "goto_word"
-F = "repeat_last_motion"
+"\\" = "repeat_last_motion"
 S-tab = "file_picker"
 tab = "buffer_picker"
 X = "select_line_above"
-x = "select_line_below"
-t = ["goto_next_buffer"]
-T = ["goto_previous_buffer"]
+x = "select_line_below" 
+t = ["find_next_char"]
+T = ["find_prev_char"]
 C-t = ":toggle file-picker.git-ignore"
+C-q = ":buffer-close!"
+C-c = ["toggle_comments", "move_line_down"]
 
 [keys.select]
 A-down = ["goto_line_end", "extend_line_below", "delete_selection", "paste_after", "select_mode" ]
