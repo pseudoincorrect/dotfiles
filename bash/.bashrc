@@ -118,24 +118,13 @@ function ycd() {
 	rm -f -- "$tmp"
 }
 
-# fzf directory navigation function using fd
-fzcd() {
-  local dir
-  # Pass an optional fuzzy search query as the first argument
-  dir=$(fd --type d -H . | fzf \
-    --preview 'tree -C {} | head -100' \
-    --preview-window=right:50% \
-    --select-1 \
-    --exit-0 \
-    --height 40% \
-    --prompt "Select directory: " \
-    --query="${1:-}")
-  if [[ -n "$dir" ]]; then
-    cd "$dir" || return
-  fi
-}
+########################################################################
+# ZOXIDE (FILE EXPLORER)
+eval "$(zoxide init bash)"
 
-
+########################################################################
+# BROOT (FILE EXPLORER)
+source $HOME/.config/broot/launcher/bash/br
 
 ########################################################################
 # EDITOR
@@ -162,10 +151,10 @@ alias ll='ls -alF --color=auto'
 alias ls='ls -ACF --color=auto'
 alias rm='rm -rf'
 alias 'cd..'='cd ..'
-alias 'cdd'='cd --'
 alias 'lf'='lfcd'
-alias 'fcd'='fzcd'
 alias 'y'='yazi'
+alias 'cd'='z'
+alias 'fcd'='zi'
 # Notes
 alias 'notes'='code ~/Documents/notes'
 # Clear the swap storage
@@ -232,3 +221,4 @@ cdnvm() {
   fi
 }
 cdnvm "$PWD" || exit
+
