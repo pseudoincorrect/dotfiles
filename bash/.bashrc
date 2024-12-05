@@ -74,9 +74,6 @@ PATH="$HOME/.cargo/bin:$PATH"
 
 ########################################################################
 # GO
-export GOPROXY="https://nexus.intdw.org/repository/go/"
-export GOPRIVATE="gitlab.intdw.org/"
-
 export GOPATH="$HOME/go/global"
 PATH="$GOPATH/bin:$PATH"
 
@@ -132,20 +129,6 @@ export EDITOR=helix
 
 ########################################################################
 # ALIASES
-# Kubernetes
-alias kcl21="kubectl --kubeconfig ~/git/dev-environments/kubeconfig/k921gcp -n dev21"
-alias kcl22="kubectl --kubeconfig ~/git/dev-environments/kubeconfig/k922gcp -n dev22"
-alias kcl23="kubectl --kubeconfig ~/git/dev-environments/kubeconfig/k923gcp -n dev23"
-alias kcl24="kubectl --kubeconfig ~/git/dev-environments/kubeconfig/k924gcp -n dev24"
-alias kcl25="kubectl --kubeconfig ~/git/dev-environments/kubeconfig/k925gcp -n dev25"
-alias kcl26="kubectl --kubeconfig ~/git/dev-environments/kubeconfig/k926gcp -n dev26"
-# K9S
-alias k9s21="k9s --kubeconfig ~/git/dev-environments/kubeconfig/k921gcp -n dev21"
-alias k9s22="k9s --kubeconfig ~/git/dev-environments/kubeconfig/k922gcp -n dev22"
-alias k9s23="k9s --kubeconfig ~/git/dev-environments/kubeconfig/k923gcp -n dev23"
-alias k9s24="k9s --kubeconfig ~/git/dev-environments/kubeconfig/k924gcp -n dev24"
-alias k9s25="k9s --kubeconfig ~/git/dev-environments/kubeconfig/k925gcp -n dev25"
-alias k9s26="k9s --kubeconfig ~/git/dev-environments/kubeconfig/k926gcp -n dev26"
 # file explorers/management
 alias ll='ls -alF --color=auto'
 alias ls='ls -ACF --color=auto'
@@ -222,3 +205,4 @@ cdnvm() {
 }
 cdnvm "$PWD" || exit
 
+source $HOME/.bashrc_tadaweb
