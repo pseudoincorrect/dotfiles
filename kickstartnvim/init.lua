@@ -232,7 +232,9 @@ vim.keymap.set('n', '<c-n>', '<Plug>(YankyNextEntry)')
 vim.keymap.set('n', '<leader>ee', '<Esc>:Neotree toggle<CR>', { noremap = true, desc = 'Open NeoTree files [E]xplor[E]r' })
 vim.keymap.set('n', '<leader>eb', '<Esc>:Neotree toggle source=buffers<CR>', { noremap = true, desc = 'Open NeoTree [E]xplore [B]uffers' })
 
+-- Change word under cursor
 vim.keymap.set('n', 'w', 'ciw', { desc = 'change word under cursor' })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
