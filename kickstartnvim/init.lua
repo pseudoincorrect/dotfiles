@@ -1022,6 +1022,19 @@ require('lazy').setup({
       },
       indent = { enable = true, disable = { 'ruby' } },
     },
+    config = function()
+      require('nvim-treesitter.configs').setup {
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = 'ti',
+            node_incremental = 'tni',
+            scope_incremental = 'tsi',
+            node_decremental = 'tdd',
+          },
+        },
+      }
+    end,
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
     --
