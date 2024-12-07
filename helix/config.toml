@@ -45,6 +45,8 @@ f = "goto_word"
 "\\" = "repeat_last_motion"
 S-tab = "file_picker"
 tab = "buffer_picker"
+w =  "@miwc"
+W =  "@miw"
 X = "select_line_above"
 x = "select_line_below" 
 t = ["find_next_char"]
@@ -53,14 +55,20 @@ C-t = ":toggle file-picker.git-ignore"
 C-q = ":buffer-close!"
 C-c = ["toggle_comments", "move_line_down"]
 
+[keys.normal.space]
+t = "@ /%p <C-r>% %n " 
+
 [keys.select]
 A-down = ["goto_line_end", "extend_line_below", "delete_selection", "paste_after", "select_mode" ]
 A-up = ["goto_line_end", "extend_line_below", "delete_selection", "move_line_up", "paste_before", "select_mode"]
 C-s = ["normal_mode", "commit_undo_checkpoint", ":w"]
+"\\" = "repeat_last_motion"
 f = "extend_to_word"
 F = "repeat_last_motion"
 X = "select_line_above"
 x = "select_line_below"
+t = ["extend_next_char"]
+T = ["extend_prev_char"]
 
 [keys.insert]
 C-s = ["normal_mode", "commit_undo_checkpoint", ":w"]
