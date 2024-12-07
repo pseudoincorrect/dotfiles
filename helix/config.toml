@@ -40,38 +40,42 @@ separator = " │ "
 [keys.normal]
 A-down = ["goto_line_end","extend_line_below", "delete_selection", "paste_after"]
 A-up = ["goto_line_end","extend_line_below", "delete_selection", "move_line_up", "paste_before"]
-C-s = ["normal_mode", "commit_undo_checkpoint", ":w"]
+C-s = ["normal_mode", ":w"] # Save file
 f = "goto_word"
 "\\" = "repeat_last_motion"
 S-tab = "file_picker"
 tab = "buffer_picker"
-w =  "@miwc"
-W =  "@miw"
+w =  "@miw<A-c>" # Change word under cursor
+W =  "@miw"      # Select word under cursor
 X = "select_line_above"
 x = "select_line_below" 
-t = ["find_next_char"]
-T = ["find_prev_char"]
+t = "find_next_char"
+T = "find_prev_char"
 C-t = ":toggle file-picker.git-ignore"
 C-q = ":buffer-close!"
 C-c = ["toggle_comments", "move_line_down"]
+"C-;" = "flip_selections"
+"C-," = "remove_primary_selection"
+
+[keys.normal.m]
+"[" = "shrink_selection"
+"]" = "expand_selection"
 
 [keys.normal.space]
-t = "@ /%p <C-r>% %n " 
+t = "@ /%p <C-r>% %n " # Open string search on current buffer
+z = "@\"%p\"+d"        # Copy buffer path in clipboard  
 
 [keys.select]
 A-down = ["goto_line_end", "extend_line_below", "delete_selection", "paste_after", "select_mode" ]
 A-up = ["goto_line_end", "extend_line_below", "delete_selection", "move_line_up", "paste_before", "select_mode"]
-C-s = ["normal_mode", "commit_undo_checkpoint", ":w"]
+C-s = ["normal_mode", ":w"] # Save file
 "\\" = "repeat_last_motion"
 f = "extend_to_word"
 F = "repeat_last_motion"
 X = "select_line_above"
 x = "select_line_below"
-t = ["extend_next_char"]
-T = ["extend_prev_char"]
+t = "extend_next_char"
+T = "extend_prev_char"
 
 [keys.insert]
-C-s = ["normal_mode", "commit_undo_checkpoint", ":w"]
-
-# TIPS
-# copy the current buffer-path: "%P"+d
+C-s = ["normal_mode", ":w"] # Save file
