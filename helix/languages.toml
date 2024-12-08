@@ -20,6 +20,7 @@ formatter = { command = "npx", args = ["prettier", "--parser", "typescript"] }
 [[language]]
 name = "json"
 auto-format = true
+language-servers = ["vscode-json-language-server"]
 
 [[language]]
 name = "python"
