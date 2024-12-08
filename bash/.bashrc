@@ -58,10 +58,6 @@ bind TAB:menu-complete
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 ########################################################################
-# FUZZY SEARCH FZF
-eval "$(fzf --bash)"
-
-########################################################################
 # PATH and other export
 PATH="$HOME/Programs/gitkraken:$PATH"
 PATH="$HOME/bin:$PATH"
@@ -124,8 +120,26 @@ eval "$(zoxide init bash)"
 source $HOME/.config/broot/launcher/bash/br
 
 ########################################################################
+# FUZZY SEARCH FZF
+eval "$(fzf --bash)"
+export FZF_DEFAULT_COMMAND='fd --strip-cwd-prefix --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND='fd --type d --strip-cwd-prefix --hidden --follow --exclude .git'
+
+# Use fd for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
+
+#######################################################################
 # EDITOR
-export EDITOR=helix
+export EDITOR=hx
 
 ########################################################################
 # ALIASES
@@ -145,7 +159,7 @@ alias 'clearswap'='sudo swapoff -a; sudo swapon -a'
 # make python3 as default
 alias 'python'='python3'
 # edit .bashrc
-alias "editrc"="helix ~/.bashrc"
+alias "editrc"="$EDITOR ~/.bashrc"
 alias "sourcerc"="source ~/.bashrc"
 alias "catrc"="cat ~/.bashrc"
 # docker compose
