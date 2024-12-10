@@ -53,7 +53,7 @@ keybinds {
         bind "l" "Right" "Down" "j" { GoToNextTab; }
         bind "n" { NewTab; SwitchToMode "Normal"; }
         bind "x" { CloseTab; SwitchToMode "Normal"; }
-        bind "s" { ToggleActiveSyncTab; SwitchToMode "Normal"; }
+        // bind "s" { ToggleActiveSyncTab; SwitchToMode "Normal"; }
         bind "b" { BreakPane; SwitchToMode "Normal"; }
         bind "]" { BreakPaneRight; SwitchToMode "Normal"; }
         bind "[" { BreakPaneLeft; SwitchToMode "Normal"; }
@@ -159,30 +159,34 @@ keybinds {
         bind "x" { CloseFocus; SwitchToMode "Normal"; }
     }
      shared {
-        bind "Alt h" { GoToPreviousTab; }
-        bind "Alt l" { GoToNextTab; }
-        bind "Ctrl h" { MoveFocus "left"; }
-        bind "Ctrl l" { MoveFocus "right"; }
+        bind "Alt ," { GoToPreviousTab; }
+        bind "Alt ." { GoToNextTab; }
+        bind "Alt k" { MoveFocus "up"; }
+        bind "Alt j" { MoveFocus "down"; }
+        bind "Alt h" { MoveFocus "left"; }
+        bind "Alt l" { MoveFocus "right"; }
         bind "Alt m" { ToggleFloatingPanes; }
         bind "Alt [" { PreviousSwapLayout; }
         bind "Alt ]" { NextSwapLayout; }
     }
     shared_except "locked" {
-        bind "Ctrl g" { SwitchToMode "Locked"; }
-        bind "Ctrl q" { Quit; }
-        bind "Alt f" { ToggleFloatingPanes; }
-        bind "Alt n" { NewPane; }
-        bind "Alt i" { MoveTab "Left"; }
-        bind "Alt o" { MoveTab "Right"; }
-        bind "Alt h" "Alt Left" { GoToPreviousTab; }
-        bind "Alt l" "Alt Right" { GoToNextTab; }
-        bind "Ctrl h" "Alt Down" { MoveFocus "left"; }
-        bind "Ctrl l" "Alt Up" { MoveFocus "right"; }
-        bind "Alt =" "Alt +" { Resize "Increase"; }
-        bind "Alt -" { Resize "Decrease"; }
+        bind "Alt ," { GoToPreviousTab; }
+        bind "Alt ." { GoToNextTab; }
+        bind "Alt k" { MoveFocus "up"; }
+        bind "Alt j" { MoveFocus "down"; }
+        bind "Alt h" { MoveFocus "left"; }
+        bind "Alt l" { MoveFocus "right"; }
+        bind "Alt m" { ToggleFloatingPanes; }
         bind "Alt [" { PreviousSwapLayout; }
         bind "Alt ]" { NextSwapLayout; }
+        bind "Ctrl g" { SwitchToMode "Locked"; }
+        bind "Ctrl q" { Quit; }
+        bind "Alt ," "Alt Left" { GoToPreviousTab; }
+        bind "Alt ." "Alt Right" { GoToNextTab; }
+        bind "Alt =" "Alt +" { Resize "Increase"; }
+        bind "Alt -" { Resize "Decrease"; }
     }
+    
     shared_except "normal" "locked" {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
     }
