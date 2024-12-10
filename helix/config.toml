@@ -1,11 +1,11 @@
-theme = "monokai_pro_spectrum"
+theme = "max_monokai_pro_spectrum"
 # theme = "catppuccin_latte"
 
 [editor]
 cursorline = true
 mouse = true
 true-color = true
-scrolloff = 15 
+scrolloff = 20 
 auto-format = true
 line-number = "relative"
 auto-save = true
@@ -16,6 +16,9 @@ completion-trigger-len = 0
 
 [editor.soft-wrap]
 enable = true
+
+[editor.search]
+wrap-around = false
 
 [editor.cursor-shape]
 insert = "bar"
@@ -56,6 +59,10 @@ C-q = ":buffer-close!"
 C-c = ["toggle_comments", "move_line_down"]
 "C-;" = "flip_selections"
 "C-," = "remove_primary_selection"
+"C-h" = "jump_view_left"
+"C-j" = "jump_view_down"
+"C-k" = "jump_view_up"
+"C-l" = "jump_view_right"
 
 [keys.normal.m]
 "[" = "shrink_selection"
@@ -79,3 +86,7 @@ T = "extend_prev_char"
 
 [keys.insert]
 C-s = ["normal_mode", ":w"] # Save file
+"C-h" = "jump_view_left"
+"C-j" = "jump_view_down"
+"C-k" = "jump_view_up"
+"C-l" = "jump_view_right"
