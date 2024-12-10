@@ -60,8 +60,8 @@
 "markup.raw.block" = { fg = "white" }
 
 # USER INTERFACE 
-"ui.background" = {}                                                               # workspace background
-# "ui.background" = { bg =  "deep_abyss"}                                                               # workspace background
+# "ui.background" = {}                                                               # workspace background
+"ui.background" = { bg =  "deep_abyss"}                                                               # workspace background
 "ui.background.separator" = { fg = "winter_sky" }                                                    # picker separator below input line (space + j)
 "ui.gutter" = {}                                                                  # gutter
 # "ui.gutter" = { bg = "deep_abyss" }                                                                  # gutter
@@ -89,8 +89,8 @@
 "ui.selection.primary" = { bg = "light_purple" }                                                     # primary selection in the editing area
 "ui.cursor" = { modifiers = ["reversed"] }                                                           # only if "ui.cursor.primary.normal" isn't set
 "ui.cursor.normal" = { fg = "winter_sky", bg = "twilight_blue" }                                     # slave cursor block in normal mode
-"ui.cursor.insert" = { bg = "rustic_red" }                                                           # slave cursor block in insert mode
-"ui.cursor.select" = { bg = "deep_purple" }                                                          # slave cursor block in select mode
+"ui.cursor.insert" = { fg = "winter_sky", bg = "rustic_red" }                                                           # slave cursor block in insert mode
+"ui.cursor.select" = { fg = "winter_sky", bg = "deep_purple" }                                                          # slave cursor block in select mode
 "ui.cursor.match" = { fg = "deep_abyss", bg = "blaze_orange", modifiers = ["bold"] }                 # matching bracket etc
 "ui.cursor.primary" = { modifiers = ["reversed"] }                                                   # cursor with primary selection (has no effect due to "ui.cursor.primary.normal" is set)
 "ui.cursor.primary.normal" = { fg = "deep_abyss", bg = "sky_blue" }                                  # cursor block in normal mode
