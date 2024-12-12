@@ -895,6 +895,18 @@ $env.config = {
             mode: emacs
             event: { edit: selectall }
         }
+
+         {
+          name: fuzzy_file
+          modifier: control
+          keycode: char_t
+          mode: emacs
+          event: {
+            send: executehostcommand
+            cmd: "commandline edit --append (fzf --layout=reverse)"
+          }
+        }
     ]
 }
 
+source ~/.zoxide.nu

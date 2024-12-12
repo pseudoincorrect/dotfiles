@@ -96,11 +96,31 @@ $env.PATH = (
   | split row (char esep)
   | append ($env.HOME | path join ".local" "bin")
   | append ($env.HOME | path join "Programs" "gitkraken")
+  | append ($env.HOME | path join "/home/linuxbrew/.linuxbrew/bin")
   | append ($env.GOPATH | path join "bin")
   | append ($env.GOROOT | path join "bin")
   | append ($env.CARGO_HOME | path join "bin")
   | uniq # filter so the paths are unique
 )
 
+$env.EDITOR = "hx"
+
 # To load from a custom file you can use:
 source ($nu.default-config-dir | path join "env_tadaweb.nu")
+
+zoxide init nushell | save -f ~/.zoxide.nu
+
+# Define a function `ycd` that integrates with Yazi and changes directory
+def --env ycd [] {
+    # Create a temporary file for Yazi's current working directory output
+    let tmpfile = (mktemp -t "yazi-cwd.XXXXXX")
+    # Run Yazi with the provided arguments and specify the temporary file for cwd
+    yazi --cwd-file $tmpfile
+
+    if (open $tmpfile | str trim | each { |it| $it != $env.PWD and $it != "" }) {
+        cd ( cat $tmpfile | str trim )
+    }
+
+    # Clean up by removing the temporary file
+    rm $tmpfile
+}
