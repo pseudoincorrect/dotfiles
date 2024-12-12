@@ -3,3 +3,6 @@ size = 8.5
 
 [window]
 opacity = 0.93
+
+[terminal.shell]
+program = "/home/linuxbrew/.linuxbrew/bin/nu"
