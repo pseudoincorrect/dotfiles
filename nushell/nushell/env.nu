@@ -86,17 +86,21 @@ $env.NU_PLUGIN_DIRS = [
     ($nu.default-config-dir | path join 'plugins') # add <nushell-config-dir>/plugins
 ]
 
-# To add entries to PATH (on Windows you might use Path), you can use the following pattern:
-# $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
-# An alternate way to add entries to $env.PATH is to use the custom command `path add`
-# which is built into the nushell stdlib:
-# use std "path add"
-# $env.PATH = ($env.PATH | split row (char esep))
-# path add /some/path
-# path add ($env.CARGO_HOME | path join "bin")
-# path add ($env.HOME | path join ".local" "bin")
-# $env.PATH = ($env.PATH | uniq)
+$env.GOPATH = ($env.HOME | path join "go" "global")
+$env.GOROOT = ($env.HOME | path join "go" "go1.23.4")
+
+$env.CARGO_HOME = ($env.HOME | path join ".cargo")
+
+$env.PATH = (
+  $env.PATH
+  | split row (char esep)
+  | append ($env.HOME | path join ".local" "bin")
+  | append ($env.HOME | path join "Programs" "gitkraken")
+  | append ($env.GOPATH | path join "bin")
+  | append ($env.GOROOT | path join "bin")
+  | append ($env.CARGO_HOME | path join "bin")
+  | uniq # filter so the paths are unique
+)
 
 # To load from a custom file you can use:
-# source ($nu.default-config-dir | path join 'custom.nu')
-
+source ($nu.default-config-dir | path join "env_tadaweb.nu")
