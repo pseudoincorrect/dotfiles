@@ -14,6 +14,14 @@ jump-label-alphabet = "asdflkjureiwoqpvcbnty"
 completion-timeout = 0
 completion-trigger-len = 0
 
+[editor.auto-pairs]
+# '(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+'`' = '`'
+'<' = '>'
+
 [editor.soft-wrap]
 enable = true
 
@@ -46,10 +54,9 @@ A-up = ["goto_line_end","extend_line_below", "delete_selection", "move_line_up",
 C-s = ["normal_mode", ":w"] # Save file
 f = "goto_word"
 "\\" = "repeat_last_motion"
-S-tab = "file_picker"
 tab = "buffer_picker"
-w =  "@miw<A-c>" # Change word under cursor
-W =  "@miw"      # Select word under cursor
+W =  "@miw<A-c>" # Change word under cursor
+w =  "@miw"      # Select word under cursor
 X = "select_line_above"
 x = "select_line_below" 
 t = "find_next_char"
@@ -59,13 +66,15 @@ C-q = ":buffer-close!"
 C-c = ["toggle_comments", "move_line_down"]
 "C-;" = "flip_selections"
 "C-," = "remove_primary_selection"
-"C-h" = "jump_view_left"
-"C-j" = "jump_view_down"
-"C-k" = "jump_view_up"
-"C-l" = "jump_view_right"
+A-d = "delete_selection"
+d = "delete_selection_noyank"
+A-c = "change_selection"
+c = "change_selection_noyank"
 
-[keys.normal.m]
+[keys.normal."["]
 "[" = "shrink_selection"
+
+[keys.normal."]"]
 "]" = "expand_selection"
 
 [keys.normal.space]
@@ -83,10 +92,11 @@ X = "select_line_above"
 x = "select_line_below"
 t = "extend_next_char"
 T = "extend_prev_char"
+"C-;" = "flip_selections"
+A-d = "delete_selection"
+d = "delete_selection_noyank"
+A-c = "change_selection"
+c = "change_selection_noyank"
 
 [keys.insert]
 C-s = ["normal_mode", ":w"] # Save file
-"C-h" = "jump_view_left"
-"C-j" = "jump_view_down"
-"C-k" = "jump_view_up"
-"C-l" = "jump_view_right"
