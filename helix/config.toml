@@ -14,6 +14,9 @@ jump-label-alphabet = "asdflkjureiwoqpvcbnty"
 completion-timeout = 0
 completion-trigger-len = 0
 
+[editor.smart-tab]
+enable = true
+
 [editor.auto-pairs]
 # '(' = ')'
 '{' = '}'
@@ -51,9 +54,10 @@ separator = " │ "
 [keys.normal]
 A-down = ["goto_line_end","extend_line_below", "delete_selection", "paste_after"]
 A-up = ["goto_line_end","extend_line_below", "delete_selection", "move_line_up", "paste_before"]
-C-s = ["normal_mode", ":w"] # Save file
+C-s = ["normal_mode", ":w" ] # Save file
 f = "goto_word"
-"\\" = "repeat_last_motion"
+F = "save_selection"
+"\\" = "file_picker"
 tab = "buffer_picker"
 W =  "@miw<A-c>" # Change word under cursor
 w =  "@miw"      # Select word under cursor
@@ -66,10 +70,9 @@ C-q = ":buffer-close!"
 C-c = ["toggle_comments", "move_line_down"]
 "C-;" = "flip_selections"
 "C-," = "remove_primary_selection"
-A-d = "delete_selection"
 d = "delete_selection_noyank"
-A-c = "change_selection"
 c = "change_selection_noyank"
+D = "copy_selection_on_prev_line"
 
 [keys.normal."["]
 "[" = "shrink_selection"
@@ -79,23 +82,19 @@ c = "change_selection_noyank"
 
 [keys.normal.space]
 t = "@ /%p <C-r>% %n " # Open string search on current buffer
-z = "@\"%p\"+d"        # Copy buffer path in clipboard  
+z = "@\"%p\"+yd"        # Copy buffer path in clipboard  
 
 [keys.select]
 A-down = ["goto_line_end", "extend_line_below", "delete_selection", "paste_after", "select_mode" ]
 A-up = ["goto_line_end", "extend_line_below", "delete_selection", "move_line_up", "paste_before", "select_mode"]
 C-s = ["normal_mode", ":w"] # Save file
-"\\" = "repeat_last_motion"
 f = "extend_to_word"
-F = "repeat_last_motion"
 X = "select_line_above"
 x = "select_line_below"
 t = "extend_next_char"
 T = "extend_prev_char"
 "C-;" = "flip_selections"
-A-d = "delete_selection"
 d = "delete_selection_noyank"
-A-c = "change_selection"
 c = "change_selection_noyank"
 
 [keys.insert]

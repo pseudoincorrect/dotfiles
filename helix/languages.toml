@@ -7,6 +7,7 @@ auto-format = false
 name = "go"
 auto-format = true
 formatter = { command = "goimports" }
+language-servers = ["scls", "gopls"]
 
 [[language]]
 name = "typescript"
@@ -18,13 +19,21 @@ language-servers = [
 formatter = { command = "npx", args = ["prettier", "--parser", "typescript"] }
 
 [[language]]
-name = "json"
-auto-format = true
-language-servers = ["vscode-json-language-server"]
-
-[[language]]
 name = "python"
 auto-format = true
 roots = ["pyproject.toml", "setup.py", "Poetry.lock", ".git"]
 language-servers = [ "pyright" ]
 formatter = {command = 'black', args = ["-"]}
+
+[language-server.scls]
+command = "simple-completion-language-server"
+
+[language-server.scls.config]
+max_completion_items = 100           # set max completion results len for each group: words, snippets, unicode-input
+feature_words = false                 # enable completion by word
+feature_snippets = true              # enable snippets
+snippets_first = true                # completions will return before snippets by default
+snippets_inline_by_word_tail = false # suggest snippets by WORD tail, for example text `xsq|` become `x^2|` when snippet `sq` has body `^2`
+feature_unicode_input = false        # enable "unicode input"
+feature_paths = false                # enable path completion
+feature_citations = false         
