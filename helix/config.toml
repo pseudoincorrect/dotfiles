@@ -5,12 +5,12 @@ theme = "max_monokai_pro_spectrum"
 cursorline = true
 mouse = true
 true-color = true
-scrolloff = 20 
+scrolloff = 17 
 auto-format = true
 line-number = "relative"
 auto-save = true
-gutters = ["diagnostics", "spacer", "diff"]
-jump-label-alphabet = "asdflkjureiwoqpvcbnty"
+gutters = ["diff","diagnostics", "line-numbers", "spacer"]
+jump-label-alphabet = "fjdksla;vmc,x.eiruwotybn"
 completion-timeout = 0
 completion-trigger-len = 0
 
@@ -27,9 +27,6 @@ enable = true
 
 [editor.soft-wrap]
 enable = true
-
-[editor.search]
-wrap-around = false
 
 [editor.cursor-shape]
 insert = "bar"
@@ -52,13 +49,12 @@ mode.select = "SELECT"
 separator = " │ "
 
 [keys.normal]
+esc = ["collapse_selection", "keep_primary_selection"]
 A-down = ["goto_line_end","extend_line_below", "delete_selection", "paste_after"]
 A-up = ["goto_line_end","extend_line_below", "delete_selection", "move_line_up", "paste_before"]
 C-s = ["normal_mode", ":w" ] # Save file
-f = "goto_word"
-F = "save_selection"
-"\\" = "file_picker"
 tab = "buffer_picker"
+S-tab = "file_picker"
 W =  "@miw<A-c>" # Change word under cursor
 w =  "@miw"      # Select word under cursor
 X = "select_line_above"
@@ -73,6 +69,17 @@ C-c = ["toggle_comments", "move_line_down"]
 d = "delete_selection_noyank"
 c = "change_selection_noyank"
 D = "copy_selection_on_prev_line"
+";" = "symbol_picker"  # Open string search on current buffer
+"\\" = "@ /%p <C-r>% %n "  # Open string search on current buffer
+"C-j" = "@3zj"
+"C-k" = "@3zk"
+"J" = "goto_next_function"
+"K" = "goto_prev_function"
+"A-j" = "join_selections"
+
+[keys.normal.space]
+z = "@\"%p\"+yd" # Copy buffer path in clipboard  
+space = "save_selection"
 
 [keys.normal."["]
 "[" = "shrink_selection"
@@ -80,22 +87,17 @@ D = "copy_selection_on_prev_line"
 [keys.normal."]"]
 "]" = "expand_selection"
 
-[keys.normal.space]
-t = "@ /%p <C-r>% %n " # Open string search on current buffer
-z = "@\"%p\"+yd"        # Copy buffer path in clipboard  
-
 [keys.select]
 A-down = ["goto_line_end", "extend_line_below", "delete_selection", "paste_after", "select_mode" ]
 A-up = ["goto_line_end", "extend_line_below", "delete_selection", "move_line_up", "paste_before", "select_mode"]
 C-s = ["normal_mode", ":w"] # Save file
-f = "extend_to_word"
 X = "select_line_above"
 x = "select_line_below"
-t = "extend_next_char"
-T = "extend_prev_char"
 "C-;" = "flip_selections"
 d = "delete_selection_noyank"
 c = "change_selection_noyank"
+W =  "@miw<A-c>" # Change word under cursor
+w =  "@miw"      # Select word under cursor
 
 [keys.insert]
 C-s = ["normal_mode", ":w"] # Save file
