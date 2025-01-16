@@ -253,5 +253,10 @@
     "prefix": "sort",
     "body": "type ${1:SortBy} []${2:Type}\n\nfunc (a $1) Len() int           { return len(a) }\nfunc (a $1) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }\nfunc (a $1) Less(i, j int) bool { ${3:return a[i] < a[j]} }",
     "description": "Snippet for a custom sort.Sort interface implementation, for a given slice type."
+  },
+  "test cases": {
+    "prefix": "Test",
+    "body": "func Test(t *testing.T) {\n\tvar testCases = []struct {\n\t\tname string\n\t\tin   string\n\t\texp  string\n\t\tmock func()\n\t}{\n\t\t{\n\t\t\tname: \"\",\n\t\t\tin:   \"\",\n\t\t\texp:  \"\",\n\t\t\tmockDict: func()  {\n\t\t\t\treturn nil\n\t\t\t},\n\t\t},\n\t}\n\tfor _, tc := range testCases {\n\t\tt.Run(tc.name, func(t *testing.T) {\n\t\t\tassert.Equal(t, tc.exp, out)\n\t\t})\n\t}\n}\n",
+    "description": "Snippet for test-cases testing"
   }
 }

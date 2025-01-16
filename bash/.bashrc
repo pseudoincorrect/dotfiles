@@ -73,7 +73,7 @@ PATH="$HOME/.cargo/bin:$PATH"
 export GOPATH="$HOME/go/global"
 PATH="$GOPATH/bin:$PATH"
 
-export GOROOT="$HOME/go/go1.22.1"
+export GOROOT="$HOME/go/go1.23.4"
 PATH="$GOROOT/bin:$PATH"
 
 export PATH
