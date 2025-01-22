@@ -159,26 +159,30 @@ keybinds {
         bind "x" { CloseFocus; SwitchToMode "Normal"; }
     }
      shared {
-        bind "Alt y" { GoToPreviousTab; }
-        bind "Alt ;" { GoToNextTab; }
-        bind "Alt k" { MoveFocus "up"; }
-        bind "Alt j" { MoveFocus "down"; }
-        bind "Alt h" { MoveFocus "left"; }
-        bind "Alt l" { MoveFocus "right"; }
+        bind "Alt h" { GoToPreviousTab; }
+        bind "Alt l" { GoToNextTab; }
+        bind "Alt i" { MoveFocus "up"; }
+        bind "Alt u" { MoveFocus "down"; }
+        bind "Alt y" { MoveFocus "left"; }
+        bind "Alt o" { MoveFocus "right"; }
         bind "Alt m" { ToggleFloatingPanes; }
         bind "Alt [" { PreviousSwapLayout; }
         bind "Alt ]" { NextSwapLayout; }
+        bind "Alt j" { HalfPageScrollDown; }
+        bind "Alt k" { HalfPageScrollUp; }
     }
     shared_except "locked" {
-        bind "Alt y" { GoToPreviousTab; }
-        bind "Alt ;" { GoToNextTab; }
-        bind "Alt k" { MoveFocus "up"; }
-        bind "Alt j" { MoveFocus "down"; }
-        bind "Alt h" { MoveFocus "left"; }
-        bind "Alt l" { MoveFocus "right"; }
+        bind "Alt h" { GoToPreviousTab; }
+        bind "Alt l" { GoToNextTab; }
+        bind "Alt i" { MoveFocus "up"; }
+        bind "Alt u" { MoveFocus "down"; }
+        bind "Alt y" { MoveFocus "left"; }
+        bind "Alt o" { MoveFocus "right"; }
         bind "Alt m" { ToggleFloatingPanes; }
         bind "Alt [" { PreviousSwapLayout; }
         bind "Alt ]" { NextSwapLayout; }
+        bind "Alt j" { HalfPageScrollDown; }
+        bind "Alt k" { HalfPageScrollUp; }
         bind "Ctrl g" { SwitchToMode "Locked"; }
         bind "Ctrl q" { Quit; }
         bind "Alt ," "Alt Left" { GoToPreviousTab; }
@@ -256,7 +260,7 @@ load_plugins {
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
 //
-default_shell "nu"
+// default_shell "nu"
 
 // Choose the path to override cwd that zellij will use for opening new panes
 //
