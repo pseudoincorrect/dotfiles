@@ -170,6 +170,15 @@ keybinds {
         bind "Alt ]" { NextSwapLayout; }
         bind "Alt j" { HalfPageScrollDown; }
         bind "Alt k" { HalfPageScrollUp; }
+        bind "Alt n" { MoveTab "left"; }
+        bind "Alt ." { MoveTab "right"; }
+        bind "Alt ," {
+            LaunchOrFocusPlugin "file:~/.config/zellij/plugins/room.wasm" {
+                floating false
+                ignore_case true
+                quick_jump false
+            }
+        }
     }
     shared_except "locked" {
         bind "Alt h" { GoToPreviousTab; }
@@ -183,12 +192,19 @@ keybinds {
         bind "Alt ]" { NextSwapLayout; }
         bind "Alt j" { HalfPageScrollDown; }
         bind "Alt k" { HalfPageScrollUp; }
+        bind "Alt n" { MoveTab "left"; }
+        bind "Alt ." { MoveTab "right"; }
         bind "Ctrl g" { SwitchToMode "Locked"; }
         bind "Ctrl q" { Quit; }
-        bind "Alt ," "Alt Left" { GoToPreviousTab; }
-        bind "Alt ." "Alt Right" { GoToNextTab; }
         bind "Alt =" "Alt +" { Resize "Increase"; }
         bind "Alt -" { Resize "Decrease"; }
+        bind "Alt ," {
+            LaunchOrFocusPlugin "file:~/.config/zellij/plugins/room.wasm" {
+                floating false
+                ignore_case true
+                quick_jump false
+            }
+        }
     }
     
     shared_except "normal" "locked" {
