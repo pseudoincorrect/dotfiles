@@ -170,9 +170,11 @@ keybinds {
         bind "Alt ]" { NextSwapLayout; }
         bind "Alt j" { HalfPageScrollDown; }
         bind "Alt k" { HalfPageScrollUp; }
-        bind "Alt n" { MoveTab "left"; }
-        bind "Alt ." { MoveTab "right"; }
-        bind "Alt ," {
+        bind "Alt Shift h" { MoveTab "left"; }
+        bind "Alt Shift l" { MoveTab "right"; }
+        bind "Alt =" "Alt +" { Resize "Increase"; }
+        bind "Alt -" { Resize "Decrease"; }
+        bind "Alt ;" {
             LaunchOrFocusPlugin "file:~/.config/zellij/plugins/room.wasm" {
                 floating false
                 ignore_case true
@@ -181,32 +183,9 @@ keybinds {
         }
     }
     shared_except "locked" {
-        bind "Alt h" { GoToPreviousTab; }
-        bind "Alt l" { GoToNextTab; }
-        bind "Alt i" { MoveFocus "up"; }
-        bind "Alt u" { MoveFocus "down"; }
-        bind "Alt y" { MoveFocus "left"; }
-        bind "Alt o" { MoveFocus "right"; }
-        bind "Alt m" { ToggleFloatingPanes; }
-        bind "Alt [" { PreviousSwapLayout; }
-        bind "Alt ]" { NextSwapLayout; }
-        bind "Alt j" { HalfPageScrollDown; }
-        bind "Alt k" { HalfPageScrollUp; }
-        bind "Alt n" { MoveTab "left"; }
-        bind "Alt ." { MoveTab "right"; }
         bind "Ctrl g" { SwitchToMode "Locked"; }
         bind "Ctrl q" { Quit; }
-        bind "Alt =" "Alt +" { Resize "Increase"; }
-        bind "Alt -" { Resize "Decrease"; }
-        bind "Alt ," {
-            LaunchOrFocusPlugin "file:~/.config/zellij/plugins/room.wasm" {
-                floating false
-                ignore_case true
-                quick_jump false
-            }
-        }
     }
-    
     shared_except "normal" "locked" {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
     }
