@@ -25,6 +25,13 @@ roots = ["pyproject.toml", "setup.py", "Poetry.lock", ".git"]
 language-servers = [ "pyright" ]
 formatter = {command = 'black', args = ["-"]}
 
+[[language]]
+name = "json"
+language-servers = [ "vscodejson" ]
+
+[language-server.vscodejson]
+command = "vscode-json-languageserver"
+
 [language-server.scls]
 command = "simple-completion-language-server"
 
