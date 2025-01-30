@@ -19,12 +19,12 @@ completion-trigger-len = 0
 enable = true
 
 [editor.auto-pairs]
-# '(' = ')'
-# '{' = '}'
-# '[' = ']'
-# '"' = '"'
-# '`' = '`'
-# '<' = '>'
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+'`' = '`'
+'<' = '>'
 
 [editor.soft-wrap]
 enable = true
@@ -58,8 +58,8 @@ tab = "buffer_picker"
 S-tab = "file_picker"
 s = "goto_word"
 S = "@ /%p <C-r>% %n "  # Open string search on current buffer
-W =  "@miw<A-c>" # Change word under cursor
-w =  "@miw"      # Select word under cursor
+W =  "@miW" # Select Whole word under cursor
+w =  "@miw" # Select word under cursor
 X = "select_line_above"
 x = "select_line_below" 
 C-t = ":toggle file-picker.git-ignore"
