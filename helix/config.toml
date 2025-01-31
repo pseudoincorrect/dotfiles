@@ -70,24 +70,22 @@ C-c = ["toggle_comments", "move_line_down"]
 d = "delete_selection_noyank"
 c = "change_selection_noyank"
 D = "copy_selection_on_prev_line"
-"\\" = "repeat_last_motion"
-"J" = "@15zj"
-"K" = "@15zk"
-"C-j" = "@15zj"
-"C-k" = "@15zk"
-"C-u" = "@20zk"
-"C-d" = "@20zj"
+f = "expand_selection"
+F = "shrink_selection"
+"\\" = "symbol_picker"
+"J" = "@15zj" # Scroll down
+"K" = "@15zk" # Scroll up
+"C-j" = "@15zj" # Scroll down
+"C-k" = "@15zk" # Scroll up
+"C-d" = "@20zj" # Scroll down
+"C-u" = "@20zk" # Scroll up
 
 [keys.normal.space]
-z = "@\"%p\"+yd" # Copy buffer path in clipboard  
+z = "@\"%p\"+yd" # Copy buffer (repository relative) path in clipboard  
+Z = "@o<esc>|pwd<ret>;i/<esc>\"%PmiW\"+yddk" # Copy buffer full-path in clipboard  
+
 space = "save_selection"
 x = "join_selections"
-
-[keys.normal."["]
-"[" = "shrink_selection"
-
-[keys.normal."]"]
-"]" = "expand_selection"
 
 [keys.normal.m]
 f = "select_regex"
@@ -106,8 +104,8 @@ x = "select_line_below"
 "C-;" = "flip_selections"
 d = "delete_selection_noyank"
 c = "change_selection_noyank"
-W =  "@miw<A-c>" # Change word under cursor
-w =  "@miw"      # Select word under cursor
+W =  "@miW" # Select Whole word under cursor
+w =  "@miw" # Select word under cursor
 s = "extend_to_word"
 
 [keys.insert]
