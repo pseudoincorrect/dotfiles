@@ -5,6 +5,7 @@ keybinds {
         // bind "Alt c" { Copy; }
     }
     locked {
+        bind "Alt g" { SwitchToMode "Normal"; }
         bind "Ctrl g" { SwitchToMode "Normal"; }
     }
     resize {
@@ -21,8 +22,8 @@ keybinds {
         bind "-" { Resize "Decrease"; }
     }
     pane {
-        bind "Ctrl p" { SwitchToMode "Normal"; }
         bind "h" "Left" { MoveFocus "Left"; }
+        bind "Ctrl p" { SwitchToMode "Normal"; }
         bind "l" "Right" { MoveFocus "Right"; }
         bind "j" "Down" { MoveFocus "Down"; }
         bind "k" "Up" { MoveFocus "Up"; }
@@ -53,7 +54,6 @@ keybinds {
         bind "l" "Right" "Down" "j" { GoToNextTab; }
         bind "n" { NewTab; SwitchToMode "Normal"; }
         bind "x" { CloseTab; SwitchToMode "Normal"; }
-        // bind "s" { ToggleActiveSyncTab; SwitchToMode "Normal"; }
         bind "b" { BreakPane; SwitchToMode "Normal"; }
         bind "]" { BreakPaneRight; SwitchToMode "Normal"; }
         bind "[" { BreakPaneLeft; SwitchToMode "Normal"; }
@@ -165,19 +165,19 @@ keybinds {
         bind "Alt u" { MoveFocus "down"; }
         bind "Alt y" { MoveFocus "left"; }
         bind "Alt o" { MoveFocus "right"; }
-        bind "Alt m" { ToggleFloatingPanes; }
+        bind "Alt ;" { ToggleFloatingPanes; }
         bind "Alt [" { PreviousSwapLayout; }
         bind "Alt ]" { NextSwapLayout; }
         bind "Alt j" { HalfPageScrollDown; }
         bind "Alt k" { HalfPageScrollUp; }
-        bind "Alt Shift h" { MoveTab "left"; }
-        bind "Alt Shift l" { MoveTab "right"; }
+        bind "Alt ," { MoveTab "left"; }
+        bind "Alt ." { MoveTab "right"; }
         bind "Alt =" "Alt +" { Resize "Increase"; }
         bind "Alt -" { Resize "Decrease"; }
-        bind "Alt r" { SwitchToMode "RenameTab"; TabNameInput 0; }
+        bind "Alt 6" { SwitchToMode "RenameTab"; TabNameInput 0; }
         bind "Alt n" { NewTab; }
         bind "Alt p" { NewPane; }
-        bind "Alt ;" {
+        bind "Alt m" {
             LaunchOrFocusPlugin "file:~/.config/zellij/plugins/room.wasm" {
                 floating false
                 ignore_case true
@@ -186,8 +186,9 @@ keybinds {
         }
     }
     shared_except "locked" {
+        bind "Alt g" { SwitchToMode "Locked"; }
         bind "Ctrl g" { SwitchToMode "Locked"; }
-        bind "Ctrl q" { Quit; }
+        bind "Alt q" { Quit; }
     }
     shared_except "normal" "locked" {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
