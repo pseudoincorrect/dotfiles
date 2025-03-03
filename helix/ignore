@@ -1,0 +1,24 @@
+# GIT
+.git
+
+# MISC
+dist
+
+# EDITORS
+.idea
+.vscode
+
+# NODEJS
+node_modules
+
+# PYTHON
+.venv
+venv
+*/python.environments/
+*.pyc
+__pycache__/
+.ruff_cache/
+.ipynb_checkpoints
+
+# HELIX
+runtime

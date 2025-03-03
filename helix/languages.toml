@@ -20,10 +20,16 @@ formatter = { command = "npx", args = ["prettier", "--parser", "typescript"] }
 
 [[language]]
 name = "python"
+# language-servers = [ "scls", "basedpyright", "ruff" ]
+language-servers = [ "scls", "basedpyright" ]
 auto-format = true
-roots = ["pyproject.toml", "setup.py", "Poetry.lock", ".git"]
-language-servers = [ "pyright" ]
-formatter = {command = 'black', args = ["-"]}
+roots = ["pyproject.toml", "setup.py", "Poetry.lock", ".git", ".venv"]
+# formatter = {command = 'black', args = ["-"]}
+formatter = { command = "sh", args = ["-c", "black --quiet - | isort -"]}
+
+[language-server.ruff]
+command = "ruff"
+args = ["server"]
 
 [[language]]
 name = "json"

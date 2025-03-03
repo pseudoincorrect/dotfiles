@@ -1,4 +1,4 @@
-theme = "max_monokai_pro_spectrum"
+theme = "max_monokai_pro_spectrum_no_diagnostic"
 # theme = "catppuccin_latte"
 
 [editor]
@@ -7,24 +7,28 @@ mouse = true
 true-color = true
 scrolloff = 17 
 auto-format = true
-line-number = "relative"
+# line-number = "relative"
 auto-save = true
 gutters = ["diff","diagnostics", "line-numbers", "spacer"]
 # gutters = ["diff","diagnostics", "spacer"]
 jump-label-alphabet = "fjdklavmceiruwotybns;"
 completion-timeout = 0
-completion-trigger-len = 0
+completion-trigger-len = 1
+
+[editor.inline-diagnostics]
+# cursor-line = "hint"
+cursor-line = "disable"
 
 [editor.smart-tab]
 enable = true
 
-[editor.auto-pairs]
-'(' = ')'
-'{' = '}'
-'[' = ']'
-'"' = '"'
-'`' = '`'
-'<' = '>'
+# [editor.auto-pairs]
+# '(' = ')'
+# '{' = '}'
+# '[' = ']'
+# '"' = '"'
+# '`' = '`'
+# '<' = '>'
 
 [editor.soft-wrap]
 enable = true
@@ -36,6 +40,10 @@ select = "underline"
 
 [editor.file-picker]
 hidden = false
+# ignore = false
+git-ignore = false
+# git-global = false
+git-exclude = false
 
 [editor.indent-guides]
 render = true
@@ -51,13 +59,13 @@ separator = " │ "
 
 [keys.normal]
 esc = ["collapse_selection", "keep_primary_selection"]
-C-n = ["goto_line_end","extend_line_below", "delete_selection", "paste_after"]
-C-h = ["goto_line_end","extend_line_below", "delete_selection", "move_line_up", "paste_before"]
-C-s = ["normal_mode", ":w" ] # Save file
-tab = "buffer_picker"
-S-tab = "file_picker"
+C-f = ["select_mode", "goto_line_end","extend_line_below", "delete_selection", "paste_after"]
+C-d = ["select_mode", "goto_line_end","extend_line_below", "delete_selection", "move_line_up", "paste_before"]
+C-s = ["normal_mode", ":w!" ] # Save file
+f = "buffer_picker"
+F = "@ /%p <C-r>% %n "  # Open string search on current buffer (with relative path)
 s = "goto_word"
-S = "@ /%p <C-r>% %n "  # Open string search on current buffer
+# T = "@o<esc>|pwd<ret>;i/<esc>\"%PmiW\"+yddk /%p <C-r>+ %n"  # Open string search on current buffer (full path)
 W =  "@miW" # Select Whole word under cursor
 w =  "@miw" # Select word under cursor
 X = "select_line_above"
@@ -72,20 +80,17 @@ c = "change_selection_noyank"
 D = "copy_selection_on_prev_line"
 t = "expand_selection"
 T = "shrink_selection"
-f = "symbol_picker"
-F = "workspace_symbol_picker"
-"\\" = "file_picker"
 "J" = "@15zj" # Scroll down
 "K" = "@15zk" # Scroll up
 "C-j" = "@15zj" # Scroll down
 "C-k" = "@15zk" # Scroll up
-"C-d" = "@20zj" # Scroll down
-"C-u" = "@20zk" # Scroll up
+"C-l" = ["normal_mode", "jump_view_right"]
+"C-h" = ["normal_mode", "jump_view_left"]
+"C-r" = "@:reload-all<ret>"
 
 [keys.normal.space]
 z = "@\"%p\"+yd" # Copy buffer (repository relative) path in clipboard  
 Z = "@o<esc>|pwd<ret>;i/<esc>\"%PmiW\"+yddk" # Copy buffer full-path in clipboard  
-
 space = "save_selection"
 x = "join_selections"
 
@@ -98,9 +103,9 @@ f = "select_regex"
 F = "split_selection"
 
 [keys.select]
-C-n = ["goto_line_end", "extend_line_below", "delete_selection", "paste_after", "select_mode" ]
-C-h = ["goto_line_end", "extend_line_below", "delete_selection", "move_line_up", "paste_before", "select_mode"]
-C-s = ["normal_mode", ":w"] # Save file
+C-f = ["goto_line_end", "extend_line_below", "delete_selection", "paste_after", "select_mode" ]
+C-d = ["goto_line_end", "extend_line_below", "delete_selection", "move_line_up", "paste_before", "select_mode"]
+C-s = ["normal_mode", ":w!"] # Save file
 X = "select_line_above"
 x = "select_line_below"
 "C-;" = "flip_selections"
@@ -109,6 +114,10 @@ c = "change_selection_noyank"
 W =  "@miW" # Select Whole word under cursor
 w =  "@miw" # Select word under cursor
 s = "extend_to_word"
+"C-l" = ["normal_mode", "jump_view_right"]
+"C-h" = ["normal_mode", "jump_view_left"]
 
 [keys.insert]
 C-s = ["normal_mode", ":w"] # Save file
+"C-l" = ["normal_mode", "jump_view_right"]
+"C-h" = ["normal_mode", "jump_view_left"]
