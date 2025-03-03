@@ -5,7 +5,7 @@ grv       1      2    3      4      5       6     7      8     9      0       - 
 tab       q      w    e      r      t       y     u      i     o      p       [      ]       \         
 caps      a      s    d      f      g       h     j      k     l      ;       '          enter        
 lsft      z      x    c      v      b       n     m      ,     .      /                   rsft           up 
-lctl      lmet   lalt             spc                  ralt                               rctl      lft down rght
+lctl      lmet   lalt             spc                  ralt        rmet                   rctl      lft down rght
 
 )
 
@@ -13,28 +13,30 @@ lctl      lmet   lalt             spc                  ralt                     
 
 esc            f1   f2   f3   f4               f5    f6    f7    f8          f9   f10  f11   f12
 grv       1      2    3      4       5       6     7      8     9      0       -      =     bspc       
-tab       @q      w    e      r       t       y     u      i     o      p       [      ]        \          
-@caps     a      s    d      f       g       h     j      k     l      ;      '           enter        
+lalt      q      w    e      r       t       y     u      i     o      p       [      ]        \          
+@caps     a      s    d      f       g       h     j      k     l      ;       '           enter        
 lsft      z      x    c      v       b       n     m      ,     .      /                    rsft               up
-lalt      lmet   @vimnav             spc                  ralt                              rctl          lft down rght
+lctl      lmet   @nav              spc                 rsft         rmet                    rctl          lft down rght
 
 )
 
-(deflayer vimnav
+(deflayer nav
 
 -             -     -   -     -             -     -    -     -          -    -    -    -
 -       -      -    -      -      -       -     -      -     -      -      -      -    -       
--       -      -    -      -      -       home  bspc   esc   del    -      -      -    -          
-lctl    -      -    -      -      -       left  down   up    right  end    -           -        
+-       -      -    -      -      -       home  bspc   tab   del    -      -      -    -          
+caps    -      -    -      -      -       left  down   up    right  end    -           -        
 lsft    -      -    -      -      -       -     enter  pgdn  pgup   -                  -         -
--       -      -             -                                      -                  -       - - -
+-       -      -             -                                      -      -           -       - - -
 
 )
 
+
+(defvar
+  tap-time 200
+  hold-time 150
+)
 
 (defalias
-    vimnav  (tap-hold-press 200 200 lalt (layer-toggle vimnav))
-    caps    (tap-hold-press 200 200 esc  lctl)
-    q       (tap-hold-press 200 200 q    lalt)
-)
-
+    nav  (tap-hold-press $tap-time $hold-time lalt (layer-toggle nav))
+    caps (tap-hold-press $tap-time $hold-time esc  lctl))
