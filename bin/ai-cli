@@ -4,6 +4,7 @@ import json
 import os
 import subprocess
 import tempfile
+from typing import TypedDict
 
 import requests
 
@@ -20,6 +21,11 @@ def get_config_path():
     return path
 
 
+class HistoryElement(TypedDict):
+    question: str
+    response: str
+
+
 def select_model(model: str) -> str:
     if model == "claude":
         return "anthropic/claude-3.7-sonnet:beta"
@@ -30,19 +36,24 @@ def select_model(model: str) -> str:
     return model
 
 
-def ai_cli(question: str, model: str):
+def ai_cli(question: str, model: str, history: list[HistoryElement] | None):
     url = "https://openrouter.ai/api/v1/chat/completions"
     attitude = "you are the assistant of a senior backend developer. Be concise please, unless told otherwise. "
     headers = {
         "Authorization": f"Bearer {open_router_api_key}",
         "Content-Type": "application/json",
     }
+    messages = [
+        {"role": "user", "content": attitude},
+    ]
+    if history is not None:
+        for element in history:
+            messages.append({"role": "user", "content": element["question"]})
+            messages.append({"role": "assistant", "content": element["response"]})
+    messages.append({"role": "user", "content": question})
     payload = {
         "model": model,
-        "messages": [
-            {"role": "user", "content": attitude},
-            {"role": "user", "content": question},
-        ],
+        "messages": messages,
         "stream": True,
     }
     buffer = ""
@@ -76,12 +87,12 @@ def ai_cli(question: str, model: str):
 
 def parse_arguments():
     parser = argparse.ArgumentParser(
-        """aicli --model "openai" --question "what is the meaning of life ?"
-       aicli --file "path_to_a_file_with_a_question_within"
-       aicli --editor
+        """ai-cli --model "openai" --question "what is the meaning of life ?"
+       ai-cli --file "path_to_a_file_with_a_question_within"
+       ai-cli --editor
 
 
-       aicli is a command line interface to interact with your chosen AI assistant.
+       ai-cli is a command line interface to interact with your chosen AI assistant.
        (currently only a single history is supported)
         """
     )
@@ -137,10 +148,7 @@ def read_question_from_file(file: str) -> str:
 def read_question_from_editor() -> str:
     editor = os.environ.get("EDITOR")
     if not editor:
-        if os.name == "nt":
-            editor = "notepad.exe"
-        else:
-            editor = "vi"
+        editor = "vi"
     with tempfile.NamedTemporaryFile(
         suffix=".txt", delete=False, mode="w+"
     ) as temp_file:
@@ -176,20 +184,58 @@ def choose_question(argument, file, editor) -> str:
 
 
 def get_history_path():
-    pass
+    path = get_config_path() + "/history"
+    if not os.path.exists(path):
+        with open(path, "+w") as file:
+            file.write("[]")
+    return path
 
 
 def history_print():
-    pass
+    with open(get_history_path(), "r") as f:
+        history = f.read()
+        if history == "[]":
+            history = "no history yet, ask a question first"
+        print(history)
+
+
+def history_clean():
+    os.remove(get_history_path())
+
+
+def get_history() -> list[HistoryElement]:
+    path = get_history_path()
+    data = None
+    with open(path, "r") as f:
+        data = json.load(f)
+    return data
+
+
+def history_append(question: str, response: str):
+    data = get_history()
+    data.append({"question": question, "response": response})
+    with open(get_history_path(), "w") as f:
+        json.dump(data, f, indent=4)
 
 
 if __name__ == "__main__":
     args = parse_arguments()
+    if args.history_print:
+        history_print()
+        exit(0)
+    if args.history_clean:
+        history_clean()
+        exit(0)
     question = choose_question(args.question, args.file, args.editor)
     model = args.model
     model = select_model(model)
     print(f"Model: {model}")
     print(f"Question: {question}")
     print("Response:")
-    response = ai_cli(question, model)
+    history = None
+    if not args.history_no:
+        history = get_history()
+    response = ai_cli(question, model, history)
+    if not args.history_no:
+        history_append(question, response)
     print()
