@@ -114,13 +114,26 @@ def ai_cli(question: str, model: str, history: list[HistoryElement] | None):
 
 def parse_arguments():
     parser = argparse.ArgumentParser(
-        f"""{app_name} --model "openai" --question "what is the meaning of life ?"
-   {app_name} --file "path_to_a_file_with_a_question_within"
-   {app_name} --editor
+        f"""
 
+    {app_name} is a command line interface to interact with your chosen AI assistant.
 
-   {app_name} is a command line interface to interact with your chosen AI assistant.
-       (currently only a single history is supported)
+    Configure ai-cli with your token goten from open_router.
+    $ {app_name} --configure $OPEN_ROUTER_API_KEY
+
+    Ask a question to a given model
+    $ {app_name} --model "openai" --question "what is the meaning of life ?"
+
+    Ask a question written to a file without using the chat history
+    $ {app_name} --history-no --file "path_to_a_file_with_a_question_within"
+
+    Ask a question using your favorite editor.
+    $ {app_name} --editor
+
+    Print and then delete your chat history
+    $ {app_name} --history-print ; {app_name} --history-clean
+
+    Note: currently only a single history is supported.
         """
     )
     parser.add_argument(
