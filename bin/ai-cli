@@ -8,10 +8,7 @@ from typing import TypedDict
 
 import requests
 
-open_router_api_key = os.environ.get("OPEN_ROUTER_API_KEY")
-if open_router_api_key is None:
-    print("Open router api not provided. export OPEN_ROUTER_API_KEY=your_key")
-    exit(0)
+app_name = "ai-cli"
 
 
 def get_config_path():
@@ -19,6 +16,36 @@ def get_config_path():
     if not os.path.exists(path):
         os.makedirs(path)
     return path
+
+
+def get_history_path():
+    path = get_config_path() + "/history"
+    if not os.path.exists(path):
+        with open(path, "+w") as file:
+            file.write("[]")
+    return path
+
+
+def get_api_key_path():
+    path = get_config_path() + "/api_key"
+    if not os.path.exists(path):
+        open(path, "a").close()
+    return path
+
+
+def get_api_key():
+    key = ""
+    with open(get_api_key_path(), "r") as f:
+        key = f.read()
+    key_env = os.environ.get("OPEN_ROUTER_API_KEY")
+    if key_env is not None:
+        key = key_env
+    if key == "":
+        print(
+            f"Open router api not provided. export OPEN_ROUTER_API_KEY=your_key, or {app_name} -c your_key"
+        )
+        exit(0)
+    return key
 
 
 class HistoryElement(TypedDict):
@@ -40,7 +67,7 @@ def ai_cli(question: str, model: str, history: list[HistoryElement] | None):
     url = "https://openrouter.ai/api/v1/chat/completions"
     attitude = "you are the assistant of a senior backend developer. Be concise please, unless told otherwise. "
     headers = {
-        "Authorization": f"Bearer {open_router_api_key}",
+        "Authorization": f"Bearer {get_api_key()}",
         "Content-Type": "application/json",
     }
     messages = [
@@ -87,12 +114,12 @@ def ai_cli(question: str, model: str, history: list[HistoryElement] | None):
 
 def parse_arguments():
     parser = argparse.ArgumentParser(
-        """ai-cli --model "openai" --question "what is the meaning of life ?"
-       ai-cli --file "path_to_a_file_with_a_question_within"
-       ai-cli --editor
+        f"""{app_name} --model "openai" --question "what is the meaning of life ?"
+   {app_name} --file "path_to_a_file_with_a_question_within"
+   {app_name} --editor
 
 
-       ai-cli is a command line interface to interact with your chosen AI assistant.
+   {app_name} is a command line interface to interact with your chosen AI assistant.
        (currently only a single history is supported)
         """
     )
@@ -129,6 +156,11 @@ def parse_arguments():
         "--history-print",
         action="store_true",
         help="print the conversation history",
+    )
+    parser.add_argument(
+        "-c",
+        "--configure",
+        help=f"Configure {app_name} by providing your token. example: {app_name} -c $OPEN_ROUTER_API_TOKEN",
     )
     args = parser.parse_args()
     return args
@@ -183,19 +215,11 @@ def choose_question(argument, file, editor) -> str:
     exit(0)
 
 
-def get_history_path():
-    path = get_config_path() + "/history"
-    if not os.path.exists(path):
-        with open(path, "+w") as file:
-            file.write("[]")
-    return path
-
-
 def history_print():
     with open(get_history_path(), "r") as f:
         history = f.read()
         if history == "[]":
-            history = "no history yet, ask a question first"
+            history = "no history yet, ask a question first."
         print(history)
 
 
@@ -218,8 +242,17 @@ def history_append(question: str, response: str):
         json.dump(data, f, indent=4)
 
 
+def configure(api_key: str):
+    with open(get_api_key_path(), "+w") as f:
+        f.write(api_key)
+    print(f"Api key saved to {get_api_key_path()}")
+
+
 if __name__ == "__main__":
     args = parse_arguments()
+    if args.configure:
+        configure(args.configure)
+        exit(0)
     if args.history_print:
         history_print()
         exit(0)
