@@ -4,7 +4,8 @@ import json
 import os
 import subprocess
 import tempfile
-from typing import TypedDict
+from ast import List
+from typing import Any, TypedDict
 
 import requests
 
@@ -53,6 +54,17 @@ class HistoryElement(TypedDict):
     response: str
 
 
+def select_attitude(role: str) -> str:
+    match role:
+        case "backend-developer-concise":
+            return "you are the assistant of a senior backend developer. Be concise please, unless told otherwise."
+        case "backend-developer":
+            return "you are the assistant of a senior backend developer."
+        case "none":
+            return ""
+    return role
+
+
 def select_model(model: str) -> str:
     if model == "claude":
         return "anthropic/claude-3.7-sonnet:beta"
@@ -63,16 +75,18 @@ def select_model(model: str) -> str:
     return model
 
 
-def ai_cli(question: str, model: str, history: list[HistoryElement] | None):
+def ai_cli(
+    question: str, model: str, attitude: str, history: list[HistoryElement] | None
+):
     url = "https://openrouter.ai/api/v1/chat/completions"
-    attitude = "you are the assistant of a senior backend developer. Be concise please, unless told otherwise. "
+    attitude = attitude
     headers = {
         "Authorization": f"Bearer {get_api_key()}",
         "Content-Type": "application/json",
     }
-    messages = [
-        {"role": "user", "content": attitude},
-    ]
+    messages = []
+    if attitude != "":
+        messages.append({"role": "user", "content": attitude})
     if history is not None:
         for element in history:
             messages.append({"role": "user", "content": element["question"]})
@@ -122,7 +136,7 @@ def parse_arguments():
     $ {app_name} --configure $OPEN_ROUTER_API_KEY
 
     Ask a question to a given model
-    $ {app_name} --model "openai" --question "what is the meaning of life ?"
+    $ {app_name} --model "openai" --attitude "you are a monk" --question "what is the meaning of life ?"
 
     Ask a question written to a file without using the chat history
     $ {app_name} --history-no --file "path_to_a_file_with_a_question_within"
@@ -141,6 +155,12 @@ def parse_arguments():
         "--model",
         help="AI assistant model: claude, openai, codestral, or the real name gotten from open-router",
         default="claude",
+    )
+    parser.add_argument(
+        "-a",
+        "--attitude",
+        help="attitude (role) that your AI assistant will endorse",
+        default="backend-developer",
     )
     parser.add_argument("-q", "--question", help="question to as to the AI assistant")
     parser.add_argument(
@@ -273,15 +293,18 @@ if __name__ == "__main__":
         history_clean()
         exit(0)
     question = choose_question(args.question, args.file, args.editor)
-    model = args.model
-    model = select_model(model)
+    if question == "":
+        print("no question provided")
+        exit(0)
+    model = select_model(args.model)
+    attitude = select_attitude(args.attitude)
     print(f"Model: {model}")
     print(f"Question: {question}")
     print("Response:")
     history = None
     if not args.history_no:
         history = get_history()
-    response = ai_cli(question, model, history)
+    response = ai_cli(question, model, attitude, history)
     if not args.history_no:
         history_append(question, response)
     print()
