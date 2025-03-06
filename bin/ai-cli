@@ -4,12 +4,59 @@ import json
 import os
 import subprocess
 import tempfile
-from ast import List
-from typing import Any, TypedDict
+from itertools import cycle
+from shutil import get_terminal_size
+from threading import Thread
+from time import sleep
+from typing import TypedDict
 
 import requests
+from rich.console import Console
+from rich.markdown import Markdown
 
 app_name = "ai-cli"
+
+
+class Loader:
+    def __init__(self, desc="Loading...", end="Done!", timeout=0.1):
+        """
+        A loader-like context manager
+
+        Args:
+            desc (str, optional): The loader's description. Defaults to "Loading...".
+            end (str, optional): Final print. Defaults to "Done!".
+            timeout (float, optional): Sleep time between prints. Defaults to 0.1.
+        """
+        self.desc = desc
+        self.end = end
+        self.timeout = timeout
+
+        self._thread = Thread(target=self._animate, daemon=True)
+        self.steps = ["⢿", "⣻", "⣽", "⣾", "⣷", "⣯", "⣟", "⡿"]
+        self.done = False
+
+    def start(self):
+        self._thread.start()
+        return self
+
+    def _animate(self):
+        for c in cycle(self.steps):
+            if self.done:
+                break
+            print(f"\r{self.desc} {c}", flush=True, end="")
+            sleep(self.timeout)
+
+    def __enter__(self):
+        self.start()
+
+    def stop(self):
+        self.done = True
+        cols = get_terminal_size((80, 20)).columns
+        print("\r" + " " * cols, end="", flush=True)
+        print(f"\r{self.end}", flush=True)
+
+    def __exit__(self, exc_type, exc_value, tb):
+        self.stop()
 
 
 def get_config_path():
@@ -57,9 +104,9 @@ class HistoryElement(TypedDict):
 def select_attitude(role: str) -> str:
     match role:
         case "backend-developer-concise":
-            return "you are the assistant of a senior backend developer. Be concise please, unless told otherwise."
+            return "you are the assistant of a senior backend developer. Answer with markdown. Be concise please, unless told otherwise."
         case "backend-developer":
-            return "you are the assistant of a senior backend developer."
+            return "you are the assistant of a senior backend developer. Answer with markdown."
         case "none":
             return ""
     return role
@@ -99,6 +146,9 @@ def ai_cli(
     }
     buffer = ""
     response = ""
+
+    print()
+    loader = Loader(f"getting response from {model}...", "", 0.10).start()
     with requests.post(url, headers=headers, json=payload, stream=True) as r:
         for chunk in r.iter_content(chunk_size=1024, decode_unicode=True):
             buffer += chunk
@@ -117,12 +167,13 @@ def ai_cli(
                             data_obj = json.loads(data)
                             content = data_obj["choices"][0]["delta"].get("content")
                             if content:
-                                print(content, end="", flush=True)
+                                # print(content, end="", flush=True)
                                 response += content
                         except json.JSONDecodeError:
                             pass
                 except Exception:
                     break
+    loader.stop()
     return response
 
 
@@ -160,7 +211,7 @@ def parse_arguments():
         "-a",
         "--attitude",
         help="attitude (role) that your AI assistant will endorse",
-        default="backend-developer",
+        default="backend-developer-concise",
     )
     parser.add_argument("-q", "--question", help="question to as to the AI assistant")
     parser.add_argument(
@@ -250,10 +301,7 @@ def choose_question(argument, file, editor) -> str:
 
 def history_print():
     with open(get_history_path(), "r") as f:
-        history = f.read()
-        if history == "[]":
-            history = "no history yet, ask a question first."
-        print(history)
+        print(f.read())
 
 
 def history_clean():
@@ -305,6 +353,9 @@ if __name__ == "__main__":
     if not args.history_no:
         history = get_history()
     response = ai_cli(question, model, attitude, history)
+    console = Console()
+    md = Markdown(response)
+    console.print(md)
     if not args.history_no:
         history_append(question, response)
     print()
