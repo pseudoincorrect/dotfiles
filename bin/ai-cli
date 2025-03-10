@@ -4,6 +4,7 @@ import json
 import os
 import subprocess
 import tempfile
+from datetime import datetime
 from itertools import cycle
 from shutil import get_terminal_size
 from threading import Thread
@@ -60,17 +61,24 @@ class Loader:
 
 
 def get_config_path():
-    path = os.path.expandvars("$HOME/.config/aicli")
+    path = os.path.expandvars(f"$HOME/.config/{app_name}")
     if not os.path.exists(path):
         os.makedirs(path)
+    return path
+
+
+def get_conversation_history_path():
+    path = get_config_path() + "/history_conversation"
+    if not os.path.exists(path):
+        with open(path, "+w") as file:
+            file.write("[]")
     return path
 
 
 def get_history_path():
     path = get_config_path() + "/history"
     if not os.path.exists(path):
-        with open(path, "+w") as file:
-            file.write("[]")
+        open(path, "+a").close()
     return path
 
 
@@ -177,6 +185,99 @@ def ai_cli(
     return response
 
 
+def read_question_from_file(file: str) -> str:
+    if not os.path.exists(file):
+        print(
+            f"file {file} does not exitst. create it and write your question into it first."
+        )
+        exit(0)
+    with open(file, "r") as f:
+        question = f.read()
+    return question
+
+
+def read_question_from_editor() -> str:
+    editor = os.environ.get("EDITOR")
+    if not editor:
+        editor = "vi"
+    with tempfile.NamedTemporaryFile(
+        suffix=".txt", delete=False, mode="w+"
+    ) as temp_file:
+        temp_filename = temp_file.name
+        try:
+            subprocess.run([editor, temp_filename], check=True)
+        except subprocess.CalledProcessError as e:
+            print(f"Error launching editor: {e}")
+            return ""
+        temp_file.close()
+        try:
+            with open(temp_filename, "r") as f:
+                edited_text = f.read()
+        except IOError as e:
+            print(f"Error reading temp file after close: {e}")
+            return ""
+        try:
+            os.remove(temp_filename)
+        except OSError as e:
+            print(f"Error deleting temporary file: {e}")
+        return edited_text
+
+
+def choose_question(argument, file, editor) -> str:
+    if argument:
+        return argument
+    if editor:
+        return read_question_from_editor()
+    if file:
+        return read_question_from_file(file)
+    print("no question provided, use -q, -f or -e")
+    exit(0)
+
+
+def history_print():
+    with open(get_conversation_history_path(), "r") as f:
+        print(f.read())
+
+
+def history_clean():
+    os.remove(get_conversation_history_path())
+
+
+def get_conversation_history() -> list[HistoryElement]:
+    path = get_conversation_history_path()
+    data = None
+    with open(path, "r") as f:
+        data = json.load(f)
+    return data
+
+
+def conversation_history_append(question: str, response: str):
+    data = get_conversation_history()
+    data.append({"question": question, "response": response})
+    with open(get_conversation_history_path(), "w") as f:
+        json.dump(data, f, indent=4)
+
+
+def history_append(question: str, response: str):
+    with open(get_history_path(), "a") as f:
+        f.writelines(
+            [
+                "\n",
+                f"DATE {datetime.now().isoformat()}\n",
+                "QUESTION\n",
+                f"{question}\n",
+                "RESPONSE\n",
+                f"{response}\n",
+            ]
+        )
+
+
+def configure(api_key: str):
+    with open(get_api_key_path(), "+w") as f:
+        f.write(api_key)
+    print(f"Api key saved to {get_api_key_path()}")
+
+
 def parse_arguments():
     parser = argparse.ArgumentParser(
         f"""
@@ -250,85 +351,6 @@ def parse_arguments():
     return args
 
 
-def read_question_from_file(file: str) -> str:
-    if not os.path.exists(file):
-        print(
-            f"file {file} does not exitst. create it and write your question into it first."
-        )
-        exit(0)
-    with open(file, "r") as f:
-        question = f.read()
-    return question
-
-
-def read_question_from_editor() -> str:
-    editor = os.environ.get("EDITOR")
-    if not editor:
-        editor = "vi"
-    with tempfile.NamedTemporaryFile(
-        suffix=".txt", delete=False, mode="w+"
-    ) as temp_file:
-        temp_filename = temp_file.name
-        try:
-            subprocess.run([editor, temp_filename], check=True)
-        except subprocess.CalledProcessError as e:
-            print(f"Error launching editor: {e}")
-            return ""
-        temp_file.close()
-        try:
-            with open(temp_filename, "r") as f:
-                edited_text = f.read()
-        except IOError as e:
-            print(f"Error reading temp file after close: {e}")
-            return ""
-        try:
-            os.remove(temp_filename)
-        except OSError as e:
-            print(f"Error deleting temporary file: {e}")
-        return edited_text
-
-
-def choose_question(argument, file, editor) -> str:
-    if argument:
-        return argument
-    if editor:
-        return read_question_from_editor()
-    if file:
-        return read_question_from_file(file)
-    print("no question provided, use -q, -f or -e")
-    exit(0)
-
-
-def history_print():
-    with open(get_history_path(), "r") as f:
-        print(f.read())
-
-
-def history_clean():
-    os.remove(get_history_path())
-
-
-def get_history() -> list[HistoryElement]:
-    path = get_history_path()
-    data = None
-    with open(path, "r") as f:
-        data = json.load(f)
-    return data
-
-
-def history_append(question: str, response: str):
-    data = get_history()
-    data.append({"question": question, "response": response})
-    with open(get_history_path(), "w") as f:
-        json.dump(data, f, indent=4)
-
-
-def configure(api_key: str):
-    with open(get_api_key_path(), "+w") as f:
-        f.write(api_key)
-    print(f"Api key saved to {get_api_key_path()}")
-
-
 if __name__ == "__main__":
     args = parse_arguments()
     if args.configure:
@@ -351,11 +373,12 @@ if __name__ == "__main__":
     print("Response:")
     history = None
     if not args.history_no:
-        history = get_history()
+        history = get_conversation_history()
     response = ai_cli(question, model, attitude, history)
     console = Console()
     md = Markdown(response)
     console.print(md)
     if not args.history_no:
-        history_append(question, response)
+        conversation_history_append(question, response)
+    history_append(question, response)
     print()
