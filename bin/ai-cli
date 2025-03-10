@@ -67,7 +67,7 @@ def get_config_path():
     return path
 
 
-def get_conversation_history_path():
+def get_history_conversation_path():
     path = get_config_path() + "/history_conversation"
     if not os.path.exists(path):
         with open(path, "+w") as file:
@@ -75,8 +75,8 @@ def get_conversation_history_path():
     return path
 
 
-def get_history_path():
-    path = get_config_path() + "/history"
+def get_history_all_path():
+    path = get_config_path() + "/history_all_time"
     if not os.path.exists(path):
         open(path, "+a").close()
     return path
@@ -105,7 +105,7 @@ def get_api_key():
 
 
 class HistoryElement(TypedDict):
-    question: str
+    prompt: str
     response: str
 
 
@@ -131,7 +131,7 @@ def select_model(model: str) -> str:
 
 
 def ai_cli(
-    question: str, model: str, attitude: str, history: list[HistoryElement] | None
+    prompt: str, model: str, attitude: str, history: list[HistoryElement] | None
 ):
     url = "https://openrouter.ai/api/v1/chat/completions"
     attitude = attitude
@@ -144,9 +144,9 @@ def ai_cli(
         messages.append({"role": "user", "content": attitude})
     if history is not None:
         for element in history:
-            messages.append({"role": "user", "content": element["question"]})
+            messages.append({"role": "user", "content": element["prompt"]})
             messages.append({"role": "assistant", "content": element["response"]})
-    messages.append({"role": "user", "content": question})
+    messages.append({"role": "user", "content": prompt})
     payload = {
         "model": model,
         "messages": messages,
@@ -185,18 +185,18 @@ def ai_cli(
     return response
 
 
-def read_question_from_file(file: str) -> str:
+def read_prompt_from_file(file: str) -> str:
     if not os.path.exists(file):
         print(
-            f"file {file} does not exitst. create it and write your question into it first."
+            f"file {file} does not exitst. create it and write your prompt into it first."
         )
         exit(0)
     with open(file, "r") as f:
-        question = f.read()
-    return question
+        prompt = f.read()
+    return prompt
 
 
-def read_question_from_editor() -> str:
+def read_prompt_from_editor() -> str:
     editor = os.environ.get("EDITOR")
     if not editor:
         editor = "vi"
@@ -223,51 +223,54 @@ def read_question_from_editor() -> str:
         return edited_text
 
 
-def choose_question(argument, file, editor) -> str:
+def choose_prompt(argument, file, editor) -> str:
     if argument:
         return argument
     if editor:
-        return read_question_from_editor()
+        return read_prompt_from_editor()
     if file:
-        return read_question_from_file(file)
-    print("no question provided, use -q, -f or -e")
+        return read_prompt_from_file(file)
+    print("no prompt provided, use -q, -f or -e")
     exit(0)
 
 
-def history_print():
-    with open(get_conversation_history_path(), "r") as f:
+def history_conversation_print():
+    with open(get_history_conversation_path(), "r") as f:
         print(f.read())
 
 
-def history_clean():
-    os.remove(get_conversation_history_path())
+def history_conversation_clean():
+    os.remove(get_history_conversation_path())
 
 
-def get_conversation_history() -> list[HistoryElement]:
-    path = get_conversation_history_path()
+def get_history_conversation() -> list[HistoryElement]:
+    path = get_history_conversation_path()
     data = None
     with open(path, "r") as f:
         data = json.load(f)
     return data
 
 
-def conversation_history_append(question: str, response: str):
-    data = get_conversation_history()
-    data.append({"question": question, "response": response})
-    with open(get_conversation_history_path(), "w") as f:
+def history_conversation_append(prompt: str, response: str):
+    data = get_history_conversation()
+    data.append({"prompt": prompt, "response": response})
+    with open(get_history_conversation_path(), "w") as f:
         json.dump(data, f, indent=4)
 
 
-def history_append(question: str, response: str):
-    with open(get_history_path(), "a") as f:
+def history_all_append(prompt: str, response: str, model: str):
+    with open(get_history_all_path(), "a") as f:
         f.writelines(
             [
-                "\n",
-                f"DATE {datetime.now().isoformat()}\n",
-                "QUESTION\n",
-                f"{question}\n",
+                "--------------------------------------------------------------------------------\n\n",
+                f"DATE\n",
+                f"{datetime.now().isoformat()}\n\n",
+                "MODEL\n",
+                f"{model}\n\n",
+                "PROMPT\n",
+                f"{prompt}\n\n",
                 "RESPONSE\n",
-                f"{response}\n",
+                f"{response}\n\n",
             ]
         )
 
@@ -287,13 +290,13 @@ def parse_arguments():
     Configure ai-cli with your token goten from open_router.
     $ {app_name} --configure $OPEN_ROUTER_API_KEY
 
-    Ask a question to a given model
-    $ {app_name} --model "openai" --attitude "you are a monk" --question "what is the meaning of life ?"
+    Ask a prompt to a given model
+    $ {app_name} --model "openai" --attitude "you are a monk" --prompt "what is the meaning of life ?"
 
-    Ask a question written to a file without using the chat history
-    $ {app_name} --history-no --file "path_to_a_file_with_a_question_within"
+    Ask a prompt written to a file without using the chat history
+    $ {app_name} --history-no --file "path_to_a_file_with_a_prompt_within"
 
-    Ask a question using your favorite editor.
+    Ask a prompt using your favorite editor.
     $ {app_name} --editor
 
     Print and then delete your chat history
@@ -314,27 +317,27 @@ def parse_arguments():
         help="attitude (role) that your AI assistant will endorse",
         default="backend-developer-concise",
     )
-    parser.add_argument("-q", "--question", help="question to as to the AI assistant")
+    parser.add_argument("-p", "--prompt", help="prompt to send to the AI assistant")
     parser.add_argument(
         "-f",
         "--file",
-        help="read a question from a file",
-        default=f"{get_config_path()}/question.txt",
+        help="read a prompt from a file",
+        default=f"{get_config_path()}/prompt.txt",
     )
     parser.add_argument(
-        "-e", "--editor", action="store_true", help="open $EDITOR to enter a question"
+        "-e", "--editor", action="store_true", help="open $EDITOR to enter a prompt"
     )
     parser.add_argument(
         "-hc",
         "--history-clean",
         action="store_true",
-        help="clean history of previous message (conversation context) return without asking question to the llm even if question is provided",
+        help="clean history of previous message (conversation context) return without asking prompt to the llm even if prompt is provided",
     )
     parser.add_argument(
         "-hn",
         "--history-no",
         action="store_true",
-        help="ask a question to the llm without the history of the previous messages",
+        help="ask a prompt to the llm without the history of the previous messages",
     )
     parser.add_argument(
         "-hp",
@@ -357,28 +360,28 @@ if __name__ == "__main__":
         configure(args.configure)
         exit(0)
     if args.history_print:
-        history_print()
+        history_conversation_print()
         exit(0)
     if args.history_clean:
-        history_clean()
+        history_conversation_clean()
         exit(0)
-    question = choose_question(args.question, args.file, args.editor)
-    if question == "":
-        print("no question provided")
+    prompt = choose_prompt(args.prompt, args.file, args.editor)
+    if prompt == "":
+        print("no prompt provided")
         exit(0)
     model = select_model(args.model)
     attitude = select_attitude(args.attitude)
     print(f"Model: {model}")
-    print(f"Question: {question}")
+    print(f"Prompt: {prompt}")
     print("Response:")
     history = None
     if not args.history_no:
-        history = get_conversation_history()
-    response = ai_cli(question, model, attitude, history)
+        history = get_history_conversation()
+    response = ai_cli(prompt, model, attitude, history)
     console = Console()
     md = Markdown(response)
     console.print(md)
     if not args.history_no:
-        conversation_history_append(question, response)
-    history_append(question, response)
+        history_conversation_append(prompt, response)
+    history_all_append(prompt, response, model)
     print()
