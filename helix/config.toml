@@ -59,31 +59,15 @@ mode.select = "SELECT"
 separator = " │ "
 
 [keys.normal]
-C-y = [
-  ':sh rm -f /tmp/unique-file',
-  ':insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file',
-  ':open %sh{cat /tmp/unique-file}',
-  ':redraw',
-  ':set mouse false',
-  ':set mouse true',
-]
 esc = ["collapse_selection", "keep_primary_selection"]
 C-f = ["select_mode", "goto_line_end","extend_line_below", "delete_selection", "paste_after"]
 C-d = ["select_mode", "goto_line_end","extend_line_below", "delete_selection", "move_line_up", "paste_before"]
-C-s = ["normal_mode", ":w!" ] # Save file
-f = "buffer_picker"
-F = "@ /%p <C-r>% %n "  # Open string search on current buffer (with relative path)
-"C-/" = "@miw y /<C-r>+"  # Global search word under cursor
+tab = "buffer_picker"
 s = "goto_word"
 W =  "@miW" # Select Whole word under cursor
 w =  "@miw" # Select word under cursor
 X = "select_line_above"
 x = "select_line_below" 
-C-t = ":toggle file-picker.git-ignore"
-C-q = ":buffer-close!"
-"C-a" = ["toggle_comments", "move_line_down"]
-"C-;" = "flip_selections"
-"C-," = "remove_primary_selection"
 d = "delete_selection_noyank"
 c = "change_selection_noyank"
 D = "copy_selection_on_prev_line"
@@ -93,10 +77,28 @@ J = "@15zj" # Scroll down
 K = "@15zk" # Scroll up
 C-j = "@15zj" # Scroll down
 C-k = "@15zk" # Scroll up
-C-l = ["normal_mode", "jump_view_right"]
-C-h = ["normal_mode", "jump_view_left"]
-C-r = "@:reload-all<ret>"
 A-q = ":wqa!"
+
+[keys.normal.f]
+"/" = "@ y /<C-r>+"  # Global search word under cursor
+b = "@ /%p <C-r>% %n "  # Open string search on current buffer (with relative path)
+d = "rotate_view"
+f = [
+  ':sh rm -f /tmp/unique-file',
+  ':insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file',
+  ':open %sh{cat /tmp/unique-file}',
+  ':redraw',
+  ':set mouse false',
+  ':set mouse true',
+]
+q = ":buffer-close!"
+r = "@:reload-all<ret>"
+";" = "flip_selections"
+"," = "remove_primary_selection"
+t = ":toggle file-picker.git-ignore"
+o = "jump_backward"
+i = "jump_forward"
+s =  ":w!" 
 
 [keys.normal.space]
 z = "@\"%p\"+yd" # Copy buffer (repository relative) path in clipboard  
@@ -118,17 +120,15 @@ C-d = ["goto_line_end", "extend_line_below", "delete_selection", "move_line_up",
 C-s = ["normal_mode", ":w!"] # Save file
 X = "select_line_above"
 x = "select_line_below"
-"C-;" = "flip_selections"
 d = "delete_selection_noyank"
 c = "change_selection_noyank"
 W =  "@miW" # Select Whole word under cursor
 w =  "@miw" # Select word under cursor
 s = "extend_to_word"
-C-l = ["normal_mode", "jump_view_right"]
-C-h = ["normal_mode", "jump_view_left"]
+
+[keys.select.f]
+";" = "flip_selections"
 
 [keys.insert]
 A-q = ["normal_mode", ":wqa!"]
 C-s = ["normal_mode", ":w"] 
-C-l = ["normal_mode", "jump_view_right"]
-C-h = ["normal_mode", "jump_view_left"]
