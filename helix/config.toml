@@ -15,6 +15,7 @@ jump-label-alphabet = "fjdklavmceiruwotybns;"
 completion-timeout = 0
 completion-trigger-len = 1
 auto-pairs = false
+bufferline = "never"
 
 [editor.inline-diagnostics]
 # cursor-line = "hint"
@@ -22,6 +23,7 @@ cursor-line = "disable"
 
 [editor.smart-tab]
 enable = true
+supersede-menu = true
 
 # [editor.auto-pairs]
 # '(' = ')'
@@ -50,9 +52,9 @@ git-exclude = false
 render = true
 
 [editor.statusline]
-right = [ "position", "position-percentage", "total-line-numbers", "selections"]
-center = [ "file-name", "separator", "version-control" ]
-left = [ "mode", "spinner", "diagnostics" ]
+right = [ "spinner" ]
+center = [ "file-base-name" ]
+left = [ "mode" ]
 mode.insert = "INSERT"
 mode.normal = "NORMAL"
 mode.select = "SELECT"
@@ -60,8 +62,8 @@ separator = " │ "
 
 [keys.normal]
 esc = ["collapse_selection", "keep_primary_selection"]
-C-f = ["select_mode", "goto_line_end","extend_line_below", "delete_selection", "paste_after"]
-C-d = ["select_mode", "goto_line_end","extend_line_below", "delete_selection", "move_line_up", "paste_before"]
+J = ["select_mode", "goto_line_end","extend_line_below", "delete_selection", "paste_after"]
+K = ["select_mode", "goto_line_end","extend_line_below", "delete_selection", "move_line_up", "paste_before"]
 tab = "buffer_picker"
 s = "goto_word"
 W =  "@miW" # Select Whole word under cursor
@@ -73,17 +75,20 @@ c = "change_selection_noyank"
 D = "copy_selection_on_prev_line"
 t = "expand_selection"
 T = "shrink_selection"
-J = "@15zj" # Scroll down
-K = "@15zk" # Scroll up
 C-j = "@15zj" # Scroll down
 C-k = "@15zk" # Scroll up
 A-q = ":wqa!"
+C-s = ":w!" 
+C-l = "goto_next_buffer"
+C-h = "goto_previous_buffer"
+C-q = ":buffer-close!"
+"C-/"= ["toggle_comments", "move_line_down"]
 
 [keys.normal.f]
+"w" = "@ S%kind function %name "
 "/" = "@ y /<C-r>+"  # Global search word under cursor
 b = "@ /%p <C-r>% %n "  # Open string search on current buffer (with relative path)
-d = "rotate_view"
-f = [
+e = [
   ':sh rm -f /tmp/unique-file',
   ':insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file',
   ':open %sh{cat /tmp/unique-file}',
@@ -91,32 +96,44 @@ f = [
   ':set mouse false',
   ':set mouse true',
 ]
-q = ":buffer-close!"
 r = "@:reload-all<ret>"
 ";" = "flip_selections"
 "," = "remove_primary_selection"
 t = ":toggle file-picker.git-ignore"
 o = "jump_backward"
 i = "jump_forward"
-s =  ":w!" 
-
-[keys.normal.space]
 z = "@\"%p\"+yd" # Copy buffer (repository relative) path in clipboard  
 Z = "@o<esc>|pwd<ret>;i/<esc>\"%PmiW\"+yddk" # Copy buffer full-path in clipboard  
-space = "save_selection"
-x = "join_selections"
+f = "buffer_picker"
+l = "jump_view_right"
+h = "jump_view_left"
+y = ":yank-diagnostic"
+d = "file_picker"
+s = "symbol_picker"
+a = "workspace_symbol_picker"
+q = ":buffer-close!"
+v = "vsplit"
+x = "wclose"
+k = "add_newline_above"
+j = "add_newline_below"
+
+[keys.normal.space]
+space = "file_picker"
 
 [keys.normal.m]
 f = "select_regex"
 F = "split_selection"
+x = "join_selections"
 
 [keys.select.m]
 f = "select_regex"
 F = "split_selection"
+x = "join_selections"
+
 
 [keys.select]
-C-f = ["goto_line_end", "extend_line_below", "delete_selection", "paste_after", "select_mode" ]
-C-d = ["goto_line_end", "extend_line_below", "delete_selection", "move_line_up", "paste_before", "select_mode"]
+J = ["goto_line_end", "extend_line_below", "delete_selection", "paste_after", "select_mode" ]
+K = ["goto_line_end", "extend_line_below", "delete_selection", "move_line_up", "paste_before", "select_mode"]
 C-s = ["normal_mode", ":w!"] # Save file
 X = "select_line_above"
 x = "select_line_below"
