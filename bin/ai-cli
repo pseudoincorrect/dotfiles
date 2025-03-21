@@ -17,17 +17,14 @@ from rich.markdown import Markdown
 
 app_name = "ai-cli"
 
+default_model = "google/gemini-2.0-flash-001"
+default_attitude = (
+    "you are the assistant of a senior backend developer. Answer with markdown."
+)
+
 
 class Loader:
     def __init__(self, desc="Loading...", end="Done!", timeout=0.1):
-        """
-        A loader-like context manager
-
-        Args:
-            desc (str, optional): The loader's description. Defaults to "Loading...".
-            end (str, optional): Final print. Defaults to "Done!".
-            timeout (float, optional): Sleep time between prints. Defaults to 0.1.
-        """
         self.desc = desc
         self.end = end
         self.timeout = timeout
@@ -201,7 +198,7 @@ def read_prompt_from_editor() -> str:
     if not editor:
         editor = "vi"
     with tempfile.NamedTemporaryFile(
-        suffix=".txt", delete=False, mode="w+"
+        suffix=".md", delete=False, mode="w+"
     ) as temp_file:
         temp_filename = temp_file.name
         try:
@@ -315,7 +312,7 @@ def parse_arguments():
         "-a",
         "--attitude",
         help="attitude (role) that your AI assistant will endorse",
-        default="backend-developer-concise",
+        default="backend-developer",
     )
     parser.add_argument("-p", "--prompt", help="prompt to send to the AI assistant")
     parser.add_argument(
