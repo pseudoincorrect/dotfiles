@@ -17,7 +17,7 @@ from rich.markdown import Markdown
 
 app_name = "ai-cli"
 
-default_model = "google/gemini-2.0-flash-001"
+default_model = "anthropic/claude-3.7-sonnet"
 default_attitude = (
     "you are the assistant of a senior backend developer. Answer with markdown."
 )
@@ -64,26 +64,32 @@ def get_config_path():
     return path
 
 
-def get_history_conversation_path():
-    path = get_config_path() + "/history_conversation"
+def get_config_path_custom(config_name: str):
+    path = get_config_path() + "/" + config_name
     if not os.path.exists(path):
         with open(path, "+w") as file:
-            file.write("[]")
+            file.write("")
     return path
+
+
+def get_history_conversation_path():
+    return get_config_path_custom("history_conversation")
 
 
 def get_history_all_path():
-    path = get_config_path() + "/history_all_time"
-    if not os.path.exists(path):
-        open(path, "+a").close()
-    return path
+    return get_config_path_custom("history_all_time")
+
+
+def get_attitude_path():
+    return get_config_path_custom("attitude")
+
+
+def get_model_path():
+    return get_config_path_custom("model")
 
 
 def get_api_key_path():
-    path = get_config_path() + "/api_key"
-    if not os.path.exists(path):
-        open(path, "a").close()
-    return path
+    return get_config_path_custom("api_key")
 
 
 def get_api_key():
@@ -106,28 +112,25 @@ class HistoryElement(TypedDict):
     response: str
 
 
-def select_attitude(role: str) -> str:
-    match role:
-        case "backend-developer-concise":
-            return "you are the assistant of a senior backend developer. Answer with markdown. Be concise please, unless told otherwise."
-        case "backend-developer":
-            return "you are the assistant of a senior backend developer. Answer with markdown."
-        case "none":
-            return ""
-    return role
+def get_attitude() -> str:
+    attitude = ""
+    with open(get_attitude_path(), "r") as f:
+        attitude = f.read()
+    if attitude == "":
+        attitude = default_attitude
+    return attitude
 
 
-def select_model(model: str) -> str:
-    if model == "claude":
-        return "anthropic/claude-3.7-sonnet:beta"
-    if model == "openai":
-        return "openai/gpt-4o"
-    if model == "codestral":
-        return "mistralai/codestral-2501"
+def get_model() -> str:
+    model = ""
+    with open(get_model_path(), "r") as f:
+        model = f.read()
+    if model == "":
+        model = default_model
     return model
 
 
-def ai_cli(
+def prompt_ai(
     prompt: str, model: str, attitude: str, history: list[HistoryElement] | None
 ):
     url = "https://openrouter.ai/api/v1/chat/completions"
@@ -152,7 +155,6 @@ def ai_cli(
     buffer = ""
     response = ""
 
-    print()
     loader = Loader(f"getting response from {model}...", "", 0.10).start()
     with requests.post(url, headers=headers, json=payload, stream=True) as r:
         for chunk in r.iter_content(chunk_size=1024, decode_unicode=True):
@@ -244,7 +246,10 @@ def get_history_conversation() -> list[HistoryElement]:
     path = get_history_conversation_path()
     data = None
     with open(path, "r") as f:
-        data = json.load(f)
+        try:
+            data = json.load(f)
+        except json.JSONDecodeError as e:
+            data = []
     return data
 
 
@@ -256,12 +261,13 @@ def history_conversation_append(prompt: str, response: str):
 
 
 def history_all_append(prompt: str, response: str, model: str):
+    now = datetime.now()
     with open(get_history_all_path(), "a") as f:
         f.writelines(
             [
                 "--------------------------------------------------------------------------------\n\n",
                 f"DATE\n",
-                f"{datetime.now().isoformat()}\n\n",
+                f"{now.strftime('%A %d %B %Y - %H:%M:%S').lower()}\n\n",
                 "MODEL\n",
                 f"{model}\n\n",
                 "PROMPT\n",
@@ -272,10 +278,32 @@ def history_all_append(prompt: str, response: str, model: str):
         )
 
 
-def configure(api_key: str):
+def configure_token(api_key: str):
     with open(get_api_key_path(), "+w") as f:
         f.write(api_key)
     print(f"Api key saved to {get_api_key_path()}")
+
+
+def configure_model(model: str):
+    with open(get_model_path(), "+w") as f:
+        f.write(model)
+    print(f"Model config saved to {get_model_path()}")
+
+
+def configure_attitude(attitude: str):
+    with open(get_attitude_path(), "+w") as f:
+        f.write(attitude)
+    print(f"Attitude config saved to {get_attitude_path()}")
+
+
+def print_configuration():
+    print(
+        f"""
+          token:    {get_api_key()}
+          model:    {get_model()}
+          attitude: {get_attitude()}
+          """
+    )
 
 
 def parse_arguments():
@@ -285,34 +313,28 @@ def parse_arguments():
     {app_name} is a command line interface to interact with your chosen AI assistant.
 
     Configure ai-cli with your token goten from open_router.
-    $ {app_name} --configure $OPEN_ROUTER_API_KEY
+    $ {app_name} --configure-token $OPEN_ROUTER_API_KEY
 
-    Ask a prompt to a given model
-    $ {app_name} --model "openai" --attitude "you are a monk" --prompt "what is the meaning of life ?"
+    Send a prompt. 
+    $ {app_name} -p "what is the meaning of code" 
 
-    Ask a prompt written to a file without using the chat history
+    Send a prompt using your favorite editor.
+    It uses your editor to enter a prompt, it will be sent uppon quitting the editor.
+    $ {app_name} -e
+
+    Ask a prompt written to a file without using the chat history.
     $ {app_name} --history-no --file "path_to_a_file_with_a_prompt_within"
 
-    Ask a prompt using your favorite editor.
-    $ {app_name} --editor
-
-    Print and then delete your chat history
+    Print and then delete your chat history.
     $ {app_name} --history-print ; {app_name} --history-clean
 
-    Note: currently only a single history is supported.
-        """
-    )
-    parser.add_argument(
-        "-m",
-        "--model",
-        help="AI assistant model: claude, openai, codestral, or the real name gotten from open-router",
-        default="claude",
-    )
-    parser.add_argument(
-        "-a",
-        "--attitude",
-        help="attitude (role) that your AI assistant will endorse",
-        default="backend-developer",
+    {app_name} has 2 kinds of history:
+      - 1 for the current conversation, that need to be deleted often to keep cost low and keep the answers not too biased.
+      - 1 that keep a record of all conversations that is never deleted, very useful to search past conversations.
+    The all-time-history is located at ~/.config/{app_name}/history_all_time
+    $ less ~/.config/{app_name}/history_all_time
+    
+    """
     )
     parser.add_argument("-p", "--prompt", help="prompt to send to the AI assistant")
     parser.add_argument(
@@ -328,7 +350,7 @@ def parse_arguments():
         "-hc",
         "--history-clean",
         action="store_true",
-        help="clean history of previous message (conversation context) return without asking prompt to the llm even if prompt is provided",
+        help="clean history of previous message (conversation context) and quit",
     )
     parser.add_argument(
         "-hn",
@@ -340,12 +362,28 @@ def parse_arguments():
         "-hp",
         "--history-print",
         action="store_true",
-        help="print the conversation history",
+        help="print the conversation history and quit.",
     )
     parser.add_argument(
-        "-c",
-        "--configure",
-        help=f"Configure {app_name} by providing your token. example: {app_name} -c $OPEN_ROUTER_API_TOKEN",
+        "-cm",
+        "--configure-model",
+        help=f'Configure {app_name} model and quit, default is "{default_model}". example: {app_name} -cm "mistralai/mistral-small-3.1-24b-instruct:free"',
+    )
+    parser.add_argument(
+        "-ca",
+        "--configure-attitude",
+        help=f'Configure {app_name} attitude and quit, default is "{default_attitude}". example: {app_name} -ca "you are a joyful developer assistant"',
+    )
+    parser.add_argument(
+        "-ct",
+        "--configure-token",
+        help=f"Configure {app_name} by providing your token and quit. example: {app_name} -ct $OPEN_ROUTER_API_TOKEN",
+    )
+    parser.add_argument(
+        "-cp",
+        "--configuration-print",
+        action="store_true",
+        help="Print your configuration and quit.",
     )
     args = parser.parse_args()
     return args
@@ -353,8 +391,14 @@ def parse_arguments():
 
 if __name__ == "__main__":
     args = parse_arguments()
-    if args.configure:
-        configure(args.configure)
+    if args.configure_token:
+        configure_token(args.configure_token)
+        exit(0)
+    if args.configure_model:
+        configure_model(args.configure_model)
+        exit(0)
+    if args.configure_attitude:
+        configure_attitude(args.configure_attitude)
         exit(0)
     if args.history_print:
         history_conversation_print()
@@ -362,21 +406,24 @@ if __name__ == "__main__":
     if args.history_clean:
         history_conversation_clean()
         exit(0)
+    if args.configuration_print:
+        print_configuration()
+        exit(0)
     prompt = choose_prompt(args.prompt, args.file, args.editor)
     if prompt == "":
         print("no prompt provided")
         exit(0)
-    model = select_model(args.model)
-    attitude = select_attitude(args.attitude)
+    model = get_model()
+    attitude = get_attitude()
     print(f"Model: {model}")
     print(f"Prompt: {prompt}")
-    print("Response:")
     history = None
     if not args.history_no:
         history = get_history_conversation()
-    response = ai_cli(prompt, model, attitude, history)
+    response = prompt_ai(prompt, model, attitude, history)
     console = Console()
     md = Markdown(response)
+    print("Response:")
     console.print(md)
     if not args.history_no:
         history_conversation_append(prompt, response)
