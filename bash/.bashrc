@@ -20,17 +20,6 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
   debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
-
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -51,7 +40,9 @@ PROMPT_COMMAND="set_window_title_cwd"
 
 ########################################################################
 # TAB COMPLETION
-bind TAB:menu-complete
+bind "set show-all-if-ambiguous on"
+bind '"\t": menu-complete'
+bind '"\e[Z": menu-complete-backward'
 
 ########################################################################
 # HOMEBREW
@@ -84,15 +75,6 @@ export PATH
 # cheat.sh
 function cheat() {
   curl "https://cheat.sh/$1"
-}
-
-# manually set-title set the terminal title
-function st() {
-  if [[ -z "$ORIG" ]]; then
-    ORIG=$PS1
-  fi
-  TITLE="\[\e]2;$*\a\]"
-  PS1=${ORIG}${TITLE}
 }
 
 # use lf (Go file manager) with cd on exit
@@ -150,7 +132,6 @@ alias rm='rm -rf'
 alias 'cd..'='cd ..'
 alias 'lf'='lfcd'
 alias 'y'='yazi'
-alias 'cd'='z'
 alias 'fcd'='zi'
 # Notes
 alias 'notes'='code ~/Documents/notes'
@@ -158,6 +139,7 @@ alias 'notes'='code ~/Documents/notes'
 alias 'clearswap'='sudo swapoff -a; sudo swapon -a'
 # make python3 as default
 alias 'python'='python3'
+alias 'sourcevenv'='source .venv/bin/activate'
 # edit .bashrc
 alias "editrc"="$EDITOR ~/.bashrc"
 alias "sourcerc"="source ~/.bashrc"
@@ -174,6 +156,13 @@ alias "vimter"='vim -c ":terminal"'
 # Go
 alias "gocilint"="golangci-lint run --out-format \"colored-line-number:stdout\""
 alias "gocover"="rm coverage.txt; go test -covermode=atomic -count 1 -coverpkg=./... -coverprofile=coverage.txt ./... ; go tool cover -html=coverage.txt -o coverage.html; /opt/microsoft/msedge/msedge coverage.html"
+# AI
+alias "ai"="ai-cli -e"
+alias "aip"="ai-cli -p"
+alias "aihc"="ai-cli -hc"
+alias "aihp"="hx ~/.config/ai-cli/history_all_time"
+alias "aie"="hx ~/bin/ai-cli" 
+# alias "aimd"="ai-cli -hp | jq -r '.[-1].response' | glow"
 
 ########################################################################
 # NODEJS
