@@ -16,7 +16,7 @@ grv       1      2    3      4       5       6     7      8     9      0       -
 lalt      q      w    e      r       t       y     u      i     o      p       [      ]        \          
 @caps     a      s    d      f       g       h     j      k     l      ;       '           enter        
 lsft      z      x    c      v       b       n     m      ,     .      /                    rsft               up
-lctl      lmet   @nav              spc                 rsft         rmet                    rctl          lft down rght
+lctl      lmeta   @nav              spc                 rsft         rmet                    rctl          lft down rght
 
 )
 
@@ -25,7 +25,7 @@ lctl      lmet   @nav              spc                 rsft         rmet        
 -             -     -   -     -             -     -    -     -          -    -    -    -
 -       -      -    -      -      -       -     -      -     -      -      -      -    -       
 -       -      -    -      -      -       home  bspc   tab   del    -      -      -    -          
-caps    -      -    -      -      -       left  down   up    right  end    -           -        
+lctl    -      -    -      -      -       left  down   up    right  end    -           -        
 lsft    -      -    -      -      -       -     enter  pgdn  pgup   -                  -         -
 -       -      -             -                                      -      -           -       - - -
 
