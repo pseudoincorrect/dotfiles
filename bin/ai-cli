@@ -1,4 +1,4 @@
-#!/usr/bin/python -u
+#!/usr/bin/python3 -u
 import argparse
 import json
 import os
@@ -306,6 +306,17 @@ def print_configuration():
     )
 
 
+def print_models():
+    res = requests.get(
+        "https://openrouter.ai/api/frontend/models/find?category=programming&order=top-weekly"
+    )
+    content = res.json()
+    models = content["data"]["models"]
+    print("Most popular AI models for programming:")
+    for i in models:
+        print("  -", i["slug"])
+
+
 def parse_arguments():
     parser = argparse.ArgumentParser(
         f"""
@@ -385,6 +396,12 @@ def parse_arguments():
         action="store_true",
         help="Print your configuration and quit.",
     )
+    parser.add_argument(
+        "-mp",
+        "--models-print",
+        action="store_true",
+        help="Print most popular programming models from open-router.ai",
+    )
     args = parser.parse_args()
     return args
 
@@ -408,6 +425,9 @@ if __name__ == "__main__":
         exit(0)
     if args.configuration_print:
         print_configuration()
+        exit(0)
+    if args.models_print:
+        print_models()
         exit(0)
     prompt = choose_prompt(args.prompt, args.file, args.editor)
     if prompt == "":
