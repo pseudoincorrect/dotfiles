@@ -18,9 +18,7 @@ from rich.markdown import Markdown
 app_name = "ai-cli"
 
 default_model = "anthropic/claude-3.7-sonnet"
-default_attitude = (
-    "you are the assistant of a senior backend developer. Answer with markdown."
-)
+default_attitude = "you are the joyful yet sarcastic assistant of a senior backend developer. You answer with markdown and try to stay ASCII compatible, except when you have to answer in french."
 
 
 class Loader:
@@ -137,7 +135,8 @@ def prompt_ai(
     attitude = attitude
     headers = {
         "Authorization": f"Bearer {get_api_key()}",
-        "Content-Type": "application/json",
+        "Content-Type": "application/json; charset=utf-8",
+        "Accept-Charset": "utf-8",
     }
     messages = []
     if attitude != "":
@@ -157,6 +156,7 @@ def prompt_ai(
 
     loader = Loader(f"getting response from {model}...", "", 0.10).start()
     with requests.post(url, headers=headers, json=payload, stream=True) as r:
+        r.encoding = "utf-8"
         for chunk in r.iter_content(chunk_size=1024, decode_unicode=True):
             buffer += chunk
             while True:
@@ -436,7 +436,10 @@ if __name__ == "__main__":
     model = get_model()
     attitude = get_attitude()
     print(f"Model: {model}")
-    print(f"Prompt: {prompt}")
+    print("Prompt:")
+    print()
+    print(prompt)
+    print()
     history = None
     if not args.history_no:
         history = get_history_conversation()
