@@ -40,7 +40,6 @@ PROMPT_COMMAND="set_window_title_cwd"
 
 ########################################################################
 # TAB COMPLETION
-bind "set show-all-if-ambiguous on"
 bind '"\t": menu-complete'
 bind '"\e[Z": menu-complete-backward'
 
@@ -126,8 +125,8 @@ export EDITOR=hx
 ########################################################################
 # ALIASES
 # file explorers/management
-alias ll='ls -alF --color=auto'
-alias ls='ls -ACF --color=auto'
+alias ll='eza -laT --total-size --level 1'
+alias ls='eza -laT --total-size --level 1'
 alias rm='rm -rf'
 alias 'cd..'='cd ..'
 alias 'lf'='lfcd'
@@ -163,6 +162,8 @@ alias "aihc"="ai-cli -hc"
 alias "aihp"="hx ~/.config/ai-cli/history_all_time"
 alias "aie"="hx ~/bin/ai-cli" 
 # alias "aimd"="ai-cli -hp | jq -r '.[-1].response' | glow"
+# Kanata
+alias "kan"="sudo /home/mclement/bin/kanata -q --cfg ~/.config/kanata/kanata_hjkl.kbd"
 
 ########################################################################
 # NODEJS
