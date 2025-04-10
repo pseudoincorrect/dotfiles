@@ -1,5 +1,5 @@
-# theme = "max_monokai_pro_spectrum_no_diagnostic"
-theme = "catppuccin_latte"
+theme = "max_monokai_pro_spectrum_no_underline"
+# theme = "max_catppuccin_latte"
 
 [editor]
 cursorline = true
