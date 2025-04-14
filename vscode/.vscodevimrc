@@ -13,3 +13,8 @@ nnoremap U <C-r>
 " map s <leader><leader><leader>bdw
 map s <leader><leader>s
 
+" Map Ctrl-n to Enter in search mode
+cnoremap <C-n> <CR>
+nnoremap <C-n> n
+nnoremap n N
+

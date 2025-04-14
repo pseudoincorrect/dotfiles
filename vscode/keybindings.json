@@ -46,12 +46,34 @@
   },
   {
     "key": "ctrl+j",
-    "command": "scrollLineDown",
+    "command": "-scrollLineDown",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "extension.multiCommand.execute",
+    "args": { 
+      "sequence": [
+        { "command": "cursorMove", "args": { "to": "down", "by": "line", "value": 10 } },
+        { "command": "revealLine", "args": { "at": "center" } }
+      ]
+    },
     "when": "textInputFocus"
   },
   {
     "key": "ctrl+k",
-    "command": "scrollLineUp",
+    "command": "-scrollLineUp",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "extension.multiCommand.execute",
+    "args": { 
+      "sequence": [
+        { "command": "cursorMove", "args": { "to": "up", "by": "line", "value": 10 } },
+        { "command": "revealLine", "args": { "at": "center" } }
+      ]
+    },
     "when": "textInputFocus"
   },
   {
