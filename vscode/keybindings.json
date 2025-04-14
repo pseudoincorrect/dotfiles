@@ -1,31 +1,32 @@
 [
   {
-    "key": "alt+o",
+    "key": "alt+s",
+    "command": "leap.find"
+  },
+  {
+    "key": "alt+p",
     "command": "workbench.action.quickOpen"
   },
   {
-    "key": "alt-shift-a",
-    "command": "workbench.action.showAllSymbols",
+    "key": "alt+d",
+    "command": "workbench.action.quickOpen"
   },
   {
-    "key": "alt-a",
-    "command": "workbench.action.gotoSymbol",
+    "key": "alt-shift-u",
+    "command": "workbench.action.showAllSymbols"
   },
   {
-    "key": "alt-d",
+    "key": "alt-u",
     "command": "workbench.action.quickOpen",
-  },
-  {
-    "key": "alt-s",
-    "command": "leap.find",
+    "args": "@:"
   },
   {
     "key": "alt-t",
-    "command": "editor.action.smartSelect.expand",
+    "command": "editor.action.smartSelect.expand"
   },
   {
     "key": "alt-shift-t",
-    "command": "editor.action.smartSelect.shrink",
+    "command": "editor.action.smartSelect.shrink"
   },
   {
     "key": "alt-h",
@@ -44,33 +45,8 @@
     "command": "workbench.action.navigateDown"
   },
   {
-    "key": "alt+h",
-    "command": "editor.action.revealDefinition",
-    "when": "editorHasDefinitionProvider && editorTextFocus"
-  },
-  {
-    "key": "f12",
-    "command": "-editor.action.revealDefinition",
-    "when": "editorHasDefinitionProvider && editorTextFocus"
-  },
-  {
-    "key": "shift+alt+h",
-    "command": "editor.action.goToReferences",
-    "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
-  },
-  {
-    "key": "shift+f12",
-    "command": "-editor.action.goToReferences",
-    "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
-  },
-  {
     "key": "ctrl+j",
     "command": "scrollLineDown",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+down",
-    "command": "-scrollLineDown",
     "when": "textInputFocus"
   },
   {
@@ -79,28 +55,13 @@
     "when": "textInputFocus"
   },
   {
-    "key": "ctrl+up",
-    "command": "-scrollLineUp",
-    "when": "textInputFocus"
-  },
-  {
     "key": "alt+o",
     "command": "workbench.action.navigateBack",
-    "when": "canNavigateBack"
-  },
-  {
-    "key": "browserback",
-    "command": "-workbench.action.navigateBack",
     "when": "canNavigateBack"
   },
   {
     "key": "alt+i",
     "command": "workbench.action.navigateForward",
     "when": "canNavigateForward"
-  },
-  {
-    "key": "browserforward",
-    "command": "-workbench.action.navigateForward",
-    "when": "canNavigateForward"
-  },
+  }
 ]

@@ -1,0 +1,15 @@
+" Remap d to delete without yanking (using black hole register)
+nnoremap d "_d
+vnoremap d "_d
+
+" Remap x to delete without yanking (using black hole register)
+nnoremap x "_x
+vnoremap x "_x
+
+" Map U to redo (Ctrl-r)
+nnoremap U <C-r>
+
+" Remap easymotion word start to 's'
+" map s <leader><leader><leader>bdw
+map s <leader><leader>s
+
