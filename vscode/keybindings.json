@@ -45,38 +45,6 @@
     "command": "workbench.action.navigateDown"
   },
   {
-    "key": "ctrl+j",
-    "command": "-scrollLineDown",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+j",
-    "command": "extension.multiCommand.execute",
-    "args": { 
-      "sequence": [
-        { "command": "cursorMove", "args": { "to": "down", "by": "line", "value": 10 } },
-        { "command": "revealLine", "args": { "at": "center" } }
-      ]
-    },
-    "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+k",
-    "command": "-scrollLineUp",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+k",
-    "command": "extension.multiCommand.execute",
-    "args": { 
-      "sequence": [
-        { "command": "cursorMove", "args": { "to": "up", "by": "line", "value": 10 } },
-        { "command": "revealLine", "args": { "at": "center" } }
-      ]
-    },
-    "when": "textInputFocus"
-  },
-  {
     "key": "alt+o",
     "command": "workbench.action.navigateBack",
     "when": "canNavigateBack"
@@ -85,5 +53,25 @@
     "key": "alt+i",
     "command": "workbench.action.navigateForward",
     "when": "canNavigateForward"
+  },
+  {
+    "key": "alt+y",
+    "command": "workbench.action.openView"
+  },
+  {
+    "key": "alt+x",
+    "command": "workbench.action.openGlobalKeybindings"
+  },
+  {
+    "key": "ctrl+k ctrl+s",
+    "command": "-workbench.action.openGlobalKeybindings"
+  },
+  {
+    "key": "alt+z",
+    "command": "workbench.action.openSettings"
+  },
+  {
+    "key": "ctrl+,",
+    "command": "-workbench.action.openSettings"
   }
 ]

@@ -9,12 +9,22 @@ vnoremap x "_x
 " Map U to redo (Ctrl-r)
 nnoremap U <C-r>
 
-" Remap easymotion word start to 's'
-" map s <leader><leader><leader>bdw
-map s <leader><leader>s
+" Remap easymotion word start
+" map S <leader><leader><leader>bdw
+" Remap easymotion word search
+" map s <leader><leader>s
 
 " Map Ctrl-n to Enter in search mode
 cnoremap <C-n> <CR>
 nnoremap <C-n> n
 nnoremap n N
 
+nnoremap <C-j> 10<C-e>
+nnoremap <C-k> 10<C-y>
+
+vnoremap gl $
+nnoremap gl $
+onoremap gl $
+vnoremap gh ^
+nnoremap gh ^
+onoremap gh ^
