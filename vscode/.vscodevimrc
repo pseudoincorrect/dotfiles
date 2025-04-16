@@ -31,3 +31,9 @@ onoremap gh ^
 
 " map V in Visual-Line to j for better navigation
 vnoremap V j
+
+" Map new line
+nnoremap <leader>j o<ESC>k
+nnoremap <leader>k O<ESC>j
+
+

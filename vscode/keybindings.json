@@ -113,5 +113,79 @@
   {
     "key": "ctrl+p",
     "command": "-workbench.action.quickOpen"
+  },
+  {
+    "key": "alt+r",
+    "command": "editor.action.rename",
+    "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "f2",
+    "command": "-editor.action.rename",
+    "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "tab",
+    "command": "search.action.focusNextSearchResult",
+    "when": "hasSearchResult || inSearchEditor"
+  },
+  {
+    "key": "f4",
+    "command": "-search.action.focusNextSearchResult",
+    "when": "hasSearchResult || inSearchEditor"
+  },
+  {
+    "key": "shift+tab",
+    "command": "search.action.focusPreviousSearchResult",
+    "when": "hasSearchResult || inSearchEditor"
+  },
+  {
+    "key": "shift+f4",
+    "command": "-search.action.focusPreviousSearchResult",
+    "when": "hasSearchResult || inSearchEditor"
+  },
+  {
+    "key": "f8",
+    "command": "workbench.action.terminal.clear"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.terminal.scrollDown",
+    "when": "terminalFocusInAny && terminalHasBeenCreated && !terminalAltBufferActive || terminalFocusInAny && terminalProcessSupported && !terminalAltBufferActive"
+  },
+  {
+    "key": "ctrl+shift+down",
+    "command": "-workbench.action.terminal.scrollDown",
+    "when": "terminalFocusInAny && terminalHasBeenCreated && !terminalAltBufferActive || terminalFocusInAny && terminalProcessSupported && !terminalAltBufferActive"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.terminal.scrollUp",
+    "when": "terminalFocusInAny && terminalHasBeenCreated && !terminalAltBufferActive || terminalFocusInAny && terminalProcessSupported && !terminalAltBufferActive"
+  },
+  {
+    "key": "ctrl+shift+up",
+    "command": "-workbench.action.terminal.scrollUp",
+    "when": "terminalFocusInAny && terminalHasBeenCreated && !terminalAltBufferActive || terminalFocusInAny && terminalProcessSupported && !terminalAltBufferActive"
+  },
+  {
+    "key": "ctrl+shift+k",
+    "command": "workbench.action.terminal.scrollUpPage",
+    "when": "terminalFocusInAny && terminalHasBeenCreated && !terminalAltBufferActive || terminalFocusInAny && terminalProcessSupported && !terminalAltBufferActive"
+  },
+  {
+    "key": "shift+pageup",
+    "command": "-workbench.action.terminal.scrollUpPage",
+    "when": "terminalFocusInAny && terminalHasBeenCreated && !terminalAltBufferActive || terminalFocusInAny && terminalProcessSupported && !terminalAltBufferActive"
+  },
+  {
+    "key": "ctrl+shift+j",
+    "command": "workbench.action.terminal.scrollDownPage",
+    "when": "terminalFocusInAny && terminalHasBeenCreated && !terminalAltBufferActive || terminalFocusInAny && terminalProcessSupported && !terminalAltBufferActive"
+  },
+  {
+    "key": "shift+pagedown",
+    "command": "-workbench.action.terminal.scrollDownPage",
+    "when": "terminalFocusInAny && terminalHasBeenCreated && !terminalAltBufferActive || terminalFocusInAny && terminalProcessSupported && !terminalAltBufferActive"
   }
 ]
