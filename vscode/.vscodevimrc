@@ -10,14 +10,14 @@ vnoremap x "_x
 nnoremap U <C-r>
 
 " Remap easymotion word start
-" map S <leader><leader><leader>bdw
+map s <leader><leader><leader>bdw
 " Remap easymotion word search
-" map s <leader><leader>s
+map S <leader><leader>s
 
 " Map Ctrl-n to Enter in search mode
-cnoremap <C-n> <CR>
-nnoremap <C-n> n
-nnoremap n N
+cnoremap <C-m> <CR>
+cnoremap <C-l> <C-g>
+cnoremap <C-h> <C-t>
 
 nnoremap <C-j> 10<C-e>
 nnoremap <C-k> 10<C-y>
@@ -28,3 +28,6 @@ onoremap gl $
 vnoremap gh ^
 nnoremap gh ^
 onoremap gh ^
+
+" map V in Visual-Line to j for better navigation
+vnoremap V j
