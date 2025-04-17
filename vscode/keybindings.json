@@ -1,5 +1,16 @@
 [
   {
+    "key": "ctrl+s",
+    "command": "extension.multiCommand.execute",
+    // "when": "editorTextFocus && neovim.init && neovim.mode == 'insert'",
+    "args": {
+      "sequence": [
+        "workbench.action.files.save",
+         "extension.vim_escape"
+      ]
+    }
+  },
+  {
     "key": "alt+s",
     "command": "leap.find"
   },
@@ -8,15 +19,11 @@
     "command": "workbench.action.quickOpen"
   },
   {
-    "key": "alt+d",
-    "command": "workbench.action.quickOpen"
-  },
-  {
-    "key": "alt-shift-u",
+    "key": "ctrl-shift-u",
     "command": "workbench.action.showAllSymbols"
   },
   {
-    "key": "alt-u",
+    "key": "ctrl-u",
     "command": "workbench.action.quickOpen",
     "args": "@:"
   },
@@ -45,26 +52,22 @@
     "command": "workbench.action.navigateDown"
   },
   {
-    "key": "alt+o",
+    "key": "ctrl+o",
     "command": "workbench.action.navigateBack",
     "when": "canNavigateBack"
   },
   {
-    "key": "alt+i",
+    "key": "ctrl+i",
     "command": "workbench.action.navigateForward",
     "when": "canNavigateForward"
   },
   {
-    "key": "alt+y",
+    "key": "ctrl+y",
     "command": "workbench.action.openView"
   },
   {
     "key": "alt+x",
     "command": "workbench.action.openGlobalKeybindings"
-  },
-  {
-    "key": "ctrl+k ctrl+s",
-    "command": "-workbench.action.openGlobalKeybindings"
   },
   {
     "key": "alt+z",
@@ -115,34 +118,19 @@
     "command": "-workbench.action.quickOpen"
   },
   {
-    "key": "alt+r",
+    "key": "ctrl+r",
     "command": "editor.action.rename",
     "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
   },
   {
-    "key": "f2",
-    "command": "-editor.action.rename",
-    "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
-  },
-  {
-    "key": "tab",
+    "key": "ctrl+n",
     "command": "search.action.focusNextSearchResult",
-    "when": "hasSearchResult || inSearchEditor"
+    "when": "hasSearchResult || inSearchEditor && !editorTextFocus"
   },
   {
-    "key": "f4",
-    "command": "-search.action.focusNextSearchResult",
-    "when": "hasSearchResult || inSearchEditor"
-  },
-  {
-    "key": "shift+tab",
+    "key": "ctrl+shift+n",
     "command": "search.action.focusPreviousSearchResult",
-    "when": "hasSearchResult || inSearchEditor"
-  },
-  {
-    "key": "shift+f4",
-    "command": "-search.action.focusPreviousSearchResult",
-    "when": "hasSearchResult || inSearchEditor"
+    "when": "hasSearchResult || inSearchEditor && !editorTextFocus"
   },
   {
     "key": "f8",
@@ -187,5 +175,17 @@
     "key": "shift+pagedown",
     "command": "-workbench.action.terminal.scrollDownPage",
     "when": "terminalFocusInAny && terminalHasBeenCreated && !terminalAltBufferActive || terminalFocusInAny && terminalProcessSupported && !terminalAltBufferActive"
+  },
+  {
+    "key": "ctrl+q",
+    "command": "-workbench.action.quit"
+  },
+  {
+    "key": "ctrl+q",
+    "command": "workbench.action.closeActiveEditor"
+  },
+  {
+    "key": "ctrl+w",
+    "command": "-workbench.action.closeActiveEditor"
   }
 ]

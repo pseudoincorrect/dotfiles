@@ -23,6 +23,7 @@
   "background.windowBackgrounds": [
     "/home/mclement/Pictures/background/**"
   ],
+  "chat.commandCenter.enabled": false,
   "editor.cursorBlinking": "phase",
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorSurroundingLines": 15,
@@ -80,9 +81,10 @@
   "vim.vimrc.path": "/home/mclement/.vscodevimrc",
   "window.openFoldersInNewWindow": "on",
   "window.title": "${rootName}",
-  "window.zoomLevel": -2,
+  "window.zoomLevel": -1,
   "window.zoomPerWindow": false,
   "workbench.colorTheme": "Tokyo Night",
   "workbench.editor.showTabs": "single",
-  "workbench.editor.tabActionLocation": "left"
+  "workbench.editor.tabActionLocation": "left",
+  "workbench.layoutControl.enabled": false
 }
