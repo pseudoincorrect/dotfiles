@@ -1,4 +1,7 @@
 {
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -28,22 +31,19 @@
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorSurroundingLines": 15,
   "editor.lineNumbers": "off",
+  "editor.minimap.enabled": false,
   "editor.minimap.showSlider": "always",
   "editor.minimap.side": "left",
   "editor.renderLineHighlight": "all",
   "editor.renderLineHighlightOnlyWhenFocus": true,
   "editor.scrollbar.vertical": "hidden",
   "editor.smoothScrolling": true,
+  "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?",
   "editor.wordWrap": "on",
   "extensions.experimental.affinity": {
     "vscodevim.vim": 1
   },
-  "github.copilot.enable": {
-    "*": false,
-    "markdown": false,
-    "plaintext": false,
-    "scminput": false
-  },
+  "extensions.ignoreRecommendations": true,
   "go.toolsManagement.autoUpdate": true,
   "projectManager.git.baseFolders": [
     "/home/mclement/git"
@@ -58,6 +58,7 @@
   "terminal.integrated.smoothScrolling": true,
   "vim.easymotion": true,
   "vim.easymotionKeys": "hklyuiopnmqwertxcvbasdgjf",
+  "vim.enableNeovim": true,
   "vim.handleKeys": {
     "<C-d>": false, // keep vscode default CTRL-D
     "<C-e>": true, // needed for line scrolling
@@ -74,17 +75,41 @@
   "vim.hlsearch": false,
   "vim.incsearch": true,
   "vim.leader": "<space>",
-  "vim.sneak": false,
+  "vim.normalModeKeyBindings": [
+    {
+      "before": [
+        "g",
+        "i"
+      ],
+      "commands": [
+        "editor.action.goToImplementation"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "r"
+      ],
+      "commands": [
+        "editor.action.goToReferences"
+      ]
+    }
+  ],
+  "vim.sneak": true,
+  "vim.sneakReplacesF": true,
   "vim.useCtrlKeys": false,
   "vim.useSystemClipboard": true,
   "vim.vimrc.enable": true,
   "vim.vimrc.path": "/home/mclement/.vscodevimrc",
+  "window.customMenuBarAltFocus": false,
   "window.openFoldersInNewWindow": "on",
   "window.title": "${rootName}",
-  "window.zoomLevel": -1,
+  "window.zoomLevel": -2,
   "window.zoomPerWindow": false,
+  "workbench.activityBar.location": "hidden",
   "workbench.colorTheme": "Tokyo Night",
   "workbench.editor.showTabs": "single",
   "workbench.editor.tabActionLocation": "left",
-  "workbench.layoutControl.enabled": false
+  "workbench.layoutControl.enabled": false,
+  "workbench.tree.indent": 40
 }

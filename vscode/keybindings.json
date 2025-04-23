@@ -4,10 +4,7 @@
     "command": "extension.multiCommand.execute",
     // "when": "editorTextFocus && neovim.init && neovim.mode == 'insert'",
     "args": {
-      "sequence": [
-        "workbench.action.files.save",
-         "extension.vim_escape"
-      ]
+      "sequence": ["workbench.action.files.save", "extension.vim_escape"]
     }
   },
   {
@@ -28,11 +25,11 @@
     "args": "@:"
   },
   {
-    "key": "alt-t",
+    "key": "ctrl+t",
     "command": "editor.action.smartSelect.expand"
   },
   {
-    "key": "alt-shift-t",
+    "key": "ctrl+shift+t",
     "command": "editor.action.smartSelect.shrink"
   },
   {
@@ -187,5 +184,52 @@
   {
     "key": "ctrl+w",
     "command": "-workbench.action.closeActiveEditor"
-  }
+  },
+  {
+    "key": "alt+1",
+    "command": "workbench.files.action.focusFilesExplorer",
+  },
+  {
+    "key": "alt+2",
+    "command": "workbench.action.terminal.focus"
+  },
+  {
+    "key": "alt+3",
+    "command": "workbench.action.focusActiveEditorGroup",
+  },
+{
+    "key": "alt+4",
+    "command": "workbench.panel.chat.view.copilot.focus",
+  },
+  {
+    "key": "ctrl+enter",
+    "command": "workbench.action.edits.submit",
+    "when": "chatInputHasText "
+  },
+  {
+    "key": "enter",
+    "command": "-workbench.action.edits.submit",
+    "when": "chatInputHasText"
+  },
+  {
+    "key": "f12",
+    "command": "github.copilot.completions.disable"
+  },
+  {
+    "key": "f11",
+    "command": "github.copilot.completions.enable"
+  },
+  {
+    "key": "alt+b",
+    "command": "workbench.action.activityBarLocation.hide"
+  },
+  {
+    "key": "shift+alt+b",
+    "command": "workbench.action.focusActivityBar"
+  },
+  {
+    "key": "alt+;",
+    "command": "editor.action.showContextMenu",
+    "when": "textInputFocus"
+  },
 ]

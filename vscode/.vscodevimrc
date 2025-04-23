@@ -6,21 +6,28 @@ vnoremap d "_d
 nnoremap x "_x
 vnoremap x "_x
 
+" Remap c to delete without yanking (using black hole register)
+nnoremap c "_c
+vnoremap c "_c
+
 " Map U to redo (Ctrl-r)
 nnoremap U <C-r>
 
 " Remap easymotion word start
-map s <leader><leader><leader>bdw
-" Remap easymotion word search
-map S <leader><leader>s
+nnoremap S <leader><leader>s
+vnoremap S <leader><leader>s
+nnoremap s <leader><leader><leader>bdw
+vnoremap s <leader><leader><leader>bdw
 
 " Map Ctrl-n to Enter in search mode
 cnoremap <C-m> <CR>
 cnoremap <C-l> <C-g>
 cnoremap <C-h> <C-t>
+nnoremap <C-l> n
+nnoremap <C-h> N
 
-nnoremap <C-j> 10<C-e>
-nnoremap <C-k> 10<C-y>
+nnoremap <C-j> 15<C-e>
+nnoremap <C-k> 15<C-y>
 
 vnoremap gl $
 nnoremap gl $
@@ -31,9 +38,17 @@ onoremap gh ^
 
 " map V in Visual-Line to j for better navigation
 vnoremap V j
+vnoremap v k
 
 " Map new line
 nnoremap <leader>j o<ESC>k
 nnoremap <leader>k O<ESC>j
 
+" Easier macros repetition
+nnoremap Q @q
 
+" Surround 
+" y s <motion> <desired>	    Add desired surround around text defined by <motion>
+" d s <existing>	            Delete existing surround
+" c s <existing> <desired>	Change existing surround to desired
+" S <desired>	                Surround when in visual modes (surrounds full selection)
