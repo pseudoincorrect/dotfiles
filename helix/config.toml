@@ -9,13 +9,16 @@ scrolloff = 17
 auto-format = true
 # line-number = "relative"
 auto-save = true
-gutters = ["diff","diagnostics", "line-numbers", "spacer"]
-# gutters = ["diff","diagnostics", "spacer"]
+# gutters = ["diff","diagnostics", "line-numbers", "spacer"]
+gutters = ["diff","diagnostics", "spacer"]
 jump-label-alphabet = "dlavmcfeiruwotybns;jk234789"
 completion-timeout = 0
 completion-trigger-len = 1
 auto-pairs = false
 bufferline = "never"
+
+[editor.search]
+wrap-around = false
 
 [editor.lsp]
 auto-signature-help = false
@@ -67,8 +70,8 @@ separator = " │ "
 A-t = ":wqa!"
 A-b = ":qa!"
 esc = ["collapse_selection", "keep_primary_selection"]
-C-f = ["select_mode", "goto_line_end","extend_line_below", "delete_selection", "paste_after"]
-C-d = ["select_mode", "goto_line_end","extend_line_below", "delete_selection", "move_line_up", "paste_before"]
+A-f = ["select_mode", "goto_line_end","extend_line_below", "delete_selection", "paste_after"]
+A-d = ["select_mode", "goto_line_end","extend_line_below", "delete_selection", "move_line_up", "paste_before"]
 tab = "buffer_picker"
 s = "goto_word"
 W =  "@miW" # Select Whole word under cursor
@@ -79,25 +82,23 @@ d = "delete_selection_noyank"
 c = "change_selection_noyank"
 C = "copy_selection_on_next_line"
 D = "copy_selection_on_prev_line"
-t = "expand_selection"
+C-t = "expand_selection"
 T = "shrink_selection"
 C-s = ":w!" 
 C-q = ":buffer-close!"
 C-c = ["toggle_comments", "move_line_down"]
-C-j = "@15zj" # Scroll down
-C-k = "@15zk" # Scroll up
-C-h = "rotate_view_reverse"
-C-l = "rotate_view"
+f = "@15zj" # Scroll down
+t = "@15zk" # Scroll up
+C-h = "jump_view_left"
+C-l = "jump_view_right"
+C-j = "jump_view_down"
+C-k = "jump_view_up"
 J = "@]ff;<esc>"
 K = "@[f<esc>"
-H = "goto_previous_buffer"
-L = "goto_next_buffer"
 "C-." = "signature_help"
+"," = "remove_primary_selection"
 
-[keys.normal.f]
-# "w" = "@ s%kind function %name "
-"/" = "@ y /<C-r>+"  # Global search word under cursor
-b = "@ /%p <C-r>% %n "  # Open string search on current buffer (with relative path)
+[keys.normal.space]
 e = [
   ':sh rm -f /tmp/unique-file',
   ':insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file',
@@ -106,29 +107,12 @@ e = [
   ':set mouse false',
   ':set mouse true',
 ]
-r = "@:reload-all<ret>"
-";" = "flip_selections"
-"," = "remove_primary_selection"
-t = ":toggle file-picker.git-ignore"
-o = "jump_backward"
-i = "jump_forward"
-y = ":yank-diagnostic"
+space = "@ y /<C-r>+"  # Global search word under cursor
+x = ":yank-diagnostic"
 z = "@\"%p\"+yd" # Copy buffer (repository relative) path in clipboard  
 Z = "@o<esc>|pwd<ret>;i/<esc>\"%PmiW\"+yddk" # Copy buffer full-path in clipboard  
-d = "buffer_picker"
-s = "file_picker"
-a = "symbol_picker"
 q = ":buffer-close!"
-v = "vsplit"
-x = "wclose"
-h = "find_prev_char"
-j = "till_prev_char"
-k = "find_till_char"
-l = "find_next_char"
-f = "repeat_last_motion"
-
-[keys.normal.space]
-space = "file_picker"
+";" = "flip_selections"
 
 [keys.normal.m]
 f = "select_regex"
@@ -142,8 +126,8 @@ x = "join_selections"
 
 
 [keys.select]
-C-f = ["goto_line_end", "extend_line_below", "delete_selection", "paste_after", "select_mode" ]
-C-d = ["goto_line_end", "extend_line_below", "delete_selection", "move_line_up", "paste_before", "select_mode"]
+A-f = ["goto_line_end", "extend_line_below", "delete_selection", "paste_after", "select_mode" ]
+A-d = ["goto_line_end", "extend_line_below", "delete_selection", "move_line_up", "paste_before", "select_mode"]
 C-s = ["normal_mode", ":w!"] # Save file
 X = "select_line_above"
 x = "select_line_below"
@@ -152,22 +136,21 @@ c = "change_selection_noyank"
 W =  "@miW" # Select Whole word under cursor
 w =  "@miw" # Select word under cursor
 s = "extend_to_word"
-C-j = "@15zj" # Scroll down
-C-k = "@15zk" # Scroll up
-C-h = "@15h"
-C-l = "@15l"
+C-h = "jump_view_left"
+C-l = "jump_view_right"
+C-j = "jump_view_down"
+C-k = "jump_view_up"
+"," = "remove_primary_selection"
 
-[keys.select.f]
+[keys.select.space]
 ";" = "flip_selections"
 
 [keys.insert]
 A-t = ["normal_mode", ":wqa!"]
 A-b = ["normal_mode", ":qa!"]
 C-s = ["normal_mode", ":w!"] 
-C-j = "@<esc>15zj" # Scroll down
-C-k = "@<esc>15zk" # Scroll up
-C-h = "rotate_view_reverse"
-C-l = "rotate_view"
-C-left = "@<esc>15hi"
-C-right = "@<esc>15li"
+C-h = "jump_view_left"
+C-l = "jump_view_right"
+C-j = "jump_view_down"
+C-k = "jump_view_up"
 "C-." = "signature_help"
