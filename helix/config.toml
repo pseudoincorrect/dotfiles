@@ -9,8 +9,8 @@ scrolloff = 17
 auto-format = true
 # line-number = "relative"
 auto-save = true
-# gutters = ["diff","diagnostics", "line-numbers", "spacer"]
-gutters = ["diff","diagnostics", "spacer"]
+gutters = ["diff","diagnostics", "line-numbers", "spacer", "spacer"]
+# gutters = ["diff","diagnostics", "spacer"]
 jump-label-alphabet = "dlavmcfeiruwotybns;jk234789"
 completion-timeout = 0
 completion-trigger-len = 1
@@ -22,6 +22,9 @@ wrap-around = false
 
 [editor.lsp]
 auto-signature-help = false
+goto-reference-include-declaration = false
+display-inlay-hints = true
+display-progress-messages = true
 
 [editor.inline-diagnostics]
 # cursor-line = "hint"
@@ -38,6 +41,27 @@ supersede-menu = true
 # '"' = '"'
 # '`' = '`'
 # '<' = '>'
+
+[keys.normal.m]
+f = "select_regex"
+F = "split_selection"
+x = "join_selections"
+# Match in next instance of pair
+"(" = "@/\\(<ret>mi("
+"{" = "@/\\{<ret>mi{"
+"[" = "@/\\[<ret>mi["
+'"' = '@/"<ret>lmi"'
+"'" = "@/'<ret>lmi'"
+"<" = "@/<lt><ret>mi<lt>"
+
+# Match in previous instance of pair
+[keys.normal.m.p]
+"(" = "@/\\(<ret>NNmi("
+"{" = "@/\\{<ret>NNmi{"
+"[" = "@/\\[<ret>NNmi["
+'"' = '@/"<ret>NNhmi"'
+"'" = "@/'<ret>NNhmi'"
+"<" = "@/<lt><ret>NNmi<lt>"
 
 [editor.soft-wrap]
 enable = true
@@ -82,19 +106,15 @@ d = "delete_selection_noyank"
 c = "change_selection_noyank"
 C = "copy_selection_on_next_line"
 D = "copy_selection_on_prev_line"
-C-t = "expand_selection"
-T = "shrink_selection"
 C-s = ":w!" 
-C-q = ":buffer-close!"
 C-c = ["toggle_comments", "move_line_down"]
-f = "@15zj" # Scroll down
-t = "@15zk" # Scroll up
 C-h = "jump_view_left"
 C-l = "jump_view_right"
-C-j = "jump_view_down"
-C-k = "jump_view_up"
-J = "@]ff;<esc>"
-K = "@[f<esc>"
+C-j = "@15zj"
+C-k = "@15zk"
+t = "expand_selection"
+T = "shrink_selection"
+C-f = "repeat_last_motion"
 "C-." = "signature_help"
 "," = "remove_primary_selection"
 
@@ -114,16 +134,10 @@ Z = "@o<esc>|pwd<ret>;i/<esc>\"%PmiW\"+yddk" # Copy buffer full-path in clipboar
 q = ":buffer-close!"
 ";" = "flip_selections"
 
-[keys.normal.m]
-f = "select_regex"
-F = "split_selection"
-x = "join_selections"
-
 [keys.select.m]
 f = "select_regex"
 F = "split_selection"
 x = "join_selections"
-
 
 [keys.select]
 A-f = ["goto_line_end", "extend_line_below", "delete_selection", "paste_after", "select_mode" ]
@@ -138,8 +152,8 @@ w =  "@miw" # Select word under cursor
 s = "extend_to_word"
 C-h = "jump_view_left"
 C-l = "jump_view_right"
-C-j = "jump_view_down"
-C-k = "jump_view_up"
+C-j = "@<esc>15zj"
+C-k = "@<esc>15zk"
 "," = "remove_primary_selection"
 
 [keys.select.space]
@@ -151,6 +165,6 @@ A-b = ["normal_mode", ":qa!"]
 C-s = ["normal_mode", ":w!"] 
 C-h = "jump_view_left"
 C-l = "jump_view_right"
-C-j = "jump_view_down"
-C-k = "jump_view_up"
+C-j = "@<esc>15zj"
+C-k = "@<esc>15zk"
 "C-." = "signature_help"
