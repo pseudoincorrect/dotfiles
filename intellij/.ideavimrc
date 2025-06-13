@@ -1,0 +1,62 @@
+" set <leader> to <space>
+let mapleader = " "
+
+" Remap d to delete without yanking (using black hole register)
+nnoremap d "_d
+vnoremap d "_d
+
+" Remap x to delete without yanking (using black hole register)
+nnoremap x "_x
+vnoremap x "_x
+
+" Remap c to delete without yanking (using black hole register)
+nnoremap c "_c
+vnoremap c "_c
+
+" Map U to redo (Ctrl-r)
+nnoremap U <C-r>
+vnoremap U <C-r>
+
+noremap gl g_
+noremap gh ^
+
+" map V in Visual-Line to j for better navigation
+vnoremap V j
+vnoremap v k
+
+" Map new line
+nnoremap <leader>j o<ESC>k
+nnoremap <leader>k O<ESC>j
+
+" Easier macros repetition
+nnoremap Q @q
+
+" Surround 
+" y s <motion> <desired>	    Add desired surround around text defined by <motion>
+" d s <existing>	            Delete existing surround
+" c s <existing> <desired>	Change existing surround to desired
+" S <desired>	                Surround when in visual modes (surrounds full selection)
+
+" nvim flash
+map s <Action>(flash.search)
+
+" " Copy to clipboard
+vnoremap  <leader>y  "+y
+nnoremap  <leader>Y  "+yg_
+nnoremap  <leader>y  "+y
+nnoremap  <leader>yy  "+yy
+
+" " Paste from clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
+
+map <Leader>f <action>(com.mituuz.fuzzier.Fuzzier)
+map <Leader>m <action>(com.mituuz.fuzzier.FuzzyMover)
+map <Leader>g <action>(com.mituuz.fuzzier.FuzzyGrep)
+
+" Go to normal mode and save file
+inoremap <C-s> <Esc>:w<CR>
+vnoremap <C-s> <Esc>:w<CR>
+nnoremap <C-s> :w<CR>
