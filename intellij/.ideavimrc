@@ -54,12 +54,15 @@ vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
 " Fuzzy finder mappings
-map <Leader>f <action>(com.mituuz.fuzzier.Fuzzier)
 map <Leader>m <action>(com.mituuz.fuzzier.FuzzyMover)
 map <Leader>g <action>(com.mituuz.fuzzier.FuzzyGrep)
 
 " Commenting
 map <Leader>c <action>(CommentByLineComment)
+map <Leader>f <action>(GotoFile)
+map <leader>s <action>(GotoSymbol)
+map <leader>p <action>(GotoAction)
+map <leader>b <action>(RecentFiles)
 
 " Go to normal mode and save file
 inoremap <C-s> <Esc>:w<CR>
