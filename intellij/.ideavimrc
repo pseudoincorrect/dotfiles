@@ -1,10 +1,17 @@
+Plug 'tpope/vim-surround'
+
+set nohlsearch
+set incsearch
+set ignorecase
+set smartcase
+set clipboard+=unnamed
+
 " set <leader> to <space>
 let mapleader = " "
 
 " Remap d to delete without yanking (using black hole register)
 nnoremap d "_d
 vnoremap d "_d
-
 " Remap x to delete without yanking (using black hole register)
 nnoremap x "_x
 vnoremap x "_x
@@ -31,32 +38,45 @@ nnoremap <leader>k O<ESC>j
 " Easier macros repetition
 nnoremap Q @q
 
-" Surround 
-" y s <motion> <desired>	    Add desired surround around text defined by <motion>
-" d s <existing>	            Delete existing surround
-" c s <existing> <desired>	Change existing surround to desired
-" S <desired>	                Surround when in visual modes (surrounds full selection)
-
 " nvim flash
 map s <Action>(flash.search)
 
-" " Copy to clipboard
+" Copy to clipboard
 vnoremap  <leader>y  "+y
 nnoremap  <leader>Y  "+yg_
 nnoremap  <leader>y  "+y
 nnoremap  <leader>yy  "+yy
 
-" " Paste from clipboard
+" Paste from clipboard
 nnoremap <leader>p "+p
 nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
+" Fuzzy finder mappings
 map <Leader>f <action>(com.mituuz.fuzzier.Fuzzier)
 map <Leader>m <action>(com.mituuz.fuzzier.FuzzyMover)
 map <Leader>g <action>(com.mituuz.fuzzier.FuzzyGrep)
+
+" Commenting
+map <Leader>c <action>(CommentByLineComment)
 
 " Go to normal mode and save file
 inoremap <C-s> <Esc>:w<CR>
 vnoremap <C-s> <Esc>:w<CR>
 nnoremap <C-s> :w<CR>
+
+" Window management
+nnoremap <Leader>wv <C-w>v
+nnoremap <Leader>wc <C-w>c
+nnoremap <Leader>wl <C-w>l
+nnoremap <Leader>wh <C-w>h
+
+" Surround: Add desired surround around text defined by <motion>
+"   y s <motion> <desired>
+" Surround: Delete existing surround
+"   d s <existing>
+" Surround: Change existing surround to desired
+"   c s <existing> <desired>
+" Surround: Surround when in visual modes (surrounds full selection)
+"   S <desired>
