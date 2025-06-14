@@ -26,14 +26,11 @@ vnoremap U <C-r>
 
 noremap gl g_
 noremap gh ^
+noremap ge G
 
 " map V in Visual-Line to j for better navigation
 vnoremap V j
 vnoremap v k
-
-" Map new line
-nnoremap <leader>j o<ESC>k
-nnoremap <leader>k O<ESC>j
 
 " Easier macros repetition
 nnoremap Q @q
@@ -41,11 +38,20 @@ nnoremap Q @q
 " nvim flash
 map s <Action>(flash.search)
 
+" Go to normal mode and save file
+inoremap <C-s> <Esc>:w<CR>
+vnoremap <C-s> <Esc>:w<CR>
+nnoremap <C-s> :w<CR>
+
+" Map new line
+nnoremap <leader>j o<ESC>k
+nnoremap <leader>k O<ESC>j
+
 " Copy to clipboard
-vnoremap  <leader>y  "+y
-nnoremap  <leader>Y  "+yg_
-nnoremap  <leader>y  "+y
-nnoremap  <leader>yy  "+yy
+vnoremap <leader>y  "+y
+nnoremap <leader>Y  "+yg_
+nnoremap <leader>y  "+y
+nnoremap <leader>yy  "+yy
 
 " Paste from clipboard
 nnoremap <leader>p "+p
@@ -53,33 +59,28 @@ nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
-" Fuzzy finder mappings
-map <Leader>m <action>(com.mituuz.fuzzier.FuzzyMover)
-map <Leader>g <action>(com.mituuz.fuzzier.FuzzyGrep)
-
 " Commenting
-map <Leader>c <action>(CommentByLineComment)
-map <Leader>f <action>(GotoFile)
+map <leader>c <action>(CommentByLineComment)
+map <leader>f <action>(GotoFile)
 map <leader>s <action>(GotoSymbol)
-map <leader>p <action>(GotoAction)
 map <leader>b <action>(RecentFiles)
-
-" Go to normal mode and save file
-inoremap <C-s> <Esc>:w<CR>
-vnoremap <C-s> <Esc>:w<CR>
-nnoremap <C-s> :w<CR>
+map <leader>r <action>(RenameElement)
+map <leader>a <action>(ShowIntentionActions)
+map <leader><leader> <action>(GotoAction)
+map <leader>/ <action>(com.mituuz.fuzzier.FuzzyGrep)
 
 " Window management
-nnoremap <Leader>wv <C-w>v
-nnoremap <Leader>wc <C-w>c
-nnoremap <Leader>wl <C-w>l
-nnoremap <Leader>wh <C-w>h
+nnoremap <leader>wv <C-w>v
+nnoremap <leader>wc <C-w>c
+nnoremap <leader>wl <C-w>l
+nnoremap <leader>wh <C-w>h
 
-" Surround: Add desired surround around text defined by <motion>
+" Surround
+" Add desired surround around text defined by <motion>
 "   y s <motion> <desired>
-" Surround: Delete existing surround
+" Delete existing surround
 "   d s <existing>
-" Surround: Change existing surround to desired
+" Change existing surround to desired
 "   c s <existing> <desired>
-" Surround: Surround when in visual modes (surrounds full selection)
+" Surround when in visual modes (surrounds full selection)
 "   S <desired>
