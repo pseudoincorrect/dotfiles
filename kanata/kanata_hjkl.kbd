@@ -13,10 +13,10 @@ lctl      lmet   lalt             spc                  ralt        rmet         
 
 esc            f1   f2   f3   f4               f5    f6    f7    f8          f9   f10  f11   f12
 grv       1      2    3      4       5       6     7      8     9      0       -      =     bspc       
-lalt      q      w    e      r       t       y     u      i     o      p       [      ]        \          
+lalt      q      w    e      r       t       y     u      i     o      p       [      ]     lalt            
 @caps     a      s    d      f       g       h     j      k     l      ;       '           enter        
-lsft      z      x    c      v       b       n     m      ,     .      /                    rsft               up
-lctl      lmeta   @nav              spc                 rsft         rmet                    rctl          lft down rght
+lsft      z      x    c      v       b       n     m      ,     .      /                    caps               up
+lctl      lmeta   @nav              spc                 rsft         rmet                      \          lft down rght
 
 )
 
@@ -24,9 +24,9 @@ lctl      lmeta   @nav              spc                 rsft         rmet       
 
 -             -     -   -     -             -     -    -     -          -    -    -    -
 -       -      -    -      -      -       -     -      -     -      -      -      -    -       
--       -      -    -      -      -       home  bspc   tab   del    -      -      -    -          
-lctl    -      -    -      -      -       left  down   up    right  end    -           -        
-lsft    -      -    -      -      -       -     enter  pgdn  pgup   -                  -         -
+-       S-,    S-.  [      ]      -       home  bspc   tab   del    -      -      -    -          
+lctl    S-9    S-0  S-[    S-]    -      left  down   up    right  end    -           -        
+lsft    -      -    -      S--    -       -     enter  pgdn  pgup   -                  -         -
 -       -      -             -                                      -      -           -       - - -
 
 )
