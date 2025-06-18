@@ -36,7 +36,8 @@ vnoremap v k
 nnoremap Q @q
 
 " nvim flash
-map s <Action>(flash.search)
+map f <Action>(flash.search)
+map s <Action>(KJumpAction.Word0)
 
 " Go to normal mode and save file
 inoremap <C-s> <Esc>:w<CR>
@@ -61,17 +62,6 @@ vnoremap <leader>P "+P
 
 " leader intellij mappings
 map <leader>/ <action>(com.mituuz.fuzzier.FuzzyGrep)
-map <leader>c <action>(CommentByLineComment)
-map <leader>f <action>(GotoFile)
-map <leader>s <action>(FileStructurePopup)
-map <leader>b <action>(RecentFiles)
-map <leader>r <action>(RenameElement)
-map <leader>a <action>(ShowIntentionActions)
-map <leader>i <action>(Forward)
-map <leader>o <action>(Back)
-map <leader>q <action>(ManageRecentProjects)
-map <leader>n <action>(NewScratchBuffer)
-map <leader><leader> <action>(GotoAction)
 map <leader>1 <action>(ActivateProjectToolWindow)
 map <leader>2 <action>(ActivateStructureToolWindow)
 map <leader>3 <action>(copilot.chat.show)
@@ -79,6 +69,20 @@ map <leader>4 <action>(ActivateProblemsViewToolWindow)
 map <leader>5 <action>(ActivateTerminalToolWindow)
 map <leader>6 <action>(ActivateRunToolWindow)
 map <leader>7 <action>(ActivateDebugToolWindow)
+map <leader>a <action>(ShowIntentionActions)
+map <leader>b <action>(RecentFiles)
+map <leader>c <action>(CommentByLineComment)
+map <leader>f <action>(GotoFile)
+map <leader>i <action>(Forward)
+map <leader>m <action>(ShowPopupMenu)
+map <leader>n <action>(NewScratchBuffer)
+map <leader>o <action>(Back)
+map <leader>p <action>(GotoAction)
+map <leader>q <action>(ManageRecentProjects)
+map <leader>r <action>(RenameElement)
+map <leader>s <action>(FileStructurePopup)
+map <leader>t <action>(ToolWindowsGroup)
+
 " goto intellij mappings
 map gi <action>(GotoImplementation)
 map gr <action>(ShowUsages)
@@ -86,6 +90,7 @@ map gr <action>(ShowUsages)
 " Window management
 nnoremap <leader>wv <C-w>v
 nnoremap <leader>wc <C-w>c
+nnoremap <leader>wq :q!<CR>
 nnoremap <leader>wl <C-w>l
 nnoremap <leader>wh <C-w>h
 
