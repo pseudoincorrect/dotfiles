@@ -14,20 +14,20 @@ lctl      lmet   lalt             spc                  ralt        rmet         
 esc            f1   f2   f3   f4               f5    f6    f7    f8          f9   f10  f11   f12
 grv       1      2    3      4       5       6     7      8     9      0       -      =     bspc       
 lalt      q      w    e      r       t       y     u      i     o      p       [      ]     lalt            
-@caps     a      s    d      f       g       h     j      k     l      ;       '           enter        
+lctl      a      s    d      f       g       h     j      k     l      esc     '           enter        
 lsft      z      x    c      v       b       n     m      ,     .      /                    caps               up
-lctl      lmeta   @nav              spc                 rsft         rmet                      \          lft down rght
+lctl      lmeta   @nav              spc                 rsft         rmet                   rctl          lft down rght
 
 )
 
 (deflayer nav
 
--             -     -   -     -             -     -    -     -          -    -    -    -
--       -      -    -      -      -       -     -      -     -      -      -      -    -       
--       S-,    S-.  [      ]      -       home  bspc   tab   del    -      -      -    -          
-lctl    S-9    S-0  S-[    S-]    -      left  down   up    right  end    -           -        
-lsft    -      -    -      S--    -       -     enter  pgdn  pgup   -                  -         -
--       -      -             -                                      -      -           -       - - -
+-             -     -    -    -            -     -    -     -          -    -    -    -
+-       S-1    S-2  S-3    S-4    S-5    S-6   S-7    S-8   S-`    S-1    S-1    -    -       
+lalt    S-;    ;    S-[    S-]    =      home  bspc   tab   del    pgup   -      -  lalt          
+lctl    -      S--  S-9    S-0    `      left  down   up    right  end    -           -        
+lsft    \      S-\  S-[    S-]    S-=    pgdn  enter  S-,   S-.    S-/                -         -
+-       -      -             -                                      -     -           -       - - -
 
 )
 
@@ -39,4 +39,4 @@ lsft    -      -    -      S--    -       -     enter  pgdn  pgup   -           
 
 (defalias
     nav  (tap-hold-press $tap-time $hold-time lalt (layer-toggle nav))
-    caps (tap-hold-press $tap-time $hold-time esc  lctl))
+)
