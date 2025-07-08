@@ -67,5 +67,6 @@
 {kp=}>{speed6}{-lshift}{8}{+lshift}
 {kp2}>{speed6}{-lshift}{,}{+lshift}
 {kp3}>{speed6}{-lshift}{.}{+lshift}
+{kpdiv}>{speed6}{-lshift}{`}{+lshift}
 {kpenter1}>{speed6}{-lshift}{/}{+lshift}
 {numlk}>{speed6}{-lshift}{7}{+lshift}
