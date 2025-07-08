@@ -5,31 +5,14 @@
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "background.backgroundBlur": [
-    "1px",
-    "0",
-    "0",
-    "0"
-  ],
-  "background.backgroundOpacity": [
-    0.07,
-    0.1,
-    0.1,
-    0.1
-  ],
-  "background.backgroundSize": [
-    "Cover",
-    "Cover",
-    "Cover",
-    "Cover"
-  ],
-  "background.windowBackgrounds": [
-    "/home/mclement/Pictures/background/**"
-  ],
+  "background.backgroundBlur": ["1px", "0", "0", "0"],
+  "background.backgroundOpacity": [0.07, 0.1, 0.1, 0.1],
+  "background.backgroundSize": ["Cover", "Cover", "Cover", "Cover"],
+  "background.windowBackgrounds": ["/home/mclement/Pictures/background/**"],
   "chat.commandCenter.enabled": false,
   "editor.cursorBlinking": "phase",
   "editor.cursorSmoothCaretAnimation": "on",
-  "editor.cursorSurroundingLines": 15,
+  "editor.cursorSurroundingLines": 10,
   "editor.lineNumbers": "off",
   "editor.minimap.enabled": false,
   "editor.minimap.showSlider": "always",
@@ -40,14 +23,17 @@
   "editor.smoothScrolling": true,
   "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?",
   "editor.wordWrap": "on",
-  "extensions.experimental.affinity": {
-    "vscodevim.vim": 1
-  },
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmPasteNative": false,
   "extensions.ignoreRecommendations": true,
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
   "go.toolsManagement.autoUpdate": true,
-  "projectManager.git.baseFolders": [
-    "/home/mclement/git"
-  ],
+  "projectManager.git.baseFolders": ["/home/mclement/git"],
   "projectManager.git.maxDepthRecursion": 1,
   "projectManager.openInCurrentWindowIfEmpty": "never",
   "projectManager.openInNewWindowWhenClickingInStatusBar": true,
@@ -56,60 +42,69 @@
   "terminal.integrated.fontSize": 13,
   "terminal.integrated.scrollback": 5000,
   "terminal.integrated.smoothScrolling": true,
+  "window.customMenuBarAltFocus": false,
+  "window.openFoldersInNewWindow": "off",
+  "window.title": "${rootName}",
+  "window.zoomPerWindow": false,
+  "workbench.colorTheme": "Code Green",
+  "workbench.editor.showTabs": "single",
+  "workbench.editor.tabActionLocation": "left",
+  "workbench.layoutControl.enabled": false,
+  "workbench.tree.indent": 40,
+  "explorer.confirmDelete": false,
+  "window.openWithoutArgumentsInNewWindow": "off",
   "vim.easymotion": true,
   "vim.easymotionKeys": "hklyuiopnmqwertxcvbasdgjf",
   "vim.enableNeovim": true,
   "vim.handleKeys": {
-    "<C-d>": false, // keep vscode default CTRL-D
-    "<C-e>": true, // needed for line scrolling
-    "<C-g>": true, // needed for search next
-    "<C-h>": true, // needed for search next
-    "<C-j>": true, // needed for line scrolling
-    "<C-k>": true, // needed for line scrolling
-    "<C-l>": true, // needed for search next
-    "<C-m>": true, // needed for search next
-    "<C-t>": true, // needed for search next
+    "<C-d>": true,
+    "<C-u>": true,
+    "<C-e>": true,
+    "<C-g>": true,
+    "<C-h>": true,
+    "<C-j>": true,
+    "<C-k>": true,
+    "<C-l>": true,
+    "<C-m>": true,
+    "<C-t>": true,
     "<C-w>": true,
-    "<C-y>": true // needed for line scrollin
+    "<C-y>": true
   },
   "vim.hlsearch": false,
   "vim.incsearch": true,
   "vim.leader": "<space>",
   "vim.normalModeKeyBindings": [
     {
-      "before": [
-        "g",
-        "i"
-      ],
-      "commands": [
-        "editor.action.goToImplementation"
-      ]
+      "before": ["g", "i"],
+      "commands": ["editor.action.goToImplementation"]
     },
     {
-      "before": [
-        "g",
-        "r"
-      ],
-      "commands": [
-        "editor.action.goToReferences"
-      ]
+      "before": ["g", "r"],
+      "commands": ["editor.action.goToReferences"]
+    },
+    {
+      "before": ["j"],
+      "after": ["g", "j"]
+    },
+    {
+      "before": ["k"],
+      "after": ["g", "k"]
     }
   ],
+  "vim.statusBarColorControl": true,
   "vim.sneak": true,
   "vim.sneakReplacesF": true,
   "vim.useCtrlKeys": false,
   "vim.useSystemClipboard": true,
   "vim.vimrc.enable": true,
   "vim.vimrc.path": "/home/mclement/.vscodevimrc",
-  "window.customMenuBarAltFocus": false,
-  "window.openFoldersInNewWindow": "on",
-  "window.title": "${rootName}",
-  "window.zoomLevel": -2,
-  "window.zoomPerWindow": false,
-  "workbench.activityBar.location": "hidden",
-  "workbench.colorTheme": "Tokyo Night",
-  "workbench.editor.showTabs": "single",
-  "workbench.editor.tabActionLocation": "left",
-  "workbench.layoutControl.enabled": false,
-  "workbench.tree.indent": 40
+  "workbench.iconTheme": "vscode-icons",
+  "window.zoomLevel": -1,
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#005f5f",
+    "statusBar.noFolderBackground": "#005f5f",
+    "statusBar.debuggingBackground": "#005f5f",
+    "statusBar.foreground": "#ffffff",
+    "statusBar.debuggingForeground": "#ffffff"
+  }
 }

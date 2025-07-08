@@ -1,7 +1,15 @@
+set nohlsearch
+set incsearch
+set ignorecase
+set smartcase
+set clipboard+=unnamed
+
+" set <leader> to <space>
+" let mapleader = " "
+
 " Remap d to delete without yanking (using black hole register)
 nnoremap d "_d
 vnoremap d "_d
-
 " Remap x to delete without yanking (using black hole register)
 nnoremap x "_x
 vnoremap x "_x
@@ -12,43 +20,51 @@ vnoremap c "_c
 
 " Map U to redo (Ctrl-r)
 nnoremap U <C-r>
+vnoremap U <C-r>
 
-" Remap easymotion word start
-nnoremap S <leader><leader>s
-vnoremap S <leader><leader>s
-nnoremap s <leader><leader><leader>bdw
-vnoremap s <leader><leader><leader>bdw
-
-" Map Ctrl-n to Enter in search mode
-cnoremap <C-m> <CR>
-cnoremap <C-l> <C-g>
-cnoremap <C-h> <C-t>
-nnoremap <C-l> n
-nnoremap <C-h> N
-
-nnoremap <C-j> 15<C-e>
-nnoremap <C-k> 15<C-y>
-
-vnoremap gl $
-nnoremap gl $
-onoremap gl $
-vnoremap gh ^
-nnoremap gh ^
-onoremap gh ^
+noremap gl g_
+noremap gh ^
+noremap ge G
 
 " map V in Visual-Line to j for better navigation
 vnoremap V j
 vnoremap v k
+nnoremap <leader>v V
+
+" Easier macros repetition
+nnoremap Q @q
+
+" Remap easymotion word start
+nnoremap f <leader><leader>s
+vnoremap f <leader><leader>s
+nnoremap s <leader><leader><leader>bdw
+vnoremap s <leader><leader><leader>bdw
 
 " Map new line
 nnoremap <leader>j o<ESC>k
 nnoremap <leader>k O<ESC>j
 
-" Easier macros repetition
-nnoremap Q @q
+"  to clipboard
+vnoremap <leader>y  "+y
+nnoremap <leader>Y  "+yg_
+nnoremap <leader>y  "+y
+nnoremap <leader>yy  "+yy
 
-" Surround 
-" y s <motion> <desired>	    Add desired surround around text defined by <motion>
-" d s <existing>	            Delete existing surround
-" c s <existing> <desired>	Change existing surround to desired
-" S <desired>	                Surround when in visual modes (surrounds full selection)
+" Paste from clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
+
+" Remap Hover
+nnoremap <leader>, gh
+
+" Surround
+" Add desired surround around text defined by <motion>
+"   y s <motion> <desired>
+" Delete existing surround
+"   d s <existing>
+" Change existing surround to desired
+"   c s <existing> <desired>
+" Surround when in visual modes (surrounds full selection)
+"   S <desired>
