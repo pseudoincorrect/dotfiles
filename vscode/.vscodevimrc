@@ -5,7 +5,7 @@ set smartcase
 set clipboard+=unnamed
 
 " set <leader> to <space>
-" let mapleader = " "
+" let mapleader = " " 
 
 " Remap d to delete without yanking (using black hole register)
 nnoremap d "_d
@@ -40,9 +40,6 @@ nnoremap f <leader><leader>s
 vnoremap f <leader><leader>s
 nnoremap s <leader><leader><leader>bdw
 vnoremap s <leader><leader><leader>bdw
-
-nnoremap <C-j> 17<C-e>
-nnoremap <C-k> 17<C-y>
 
 " Map new line
 nnoremap <leader>j o<ESC>k
