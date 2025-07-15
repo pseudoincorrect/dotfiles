@@ -4,10 +4,6 @@
     "command": "leap.find"
   },
   {
-    "key": "ctrl+j",
-    "command": "workbench.action.quickOpen"
-  },
-  {
     "key": "ctrl-shift-u",
     "command": "workbench.action.showAllSymbols"
   },
@@ -266,11 +262,7 @@
     "when": "viewContainer.workbench.view.debug.enabled"
   },
   {
-    "key": "ctrl+j",
-    "command": "-workbench.action.togglePanel"
-  },
-  {
-    "key": "ctrl+k",
+    "key": "space s",
     "command": "workbench.action.quickOpen",
     "args": "@:"
   },
@@ -278,5 +270,14 @@
     "key": "ctrl+shift+o",
     "command": "-workbench.action.gotoSymbol",
     "when": "!accessibilityHelpIsShown && !accessibleViewIsShown"
+  },
+  {
+    "key": "alt+w",
+    "command": "workbench.action.joinAllGroups",
+  },
+  {
+    "key": "space f",
+    "command": "workbench.action.quickOpen",
+     "when": "vim.mode == 'Normal' || vim.mode == 'Visual'",
   }
 ]
