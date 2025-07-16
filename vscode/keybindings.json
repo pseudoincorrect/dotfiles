@@ -154,22 +154,12 @@
     "command": "workbench.action.joinAllGroups",
   },
   {
-    "key": "alt+j",
-    "command": "extension.vim_ctrl+j",
-    "when": "editorTextFocus && vim.active && vim.use<C-j> && !inDebugRepl"
-  },
-  {
-    "key": "ctrl+j",
-    "command": "-extension.vim_ctrl+j",
-    "when": "editorTextFocus && vim.active && vim.use<C-j> && !inDebugRepl"
-  },
-  {
-    "key": "ctrl+j",
+    "key": "ctrl+f",
     "command": "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
     "when": "!activeEditorGroupEmpty"
   },
   {
-    "key": "ctrl+j",
+    "key": "ctrl+f",
     "command": "workbench.action.quickOpenNavigateNextInEditorPicker",
     "when": "inEditorsPicker && inQuickOpen"
   },
@@ -179,7 +169,7 @@
     "when": "inEditorsPicker && inQuickOpen"
   },
   {
-    "key": "ctrl+k",
+    "key": "ctrl+d",
     "command": "workbench.action.quickOpenLeastRecentlyUsedEditorInGroup",
     "when": "!activeEditorGroupEmpty"
   },
@@ -189,7 +179,7 @@
     "when": "!activeEditorGroupEmpty"
   },
   {
-    "key": "ctrl+k",
+    "key": "ctrl+d",
     "command": "workbench.action.quickOpenNavigatePreviousInEditorPicker",
     "when": "inEditorsPicker && inQuickOpen"
   },
@@ -199,7 +189,7 @@
     "when": "inEditorsPicker && inQuickOpen"
   },
   {
-    "key": "ctrl+m",
+    "key": "ctrl+g",
     "command": "workbench.action.quickOpen"
   },
   {
@@ -219,5 +209,43 @@
   {
     "key": "shift+alt+n",
     "command": "editor.action.hideHover"
+  },
+  {
+    "key": "ctrl+1",
+    "command": "-workbench.action.focusFirstEditorGroup"
+  },
+  {
+    "key": "alt+f",
+    "command": "actions.find",
+    "when": "editorFocus || editorIsOpen"
+  },
+  {
+    "key": "ctrl+f",
+    "command": "-actions.find",
+    "when": "editorFocus || editorIsOpen"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "-workbench.action.togglePanel"
+  },
+  {
+    "key": "alt+k",
+    "command": "editor.action.insertCursorAbove",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+up",
+    "command": "-editor.action.insertCursorAbove",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "alt+j",
+    "command": "editor.action.insertCursorBelow",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+down",
+    "command": "-editor.action.insertCursorBelow",
+    "when": "editorTextFocus"
   },
 ]

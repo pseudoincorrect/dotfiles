@@ -41,6 +41,14 @@ vnoremap f <leader><leader>s
 nnoremap s <leader><leader><leader>bdw
 vnoremap s <leader><leader><leader>bdw
 
+" motions 1/2 page up and down
+nnoremap <C-j> <C-d>
+inoremap <C-j> <ESC><C-d>
+vnoremap <C-j> 10j
+nnoremap <C-k> <C-u>
+inoremap <C-k> <ESC><C-u>
+vnoremap <C-k> 10k
+
 " Map new line
 nnoremap <leader>j o<ESC>k
 nnoremap <leader>k O<ESC>j
