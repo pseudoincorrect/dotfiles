@@ -51,6 +51,7 @@
   "vim.enableNeovim": true,
   "vim.handleKeys": {
     "<C-d>": true,
+    "<C-s>": true,
     "<C-a>": true,
     "<C-u>": true,
     "<C-e>": true,
