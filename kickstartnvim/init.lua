@@ -55,8 +55,28 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 -- Window navigation
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+
+-- Window management (Ctrl+w equivalents)
+vim.keymap.set('n', '<leader>wh', '<C-w>h', { desc = 'Move to left window' })
+vim.keymap.set('n', '<leader>wl', '<C-w>l', { desc = 'Move to right window' })
 vim.keymap.set('n', '<leader>wj', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<leader>wk', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+vim.keymap.set('n', '<leader>ww', '<C-w>w', { desc = 'Switch to next window' })
+vim.keymap.set('n', '<leader>wp', '<C-w>p', { desc = 'Switch to previous window' })
+vim.keymap.set('n', '<leader>wv', '<C-w>v', { desc = 'Split window vertically' })
+vim.keymap.set('n', '<leader>ws', '<C-w>s', { desc = 'Split window horizontally' })
+vim.keymap.set('n', '<leader>wc', '<C-w>c', { desc = 'Close current window' })
+vim.keymap.set('n', '<leader>wo', '<C-w>o', { desc = 'Close all other windows' })
+vim.keymap.set('n', '<leader>wq', '<C-w>q', { desc = 'Quit current window' })
+vim.keymap.set('n', '<leader>w=', '<C-w>=', { desc = 'Equalize window sizes' })
+vim.keymap.set('n', '<leader>w+', '<C-w>+', { desc = 'Increase window height' })
+vim.keymap.set('n', '<leader>w-', '<C-w>-', { desc = 'Decrease window height' })
+vim.keymap.set('n', '<leader>w<', '<C-w><', { desc = 'Decrease window width' })
+vim.keymap.set('n', '<leader>w>', '<C-w>>', { desc = 'Increase window width' })
+vim.keymap.set('n', '<leader>wT', '<C-w>T', { desc = 'Move window to new tab' })
+vim.keymap.set('n', '<leader>wr', '<C-w>r', { desc = 'Rotate windows' })
+vim.keymap.set('n', '<leader>wR', '<C-w>R', { desc = 'Rotate windows reverse' })
+vim.keymap.set('n', '<leader>wx', '<C-w>x', { desc = 'Exchange windows' })
 
 -- File operations
 vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true, silent = true, desc = 'Save the current file' })
