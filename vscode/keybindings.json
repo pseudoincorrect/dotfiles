@@ -4,10 +4,6 @@
     "command": "editor.action.smartSelect.expand"
   },
   {
-    "key": "ctrl+h",
-    "command": "workbench.action.navigateLeft"
-  },
-  {
     "key": "ctrl+shift+h",
     "command": "workbench.action.navigateLeft"
   },
@@ -34,19 +30,19 @@
     "when": "canNavigateForward"
   },
   {
-    "key": "ctrl+g ctrl+v",
+    "key": "ctrl+h ctrl+h",
     "command": "workbench.action.openView"
   },
   {
-    "key": "alt+x",
+    "key": "ctrl+h ctrl+k",
     "command": "workbench.action.openGlobalKeybindings"
   },
   {
-    "key": "alt+z",
+    "key": "ctrl+h ctrl+s",
     "command": "workbench.action.openSettings"
   },
   {
-    "key": "alt+q",
+    "key": "ctrl+g ctrl+p",
     "command": "projectManager.listProjects"
   },
   {
@@ -63,11 +59,11 @@
     "command": "-workbench.action.quit"
   },
   {
-    "key": "ctrl+5",
+    "key": "ctrl+h ctrl+t",
     "command": "workbench.action.terminal.focus"
   },
   {
-    "key": "ctrl+3",
+    "key": "ctrl+h ctrl+c",
     "command": "workbench.panel.chat.view.copilot.focus"
   },
   {
@@ -83,14 +79,6 @@
   {
     "key": "ctrl+h ctrl+e",
     "command": "github.copilot.completions.enable"
-  },
-  {
-    "key": "alt+b",
-    "command": "workbench.action.activityBarLocation.hide"
-  },
-  {
-    "key": "shift+alt+b",
-    "command": "workbench.action.focusActivityBar"
   },
   {
     "key": "ctrl+g ctrl+m",
@@ -132,7 +120,7 @@
     "when": "inQuickInput && quickInputType == 'quickPick'"
   },
   {
-    "key": "ctrl+4",
+    "key": "ctrl+h ctrl+d",
     "command": "workbench.view.debug",
     "when": "viewContainer.workbench.view.debug.enabled"
   },
@@ -179,10 +167,6 @@
     "when": "editorTextFocus"
   },
   {
-    "key": "shift+alt+n",
-    "command": "editor.action.hideHover"
-  },
-  {
     "key": "ctrl+1",
     "command": "-workbench.action.focusFirstEditorGroup"
   },
@@ -201,7 +185,7 @@
     "command": "-workbench.action.togglePanel"
   },
   {
-    "key": "alt+k",
+    "key": "ctrl+shift+n",
     "command": "editor.action.insertCursorAbove",
     "when": "editorTextFocus"
   },
@@ -211,7 +195,7 @@
     "when": "editorTextFocus"
   },
   {
-    "key": "alt+j",
+    "key": "ctrl+n",
     "command": "editor.action.insertCursorBelow",
     "when": "editorTextFocus"
   },
@@ -221,7 +205,7 @@
     "when": "editorTextFocus"
   },
   {
-    "key": "ctrl+1",
+    "key": "ctrl+h ctrl+f",
     "command": "workbench.action.focusAuxiliaryBar"
   },
   {
@@ -302,11 +286,6 @@
     "when": "editorTextFocus"
   },
   {
-    "key": "shift+alt+left",
-    "command": "-editor.action.smartSelect.shrink",
-    "when": "editorTextFocus"
-  },
-  {
     "key": "ctrl+down",
     "command": "extension.halfDown",
     "when": "editorFocus"
@@ -322,18 +301,8 @@
     "when": "github.copilot.panelVisible && activeWebviewPanelId == 'GitHub Copilot Suggestions'"
   },
   {
-    "key": "alt+]",
-    "command": "-github.copilot.nextPanelSolution",
-    "when": "github.copilot.panelVisible && activeWebviewPanelId == 'GitHub Copilot Suggestions'"
-  },
-  {
     "key": "ctrl+shift+t",
     "command": "github.copilot.previousPanelSolution",
-    "when": "github.copilot.panelVisible && activeWebviewPanelId == 'GitHub Copilot Suggestions'"
-  },
-  {
-    "key": "alt+[",
-    "command": "-github.copilot.previousPanelSolution",
     "when": "github.copilot.panelVisible && activeWebviewPanelId == 'GitHub Copilot Suggestions'"
   },
   {
@@ -346,18 +315,8 @@
     "when": "inlineSuggestionVisible && !editorReadonly"
   },
   {
-    "key": "alt+]",
-    "command": "-editor.action.inlineSuggest.showNext",
-    "when": "inlineSuggestionVisible && !editorReadonly"
-  },
-  {
     "key": "ctrl+shift+t",
     "command": "editor.action.inlineSuggest.showPrevious",
-    "when": "inlineSuggestionVisible && !editorReadonly"
-  },
-  {
-    "key": "alt+[",
-    "command": "-editor.action.inlineSuggest.showPrevious",
     "when": "inlineSuggestionVisible && !editorReadonly"
   },
   {
@@ -392,18 +351,8 @@
     "when": "editorTextFocus"
   },
   {
-    "key": "alt+a",
-    "command": "-bracket-select.select",
-    "when": "editorTextFocus"
-  },
-  {
     "key": "ctrl+shift+.",
     "command": "bracket-select.undo-select",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "alt+z",
-    "command": "-bracket-select.undo-select",
     "when": "editorTextFocus"
   },
   {
@@ -583,5 +532,14 @@
   {
     "key": "ctrl+g ctrl+shift+s",
     "command": "workbench.action.showAllSymbols"
+  },
+  {
+    "key": "shift+f10",
+    "command": "-editor.action.showContextMenu",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+h ctrl+o",
+    "command": "outline.focus"
   }
 ]
