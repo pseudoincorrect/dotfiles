@@ -326,9 +326,7 @@ require('lazy').setup({
   {
     'rmagatti/auto-session',
     lazy = false,
-    opts = {
-      suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
-    },
+    opts = { suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' } },
   },
 
   -- Mini.move for moving text
@@ -378,17 +376,6 @@ require('lazy').setup({
     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
     opts = {},
   },
-
-  -- Monokai Pro colorscheme
-  -- {
-  --   'loctvl842/monokai-pro.nvim',
-  --   config = function()
-  --     require('monokai-pro').setup {
-  --       filter = 'spectrum',
-  --     }
-  --     vim.cmd [[colorscheme monokai-pro]]
-  --   end,
-  -- },
 
   -- Scroll EOF plugin
   {
