@@ -1,5 +1,3 @@
--- Personal Neovim configuration based on Kickstart.nvim
-
 -- Leader keys (must be set before plugins load)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -42,6 +40,19 @@ vim.opt.swapfile = false
 vim.opt.autowrite = true
 vim.opt.autoread = true
 
+-- Window appearance and borders
+vim.opt.fillchars = {
+  horiz = '━',
+  horizup = '┻',
+  horizdown = '┳',
+  vert = '┃',
+  vertleft = '┫',
+  vertright = '┣',
+  verthoriz = '╋',
+}
+vim.opt.laststatus = 3 -- Global statusline
+vim.opt.winbar = '  📄  %f'
+
 -- Sync clipboard after UI loads
 vim.schedule(function()
   vim.opt.clipboard = 'unnamedplus'
@@ -55,6 +66,8 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 -- Window navigation
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-S-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-S-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Window management (Ctrl+w equivalents)
 vim.keymap.set('n', '<leader>wh', '<C-w>h', { desc = 'Move to left window' })
@@ -115,8 +128,10 @@ vim.keymap.set('v', 'V', 'j', { desc = 'Move down in visual mode' })
 vim.keymap.set('v', 'v', 'k', { desc = 'Move up in visual mode' })
 vim.keymap.set('n', '<leader>v', 'V', { desc = 'Enter visual line mode' })
 
--- Macro and navigation
+-- macro recording and playback
 vim.keymap.set('n', 'Q', '@q', { desc = 'Repeat q macro' })
+
+-- Scroll navigation 
 vim.keymap.set('n', '<C-j>', '<C-d>', { desc = 'Half page down' })
 vim.keymap.set('i', '<C-j>', '<Esc><C-d>', { desc = 'Half page down (from insert)' })
 vim.keymap.set('v', '<C-j>', '10j', { desc = 'Move 10 lines down' })
@@ -142,7 +157,7 @@ vim.keymap.set('n', '<leader>,', vim.lsp.buf.hover, { desc = 'LSP Hover' })
 -- Plugin-specific
 vim.keymap.set('n', '<leader>cs', '<cmd>AerialNavToggle<CR>', { desc = '[C]ode [S]ymbols (Aerial)' })
 
--- [[ Autocommands ]]
+-- Autocommands
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
@@ -151,7 +166,36 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- [[ Lazy.nvim setup ]]
+-- Window border and distinction settings
+vim.api.nvim_create_autocmd({ 'WinEnter', 'BufWinEnter' }, {
+  desc = 'Highlight active window border',
+  group = vim.api.nvim_create_augroup('window-distinction', { clear = true }),
+  callback = function()
+    vim.wo.winhighlight = 'Normal:Normal,NormalNC:NormalNC'
+  end,
+})
+
+vim.api.nvim_create_autocmd('WinLeave', {
+  desc = 'Dim inactive window',
+  group = vim.api.nvim_create_augroup('window-distinction', { clear = false }),
+  callback = function()
+    vim.wo.winhighlight = 'Normal:NormalNC,NormalNC:NormalNC'
+  end,
+})
+
+-- Set up window borders for floating windows
+vim.api.nvim_create_autocmd('ColorScheme', {
+  desc = 'Set window border colors',
+  group = vim.api.nvim_create_augroup('window-borders', { clear = true }),
+  callback = function()
+    vim.api.nvim_set_hl(0, 'FloatBorder', { fg = '#00ff00', bg = 'NONE' })
+    vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#1a1b26' })
+    vim.api.nvim_set_hl(0, 'NormalNC', { bg = '#16161e' })
+    vim.api.nvim_set_hl(0, 'WinSeparator', { fg = '#00ff00', bg = 'NONE' })
+  end,
+})
+
+-- Lazy.nvim setup
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
@@ -239,8 +283,7 @@ require('lazy').setup({
   { 
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    main = 'nvim-treesitter.configs', -- Sets main module to use for opts
-    -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
+    main = 'nvim-treesitter.configs', 
     opts = {
       ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
       auto_install = true,
@@ -269,7 +312,7 @@ require('lazy').setup({
   {
     'folke/flash.nvim',
     event = 'VeryLazy',
-    opts = {},
+    opts = { modes = { char = { enabled = false }, }, },
     keys = {
       { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
       { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
@@ -337,15 +380,15 @@ require('lazy').setup({
   },
 
   -- Monokai Pro colorscheme
-  {
-    'loctvl842/monokai-pro.nvim',
-    config = function()
-      require('monokai-pro').setup {
-        filter = 'spectrum',
-      }
-      vim.cmd [[colorscheme monokai-pro]]
-    end,
-  },
+  -- {
+  --   'loctvl842/monokai-pro.nvim',
+  --   config = function()
+  --     require('monokai-pro').setup {
+  --       filter = 'spectrum',
+  --     }
+  --     vim.cmd [[colorscheme monokai-pro]]
+  --   end,
+  -- },
 
   -- Scroll EOF plugin
   {
@@ -368,24 +411,5 @@ require('lazy').setup({
   require 'plugins.which-key',
 
 }, 
-{
-  ui = {
-    -- If you are using a Nerd Font: set icons to an empty table which will use the
-    -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
-    icons = vim.g.have_nerd_font and {} or {
-      cmd = '⌘',
-      config = '🛠',
-      event = '📅',
-      ft = '📂',
-      init = '⚙',
-      keys = '🗝',
-      plugin = '🔌',
-      runtime = '💻',
-      require = '🌙',
-      source = '📄',
-      start = '🚀',
-      task = '📌',
-      lazy = '💤 ',
-    },
-  },
-})
+-- Use default Nerd Font icons
+{ ui = { icons = {} } } )
