@@ -21,7 +21,7 @@
   "explorer.confirmPasteNative": false,
   "extensions.ignoreRecommendations": true,
   "github.copilot.enable": {
-    "*": true,
+    "*": false,
     "plaintext": false,
     "markdown": false,
     "scminput": false
@@ -46,54 +46,6 @@
   "workbench.tree.indent": 10,
   "explorer.confirmDelete": false,
   "window.openWithoutArgumentsInNewWindow": "off",
-  "vim.easymotion": true,
-  "vim.easymotionKeys": "hklyuiopnmqwertxcvbasdgjf",
-  "vim.enableNeovim": true,
-  "vim.handleKeys": {
-    "<C-d>": true,
-    "<C-s>": true,
-    "<C-a>": true,
-    "<C-u>": true,
-    "<C-e>": true,
-    "<C-g>": true,
-    "<C-h>": true,
-    "<C-j>": true,
-    "<C-k>": true,
-    "<C-l>": true,
-    "<C-m>": true,
-    "<C-t>": true,
-    "<C-w>": true,
-    "<C-y>": true,
-    "<C-x>": true
-  },
-  "vim.hlsearch": false,
-  "vim.incsearch": true,
-  "vim.leader": "<space>",
-  "vim.normalModeKeyBindings": [
-    {
-      "before": ["g", "i"],
-      "commands": ["editor.action.goToImplementation"]
-    },
-    {
-      "before": ["g", "r"],
-      "commands": ["editor.action.goToReferences"]
-    },
-    {
-      "before": ["j"],
-      "after": ["g", "j"]
-    },
-    {
-      "before": ["k"],
-      "after": ["g", "k"]
-    }
-  ],
-  "vim.statusBarColorControl": true,
-  "vim.sneak": true,
-  "vim.sneakReplacesF": true,
-  "vim.useCtrlKeys": false,
-  "vim.useSystemClipboard": true,
-  "vim.vimrc.enable": true,
-  "vim.vimrc.path": "/home/mclement/.vscodevimrc",
   "workbench.iconTheme": "vscode-icons",
   "workbench.colorCustomizations": {
     "statusBar.background": "#005f5f",
@@ -130,6 +82,13 @@
   "outline.showVariables": false,
   "workbench.activityBar.location": "top",
   "files.associations": {
-    ".vscodevimrc": "Vimscript"
-  }
+    ".vscodevimrc": "Vimscript",
+    "*.jsonl": "json"
+  },
+  "git.blame.statusBarItem.enabled": true,
+  "workbench.sideBar.location": "right",
+  "explorer.autoReveal": false,
+  "git.openRepositoryInParentFolders": "never",
+  "jumpy2.customKeys": "abcdefghijklmnopqrstuvwy",
+  "github.copilot.nextEditSuggestions.enabled": true
 }

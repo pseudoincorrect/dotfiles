@@ -1,6 +1,6 @@
 [
   {
-    "key": "ctrl+.",
+    "key": "ctrl+,",
     "command": "editor.action.smartSelect.expand"
   },
   {
@@ -50,7 +50,7 @@
     "command": "projectManager.listProjects"
   },
   {
-    "key": "ctrl+r",
+    "key": "ctrl+g ctrl+r",
     "command": "editor.action.rename",
     "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
   },
@@ -107,7 +107,7 @@
     "when": "true"
   },
   {
-    "key": "alt+d",
+    "key": "ctrl+r",
     "command": "editor.action.addSelectionToNextFindMatch",
     "when": "editorFocus"
   },
@@ -187,7 +187,7 @@
     "command": "-workbench.action.focusFirstEditorGroup"
   },
   {
-    "key": "ctrl+/",
+    "key": "ctrl+g ctrl+f",
     "command": "actions.find",
     "when": "editorFocus || editorIsOpen"
   },
@@ -297,7 +297,7 @@
     "when": "editorTextFocus"
   },
   {
-    "key": "ctrl+shift+.",
+    "key": "ctrl+shift+,",
     "command": "editor.action.smartSelect.shrink",
     "when": "editorTextFocus"
   },
@@ -387,7 +387,7 @@
     "command": "-redo"
   },
   {
-    "key": "ctrl+,",
+    "key": "ctrl+.",
     "command": "bracket-select.select",
     "when": "editorTextFocus"
   },
@@ -397,7 +397,7 @@
     "when": "editorTextFocus"
   },
   {
-    "key": "ctrl+shift+,",
+    "key": "ctrl+shift+.",
     "command": "bracket-select.undo-select",
     "when": "editorTextFocus"
   },
@@ -441,7 +441,7 @@
     "when": "reference-list.hasResult && references-view.canNavigate"
   },
   {
-    "key": "ctrl+g ctrl+r",
+    "key": "ctrl+g ctrl+u",
     "command": "editor.action.goToReferences",
     "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
   },
@@ -579,5 +579,9 @@
   {
     "key": "ctrl+w",
     "command": "-workbench.action.closeActiveEditor"
+  },
+  {
+    "key": "ctrl+g ctrl+shift+s",
+    "command": "workbench.action.showAllSymbols"
   }
 ]
