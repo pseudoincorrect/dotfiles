@@ -71,6 +71,11 @@
     "when": "inlineChatHasProvider && inlineChatVisible"
   },
   {
+    "key": "ctrl+enter",
+    "command": "-editor.action.insertLineAfter",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
     "key": "ctrl+f",
     "command": "workbench.action.quickOpen"
   },
@@ -144,7 +149,17 @@
     "when": "textInputFocus"
   },
   {
+    "key": "ctrl+g ctrl+n",
+    "command": "search.action.focusNextSearchResult",
+    "when": "hasSearchResult || inSearchEditor"
+  },
+  {
     "key": "ctrl+g ctrl+p",
+    "command": "search.action.focusPreviousSearchResult",
+    "when": "hasSearchResult || inSearchEditor"
+  },
+  {
+    "key": "ctrl+g ctrl+q",
     "command": "projectManager.listProjects"
   },
   {
@@ -204,7 +219,8 @@
   },
   {
     "key": "ctrl+h ctrl+h",
-    "command": "workbench.action.openView"
+    "command": "workbench.action.focusLastEditorGroup",
+    "when": "terminalFocus || filesExplorerFocus || chatInputHasFocus"
   },
   {
     "key": "ctrl+h ctrl+i",
@@ -231,6 +247,10 @@
   {
     "key": "ctrl+h ctrl+t",
     "command": "workbench.action.terminal.focus"
+  },
+  {
+    "key": "ctrl+h ctrl+v",
+    "command": "workbench.action.openView"
   },
   {
     "key": "ctrl+home",
@@ -284,7 +304,7 @@
   {
     "key": "ctrl+l",
     "command": "jumpy2.toggle",
-    "when": "editorTextFocus"
+    "when": "editorFocus"
   },
   {
     "key": "ctrl+l",
@@ -374,6 +394,11 @@
     "when": "textInputFocus"
   },
   {
+    "key": "ctrl+shift+enter",
+    "command": "-editor.action.insertLineBefore",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
     "key": "ctrl+shift+h",
     "command": "workbench.action.navigateLeft"
   },
@@ -439,10 +464,6 @@
     "command": "redo"
   },
   {
-    "key": "ctrl+shift+z",
-    "command": "-redo"
-  },
-  {
     "key": "ctrl+space",
     "command": "-quickInput.toggleHover",
     "when": "inQuickInput && quickInputType == 'quickPick'"
@@ -460,6 +481,32 @@
     "key": "ctrl+t",
     "command": "editor.action.inlineSuggest.showNext",
     "when": "inlineSuggestionVisible && !editorReadonly"
+  },
+  {
+    "key": "ctrl+t ctrl+d",
+    "command": "editor.emmet.action.decrementNumberByOne"
+  },
+  {
+    "key": "ctrl+t ctrl+i",
+    "command": "editor.emmet.action.incrementNumberByOne"
+  },
+  {
+    "key": "ctrl+t ctrl+j",
+    "command": "editor.action.insertLineAfter",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+t ctrl+k",
+    "command": "editor.action.insertLineBefore",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+t ctrl+l",
+    "command": "editor.action.transformToLowercase"
+  },
+  {
+    "key": "ctrl+t ctrl+u",
+    "command": "editor.action.transformToUppercase"
   },
   {
     "key": "ctrl+u",
@@ -480,7 +527,23 @@
     "command": "-workbench.action.closeActiveEditor"
   },
   {
+    "key": "ctrl+w ctrl+h",
+    "command": "workbench.action.navigateLeft"
+  },
+  {
     "key": "ctrl+w ctrl+j",
+    "command": "workbench.action.navigateDown"
+  },
+  {
+    "key": "ctrl+w ctrl+k",
+    "command": "workbench.action.navigateUp"
+  },
+  {
+    "key": "ctrl+w ctrl+l",
+    "command": "workbench.action.navigateRight"
+  },
+  {
+    "key": "ctrl+w ctrl+m",
     "command": "workbench.action.joinAllGroups"
   },
   {
@@ -490,6 +553,10 @@
   {
     "key": "ctrl+w ctrl+v",
     "command": "workbench.action.splitEditor"
+  },
+  {
+    "key": "ctrl+z",
+    "command": "undo"
   },
   {
     "key": "ctrl+z",
@@ -503,11 +570,6 @@
     "key": "enter",
     "command": "-workbench.action.edits.submit",
     "when": "chatInputHasText"
-  },
-  {
-    "key": "escape",
-    "command": "workbench.action.focusLastEditorGroup",
-    "when": "terminalFocus || filesExplorerFocus || chatInputHasFocus"
   },
   {
     "key": "f12",
@@ -537,6 +599,11 @@
     "key": "shift+f12",
     "command": "-editor.action.goToReferences",
     "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+  },
+  {
+    "key": "shift+f4",
+    "command": "-search.action.focusPreviousSearchResult",
+    "when": "hasSearchResult || inSearchEditor"
   },
   {
     "command": "-history.showPrevious",
