@@ -28,8 +28,18 @@
     "command": "-workbench.action.focusFirstEditorGroup"
   },
   {
+    "key": "ctrl+[",
+    "command": "-editor.action.outdentLines",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
     "key": "ctrl+\\",
     "command": "-workbench.action.splitEditor"
+  },
+  {
+    "key": "ctrl+]",
+    "command": "-editor.action.indentLines",
+    "when": "editorTextFocus && !editorReadonly"
   },
   {
     "key": "ctrl+d",
@@ -108,6 +118,11 @@
     "when": "editorFocus"
   },
   {
+    "key": "ctrl+g ctrl+b",
+    "command": "editor.action.jumpToBracket",
+    "when": "editorTextFocus"
+  },
+  {
     "key": "ctrl+g ctrl+c",
     "command": "editor.action.quickFix",
     "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
@@ -154,18 +169,14 @@
     "when": "textInputFocus"
   },
   {
-    "key": "ctrl+g ctrl+p",
-    "command": "editor.action.jumpToBracket",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "ctrl+g ctrl+q",
-    "command": "projectManager.listProjects"
+    "key": "ctrl+g ctrl+m",
+    "command": "editor.action.showContextMenu",
+    "when": "textInputFocus"
   },
   {
     "key": "ctrl+g ctrl+r",
-    "command": "editor.action.rename",
-    "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+    "command": "editor.action.goToReferences",
+    "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
   },
   {
     "key": "ctrl+g ctrl+s",
@@ -177,9 +188,8 @@
     "command": "workbench.action.showAllSymbols"
   },
   {
-    "key": "ctrl+g ctrl+u",
-    "command": "editor.action.goToReferences",
-    "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+    "key": "ctrl+g ctrl+x",
+    "command": "workbench.files.action.showActiveFileInExplorer"
   },
   {
     "key": "ctrl+g r",
@@ -211,11 +221,6 @@
     "command": "workbench.action.focusAuxiliaryBar"
   },
   {
-    "key": "ctrl+h ctrl+h",
-    "command": "editor.action.inlineSuggest.showPrevious",
-    "when": "inlineSuggestionVisible && !editorReadonly"
-  },
-  {
     "key": "ctrl+h ctrl+i",
     "command": "inlineChat.start",
     "when": "editorFocus && inlineChatHasEditsAgent && inlineChatPossible && !editorReadonly && !editorSimpleInput || editorFocus && inlineChatHasProvider && inlineChatPossible && !editorReadonly && !editorSimpleInput"
@@ -225,7 +230,12 @@
     "command": "workbench.action.openGlobalKeybindings"
   },
   {
-    "key": "ctrl+h ctrl+l",
+    "key": "ctrl+h ctrl+m",
+    "command": "editor.action.inlineSuggest.acceptNextLine",
+    "when": "inlineSuggestionVisible && !accessibilityModeEnabled && !editorReadonly"
+  },
+  {
+    "key": "ctrl+h ctrl+n",
     "command": "editor.action.inlineSuggest.showNext",
     "when": "inlineSuggestionVisible && !editorReadonly"
   },
@@ -253,6 +263,16 @@
   {
     "key": "ctrl+h ctrl+v",
     "command": "workbench.action.openView"
+  },
+  {
+    "key": "ctrl+h ctrl+w",
+    "command": "editor.action.inlineSuggest.acceptNextWord",
+    "when": "inlineSuggestionVisible && !accessibilityModeEnabled && !editorReadonly"
+  },
+  {
+    "key": "ctrl+h ctrl+y",
+    "command": "editor.action.inlineSuggest.showPrevious",
+    "when": "inlineSuggestionVisible && !editorReadonly"
   },
   {
     "key": "ctrl+home",
@@ -304,6 +324,11 @@
     "when": "editorFocus"
   },
   {
+    "key": "ctrl+k ctrl+m",
+    "command": "-workbench.action.toggleMaximizeEditorGroup",
+    "when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups"
+  },
+  {
     "key": "ctrl+l",
     "command": "jumpy2.toggle",
     "when": "editorFocus"
@@ -324,6 +349,10 @@
     "when": "hasSearchResult || inSearchEditor"
   },
   {
+    "key": "ctrl+n",
+    "command": "-workbench.action.files.newUntitledFile"
+  },
+  {
     "key": "ctrl+o",
     "command": "workbench.action.navigateBack",
     "when": "canNavigateBack"
@@ -336,6 +365,10 @@
   {
     "key": "ctrl+p",
     "command": "workbench.action.showCommands"
+  },
+  {
+    "key": "ctrl+q",
+    "command": "projectManager.listProjects"
   },
   {
     "key": "ctrl+q",
@@ -465,6 +498,16 @@
     "command": "-workbench.action.showAllSymbols"
   },
   {
+    "key": "ctrl+t ctrl+,",
+    "command": "editor.action.outdentLines",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+t ctrl+.",
+    "command": "editor.action.indentLines",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
     "key": "ctrl+t ctrl+c",
     "command": "editor.action.commentLine",
     "when": "editorTextFocus && !editorReadonly"
@@ -497,6 +540,11 @@
     "command": "editor.action.transformToLowercase"
   },
   {
+    "key": "ctrl+t ctrl+r",
+    "command": "editor.action.rename",
+    "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+  },
+  {
     "key": "ctrl+t ctrl+u",
     "command": "editor.action.transformToUppercase"
   },
@@ -519,6 +567,18 @@
     "command": "-workbench.action.closeActiveEditor"
   },
   {
+    "key": "ctrl+w ctrl+c",
+    "command": "workbench.action.closeActiveEditor"
+  },
+  {
+    "key": "ctrl+w ctrl+e",
+    "command": "workbench.action.evenEditorWidths"
+  },
+  {
+    "key": "ctrl+w ctrl+g",
+    "command": "workbench.action.joinAllGroups"
+  },
+  {
     "key": "ctrl+w ctrl+h",
     "command": "workbench.action.navigateLeft"
   },
@@ -536,11 +596,8 @@
   },
   {
     "key": "ctrl+w ctrl+m",
-    "command": "workbench.action.joinAllGroups"
-  },
-  {
-    "key": "ctrl+w ctrl+q",
-    "command": "workbench.action.closeActiveEditor"
+    "command": "workbench.action.toggleMaximizeEditorGroup",
+    "when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups"
   },
   {
     "key": "ctrl+w ctrl+s",
