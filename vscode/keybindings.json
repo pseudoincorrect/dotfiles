@@ -67,6 +67,16 @@
     "when": "textInputFocus && !editorReadonly"
   },
   {
+    "key": "ctrl+d ctrl+f",
+    "command": "editor.action.formatDocument",
+    "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+  },
+  {
+    "key": "ctrl+d ctrl+f",
+    "command": "editor.action.formatDocument.none",
+    "when": "editorTextFocus && !editorHasDocumentFormattingProvider && !editorReadonly"
+  },
+  {
     "key": "ctrl+d ctrl+j",
     "command": "editor.action.insertLineAfter",
     "when": "editorTextFocus && !editorReadonly"
@@ -210,21 +220,6 @@
     "when": "textInputFocus"
   },
   {
-    "key": "ctrl+g ctrl+m",
-    "command": "editor.action.showContextMenu",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+g ctrl+n",
-    "command": "search.action.focusNextSearchResult",
-    "when": "hasSearchResult || inSearchEditor"
-  },
-  {
-    "key": "ctrl+g ctrl+p",
-    "command": "search.action.focusPreviousSearchResult",
-    "when": "hasSearchResult || inSearchEditor"
-  },
-  {
     "key": "ctrl+g ctrl+r",
     "command": "editor.action.goToReferences",
     "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
@@ -244,6 +239,10 @@
     "when": "editorFocus"
   },
   {
+    "key": "ctrl+g ctrl+x",
+    "command": "workbench.files.action.showActiveFileInExplorer"
+  },
+  {
     "key": "ctrl+g r",
     "command": "references-view.next",
     "when": "reference-list.hasResult && references-view.canNavigate"
@@ -258,7 +257,7 @@
   },
   {
     "key": "ctrl+h ctrl+c",
-    "command": "workbench.panel.chat.view.copilot.focus"
+    "command": "roo-cline.focusInput"
   },
   {
     "key": "ctrl+h ctrl+d",
@@ -271,6 +270,11 @@
   {
     "key": "ctrl+h ctrl+f",
     "command": "workbench.action.focusAuxiliaryBar"
+  },
+  {
+    "key": "ctrl+h ctrl+h",
+    "command": "workbench.action.focusLastEditorGroup",
+    "when": "chatInputHasFocus || filesExplorerFocus || terminalFocus || roo-cline.SidebarProvider.active"
   },
   {
     "key": "ctrl+h ctrl+i",
@@ -320,10 +324,6 @@
     "key": "ctrl+h ctrl+w",
     "command": "editor.action.inlineSuggest.acceptNextWord",
     "when": "inlineSuggestionVisible && !accessibilityModeEnabled && !editorReadonly"
-  },
-  {
-    "key": "ctrl+h ctrl+x",
-    "command": "workbench.files.action.showActiveFileInExplorer"
   },
   {
     "key": "ctrl+h ctrl+y",
@@ -396,8 +396,8 @@
   },
   {
     "key": "ctrl+m",
-    "command": "expandLineSelection",
-    "when": "textInputFocus"
+    "command": "search.action.focusNextSearchResult",
+    "when": "hasSearchResult || inSearchEditor"
   },
   {
     "key": "ctrl+n",
@@ -424,11 +424,11 @@
   },
   {
     "key": "ctrl+q",
-    "command": "projectManager.listProjects"
+    "command": "-workbench.action.quit"
   },
   {
     "key": "ctrl+q",
-    "command": "-workbench.action.quit"
+    "command": "projectManager.listProjectsNewWindow"
   },
   {
     "key": "ctrl+shift+,",
@@ -489,6 +489,16 @@
     "when": "textInputFocus"
   },
   {
+    "key": "ctrl+shift+i",
+    "command": "-editor.action.formatDocument",
+    "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+  },
+  {
+    "key": "ctrl+shift+i",
+    "command": "-editor.action.formatDocument.none",
+    "when": "editorTextFocus && !editorHasDocumentFormattingProvider && !editorReadonly"
+  },
+  {
     "key": "ctrl+shift+j",
     "command": "workbench.action.navigateDown"
   },
@@ -506,9 +516,18 @@
     "command": "workbench.action.navigateRight"
   },
   {
+    "key": "ctrl+shift+m",
+    "command": "search.action.focusPreviousSearchResult",
+    "when": "hasSearchResult || inSearchEditor"
+  },
+  {
     "key": "ctrl+shift+n",
     "command": "editor.action.previousMatchFindAction",
     "when": "editorFocus"
+  },
+  {
+    "key": "ctrl+shift+q",
+    "command": "projectManager.listProjects"
   },
   {
     "key": "ctrl+shift+t",
@@ -562,6 +581,11 @@
   {
     "key": "ctrl+t",
     "command": "-workbench.action.showAllSymbols"
+  },
+  {
+    "key": "ctrl+u",
+    "command": "expandLineSelection",
+    "when": "textInputFocus"
   },
   {
     "key": "ctrl+u",
@@ -646,11 +670,6 @@
     "when": "chatInputHasText"
   },
   {
-    "key": "escape",
-    "command": "workbench.action.focusLastEditorGroup",
-    "when": "terminalFocus || filesExplorerFocus || chatInputHasFocus"
-  },
-  {
     "key": "f3",
     "command": "-editor.action.nextMatchFindAction",
     "when": "editorFocus"
@@ -659,6 +678,10 @@
     "key": "f8",
     "command": "workbench.action.terminal.clear",
     "when": "terminalFocus"
+  },
+  {
+    "key": "shift+alt+p",
+    "command": "-projectManager.listProjects"
   },
   {
     "key": "shift+f3",
