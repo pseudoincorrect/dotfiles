@@ -1,5 +1,9 @@
 [
   {
+    "key": "alt+z",
+    "command": "-editor.action.toggleWordWrap"
+  },
+  {
     "key": "ctrl+,",
     "command": "editor.action.smartSelect.expand"
   },
@@ -106,6 +110,10 @@
   {
     "key": "ctrl+d ctrl+u",
     "command": "editor.action.transformToUppercase"
+  },
+  {
+    "key": "ctrl+d ctrl+w",
+    "command": "editor.action.toggleWordWrap"
   },
   {
     "command": "history.showNext",
@@ -291,6 +299,11 @@
     "when": "inlineSuggestionVisible && !accessibilityModeEnabled && !editorReadonly"
   },
   {
+    "key": "ctrl+h ctrl+m",
+    "command": "mergeEditor.toggleBetweenInputs",
+    "when": "isMergeEditor"
+  },
+  {
     "key": "ctrl+h ctrl+n",
     "command": "editor.action.inlineSuggest.showNext",
     "when": "inlineSuggestionVisible && !editorReadonly"
@@ -431,6 +444,20 @@
     "command": "projectManager.listProjectsNewWindow"
   },
   {
+    "key": "ctrl+r",
+    "command": "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
+    "when": "!activeEditorGroupEmpty && !terminalFocus"
+  },
+  {
+    "key": "ctrl+r",
+    "command": "workbench.action.quickOpenNavigateNextInEditorPicker",
+    "when": "inEditorsPicker && inQuickOpen"
+  },
+  {
+    "key": "ctrl+r",
+    "command": "-workbench.action.openRecent"
+  },
+  {
     "key": "ctrl+shift+,",
     "command": "editor.action.smartSelect.shrink",
     "when": "editorTextFocus"
@@ -453,6 +480,11 @@
     "key": "ctrl+shift+\\",
     "command": "-editor.action.jumpToBracket",
     "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+c",
+    "command": "-workbench.action.terminal.openNativeConsole",
+    "when": "!terminalFocus"
   },
   {
     "key": "ctrl+shift+down",
@@ -530,19 +562,19 @@
     "command": "projectManager.listProjects"
   },
   {
-    "key": "ctrl+shift+t",
+    "key": "ctrl+shift+r",
     "command": "workbench.action.quickOpenLeastRecentlyUsedEditorInGroup",
     "when": "!activeEditorGroupEmpty"
   },
   {
-    "key": "ctrl+shift+t",
+    "key": "ctrl+shift+r",
     "command": "workbench.action.quickOpenNavigatePreviousInEditorPicker",
     "when": "inEditorsPicker && inQuickOpen"
   },
   {
     "key": "ctrl+shift+t",
-    "command": "github.copilot.previousPanelSolution",
-    "when": "github.copilot.panelVisible && activeWebviewPanelId == 'GitHub Copilot Suggestions'"
+    "command": "-mergeEditor.toggleBetweenInputs",
+    "when": "isMergeEditor"
   },
   {
     "key": "ctrl+shift+up",
@@ -567,16 +599,6 @@
     "key": "ctrl+space",
     "command": "-quickInput.toggleHover",
     "when": "inQuickInput && quickInputType == 'quickPick'"
-  },
-  {
-    "key": "ctrl+t",
-    "command": "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
-    "when": "!activeEditorGroupEmpty"
-  },
-  {
-    "key": "ctrl+t",
-    "command": "workbench.action.quickOpenNavigateNextInEditorPicker",
-    "when": "inEditorsPicker && inQuickOpen"
   },
   {
     "key": "ctrl+t",
