@@ -61,11 +61,6 @@
     "when": "editorTextFocus && !editorReadonly"
   },
   {
-    "key": "ctrl+d ctrl+c",
-    "command": "workbench.action.terminal.clear",
-    "when": "terminalFocus"
-  },
-  {
     "key": "ctrl+d ctrl+d",
     "command": "editor.action.deleteLines",
     "when": "textInputFocus && !editorReadonly"
@@ -96,11 +91,8 @@
   },
   {
     "key": "ctrl+d ctrl+m",
-    "command": "editor.emmet.action.decrementNumberByOne"
-  },
-  {
-    "key": "ctrl+d ctrl+p",
-    "command": "editor.emmet.action.incrementNumberByOne"
+    "command": "workbench.action.editor.changeLanguageMode",
+    "when": "!notebookEditorFocused"
   },
   {
     "key": "ctrl+d ctrl+r",
@@ -155,6 +147,14 @@
     "when": "editorTextFocus && !editorReadonly"
   },
   {
+    "key": "ctrl+escape",
+    "command": "-claude-code.runClaude.keyboard"
+  },
+  {
+    "key": "ctrl+escape",
+    "command": "-workbench.action.chat.cancel"
+  },
+  {
     "key": "ctrl+f",
     "command": "workbench.action.quickOpen"
   },
@@ -183,8 +183,7 @@
   },
   {
     "key": "ctrl+g ctrl+b",
-    "command": "editor.action.jumpToBracket",
-    "when": "editorTextFocus"
+    "command": "cursorBottom"
   },
   {
     "key": "ctrl+g ctrl+c",
@@ -197,16 +196,12 @@
     "when": "editorHasDefinitionProvider && editorTextFocus"
   },
   {
-    "key": "ctrl+g ctrl+e",
-    "command": "cursorBottom"
+    "key": "ctrl+g ctrl+g",
+    "command": "workbench.files.action.focusFilesExplorer"
   },
   {
     "key": "ctrl+g ctrl+g",
-    "command": "workbench.action.gotoLine"
-  },
-  {
-    "key": "ctrl+g ctrl+g",
-    "command": "cursorTop"
+    "command": "workbench.files.action.showActiveFileInExplorer"
   },
   {
     "key": "ctrl+g ctrl+h",
@@ -217,6 +212,11 @@
     "key": "ctrl+g ctrl+i",
     "command": "editor.action.goToImplementation",
     "when": "editorHasImplementationProvider && editorTextFocus"
+  },
+  {
+    "key": "ctrl+g ctrl+k",
+    "command": "editor.action.jumpToBracket",
+    "when": "editorTextFocus"
   },
   {
     "key": "ctrl+g ctrl+l",
@@ -243,17 +243,8 @@
   },
   {
     "key": "ctrl+g ctrl+t",
-    "command": "periscope.searchCurrentFile",
+    "command": "cursorTop",
     "when": "editorFocus"
-  },
-  {
-    "key": "ctrl+g ctrl+x",
-    "command": "workbench.files.action.showActiveFileInExplorer"
-  },
-  {
-    "key": "ctrl+g r",
-    "command": "references-view.next",
-    "when": "reference-list.hasResult && references-view.canNavigate"
   },
   {
     "key": "ctrl+h ctrl+a",
@@ -297,6 +288,10 @@
     "key": "ctrl+h ctrl+l",
     "command": "editor.action.inlineSuggest.acceptNextLine",
     "when": "inlineSuggestionVisible && !accessibilityModeEnabled && !editorReadonly"
+  },
+  {
+    "key": "ctrl+h ctrl+m",
+    "command": "projectManager.listProjectsNewWindow"
   },
   {
     "key": "ctrl+h ctrl+m",
@@ -379,8 +374,14 @@
   },
   {
     "key": "ctrl+j",
-    "command": "extension.halfDown",
-    "when": "editorFocus"
+    "command": "editorScroll",
+    "when": "textInputFocus",
+    "args": {
+      "to": "down",
+      "by": "line",
+      "revealCursor": true,
+      "value": 15
+    }
   },
   {
     "key": "ctrl+k",
@@ -389,13 +390,24 @@
   },
   {
     "key": "ctrl+k",
-    "command": "extension.halfUp",
-    "when": "editorFocus"
+    "command": "editorScroll",
+    "when": "textInputFocus",
+    "args": {
+      "to": "up",
+      "by": "line",
+      "revealCursor": true,
+      "value": 15
+    }
   },
   {
     "key": "ctrl+k ctrl+m",
     "command": "-workbench.action.toggleMaximizeEditorGroup",
     "when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups"
+  },
+  {
+    "key": "ctrl+k m",
+    "command": "-workbench.action.editor.changeLanguageMode",
+    "when": "!notebookEditorFocused"
   },
   {
     "key": "ctrl+l",
@@ -436,12 +448,13 @@
     "command": "workbench.action.showCommands"
   },
   {
-    "key": "ctrl+q",
-    "command": "-workbench.action.quit"
+    "key": "ctrl+pagedown",
+    "command": "-workbench.action.terminal.focusNext",
+    "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
   },
   {
     "key": "ctrl+q",
-    "command": "projectManager.listProjectsNewWindow"
+    "command": "-workbench.action.quit"
   },
   {
     "key": "ctrl+r",
@@ -605,6 +618,15 @@
     "command": "-workbench.action.showAllSymbols"
   },
   {
+    "key": "ctrl+t",
+    "command": "workbench.action.quickOpenTerm"
+  },
+  {
+    "key": "ctrl+t",
+    "command": "workbench.action.terminal.focusNext",
+    "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
+  },
+  {
     "key": "ctrl+u",
     "command": "expandLineSelection",
     "when": "textInputFocus"
@@ -662,6 +684,10 @@
     "when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups"
   },
   {
+    "key": "ctrl+w ctrl+n",
+    "command": "workbench.action.files.newUntitledFile"
+  },
+  {
     "key": "ctrl+w ctrl+s",
     "command": "workbench.action.splitEditorDown"
   },
@@ -692,6 +718,15 @@
     "when": "chatInputHasText"
   },
   {
+    "key": "f1",
+    "command": "workbench.action.terminal.clear",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "f1",
+    "command": "-workbench.action.showCommands"
+  },
+  {
     "key": "f3",
     "command": "-editor.action.nextMatchFindAction",
     "when": "editorFocus"
@@ -704,6 +739,16 @@
   {
     "key": "shift+alt+p",
     "command": "-projectManager.listProjects"
+  },
+  {
+    "key": "shift+enter",
+    "command": "-jumpy2.exit",
+    "when": "editorTextFocus && jumpy2.jump-mode"
+  },
+  {
+    "key": "shift+enter",
+    "command": "-jumpy2.toggle",
+    "when": "editorTextFocus"
   },
   {
     "key": "shift+f3",
