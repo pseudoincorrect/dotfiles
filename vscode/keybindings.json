@@ -4,6 +4,11 @@
     "command": "-editor.action.toggleWordWrap"
   },
   {
+    "key": "ctrl+'",
+    "command": "expandLineSelection",
+    "when": "textInputFocus"
+  },
+  {
     "key": "ctrl+,",
     "command": "editor.action.smartSelect.expand"
   },
@@ -129,8 +134,12 @@
   },
   {
     "key": "ctrl+down",
-    "command": "extension.halfDown",
-    "when": "editorFocus"
+    "command": "cursorMove",
+    "when": "editorTextFocus",
+    "args": {
+      "to": "nextBlankLine",
+      "select": false
+    }
   },
   {
     "key": "ctrl+e",
@@ -528,6 +537,15 @@
   },
   {
     "key": "ctrl+shift+down",
+    "command": "cursorMove",
+    "when": "editorTextFocus",
+    "args": {
+      "to": "nextBlankLine",
+      "select": true
+    }
+  },
+  {
+    "key": "ctrl+shift+down",
     "command": "-editor.action.insertCursorBelow",
     "when": "editorTextFocus"
   },
@@ -535,11 +553,6 @@
     "key": "ctrl+shift+down",
     "command": "-workbench.action.terminal.scrollDown",
     "when": "terminalFocusInAny && terminalHasBeenCreated && !terminalAltBufferActive || terminalFocusInAny && terminalProcessSupported && !terminalAltBufferActive"
-  },
-  {
-    "key": "ctrl+shift+down",
-    "command": "-extension.halfDown",
-    "when": "editorFocus"
   },
   {
     "key": "ctrl+shift+end",
@@ -619,22 +632,22 @@
   },
   {
     "key": "ctrl+shift+up",
+    "command": "cursorMove",
+    "when": "editorTextFocus",
+    "args": {
+      "to": "prevBlankLine",
+      "select": true
+    }
+  },
+  {
+    "key": "ctrl+shift+up",
     "command": "-editor.action.insertCursorAbove",
     "when": "editorTextFocus"
   },
   {
-    "key": "ctrl+shift+up",
-    "command": "-extension.halfUp",
-    "when": "editorFocus"
-  },
-  {
-    "key": "ctrl+shift+y",
+    "key": "ctrl+shift+z",
     "command": "editor.action.insertCursorAbove",
     "when": "editorTextFocus"
-  },
-  {
-    "key": "ctrl+shift+z",
-    "command": "redo"
   },
   {
     "key": "ctrl+space",
@@ -656,23 +669,26 @@
   },
   {
     "key": "ctrl+u",
-    "command": "expandLineSelection",
+    "command": "-cursorUndo",
     "when": "textInputFocus"
   },
   {
     "key": "ctrl+u",
-    "command": "-cursorUndo",
-    "when": "textInputFocus"
+    "command": "undo"
+  },
+  {
+    "key": "ctrl+up",
+    "command": "cursorMove",
+    "when": "editorTextFocus",
+    "args": {
+      "to": "prevBlankLine",
+      "select": false
+    }
   },
   {
     "command": "history.showPrevious",
     "key": "ctrl+up",
     "when": "inChat"
-  },
-  {
-    "key": "ctrl+up",
-    "command": "extension.halfUp",
-    "when": "editorFocus"
   },
   {
     "key": "ctrl+w",
@@ -724,13 +740,9 @@
     "command": "workbench.action.splitEditor"
   },
   {
-    "key": "ctrl+y",
+    "key": "ctrl+z",
     "command": "editor.action.insertCursorBelow",
     "when": "editorTextFocus"
-  },
-  {
-    "key": "ctrl+z",
-    "command": "undo"
   },
   {
     "key": "ctrl+z",
@@ -747,17 +759,17 @@
   },
   {
     "key": "f1",
-    "command": "workbench.action.terminal.clear",
-    "when": "terminalFocus"
-  },
-  {
-    "key": "f1",
     "command": "-workbench.action.showCommands"
   },
   {
     "key": "f3",
     "command": "-editor.action.nextMatchFindAction",
     "when": "editorFocus"
+  },
+  {
+    "key": "f8",
+    "command": "workbench.action.terminal.clear",
+    "when": "terminalFocus"
   },
   {
     "key": "f8",
