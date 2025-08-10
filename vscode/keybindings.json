@@ -1,5 +1,84 @@
 [
   {
+    "key": "alt+b",
+    "command": "cursorHomeSelect",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "alt+d",
+    "command": "cursorUpSelect",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "alt+e",
+    "command": "cursorEndSelect",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "alt+f",
+    "command": "expandLineSelection",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "alt+g",
+    "command": "cursorWordEndRightSelect",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "alt+h",
+    "command": "cursorLeftSelect",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "alt+i",
+    "command": "jumpy2.toggleSelection",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "alt+j",
+    "command": "cursorDownSelect",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "alt+k",
+    "command": "cursorUpSelect",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "alt+l",
+    "command": "cursorRightSelect",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "alt+o",
+    "command": "deleteRight",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "alt+o",
+    "command": "editor.action.addSelectionToNextFindMatch",
+    "when": "editorFocus"
+  },
+  {
+    "key": "alt+r",
+    "command": "bracket-select.select",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "alt+s",
+    "command": "cursorWordLeftSelect",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "alt+t",
+    "command": "editor.action.smartSelect.expand"
+  },
+  {
+    "key": "alt+u",
+    "command": "deleteLeft",
+    "when": "textInputFocus"
+  },
+  {
     "key": "alt+z",
     "command": "-editor.action.toggleWordWrap"
   },
@@ -9,18 +88,9 @@
     "when": "textInputFocus"
   },
   {
-    "key": "ctrl+,",
-    "command": "editor.action.smartSelect.expand"
-  },
-  {
     "key": "ctrl+.",
     "command": "quickInput.toggleHover",
     "when": "inQuickInput && quickInputType == 'quickPick'"
-  },
-  {
-    "key": "ctrl+.",
-    "command": "bracket-select.select",
-    "when": "editorTextFocus"
   },
   {
     "key": "ctrl+/",
@@ -77,8 +147,7 @@
   },
   {
     "key": "ctrl+d ctrl+c",
-    "command": "editor.action.commentLine",
-    "when": "editorTextFocus && !editorReadonly"
+    "command": "editor.action.commentLine"
   },
   {
     "key": "ctrl+d ctrl+d",
@@ -221,11 +290,8 @@
   },
   {
     "key": "ctrl+g ctrl+g",
-    "command": "workbench.files.action.focusFilesExplorer"
-  },
-  {
-    "key": "ctrl+g ctrl+g",
-    "command": "workbench.files.action.showActiveFileInExplorer"
+    "command": "editor.action.revealDefinition",
+    "when": "editorHasDefinitionProvider && editorTextFocus"
   },
   {
     "key": "ctrl+g ctrl+h",
@@ -236,11 +302,6 @@
     "key": "ctrl+g ctrl+i",
     "command": "editor.action.goToImplementation",
     "when": "editorHasImplementationProvider && editorTextFocus"
-  },
-  {
-    "key": "ctrl+g ctrl+k",
-    "command": "editor.action.jumpToBracket",
-    "when": "editorTextFocus"
   },
   {
     "key": "ctrl+g ctrl+l",
@@ -292,12 +353,15 @@
   },
   {
     "key": "ctrl+h ctrl+f",
+    "command": "workbench.files.action.focusFilesExplorer"
+  },
+  {
+    "key": "ctrl+h ctrl+f",
     "command": "workbench.action.focusAuxiliaryBar"
   },
   {
     "key": "ctrl+h ctrl+h",
-    "command": "workbench.action.focusLastEditorGroup",
-    "when": "chatInputHasFocus || filesExplorerFocus || terminalFocus || roo-cline.SidebarProvider.active"
+    "command": "workbench.files.action.showActiveFileInExplorer"
   },
   {
     "key": "ctrl+h ctrl+i",
@@ -388,11 +452,8 @@
   },
   {
     "key": "ctrl+i",
-    "command": "cursorMove",
-    "args": {
-      "to": "viewPortCenter"
-    },
-    "when": "textInputFocus"
+    "command": "workbench.action.navigateForward",
+    "when": "canNavigateForward"
   },
   {
     "key": "ctrl+j",
@@ -411,7 +472,7 @@
       "to": "down",
       "by": "line",
       "revealCursor": true,
-      "value": 15
+      "value": 17
     }
   },
   {
@@ -427,7 +488,7 @@
       "to": "up",
       "by": "line",
       "revealCursor": true,
-      "value": 15
+      "value": 17
     }
   },
   {
@@ -497,13 +558,8 @@
     "when": "inQuickOpen && inRecentFilesPicker"
   },
   {
-    "key": "ctrl+shift+,",
-    "command": "editor.action.smartSelect.shrink",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "ctrl+shift+.",
-    "command": "bracket-select.undo-select",
+    "key": "ctrl+shift+'",
+    "command": "editor.action.insertCursorBelow",
     "when": "editorTextFocus"
   },
   {
@@ -565,10 +621,6 @@
     "when": "editorTextFocus && !editorReadonly"
   },
   {
-    "key": "ctrl+shift+h",
-    "command": "workbench.action.navigateLeft"
-  },
-  {
     "key": "ctrl+shift+home",
     "command": "-cursorTopSelect",
     "when": "textInputFocus"
@@ -584,21 +636,9 @@
     "when": "editorTextFocus && !editorHasDocumentFormattingProvider && !editorReadonly"
   },
   {
-    "key": "ctrl+shift+j",
-    "command": "workbench.action.navigateDown"
-  },
-  {
-    "key": "ctrl+shift+k",
-    "command": "workbench.action.navigateUp"
-  },
-  {
     "key": "ctrl+shift+k",
     "command": "-editor.action.deleteLines",
     "when": "textInputFocus && !editorReadonly"
-  },
-  {
-    "key": "ctrl+shift+l",
-    "command": "workbench.action.navigateRight"
   },
   {
     "key": "ctrl+shift+m",
@@ -609,11 +649,6 @@
     "key": "ctrl+shift+n",
     "command": "editor.action.previousMatchFindAction",
     "when": "editorFocus"
-  },
-  {
-    "key": "ctrl+shift+o",
-    "command": "workbench.action.navigateForward",
-    "when": "canNavigateForward"
   },
   {
     "key": "ctrl+shift+r",
@@ -650,6 +685,10 @@
     "when": "editorTextFocus"
   },
   {
+    "key": "ctrl+shift+z",
+    "command": "redo"
+  },
+  {
     "key": "ctrl+space",
     "command": "-quickInput.toggleHover",
     "when": "inQuickInput && quickInputType == 'quickPick'"
@@ -674,7 +713,8 @@
   },
   {
     "key": "ctrl+u",
-    "command": "undo"
+    "command": "editor.action.deleteLines",
+    "when": "textInputFocus && !editorReadonly"
   },
   {
     "key": "ctrl+up",
@@ -740,9 +780,21 @@
     "command": "workbench.action.splitEditor"
   },
   {
+    "key": "ctrl+w ctrl+w",
+    "command": "workbench.action.focusLastEditorGroup",
+    "when": "chatInputHasFocus || filesExplorerFocus || terminalFocus || roo-cline.SidebarProvider.active"
+  },
+  {
+    "key": "ctrl+y",
+    "command": "-redo"
+  },
+  {
+    "key": "ctrl+y",
+    "command": "extension.aceJump.line"
+  },
+  {
     "key": "ctrl+z",
-    "command": "editor.action.insertCursorBelow",
-    "when": "editorTextFocus"
+    "command": "undo"
   },
   {
     "key": "ctrl+z",
@@ -777,8 +829,23 @@
     "when": "terminalFocus"
   },
   {
+    "key": "shift+alt+enter",
+    "command": "-jumpy2.toggleSelection",
+    "when": "editorTextFocus"
+  },
+  {
     "key": "shift+alt+p",
     "command": "-projectManager.listProjects"
+  },
+  {
+    "key": "shift+alt+r",
+    "command": "bracket-select.undo-select",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+alt+t",
+    "command": "editor.action.smartSelect.shrink",
+    "when": "editorTextFocus"
   },
   {
     "key": "shift+enter",
