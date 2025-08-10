@@ -15,7 +15,11 @@
     "when": "textInputFocus"
   },
   {
-    "key": "alt+e",
+    "key": "alt+b",
+    "command": "cursorBottomSelect"
+  },
+  {
+    "key": "alt+d",
     "command": "editor.action.addSelectionToNextFindMatch",
     "when": "editorFocus"
   },
@@ -113,15 +117,6 @@
   },
   {
     "key": "ctrl+,",
-    "command": "cursorMove",
-    "when": "editorTextFocus",
-    "args": {
-      "to": "prevBlankLine",
-      "select": false
-    }
-  },
-  {
-    "key": "ctrl+,",
     "command": "editor.action.nextMatchFindAction",
     "when": "editorFocus"
   },
@@ -133,11 +128,6 @@
   {
     "key": "ctrl+.",
     "command": "jumpy2.toggle",
-    "when": "editorFocus"
-  },
-  {
-    "key": "ctrl+/",
-    "command": "actions.find",
     "when": "editorFocus"
   },
   {
@@ -157,8 +147,7 @@
   },
   {
     "key": "ctrl+d",
-    "command": "editor.action.addSelectionToNextFindMatch",
-    "when": "editorFocus"
+    "command": "workbench.action.quickOpen"
   },
   {
     "command": "history.showNext",
@@ -189,7 +178,8 @@
   },
   {
     "key": "ctrl+f",
-    "command": "workbench.action.quickOpen"
+    "command": "actions.find",
+    "when": "editorFocus"
   },
   {
     "key": "ctrl+g ctrl+/",
@@ -265,7 +255,12 @@
   },
   {
     "key": "ctrl+i",
-    "command": "workbench.action.navigateForward"
+    "command": "cursorMove",
+    "when": "editorTextFocus",
+    "args": {
+      "to": "prevBlankLine",
+      "select": false
+    }
   },
   {
     "key": "ctrl+j",
@@ -308,15 +303,6 @@
     "key": "ctrl+left",
     "command": "-cursorWordLeft",
     "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+m",
-    "command": "cursorMove",
-    "when": "editorTextFocus",
-    "args": {
-      "to": "nextBlankLine",
-      "select": false
-    }
   },
   {
     "key": "ctrl+m",
@@ -439,6 +425,10 @@
     "command": "-workbench.action.quit"
   },
   {
+    "key": "ctrl+r ctrl+c",
+    "command": "editor.action.commentLine"
+  },
+  {
     "key": "ctrl+r ctrl+d",
     "command": "editor.action.deleteLines",
     "when": "textInputFocus && !editorReadonly"
@@ -491,6 +481,11 @@
     "when": "textInputFocus"
   },
   {
+    "key": "ctrl+shift+,",
+    "command": "editor.action.previousMatchFindAction",
+    "when": "editorFocus"
+  },
+  {
     "key": "ctrl+shift+/",
     "command": "workbench.action.findInFiles",
     "when": "editorFocus || editorIsOpen"
@@ -540,9 +535,8 @@
     "when": "hasSearchResult || inSearchEditor"
   },
   {
-    "key": "ctrl+shift+n",
-    "command": "editor.action.previousMatchFindAction",
-    "when": "editorFocus"
+    "key": "ctrl+shift+o",
+    "command": "workbench.action.navigateForward"
   },
   {
     "key": "ctrl+shift+r",
@@ -583,13 +577,17 @@
   },
   {
     "key": "ctrl+u",
-    "command": "-cursorUndo",
-    "when": "textInputFocus"
+    "command": "cursorMove",
+    "when": "editorTextFocus",
+    "args": {
+      "to": "nextBlankLine",
+      "select": false
+    }
   },
   {
     "key": "ctrl+u",
-    "command": "editor.action.deleteLines",
-    "when": "textInputFocus && !editorReadonly"
+    "command": "-cursorUndo",
+    "when": "textInputFocus"
   },
   {
     "command": "history.showPrevious",
@@ -652,7 +650,8 @@
   },
   {
     "key": "ctrl+y",
-    "command": "editor.action.commentLine"
+    "command": "editor.action.deleteLines",
+    "when": "textInputFocus && !editorReadonly"
   },
   {
     "key": "ctrl+z",
