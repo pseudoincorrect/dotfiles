@@ -1,9 +1,7 @@
 [;]>[escape]
 [\]>[lalt]
-[`]>[F8]
 [bspace]>[kpshft]
 [caps]>[rshift]
-[cbrack]>[right]
 [delete]>[lctrl]
 [down]>[up]
 [end]>[lalt]
@@ -67,4 +65,6 @@
 {kp=}>{speed6}{-lshift}{8}{+lshift}
 {kpdiv}>{speed6}{-lshift}{`}{+lshift}
 {kpenter1}>{speed6}{-lshift}{/}{+lshift}
+{cbrack}>{speed6}{-lctrl}{tab}{+lctrl}
+{`}>{speed6}{-lctrl}{-lshift}{tab}{+lshift}{+lctrl}
 {numlk}>{speed6}{-lshift}{7}{+lshift}

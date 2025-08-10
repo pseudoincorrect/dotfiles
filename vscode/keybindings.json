@@ -24,7 +24,7 @@
     }
   },
   {
-    "key": "alt+d",
+    "key": "alt+e",
     "command": "editor.action.addSelectionToNextFindMatch",
     "when": "editorFocus"
   },
@@ -346,8 +346,7 @@
   },
   {
     "key": "ctrl+i",
-    "command": "workbench.action.navigateForward",
-    "when": "canNavigateForward"
+    "command": "workbench.action.navigateForward"
   },
   {
     "key": "ctrl+j",
@@ -398,8 +397,7 @@
   },
   {
     "key": "ctrl+o",
-    "command": "workbench.action.navigateBack",
-    "when": "canNavigateBack"
+    "command": "workbench.action.navigateBack"
   },
   {
     "key": "ctrl+p",
