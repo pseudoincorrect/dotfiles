@@ -97,10 +97,15 @@ function his() {
   local selected_command
   selected_command=$(history | fzf --tac --no-sort --height=40% --reverse --query="$*" | sed 's/^[ ]*[0-9]*[ ]*//')
   if [[ -n "$selected_command" ]]; then
-    # Add the command to the command line but don't execute it immediately
-    # This allows the user to edit it before running
-    READLINE_LINE="$selected_command"
-    READLINE_POINT=${#READLINE_LINE}
+    # Write the command to a temporary file and use read to get it on command line
+    echo "$selected_command" > /tmp/his_cmd
+    read -e -i "$selected_command" -p "" cmd
+    if [[ -n "$cmd" ]]; then
+      eval "$cmd"
+      # Add the executed command to history
+      history -s "$cmd"
+    fi
+    rm -f /tmp/his_cmd
   fi
 }
 
