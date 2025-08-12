@@ -63,7 +63,7 @@ PATH="$HOME/.cargo/bin:$PATH"
 export GOPATH="$HOME/go/global"
 PATH="$GOPATH/bin:$PATH"
 
-export GOROOT="$HOME/go/go1.23.4"
+export GOROOT="$HOME/go/go1.24.4"
 PATH="$GOROOT/bin:$PATH"
 
 export PATH
@@ -90,6 +90,18 @@ function ycd() {
 		builtin cd -- "$cwd"
 	fi
 	rm -f -- "$tmp"
+}
+
+# fzf history search - type 'his' instead of Ctrl+R
+function his() {
+  local selected_command
+  selected_command=$(history | fzf --tac --no-sort --height=40% --reverse --query="$*" | sed 's/^[ ]*[0-9]*[ ]*//')
+  if [[ -n "$selected_command" ]]; then
+    # Add the command to the command line but don't execute it immediately
+    # This allows the user to edit it before running
+    READLINE_LINE="$selected_command"
+    READLINE_POINT=${#READLINE_LINE}
+  fi
 }
 
 ########################################################################
@@ -125,15 +137,14 @@ export EDITOR=hx
 ########################################################################
 # ALIASES
 # file explorers/management
-alias ll='eza -laT --total-size --level 1'
-alias ls='eza -laT --total-size --level 1'
+alias ll='eza -laT --level 1'
 alias rm='rm -rf'
 alias 'cd..'='cd ..'
 alias 'lf'='lfcd'
 alias 'y'='yazi'
 alias 'fcd'='zi'
 # Notes
-alias 'notes'='code ~/Documents/notes'
+alias 'notes'='hx ~/Documents/notes'
 # Clear the swap storage
 alias 'clearswap'='sudo swapoff -a; sudo swapon -a'
 # make python3 as default
