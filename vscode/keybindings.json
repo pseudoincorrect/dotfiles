@@ -116,19 +116,9 @@
     "when": "editorTextFocus"
   },
   {
-    "key": "ctrl+,",
-    "command": "editor.action.nextMatchFindAction",
-    "when": "editorFocus"
-  },
-  {
     "key": "ctrl+.",
     "command": "quickInput.toggleHover",
     "when": "inQuickInput && quickInputType == 'quickPick'"
-  },
-  {
-    "key": "ctrl+.",
-    "command": "jumpy2.toggle",
-    "when": "editorFocus"
   },
   {
     "key": "ctrl+b",
@@ -153,6 +143,15 @@
     "command": "history.showNext",
     "key": "ctrl+down",
     "when": "inChat"
+  },
+  {
+    "key": "ctrl+down",
+    "command": "cursorMove",
+    "when": "editorTextFocus",
+    "args": {
+      "to": "nextBlankLine",
+      "select": false
+    }
   },
   {
     "key": "ctrl+e",
@@ -244,9 +243,103 @@
     "when": "editorFocus"
   },
   {
-    "key": "ctrl+h",
-    "command": "cursorWordLeft",
-    "when": "textInputFocus"
+    "key": "ctrl+h ctrl+a",
+    "command": "workbench.action.toggleAuxiliaryBar"
+  },
+  {
+    "key": "ctrl+h ctrl+b",
+    "command": "workbench.action.toggleSidebarVisibility"
+  },
+  {
+    "key": "ctrl+h ctrl+c",
+    "command": "roo-cline.focusInput"
+  },
+  {
+    "key": "ctrl+h ctrl+d",
+    "command": "github.copilot.completions.disable"
+  },
+  {
+    "key": "ctrl+h ctrl+e",
+    "command": "github.copilot.completions.enable"
+  },
+  {
+    "key": "ctrl+h ctrl+f",
+    "command": "workbench.files.action.focusFilesExplorer"
+  },
+  {
+    "key": "ctrl+h ctrl+f",
+    "command": "workbench.action.focusAuxiliaryBar"
+  },
+  {
+    "key": "ctrl+h ctrl+h",
+    "command": "workbench.files.action.showActiveFileInExplorer"
+  },
+  {
+    "key": "ctrl+h ctrl+i",
+    "command": "inlineChat.start",
+    "when": "editorFocus && inlineChatHasEditsAgent && inlineChatPossible && !editorReadonly && !editorSimpleInput || editorFocus && inlineChatHasProvider && inlineChatPossible && !editorReadonly && !editorSimpleInput"
+  },
+  {
+    "key": "ctrl+h ctrl+k",
+    "command": "workbench.action.openGlobalKeybindings"
+  },
+  {
+    "key": "ctrl+h ctrl+l",
+    "command": "editor.action.inlineSuggest.acceptNextLine",
+    "when": "inlineSuggestionVisible && !accessibilityModeEnabled && !editorReadonly"
+  },
+  {
+    "key": "ctrl+h ctrl+m",
+    "command": "projectManager.listProjectsNewWindow"
+  },
+  {
+    "key": "ctrl+h ctrl+m",
+    "command": "mergeEditor.toggleBetweenInputs",
+    "when": "isMergeEditor"
+  },
+  {
+    "key": "ctrl+h ctrl+n",
+    "command": "editor.action.inlineSuggest.showNext",
+    "when": "inlineSuggestionVisible && !editorReadonly"
+  },
+  {
+    "key": "ctrl+h ctrl+o",
+    "command": "outline.focus"
+  },
+  {
+    "key": "ctrl+h ctrl+p",
+    "command": "workbench.action.togglePanel"
+  },
+  {
+    "key": "ctrl+h ctrl+r",
+    "command": "workbench.view.debug",
+    "when": "viewContainer.workbench.view.debug.enabled"
+  },
+  {
+    "key": "ctrl+h ctrl+s",
+    "command": "workbench.action.openSettings"
+  },
+  {
+    "key": "ctrl+h ctrl+shift+m",
+    "command": "projectManager.listProjects"
+  },
+  {
+    "key": "ctrl+h ctrl+t",
+    "command": "workbench.action.terminal.focus"
+  },
+  {
+    "key": "ctrl+h ctrl+v",
+    "command": "workbench.action.openView"
+  },
+  {
+    "key": "ctrl+h ctrl+w",
+    "command": "editor.action.inlineSuggest.acceptNextWord",
+    "when": "inlineSuggestionVisible && !accessibilityModeEnabled && !editorReadonly"
+  },
+  {
+    "key": "ctrl+h ctrl+y",
+    "command": "editor.action.inlineSuggest.showPrevious",
+    "when": "inlineSuggestionVisible && !editorReadonly"
   },
   {
     "key": "ctrl+home",
@@ -255,12 +348,8 @@
   },
   {
     "key": "ctrl+i",
-    "command": "cursorMove",
-    "when": "editorTextFocus",
-    "args": {
-      "to": "prevBlankLine",
-      "select": false
-    }
+    "command": "editor.action.addSelectionToNextFindMatch",
+    "when": "editorFocus"
   },
   {
     "key": "ctrl+j",
@@ -296,13 +385,8 @@
   },
   {
     "key": "ctrl+l",
-    "command": "cursorWordEndRight",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+left",
-    "command": "-cursorWordLeft",
-    "when": "textInputFocus"
+    "command": "jumpy2.toggle",
+    "when": "editorFocus"
   },
   {
     "key": "ctrl+m",
@@ -314,103 +398,9 @@
     "command": "-editor.action.toggleTabFocusMode"
   },
   {
-    "key": "ctrl+n ctrl+a",
-    "command": "workbench.action.toggleAuxiliaryBar"
-  },
-  {
-    "key": "ctrl+n ctrl+b",
-    "command": "workbench.action.toggleSidebarVisibility"
-  },
-  {
-    "key": "ctrl+n ctrl+c",
-    "command": "roo-cline.focusInput"
-  },
-  {
-    "key": "ctrl+n ctrl+d",
-    "command": "github.copilot.completions.disable"
-  },
-  {
-    "key": "ctrl+n ctrl+e",
-    "command": "github.copilot.completions.enable"
-  },
-  {
-    "key": "ctrl+n ctrl+f",
-    "command": "workbench.files.action.focusFilesExplorer"
-  },
-  {
-    "key": "ctrl+n ctrl+f",
-    "command": "workbench.action.focusAuxiliaryBar"
-  },
-  {
-    "key": "ctrl+n ctrl+i",
-    "command": "inlineChat.start",
-    "when": "editorFocus && inlineChatHasEditsAgent && inlineChatPossible && !editorReadonly && !editorSimpleInput || editorFocus && inlineChatHasProvider && inlineChatPossible && !editorReadonly && !editorSimpleInput"
-  },
-  {
-    "key": "ctrl+n ctrl+k",
-    "command": "workbench.action.openGlobalKeybindings"
-  },
-  {
-    "key": "ctrl+n ctrl+l",
-    "command": "editor.action.inlineSuggest.acceptNextLine",
-    "when": "inlineSuggestionVisible && !accessibilityModeEnabled && !editorReadonly"
-  },
-  {
-    "key": "ctrl+n ctrl+m",
-    "command": "projectManager.listProjectsNewWindow"
-  },
-  {
-    "key": "ctrl+n ctrl+m",
-    "command": "mergeEditor.toggleBetweenInputs",
-    "when": "isMergeEditor"
-  },
-  {
-    "key": "ctrl+n ctrl+n",
-    "command": "workbench.files.action.showActiveFileInExplorer"
-  },
-  {
-    "key": "ctrl+n ctrl+n",
-    "command": "editor.action.inlineSuggest.showNext",
-    "when": "inlineSuggestionVisible && !editorReadonly"
-  },
-  {
-    "key": "ctrl+n ctrl+o",
-    "command": "outline.focus"
-  },
-  {
-    "key": "ctrl+n ctrl+p",
-    "command": "workbench.action.togglePanel"
-  },
-  {
-    "key": "ctrl+n ctrl+r",
-    "command": "workbench.view.debug",
-    "when": "viewContainer.workbench.view.debug.enabled"
-  },
-  {
-    "key": "ctrl+n ctrl+s",
-    "command": "workbench.action.openSettings"
-  },
-  {
-    "key": "ctrl+n ctrl+shift+m",
-    "command": "projectManager.listProjects"
-  },
-  {
-    "key": "ctrl+n ctrl+t",
-    "command": "workbench.action.terminal.focus"
-  },
-  {
-    "key": "ctrl+n ctrl+v",
-    "command": "workbench.action.openView"
-  },
-  {
-    "key": "ctrl+n ctrl+w",
-    "command": "editor.action.inlineSuggest.acceptNextWord",
-    "when": "inlineSuggestionVisible && !accessibilityModeEnabled && !editorReadonly"
-  },
-  {
-    "key": "ctrl+n ctrl+y",
-    "command": "editor.action.inlineSuggest.showPrevious",
-    "when": "inlineSuggestionVisible && !editorReadonly"
+    "key": "ctrl+n",
+    "command": "editor.action.nextMatchFindAction",
+    "when": "editorFocus"
   },
   {
     "key": "ctrl+o",
@@ -476,11 +466,6 @@
     "command": "editor.action.toggleWordWrap"
   },
   {
-    "key": "ctrl+right",
-    "command": "-cursorWordEndRight",
-    "when": "textInputFocus"
-  },
-  {
     "key": "ctrl+shift+,",
     "command": "editor.action.previousMatchFindAction",
     "when": "editorFocus"
@@ -535,10 +520,6 @@
     "when": "hasSearchResult || inSearchEditor"
   },
   {
-    "key": "ctrl+shift+o",
-    "command": "workbench.action.navigateForward"
-  },
-  {
     "key": "ctrl+shift+r",
     "command": "workbench.action.quickOpenLeastRecentlyUsedEditorInGroup",
     "when": "!activeEditorGroupEmpty"
@@ -577,17 +558,21 @@
   },
   {
     "key": "ctrl+u",
-    "command": "cursorMove",
-    "when": "editorTextFocus",
-    "args": {
-      "to": "nextBlankLine",
-      "select": false
-    }
+    "command": "workbench.action.navigateForward"
   },
   {
     "key": "ctrl+u",
     "command": "-cursorUndo",
     "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+up",
+    "command": "cursorMove",
+    "when": "editorTextFocus",
+    "args": {
+      "to": "prevBlankLine",
+      "select": false
+    }
   },
   {
     "command": "history.showPrevious",
