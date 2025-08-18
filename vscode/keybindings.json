@@ -181,11 +181,6 @@
     "when": "editorFocus"
   },
   {
-    "key": "ctrl+g ctrl+/",
-    "command": "periscope.search",
-    "when": "editorFocus"
-  },
-  {
     "key": "ctrl+g ctrl+b",
     "command": "cursorBottom"
   },
@@ -348,8 +343,7 @@
   },
   {
     "key": "ctrl+i",
-    "command": "editor.action.addSelectionToNextFindMatch",
-    "when": "editorFocus"
+    "command": "workbench.action.navigateForward"
   },
   {
     "key": "ctrl+j",
@@ -364,7 +358,7 @@
       "to": "down",
       "by": "line",
       "revealCursor": true,
-      "value": 17
+      "value": 15
     }
   },
   {
@@ -380,7 +374,7 @@
       "to": "up",
       "by": "line",
       "revealCursor": true,
-      "value": 17
+      "value": 15
     }
   },
   {
@@ -558,7 +552,8 @@
   },
   {
     "key": "ctrl+u",
-    "command": "workbench.action.navigateForward"
+    "command": "editor.action.addSelectionToNextFindMatch",
+    "when": "editorFocus"
   },
   {
     "key": "ctrl+u",
