@@ -7,15 +7,16 @@ mouse = true
 true-color = true
 scrolloff = 17 
 auto-format = true
-# line-number = "relative"
+line-number = "relative"
 auto-save = true
 gutters = ["diff","diagnostics", "line-numbers", "spacer", "spacer"]
 # gutters = ["diff","diagnostics", "spacer"]
-jump-label-alphabet = "dlavmcfeiruwotybns;jk234789"
+jump-label-alphabet = "dlavmcfeiruwotybnsjk234789"
 completion-timeout = 0
 completion-trigger-len = 1
 auto-pairs = false
 bufferline = "never"
+rainbow-brackets = true
 
 [editor.search]
 wrap-around = false
@@ -127,7 +128,8 @@ e = [
   ':set mouse false',
   ':set mouse true',
 ]
-space = "@ y /<C-r>+"  # Global search word under cursor
+space = "@:reload-all<ret>"
+"*" = "@ y /<C-r>+"  # Global search word under cursor
 x = ":yank-diagnostic"
 z = "@\"%p\"+yd" # Copy buffer (repository relative) path in clipboard  
 Z = "@o<esc>|pwd<ret>;i/<esc>\"%PmiW\"+yddk" # Copy buffer full-path in clipboard  
@@ -155,6 +157,9 @@ C-l = "jump_view_right"
 C-j = "@<esc>15zj"
 C-k = "@<esc>15zk"
 "," = "remove_primary_selection"
+C-f = "repeat_last_motion"
+t = "expand_selection"
+T = "shrink_selection"
 
 [keys.select.space]
 ";" = "flip_selections"
