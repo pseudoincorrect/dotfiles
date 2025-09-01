@@ -49,7 +49,7 @@
   "git.openRepositoryInParentFolders": "never",
   "github.copilot.enable": {
     "*": true,
-    "markdown": true,
+    "markdown": false,
     "plaintext": false,
     "scminput": false
   },
@@ -144,50 +144,17 @@
   "terminal.integrated.smoothScrolling": true,
   "terminal.integrated.tabs.location": "left",
   "vim.enableNeovim": true,
+  "vim.highlightedyank.duration": 350,
+  "vim.highlightedyank.enable": true,
   "vim.hlsearch": false,
   "vim.incsearch": true,
   "vim.leader": " ",
-  "vim.normalModeKeyBindings": [
-    {
-      "before": [
-        "g",
-        "i"
-      ],
-      "commands": [
-        "editor.action.goToImplementation"
-      ]
-    },
-    {
-      "before": [
-        "g",
-        "r"
-      ],
-      "commands": [
-        "editor.action.goToReferences"
-      ]
-    },
-    {
-      "after": [
-        "g",
-        "j"
-      ],
-      "before": [
-        "j"
-      ]
-    },
-    {
-      "after": [
-        "g",
-        "k"
-      ],
-      "before": [
-        "k"
-      ]
-    }
-  ],
   "vim.smartRelativeLine": true,
   "vim.statusBarColorControl": true,
   "vim.surround": true,
+  "vim.timeout": 300,
+  "vim.useCtrlKeys": false,
+  "vim.useSystemClipboard": true,
   "vim.vimrc.enable": true,
   "window.customMenuBarAltFocus": false,
   "window.openFoldersInNewWindow": "off",
@@ -197,14 +164,21 @@
   "window.zoomPerWindow": false,
   "workbench.activityBar.location": "top",
   "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#65ff65",
+    "activityBar.background": "#65ff65",
     "activityBar.border": "#00ffff",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#8080ff",
+    "activityBarBadge.foreground": "#15202b",
+    "commandCenter.border": "#15202b99",
     "editor.lineHighlightBackground": "#0f670ae4",
     "editorGroup.border": "#00ffff",
     "editorGroupHeader.border": "#00ffff",
     "panel.border": "#00ffff",
     "panelTitle.activeBorder": "#00ffff",
     "panelTitle.inactiveForeground": "#00ffff",
-    "sash.hoverBorder": "#00ffff",
+    "sash.hoverBorder": "#65ff65",
     "sideBar.border": "#00ffff",
     "sideBarSectionHeader.border": "#000000",
     "statusBar.background": "#005f5f",
@@ -212,8 +186,15 @@
     "statusBar.debuggingForeground": "#ffffff",
     "statusBar.foreground": "#ffffff",
     "statusBar.noFolderBackground": "#005f5f",
+    "statusBarItem.hoverBackground": "#00fe00",
+    "statusBarItem.remoteBackground": "#32ff32",
+    "statusBarItem.remoteForeground": "#15202b",
     "tab.activeBorder": "#00ffff",
-    "tab.activeBorderTop": "#026262"
+    "tab.activeBorderTop": "#026262",
+    "titleBar.activeBackground": "#32ff32",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveBackground": "#32ff3299",
+    "titleBar.inactiveForeground": "#15202b99"
   },
   "workbench.colorTheme": "Default Dark+",
   "workbench.editor.showTabs": "single",

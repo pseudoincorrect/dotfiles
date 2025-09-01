@@ -164,6 +164,11 @@
     "command": "workbench.action.quickOpen"
   },
   {
+    "key": "ctrl+d",
+    "command": "workbench.action.quickOpenNavigateNextInFilePicker",
+    "when": "inFilesPicker && inQuickOpen"
+  },
+  {
     "command": "history.showNext",
     "key": "ctrl+down",
     "when": "inChat"
@@ -180,6 +185,11 @@
   {
     "key": "ctrl+e",
     "command": "projectManager.listProjectsNewWindow"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "-workbench.action.quickOpenNavigateNextInFilePicker",
+    "when": "inFilesPicker && inQuickOpen"
   },
   {
     "key": "ctrl+end",
@@ -421,6 +431,11 @@
     "command": "workbench.action.showCommands"
   },
   {
+    "key": "ctrl+p",
+    "command": "-workbench.action.quickOpenNavigateNextInFilePicker",
+    "when": "inFilesPicker && inQuickOpen"
+  },
+  {
     "key": "ctrl+q",
     "command": "-workbench.action.quit"
   },
@@ -515,6 +530,11 @@
     "when": "!terminalFocus"
   },
   {
+    "key": "ctrl+shift+d",
+    "command": "workbench.action.quickOpenNavigatePreviousInFilePicker",
+    "when": "inFilesPicker && inQuickOpen"
+  },
+  {
     "key": "ctrl+shift+down",
     "command": "-editor.action.insertCursorBelow",
     "when": "editorTextFocus"
@@ -527,6 +547,11 @@
   {
     "key": "ctrl+shift+e",
     "command": "projectManager.listProjects"
+  },
+  {
+    "key": "ctrl+shift+e",
+    "command": "-workbench.action.quickOpenNavigatePreviousInFilePicker",
+    "when": "inFilesPicker && inQuickOpen"
   },
   {
     "key": "ctrl+shift+end",
@@ -579,9 +604,19 @@
     "command": "-regexSearch.searchInFolder"
   },
   {
+    "key": "ctrl+shift+p",
+    "command": "-workbench.action.quickOpenNavigatePreviousInFilePicker",
+    "when": "inFilesPicker && inQuickOpen"
+  },
+  {
     "key": "ctrl+shift+r",
     "command": "workbench.action.quickOpenLeastRecentlyUsedEditorInGroup",
     "when": "!activeEditorGroupEmpty"
+  },
+  {
+    "key": "ctrl+shift+space",
+    "command": "workbench.action.quickOpenNavigatePreviousInFilePicker",
+    "when": "inFilesPicker && inQuickOpen"
   },
   {
     "key": "ctrl+shift+up",
@@ -603,17 +638,23 @@
     "when": "inQuickInput && quickInputType == 'quickPick'"
   },
   {
+    "key": "ctrl+space",
+    "command": "workbench.action.quickOpenNavigateNextInFilePicker",
+    "when": "inFilesPicker && inQuickOpen"
+  },
+  {
     "key": "ctrl+t",
     "command": "-workbench.action.showAllSymbols"
   },
   {
     "key": "ctrl+t",
-    "command": "workbench.action.quickOpenTerm"
+    "command": "workbench.action.terminal.focusNext",
+    "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
   },
   {
     "key": "ctrl+t",
-    "command": "workbench.action.terminal.focusNext",
-    "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
+    "command": "workbench.action.terminal.focus",
+    "when": "!terminalFocus && terminalHasBeenCreated || !terminalFocus && terminalProcessSupported"
   },
   {
     "key": "ctrl+u",
@@ -709,6 +750,11 @@
     "key": "enter",
     "command": "-workbench.action.edits.submit",
     "when": "chatInputHasText"
+  },
+  {
+    "key": "escape",
+    "command": "workbench.action.focusLastEditorGroup",
+    "when": "terminalFocus || filesExplorerFocus"
   },
   {
     "key": "f1",

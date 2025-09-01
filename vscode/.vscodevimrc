@@ -26,6 +26,12 @@ noremap gh ^
 noremap ge G
 nnoremap ga ggVG
 
+" Make j and k work on wrapped lines (visual lines)
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+
 " map V in Visual-Line to j for better navigation
 vnoremap V j
 vnoremap v k
