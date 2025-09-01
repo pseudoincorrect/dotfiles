@@ -476,6 +476,16 @@
     "command": "editor.action.toggleWordWrap"
   },
   {
+    "key": "ctrl+s",
+    "command": "extension.multiCommand.execute",
+    "args": {
+      "sequence": [
+        "extension.vim_escape",
+        "workbench.action.files.save"
+      ]
+    }
+  },
+  {
     "key": "ctrl+shift+'",
     "command": "editor.action.insertCursorAbove",
     "when": "editorTextFocus"
@@ -582,6 +592,10 @@
     "key": "ctrl+shift+z",
     "command": "editor.action.insertCursorAbove",
     "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+space",
+    "command": "workbench.action.quickOpen"
   },
   {
     "key": "ctrl+space",
