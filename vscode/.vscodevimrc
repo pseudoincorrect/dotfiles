@@ -4,8 +4,7 @@ set ignorecase
 set smartcase
 set clipboard+=unnamed
 
-" set <leader> to <space>
-" let mapleader = " " 
+" <leader> has to be setting in vscode setting
 
 " Remap d to delete without yanking (using black hole register)
 nnoremap d "_d
@@ -25,55 +24,34 @@ vnoremap U <C-r>
 noremap gl g_
 noremap gh ^
 noremap ge G
-nnoremap ga ggvG
+nnoremap ga ggVG
 
 " map V in Visual-Line to j for better navigation
 vnoremap V j
 vnoremap v k
-nnoremap <leader>v V
 
 " Easier macros repetition
 nnoremap Q @q
 
-" Remap easymotion word start
-nnoremap f <leader><leader>s
-vnoremap f <leader><leader>s
-nnoremap s <leader><leader><leader>bdw
-vnoremap s <leader><leader><leader>bdw
-
 " motions 1/2 page up and down
-nnoremap <C-j> <C-d>
-inoremap <C-j> <ESC><C-d>
-vnoremap <C-j> 10j
-nnoremap <C-k> <C-u>
-inoremap <C-k> <ESC><C-u>
-vnoremap <C-k> 10k
-
-" Map new line
-nnoremap <leader>j o<ESC>k
-nnoremap <leader>k O<ESC>j
+nnoremap f <C-d>
+vnoremap f 10j
+nnoremap s <C-u>
+vnoremap s 10k
 
 "  to clipboard
-vnoremap <leader>y  "+y
-nnoremap <leader>Y  "+yg_
-nnoremap <leader>y  "+y
-nnoremap <leader>yy  "+yy
+vnoremap y  "+y
+nnoremap Y  "+yg_
+nnoremap y  "+y
+nnoremap yy  "+yy
 
 " Paste from clipboard
-nnoremap <leader>p "+p
-nnoremap <leader>P "+P
-vnoremap <leader>p "+p
-vnoremap <leader>P "+P
+nnoremap p "+p
+nnoremap P "+P
+vnoremap p "+p
 
-" Remap Hover
-nnoremap <leader>, gh
-
-" Surround
-" Add desired surround around text defined by <motion>
-"   y s <motion> <desired>
-" Delete existing surround
-"   d s <existing>
-" Change existing surround to desired
-"   c s <existing> <desired>
-" Surround when in visual modes (surrounds full selection)
-"   S <desired>
+" Surround 
+" Delete surrounding characters       ds<char>          ds" to delete surrounding quotes
+" Add surrounding characters          ys<motion><char>  ysiw" to surround inner word with quotes
+" Change surrounding characters       cs<old><new>      cs"' to change " to '
+" Surround selection in visual mode   S<char>           S" to surround selection with quotes
