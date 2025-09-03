@@ -146,27 +146,16 @@
   },
   {
     "key": "ctrl+b",
-    "command": "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
-    "when": "!activeEditorGroupEmpty && !terminalFocus"
-  },
-  {
-    "key": "ctrl+b",
-    "command": "workbench.action.quickOpenNavigateNextInEditorPicker",
-    "when": "inEditorsPicker && inQuickOpen"
-  },
-  {
-    "key": "ctrl+b",
-    "command": "workbench.action.quickOpenNavigateNextInRecentFilesPicker",
-    "when": "inQuickOpen && inRecentFilesPicker"
-  },
-  {
-    "key": "ctrl+d",
     "command": "workbench.action.quickOpen"
   },
   {
-    "key": "ctrl+d",
+    "key": "ctrl+b",
     "command": "workbench.action.quickOpenNavigateNextInFilePicker",
     "when": "inFilesPicker && inQuickOpen"
+  },
+  {
+    "key": "ctrl+d",
+    "command": "quickFind.searchFiles"
   },
   {
     "command": "history.showNext",
@@ -216,11 +205,7 @@
   },
   {
     "key": "ctrl+f",
-    "command": "regexSearch.searchInFile"
-  },
-  {
-    "key": "ctrl+g ctrl+/",
-    "command": "regexSearch.searchInFolder"
+    "command": "quickFind.searchInFile"
   },
   {
     "key": "ctrl+g ctrl+b",
@@ -238,8 +223,7 @@
   },
   {
     "key": "ctrl+g ctrl+g",
-    "command": "editor.action.revealDefinition",
-    "when": "editorHasDefinitionProvider && editorTextFocus"
+    "command": "quickFind.searchInFolder"
   },
   {
     "key": "ctrl+g ctrl+h",
@@ -404,6 +388,18 @@
     ]
   },
   {
+    "key": "ctrl+k ctrl+f",
+    "command": "-quickFind.searchFiles"
+  },
+  {
+    "key": "ctrl+k ctrl+g",
+    "command": "-quickFind.searchInFolder"
+  },
+  {
+    "key": "ctrl+k ctrl+t",
+    "command": "-quickFind.searchInFile"
+  },
+  {
     "key": "ctrl+l",
     "command": "jumpy2.toggle",
     "when": "editorFocus"
@@ -525,14 +521,14 @@
     "when": "inQuickOpen && inRecentFilesPicker"
   },
   {
+    "key": "ctrl+shift+b",
+    "command": "workbench.action.quickOpenNavigatePreviousInFilePicker",
+    "when": "inFilesPicker && inQuickOpen"
+  },
+  {
     "key": "ctrl+shift+c",
     "command": "-workbench.action.terminal.openNativeConsole",
     "when": "!terminalFocus"
-  },
-  {
-    "key": "ctrl+shift+d",
-    "command": "workbench.action.quickOpenNavigatePreviousInFilePicker",
-    "when": "inFilesPicker && inQuickOpen"
   },
   {
     "key": "ctrl+shift+down",
@@ -557,10 +553,6 @@
     "key": "ctrl+shift+end",
     "command": "-cursorBottomSelect",
     "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+shift+f",
-    "command": "-regexSearch.searchInFile"
   },
   {
     "key": "ctrl+shift+home",
@@ -598,10 +590,6 @@
     "key": "ctrl+shift+n",
     "command": "editor.action.previousMatchFindAction",
     "when": "editorFocus"
-  },
-  {
-    "key": "ctrl+shift+p",
-    "command": "-regexSearch.searchInFolder"
   },
   {
     "key": "ctrl+shift+p",
