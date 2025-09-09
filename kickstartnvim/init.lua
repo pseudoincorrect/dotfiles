@@ -5,183 +5,10 @@ vim.g.maplocalleader = ' '
 -- Nerd Font support
 vim.g.have_nerd_font = true
 
--- [[ Vim Options ]]
-vim.opt.number = false
-vim.opt.relativenumber = false
-vim.opt.mouse = 'a'
-vim.opt.showmode = false
-vim.opt.breakindent = true
-vim.opt.undofile = true
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.hlsearch = false
-vim.opt.incsearch = true
-vim.opt.signcolumn = 'yes'
-vim.opt.updatetime = 250
-vim.opt.timeoutlen = 300
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-vim.opt.list = true
-vim.opt.listchars = { tab = '│ ', trail = '·', nbsp = '␣' }
-vim.opt.inccommand = 'split'
-vim.opt.cursorline = true
-vim.opt.scrolloff = 17
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.tabstop = 2
-vim.opt.expandtab = true
-vim.opt.textwidth = 0
-vim.opt.wrapmargin = 0
-vim.opt.wrap = true
-vim.opt.linebreak = true
-vim.opt.winbar = '  📄  %f'
-vim.opt.cmdheight = 1
-vim.opt.swapfile = false
-vim.opt.autowrite = true
-vim.opt.autoread = true
-
--- Window appearance and borders
-vim.opt.fillchars = {
-  horiz = '━',
-  horizup = '┻',
-  horizdown = '┳',
-  vert = '┃',
-  vertleft = '┫',
-  vertright = '┣',
-  verthoriz = '╋',
-}
-vim.opt.laststatus = 3 -- Global statusline
-vim.opt.winbar = '  📄  %f'
-
--- Sync clipboard after UI loads
-vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
-end)
-
--- Window management (Ctrl+w equivalents)
-vim.keymap.set('n', '<leader>wh', '<C-w>h', { desc = 'Move to left window' })
-vim.keymap.set('n', '<leader>wl', '<C-w>l', { desc = 'Move to right window' })
-vim.keymap.set('n', '<leader>wj', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<leader>wk', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-vim.keymap.set('n', '<leader>ww', '<C-w>w', { desc = 'Switch to next window' })
-vim.keymap.set('n', '<leader>wp', '<C-w>p', { desc = 'Switch to previous window' })
-vim.keymap.set('n', '<leader>wv', '<C-w>v', { desc = 'Split window vertically' })
-vim.keymap.set('n', '<leader>ws', '<C-w>s', { desc = 'Split window horizontally' })
-vim.keymap.set('n', '<leader>wc', ':bd<CR>', { desc = 'Close current buffer' })
-vim.keymap.set('n', '<leader>wo', '<C-w>o', { desc = 'Close all other windows' })
-vim.keymap.set('n', '<leader>wq', '<C-w>q', { desc = 'Quit current window' })
-vim.keymap.set('n', '<leader>w=', '<C-w>=', { desc = 'Equalize window sizes' })
-vim.keymap.set('n', '<leader>w+', '<C-w>+', { desc = 'Increase window height' })
-vim.keymap.set('n', '<leader>w-', '<C-w>-', { desc = 'Decrease window height' })
-vim.keymap.set('n', '<leader>w<', '<C-w><', { desc = 'Decrease window width' })
-vim.keymap.set('n', '<leader>w>', '<C-w>>', { desc = 'Increase window width' })
-vim.keymap.set('n', '<leader>wT', '<C-w>T', { desc = 'Move window to new tab' })
-vim.keymap.set('n', '<leader>wr', '<C-w>r', { desc = 'Rotate windows' })
-vim.keymap.set('n', '<leader>wR', '<C-w>R', { desc = 'Rotate windows reverse' })
-vim.keymap.set('n', '<leader>wx', '<C-w>x', { desc = 'Exchange windows' })
-
--- File operations
-vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true, silent = true, desc = 'Save the current file' })
-vim.api.nvim_set_keymap('i', '<C-s>', '<Esc>:w<CR>', { noremap = true, silent = true, desc = 'Save the current file' })
-vim.keymap.set('n', '<leader>t', ':vert term<CR>', { noremap = true, silent = true, desc = '[O]pen a terminal in vsplit' })
-
--- Yanky keybindings
-vim.keymap.set({ 'n', 'x' }, 'p', '<Plug>(YankyPutAfter)')
-vim.keymap.set({ 'n', 'x' }, 'P', '<Plug>(YankyPutBefore)')
-vim.keymap.set({ 'n', 'x' }, 'gp', '<Plug>(YankyGPutAfter)')
-vim.keymap.set({ 'n', 'x' }, 'gP', '<Plug>(YankyGPutBefore)')
-vim.keymap.set('n', '<c-p>', '<Plug>(YankyPreviousEntry)')
-vim.keymap.set('n', '<c-n>', '<Plug>(YankyNextEntry)')
-
--- NeoTree
-vim.keymap.set('n', '<leader>ee', '<Esc>:Neotree toggle<CR>', { noremap = true, desc = 'Open NeoTree files [E]xplor[E]r' })
-vim.keymap.set('n', '<leader>eb', '<Esc>:Neotree toggle source=buffers<CR>', { noremap = true, desc = 'Open NeoTree [E]xplore [B]uffers' })
-
--- Custom mappings
-vim.keymap.set('n', 'w', 'ciw', { desc = 'change word under cursor' })
-
--- Ensure Escape works to exit insert mode
-vim.keymap.set('i', '<Esc>', '<Esc>', { noremap = true, silent = true })
-
--- Delete without yanking
-vim.keymap.set({ 'n', 'v' }, 'd', '"_d', { desc = 'Delete without yanking' })
-vim.keymap.set({ 'n', 'v' }, 'x', '"_x', { desc = 'Delete character without yanking' })
-vim.keymap.set({ 'n', 'v' }, 'c', '"_c', { desc = 'Change without yanking' })
-
--- Better defaults
-vim.keymap.set({ 'n', 'v' }, 'U', '<C-r>', { desc = 'Redo' })
-vim.keymap.set({ 'n', 'v' }, 'gl', 'g_', { desc = 'Go to end of line' })
-vim.keymap.set({ 'n', 'v' }, 'gh', '^', { desc = 'Go to beginning of line' })
-vim.keymap.set({ 'n', 'v' }, 'ge', 'G', { desc = 'Go to end of file' })
-vim.keymap.set('n', 'ga', 'ggVG', { desc = 'Select all' })
-
--- Visual mode enhancements
-vim.keymap.set('v', 'V', 'j', { desc = 'Move down in visual mode' })
-vim.keymap.set('v', 'v', 'k', { desc = 'Move up in visual mode' })
-vim.keymap.set('n', '<leader>v', 'V', { desc = 'Enter visual line mode' })
-
--- macro recording and playback
-vim.keymap.set('n', 'Q', '@q', { desc = 'Repeat q macro' })
-
--- Scroll navigation
-vim.keymap.set('n', 'f', '<C-d>', { desc = 'Half page down' })
-vim.keymap.set('n', 's', '<C-u>', { desc = 'Half page up' })
-
--- Line manipulation
-vim.keymap.set('n', '<leader>o', 'o<Esc>k', { desc = 'Insert line below and stay' })
-vim.keymap.set('n', '<leader>O', 'O<Esc>j', { desc = 'Insert line above and stay' })
-
--- System clipboard
-vim.keymap.set('v', '<leader>y', '"+y', { desc = 'Yank to system clipboard' })
-vim.keymap.set('n', '<leader>Y', '"+yg_', { desc = 'Yank line to system clipboard' })
-vim.keymap.set('n', '<leader>y', '"+y', { desc = 'Yank to system clipboard' })
-vim.keymap.set('n', '<leader>yy', '"+yy', { desc = 'Yank entire line to system clipboard' })
-vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p', { desc = 'Paste from system clipboard' })
-vim.keymap.set({ 'n', 'v' }, '<leader>P', '"+P', { desc = 'Paste before from system clipboard' })
-
--- LSP
-vim.keymap.set('n', '<leader>,', vim.lsp.buf.hover, { desc = 'LSP Hover' })
-
--- Plugin-specific
-vim.keymap.set('n', '<leader>cs', '<cmd>AerialNavToggle<CR>', { desc = '[C]ode [S]ymbols (Aerial)' })
-
--- Autocommands
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
-
--- Window border and distinction settings
-vim.api.nvim_create_autocmd({ 'WinEnter', 'BufWinEnter' }, {
-  desc = 'Highlight active window border',
-  group = vim.api.nvim_create_augroup('window-distinction', { clear = true }),
-  callback = function()
-    vim.wo.winhighlight = 'Normal:Normal,NormalNC:NormalNC'
-  end,
-})
-
-vim.api.nvim_create_autocmd('WinLeave', {
-  desc = 'Dim inactive window',
-  group = vim.api.nvim_create_augroup('window-distinction', { clear = false }),
-  callback = function()
-    vim.wo.winhighlight = 'Normal:NormalNC,NormalNC:NormalNC'
-  end,
-})
-
--- Set up window borders for floating windows
-vim.api.nvim_create_autocmd('ColorScheme', {
-  desc = 'Set window border colors',
-  group = vim.api.nvim_create_augroup('window-borders', { clear = true }),
-  callback = function()
-    vim.api.nvim_set_hl(0, 'FloatBorder', { fg = '#00ff00', bg = 'NONE' })
-    vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#1a1b26' })
-    vim.api.nvim_set_hl(0, 'NormalNC', { bg = '#16161e' })
-    vim.api.nvim_set_hl(0, 'WinSeparator', { fg = '#00ff00', bg = 'NONE' })
-  end,
-})
+-- Load configuration modules
+require('config.options').setup()
+require('config.keymaps').setup()
+require('config.autocmds').setup()
 
 -- Lazy.nvim setup
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -343,6 +170,29 @@ require('lazy').setup(
           end,
           desc = 'Toggle Flash Search',
         },
+      },
+    },
+
+    -- Vim-surround for text object manipulation
+    {
+      'kylechui/nvim-surround',
+      version = '*',
+      event = 'VeryLazy',
+      config = function()
+        require('nvim-surround').setup({})
+      end,
+    },
+
+    -- Session persistence
+    {
+      'folke/persistence.nvim',
+      event = 'BufReadPre',
+      opts = {},
+      keys = {
+        { '<leader>qs', function() require('persistence').load() end, desc = 'Restore Session' },
+        { '<leader>qS', function() require('persistence').select() end, desc = 'Select Session' },
+        { '<leader>ql', function() require('persistence').load({ last = true }) end, desc = 'Restore Last Session' },
+        { '<leader>qd', function() require('persistence').stop() end, desc = 'Don\'t Save Current Session' },
       },
     },
 

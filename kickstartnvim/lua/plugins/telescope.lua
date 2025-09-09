@@ -6,6 +6,7 @@ return {
   dependencies = {
     'nvim-lua/plenary.nvim',
     'debugloop/telescope-undo.nvim',
+    'nvim-telescope/telescope-live-grep-args.nvim',
     {
       'nvim-telescope/telescope-fzf-native.nvim',
       build = 'make',
@@ -36,12 +37,22 @@ return {
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),
         },
+        live_grep_args = {
+          auto_quoting = true, -- enable/disable auto-quoting
+          mappings = {
+            i = {
+              ['<C-k>'] = require('telescope-live-grep-args.actions').quote_prompt(),
+              ['<C-i>'] = require('telescope-live-grep-args.actions').quote_prompt({ postfix = ' --iglob ' }),
+            },
+          },
+        },
       },
     }
 
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
     pcall(require('telescope').load_extension, 'undo')
+    pcall(require('telescope').load_extension, 'live_grep_args')
 
     local builtin = require 'telescope.builtin'
     vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
@@ -60,7 +71,9 @@ return {
       builtin.buffers { path_display = { 'truncate' }, sort_lastused = true }
     end, { desc = 'Search [B]uffers' })
     vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find, { desc = 'Grep Buffer' })
-    vim.keymap.set('n', '<leader>?', builtin.live_grep, { desc = 'Grep Repo' })
+    vim.keymap.set('n', '<leader>?', function()
+      require('telescope').extensions.live_grep_args.live_grep_args()
+    end, { desc = 'Grep Repo (with args)' })
     vim.keymap.set('n', '<leader>*', builtin.grep_string, { desc = 'Search current word' })
     vim.keymap.set('n', '<leader>sn', function()
       builtin.find_files { cwd = vim.fn.stdpath 'config' }

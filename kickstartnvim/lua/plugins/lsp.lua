@@ -43,6 +43,7 @@ return {
 
         map('<leader>cr', vim.lsp.buf.rename, 'Code [R]ename')
         map('<leader>ca', vim.lsp.buf.code_action, 'Code [A]ction', { 'n', 'x' })
+        map('<leader>cf', vim.lsp.buf.format, 'Code [F]ormat')
         map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
         local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -92,10 +93,10 @@ return {
     -- Enable the following language servers
     -- Add/remove LSPs below. See :help lspconfig-all for available servers. Override settings as needed.
     local servers = {
-      -- clangd = {},
+      clangd = {},
       gopls = {},
       pyright = {},
-      -- rust_analyzer = {},
+      rust_analyzer = {},
       -- ... See :help lspconfig-all for more servers. For TypeScript, consider typescript-tools.nvim or ts_ls.
 
       lua_ls = {

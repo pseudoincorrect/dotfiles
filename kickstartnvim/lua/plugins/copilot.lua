@@ -18,11 +18,9 @@ return {
     end, { expr = true, replace_keycodes = false })
 
     -- Navigate suggestions (using different keys since C-l/C-h don't work)
-    vim.keymap.set('i', '<C-S-k>', '<Plug>(copilot-next)', { desc = 'Copilot next suggestion' })
+    vim.keymap.set('i', '<C-j>', '<Plug>(copilot-next)', { desc = 'Copilot next suggestion' })
     vim.keymap.set('i', '<C-k>', '<Plug>(copilot-previous)', { desc = 'Copilot previous suggestion' })
     vim.keymap.set('i', '<C-e>', '<Plug>(copilot-suggest)', { desc = 'Copilot suggest' })
-
-    -- Dismiss Copilot suggestion
     vim.keymap.set('i', '<C-d>', '<Plug>(copilot-dismiss)', { desc = 'Copilot dismiss' })
 
     -- Toggle Copilot ON/OFF
