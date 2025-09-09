@@ -1,0 +1,24 @@
+version: '3'
+
+tasks:
+  install-stylua:
+    desc: Install stylua formatter via cargo
+    cmd: cargo install stylua
+
+  format:
+    desc: Format all Lua files in the repository
+    deps: [check-stylua]
+    cmd: stylua .
+
+  check-stylua:
+    desc: Check if stylua is available, install if not
+    cmd: |
+      if ! command -v stylua &> /dev/null; then
+        echo "stylua not found. Installing via cargo..."
+        cargo install stylua
+      fi
+
+  format-check:
+    desc: Check formatting without making changes
+    deps: [check-stylua]
+    cmd: stylua --check .

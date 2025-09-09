@@ -42,7 +42,7 @@ return {
           mappings = {
             i = {
               ['<C-k>'] = require('telescope-live-grep-args.actions').quote_prompt(),
-              ['<C-i>'] = require('telescope-live-grep-args.actions').quote_prompt({ postfix = ' --iglob ' }),
+              ['<C-i>'] = require('telescope-live-grep-args.actions').quote_prompt { postfix = ' --iglob ' },
             },
           },
         },
