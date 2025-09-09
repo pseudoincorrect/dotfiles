@@ -55,10 +55,10 @@ return {
     vim.keymap.set('n', '<leader>st', builtin.colorscheme, { desc = '[S]earch [T]hemes' })
     vim.keymap.set('n', '<leader>sj', builtin.jumplist, { desc = '[S] Find [J]umplist' })
     vim.keymap.set('n', 'U', '<cmd>Telescope undo<cr>', { desc = 'Find [U]ndo' })
-    vim.keymap.set('n', '<leader>f', builtin.find_files, { desc = '[S]earch [F]iles' })
+    vim.keymap.set('n', '<leader>f', builtin.find_files, { desc = 'Search [F]iles' })
     vim.keymap.set('n', '<leader>b', function()
       builtin.buffers { path_display = { 'truncate' }, sort_lastused = true }
-    end, { desc = 'Find existing buffers' })
+    end, { desc = 'Search [B]uffers' })
     vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find, { desc = 'Grep Buffer' })
     vim.keymap.set('n', '<leader>?', builtin.live_grep, { desc = 'Grep Repo' })
     vim.keymap.set('n', '<leader>*', builtin.grep_string, { desc = 'Search current word' })

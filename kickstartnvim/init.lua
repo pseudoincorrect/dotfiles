@@ -58,17 +58,6 @@ vim.schedule(function()
   vim.opt.clipboard = 'unnamedplus'
 end)
 
--- [[ Keymaps ]]
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-vim.keymap.set('n', '<leader>cd', vim.diagnostic.setloclist, { desc = 'Open [D]iagnostic quickfix list' })
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
--- Window navigation
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-S-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-S-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
 -- Window management (Ctrl+w equivalents)
 vim.keymap.set('n', '<leader>wh', '<C-w>h', { desc = 'Move to left window' })
 vim.keymap.set('n', '<leader>wl', '<C-w>l', { desc = 'Move to right window' })
@@ -78,7 +67,7 @@ vim.keymap.set('n', '<leader>ww', '<C-w>w', { desc = 'Switch to next window' })
 vim.keymap.set('n', '<leader>wp', '<C-w>p', { desc = 'Switch to previous window' })
 vim.keymap.set('n', '<leader>wv', '<C-w>v', { desc = 'Split window vertically' })
 vim.keymap.set('n', '<leader>ws', '<C-w>s', { desc = 'Split window horizontally' })
-vim.keymap.set('n', '<leader>wc', '<C-w>c', { desc = 'Close current window' })
+vim.keymap.set('n', '<leader>wc', ':bd<CR>', { desc = 'Close current buffer' })
 vim.keymap.set('n', '<leader>wo', '<C-w>o', { desc = 'Close all other windows' })
 vim.keymap.set('n', '<leader>wq', '<C-w>q', { desc = 'Quit current window' })
 vim.keymap.set('n', '<leader>w=', '<C-w>=', { desc = 'Equalize window sizes' })
@@ -94,7 +83,7 @@ vim.keymap.set('n', '<leader>wx', '<C-w>x', { desc = 'Exchange windows' })
 -- File operations
 vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true, silent = true, desc = 'Save the current file' })
 vim.api.nvim_set_keymap('i', '<C-s>', '<Esc>:w<CR>', { noremap = true, silent = true, desc = 'Save the current file' })
-vim.keymap.set('n', '<leader>o', ':vert term<CR>', { noremap = true, silent = true, desc = '[O]pen a terminal in vsplit' })
+vim.keymap.set('n', '<leader>t', ':vert term<CR>', { noremap = true, silent = true, desc = '[O]pen a terminal in vsplit' })
 
 -- Yanky keybindings
 vim.keymap.set({ 'n', 'x' }, 'p', '<Plug>(YankyPutAfter)')
@@ -111,16 +100,19 @@ vim.keymap.set('n', '<leader>eb', '<Esc>:Neotree toggle source=buffers<CR>', { n
 -- Custom mappings
 vim.keymap.set('n', 'w', 'ciw', { desc = 'change word under cursor' })
 
+-- Ensure Escape works to exit insert mode
+vim.keymap.set('i', '<Esc>', '<Esc>', { noremap = true, silent = true })
+
 -- Delete without yanking
-vim.keymap.set({'n', 'v'}, 'd', '"_d', { desc = 'Delete without yanking' })
-vim.keymap.set({'n', 'v'}, 'x', '"_x', { desc = 'Delete character without yanking' })
-vim.keymap.set({'n', 'v'}, 'c', '"_c', { desc = 'Change without yanking' })
+vim.keymap.set({ 'n', 'v' }, 'd', '"_d', { desc = 'Delete without yanking' })
+vim.keymap.set({ 'n', 'v' }, 'x', '"_x', { desc = 'Delete character without yanking' })
+vim.keymap.set({ 'n', 'v' }, 'c', '"_c', { desc = 'Change without yanking' })
 
 -- Better defaults
-vim.keymap.set({'n', 'v'}, 'U', '<C-r>', { desc = 'Redo' })
-vim.keymap.set({'n', 'v'}, 'gl', 'g_', { desc = 'Go to end of line' })
-vim.keymap.set({'n', 'v'}, 'gh', '^', { desc = 'Go to beginning of line' })
-vim.keymap.set({'n', 'v'}, 'ge', 'G', { desc = 'Go to end of file' })
+vim.keymap.set({ 'n', 'v' }, 'U', '<C-r>', { desc = 'Redo' })
+vim.keymap.set({ 'n', 'v' }, 'gl', 'g_', { desc = 'Go to end of line' })
+vim.keymap.set({ 'n', 'v' }, 'gh', '^', { desc = 'Go to beginning of line' })
+vim.keymap.set({ 'n', 'v' }, 'ge', 'G', { desc = 'Go to end of file' })
 vim.keymap.set('n', 'ga', 'ggVG', { desc = 'Select all' })
 
 -- Visual mode enhancements
@@ -131,25 +123,21 @@ vim.keymap.set('n', '<leader>v', 'V', { desc = 'Enter visual line mode' })
 -- macro recording and playback
 vim.keymap.set('n', 'Q', '@q', { desc = 'Repeat q macro' })
 
--- Scroll navigation 
-vim.keymap.set('n', '<C-j>', '<C-d>', { desc = 'Half page down' })
-vim.keymap.set('i', '<C-j>', '<Esc><C-d>', { desc = 'Half page down (from insert)' })
-vim.keymap.set('v', '<C-j>', '10j', { desc = 'Move 10 lines down' })
-vim.keymap.set('n', '<C-k>', '<C-u>', { desc = 'Half page up' })
-vim.keymap.set('i', '<C-k>', '<Esc><C-u>', { desc = 'Half page up (from insert)' })
-vim.keymap.set('v', '<C-k>', '10k', { desc = 'Move 10 lines up' })
+-- Scroll navigation
+vim.keymap.set('n', 'f', '<C-d>', { desc = 'Half page down' })
+vim.keymap.set('n', 's', '<C-u>', { desc = 'Half page up' })
 
 -- Line manipulation
-vim.keymap.set('n', '<leader>j', 'o<Esc>k', { desc = 'Insert line below and stay' })
-vim.keymap.set('n', '<leader>k', 'O<Esc>j', { desc = 'Insert line above and stay' })
+vim.keymap.set('n', '<leader>o', 'o<Esc>k', { desc = 'Insert line below and stay' })
+vim.keymap.set('n', '<leader>O', 'O<Esc>j', { desc = 'Insert line above and stay' })
 
 -- System clipboard
 vim.keymap.set('v', '<leader>y', '"+y', { desc = 'Yank to system clipboard' })
 vim.keymap.set('n', '<leader>Y', '"+yg_', { desc = 'Yank line to system clipboard' })
 vim.keymap.set('n', '<leader>y', '"+y', { desc = 'Yank to system clipboard' })
 vim.keymap.set('n', '<leader>yy', '"+yy', { desc = 'Yank entire line to system clipboard' })
-vim.keymap.set({'n', 'v'}, '<leader>p', '"+p', { desc = 'Paste from system clipboard' })
-vim.keymap.set({'n', 'v'}, '<leader>P', '"+P', { desc = 'Paste before from system clipboard' })
+vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p', { desc = 'Paste from system clipboard' })
+vim.keymap.set({ 'n', 'v' }, '<leader>P', '"+P', { desc = 'Paste before from system clipboard' })
 
 -- LSP
 vim.keymap.set('n', '<leader>,', vim.lsp.buf.hover, { desc = 'LSP Hover' })
@@ -207,196 +195,234 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup({
-  -- tpope/vim-sleuth is a plugin that automatically detects the indentation style of the file.
-  'tpope/vim-sleuth',
-
-  -- gitsigns is a plugin that shows git changes in the sign column.
+require('lazy').setup(
   {
-    'lewis6991/gitsigns.nvim',
-    opts = {
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
-    },
-  },
+    -- tpope/vim-sleuth is a plugin that automatically detects the indentation style of the file.
+    'tpope/vim-sleuth',
 
-  -- Plugin for debugging Neovim Lua code
-  {
-    'folke/lazydev.nvim',
-    ft = 'lua',
-    opts = {
-      library = {
-        { path = 'luvit-meta/library', words = { 'vim%.uv' } },
-      },
-    },
-  },
-
-  -- luvit-meta is a plugin that provides a Lua library for Luvit, a Node.js-like runtime for Lua.
-  { 'Bilal2453/luvit-meta', lazy = true },
+    -- gitsigns is a plugin that shows git changes in the sign column.
     {
-    'stevearc/conform.nvim',
-    event = { 'BufWritePre' },
-    cmd = { 'ConformInfo' },
-    opts = {
-      notify_on_error = false,
-      format_on_save = function(bufnr)
-        local disable_filetypes = { c = true, cpp = true }
-        local lsp_format_opt
-        if disable_filetypes[vim.bo[bufnr].filetype] then
-          lsp_format_opt = 'never'
-        else
-          lsp_format_opt = 'fallback'
-        end
-        return {
-          timeout_ms = 500,
-          lsp_format = lsp_format_opt,
+      'lewis6991/gitsigns.nvim',
+      opts = {
+        signs = {
+          add = { text = '+' },
+          change = { text = '~' },
+          delete = { text = '_' },
+          topdelete = { text = '‾' },
+          changedelete = { text = '~' },
+        },
+      },
+    },
+
+    -- Plugin for debugging Neovim Lua code
+    {
+      'folke/lazydev.nvim',
+      ft = 'lua',
+      opts = {
+        library = {
+          { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+        },
+      },
+    },
+
+    -- luvit-meta is a plugin that provides a Lua library for Luvit, a Node.js-like runtime for Lua.
+    { 'Bilal2453/luvit-meta', lazy = true },
+    {
+      'stevearc/conform.nvim',
+      event = { 'BufWritePre' },
+      cmd = { 'ConformInfo' },
+      opts = {
+        notify_on_error = false,
+        format_on_save = function(bufnr)
+          local disable_filetypes = { c = true, cpp = true }
+          local lsp_format_opt
+          if disable_filetypes[vim.bo[bufnr].filetype] then
+            lsp_format_opt = 'never'
+          else
+            lsp_format_opt = 'fallback'
+          end
+          return {
+            timeout_ms = 500,
+            lsp_format = lsp_format_opt,
+          }
+        end,
+        formatters_by_ft = {
+          lua = { 'stylua' },
+          javascript = { 'prettierd', stop_after_first = true },
+          typescript = { 'prettierd', stop_after_first = true },
+        },
+      },
+    },
+
+    -- tokyonight.nvim colorscheme
+    {
+      'folke/tokyonight.nvim',
+      priority = 1000, -- Make sure to load this before all the other start plugins.
+      init = function()
+        -- Other styles: 'tokyonight-storm', 'tokyonight-moon', 'tokyonight-day'.
+        vim.cmd.colorscheme 'tokyonight-night'
+        vim.cmd.hi 'Comment gui=none'
+      end,
+    },
+
+    -- Highlight todo, notes, etc in comments
+    { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+
+    -- Highlight, edit, and navigate code
+    {
+      'nvim-treesitter/nvim-treesitter',
+      build = ':TSUpdate',
+      main = 'nvim-treesitter.configs',
+      opts = {
+        ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+        auto_install = true,
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = { 'ruby' },
+        },
+        indent = { enable = true, disable = { 'ruby' } },
+      },
+      config = function()
+        require('nvim-treesitter.configs').setup {
+          incremental_selection = {
+            enable = true,
+            keymaps = {
+              init_selection = 'ti',
+              node_incremental = 'tni',
+              scope_incremental = 'tsi',
+              node_decremental = 'tdd',
+            },
+          },
         }
       end,
-      formatters_by_ft = {
-        lua = { 'stylua' },
-        javascript = { 'prettierd', stop_after_first = true },
-        typescript = { 'prettierd', stop_after_first = true },
+    },
+
+    -- Flash motions
+    {
+      'folke/flash.nvim',
+      event = 'VeryLazy',
+      opts = { modes = { char = { enabled = false } } },
+      keys = {
+        {
+          't',
+          mode = { 'n', 'x', 'o' },
+          function()
+            require('flash').jump()
+          end,
+          desc = 'Flash',
+        },
+        {
+          'T',
+          mode = { 'n', 'x', 'o' },
+          function()
+            require('flash').treesitter()
+          end,
+          desc = 'Flash Treesitter',
+        },
+        {
+          'r',
+          mode = 'o',
+          function()
+            require('flash').remote()
+          end,
+          desc = 'Remote Flash',
+        },
+        {
+          'R',
+          mode = { 'o', 'x' },
+          function()
+            require('flash').treesitter_search()
+          end,
+          desc = 'Treesitter Search',
+        },
+        {
+          '<c-f>',
+          mode = { 'c' },
+          function()
+            require('flash').toggle()
+          end,
+          desc = 'Toggle Flash Search',
+        },
       },
     },
-  },
 
-  -- tokyonight.nvim colorscheme
-  {
-    'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    init = function()
-      -- Other styles: 'tokyonight-storm', 'tokyonight-moon', 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
-      vim.cmd.hi 'Comment gui=none'
-    end,
-  },
-
-  -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
-
-  -- Highlight, edit, and navigate code
-  { 
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    main = 'nvim-treesitter.configs', 
-    opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
-      auto_install = true,
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = { 'ruby' },
-      },
-      indent = { enable = true, disable = { 'ruby' } },
+    -- Auto session management
+    {
+      'rmagatti/auto-session',
+      lazy = false,
+      opts = { suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' } },
     },
-    config = function()
-      require('nvim-treesitter.configs').setup {
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = 'ti',
-            node_incremental = 'tni',
-            scope_incremental = 'tsi',
-            node_decremental = 'tdd',
+
+    -- Mini.move for moving text
+    {
+      'echasnovski/mini.move',
+      version = '*',
+      config = function()
+        require('mini.move').setup {
+          mappings = {
+            left = '<C-S-h>',
+            right = '<C-S-l>',
+            down = '<M-Down>',
+            up = '<M-Up>',
+            line_left = '<C-S-H>',
+            line_right = '<C-S-L>',
+            line_down = '<M-Down>',
+            line_up = '<M-Up>',
           },
-        },
-      }
-    end,
-  },
-
-  -- Flash motions
-  {
-    'folke/flash.nvim',
-    event = 'VeryLazy',
-    opts = { modes = { char = { enabled = false }, }, },
-    keys = {
-      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-      { "<c-f>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+        }
+      end,
     },
-  },
 
-  -- Auto session management
-  {
-    'rmagatti/auto-session',
-    lazy = false,
-    opts = { suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' } },
-  },
+    -- Yank history plugin
+    { 'gbprod/yanky.nvim', opts = {} },
 
-  -- Mini.move for moving text
-  {
-    'echasnovski/mini.move',
-    version = '*',
-    config = function()
-      require('mini.move').setup {
-        mappings = {
-          left = '<C-S-h>',
-          right = '<C-S-l>',
-          down = '<C-S-j>',
-          up = '<C-S-k>',
-          line_left = '<C-S-H>',
-          line_right = '<C-S-L>',
-          line_down = '<C-S-J>',
-          line_up = '<C-S-K>',
-        },
-      }
-    end,
-  },
-
-  -- Yank history plugin
-  { 'gbprod/yanky.nvim', opts = {} },
-
-  -- Code outline with Aerial
-  {
-    'stevearc/aerial.nvim',
-    opts = {},
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-      'nvim-tree/nvim-web-devicons',
+    -- Code outline with Aerial
+    {
+      'stevearc/aerial.nvim',
+      opts = {},
+      dependencies = {
+        'nvim-treesitter/nvim-treesitter',
+        'nvim-tree/nvim-web-devicons',
+      },
+      config = function()
+        require('aerial').setup {
+          on_attach = function(bufnr)
+            vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buffer = bufnr })
+            vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buffer = bufnr })
+          end,
+        }
+      end,
     },
-    config = function()
-      require('aerial').setup {
-        on_attach = function(bufnr)
-          vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buffer = bufnr })
-          vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buffer = bufnr })
-        end,
-      }
-    end,
+
+    -- TypeScript tools plugin
+    {
+      'pmizio/typescript-tools.nvim',
+      dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+      opts = {},
+    },
+
+    -- Scroll EOF plugin
+    {
+      'Aasim-A/scrollEOF.nvim',
+      event = { 'CursorMoved', 'WinScrolled' },
+      opts = {},
+    },
+
+    -- Plugin modules
+    require 'plugins.debug',
+    require 'plugins.indent_line',
+    require 'plugins.lint',
+    require 'plugins.autopairs',
+    require 'plugins.neo-tree',
+    require 'plugins.cmp',
+    require 'plugins.codecompanion',
+    require 'plugins.copilot',
+    require 'plugins.lsp',
+    require 'plugins.mini',
+    require 'plugins.multicursor',
+    require 'plugins.telescope',
+    require 'plugins.which-key',
   },
-
-  -- TypeScript tools plugin
-  {
-    'pmizio/typescript-tools.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
-    opts = {},
-  },
-
-  -- Scroll EOF plugin
-  {
-    'Aasim-A/scrollEOF.nvim',
-    event = { 'CursorMoved', 'WinScrolled' },
-    opts = {},
-  },
-
-  -- Plugin modules
-  require 'plugins.debug',
-  require 'plugins.indent_line',
-  require 'plugins.lint',
-  require 'plugins.autopairs',
-  require 'plugins.neo-tree',
-  require 'plugins.cmp',
-  require 'plugins.codecompanion',
-  require 'plugins.lsp',
-  require 'plugins.mini',
-  require 'plugins.telescope',
-  require 'plugins.which-key',
-
-}, 
--- Use default Nerd Font icons
-{ ui = { icons = {} } } )
+  -- Use default Nerd Font icons
+  { ui = { icons = {} } }
+)
