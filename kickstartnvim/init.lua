@@ -81,24 +81,6 @@ require('lazy').setup(
       },
     },
 
-    -- tokyonight.nvim colorscheme
-    {
-      'folke/tokyonight.nvim',
-      priority = 1000, -- Make sure to load this before all the other start plugins.
-      opts = {
-        transparent = true,
-        styles = {
-          sidebars = 'transparent',
-          floats = 'transparent',
-        },
-      },
-      init = function()
-        -- Other styles: 'tokyonight-storm', 'tokyonight-moon', 'tokyonight-day'.
-        vim.cmd.colorscheme 'tokyonight-night'
-        vim.cmd.hi 'Comment gui=none'
-      end,
-    },
-
     -- Highlight todo, notes, etc in comments
     { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
@@ -141,36 +123,20 @@ require('lazy').setup(
           desc = 'Flash',
         },
         {
-          '<C-S-l>',
+          's',
+          mode = { 'n', 'x', 'o' },
+          function()
+            require('flash').jump()
+          end,
+          desc = 'Flash',
+        },
+        {
+          'S',
           mode = { 'n', 'x', 'o' },
           function()
             require('flash').treesitter()
           end,
           desc = 'Flash Treesitter',
-        },
-        {
-          'r',
-          mode = 'o',
-          function()
-            require('flash').remote()
-          end,
-          desc = 'Remote Flash',
-        },
-        {
-          'R',
-          mode = { 'o', 'x' },
-          function()
-            require('flash').treesitter_search()
-          end,
-          desc = 'Treesitter Search',
-        },
-        {
-          '<c-f>',
-          mode = { 'c' },
-          function()
-            require('flash').toggle()
-          end,
-          desc = 'Toggle Flash Search',
         },
       },
     },
@@ -226,24 +192,6 @@ require('lazy').setup(
     -- Yank history plugin
     { 'gbprod/yanky.nvim', opts = {} },
 
-    -- Code outline with Aerial
-    {
-      'stevearc/aerial.nvim',
-      opts = {},
-      dependencies = {
-        'nvim-treesitter/nvim-treesitter',
-        'nvim-tree/nvim-web-devicons',
-      },
-      config = function()
-        require('aerial').setup {
-          on_attach = function(bufnr)
-            vim.keymap.set('n', '<C-k>', '<cmd>AerialPrev<CR>', { buffer = bufnr })
-            vim.keymap.set('n', '<C-j>', '<cmd>AerialNext<CR>', { buffer = bufnr })
-          end,
-        }
-      end,
-    },
-
     -- TypeScript tools plugin
     {
       'pmizio/typescript-tools.nvim',
@@ -271,7 +219,7 @@ require('lazy').setup(
             ['<C-l>'] = false,
           },
         }
-        vim.keymap.set('n', '<leader>l', '<CMD>Oil<CR>', { desc = 'Open Oil file explorer' })
+        vim.keymap.set('n', '<leader>eo', '<CMD>Oil<CR>', { desc = 'Open Oil file explorer' })
       end,
     },
 
@@ -303,11 +251,29 @@ require('lazy').setup(
       },
     },
 
+    -- autopairs
+    {
+      'windwp/nvim-autopairs',
+      event = 'InsertEnter',
+      dependencies = { 'hrsh7th/nvim-cmp' },
+      config = function()
+        require('nvim-autopairs').setup {}
+        local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
+        local cmp = require 'cmp'
+        cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+      end,
+    },
+
+    -- Add indentation guides even on blank lines
+    {
+      'lukas-reineke/indent-blankline.nvim',
+      main = 'ibl',
+      opts = {},
+    },
+
     -- Plugin modules
-    require 'plugins.debug',
-    require 'plugins.indent_line',
+    require 'plugins.themes',
     require 'plugins.lint',
-    require 'plugins.autopairs',
     require 'plugins.neo-tree',
     require 'plugins.cmp',
     require 'plugins.copilot',

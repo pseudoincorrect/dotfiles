@@ -37,12 +37,11 @@ return {
       },
     },
     spec = {
-      { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
-      { '<leader>r', group = '[R]ename' },
-      { '<leader>s', group = '[S]earch' },
-      { '<leader>d', group = '[D]ebug' },
-      { '<leader>e', group = 'N[E]otree' },
-      { '<leader>w', group = '[W]indow' },
+      { '<leader>c', group = 'Code', mode = { 'n', 'x' } },
+      { '<leader>r', group = 'Surround' },
+      { '<leader>s', group = 'Telescope' },
+      { '<leader>e', group = 'Explorer' },
+      { '<leader>w', group = 'Window' },
     },
   },
 }

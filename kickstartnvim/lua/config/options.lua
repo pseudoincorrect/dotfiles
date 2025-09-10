@@ -47,6 +47,7 @@ function M.setup()
     vertleft = '┫',
     vertright = '┣',
     verthoriz = '╋',
+    eob = ' ',
   }
   vim.opt.laststatus = 3 -- Global statusline
 

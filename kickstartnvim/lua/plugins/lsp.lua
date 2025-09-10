@@ -14,26 +14,26 @@ return {
       callback = function(event)
         local map = function(keys, func, desc, mode)
           mode = mode or 'n'
-          vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+          vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = desc })
         end
 
         map('gd', function()
           require('telescope.builtin').lsp_definitions { show_line = false }
-        end, '[G]oto [D]efinition')
+        end, 'Goto Definition')
 
         map('gr', function()
           require('telescope.builtin').lsp_references { show_line = false }
-        end, '[G]oto [R]eferences')
+        end, 'Goto References')
 
         map('gi', function()
           require('telescope.builtin').lsp_implementations { show_line = false }
-        end, '[G]oto [I]mplementation')
+        end, 'Goto Implementation')
 
         map('gt', function()
           require('telescope.builtin').lsp_type_definitions { show_line = false }
-        end, '[G]oto [T]ype definition')
+        end, 'Goto Type definition')
 
-        map('<leader>ss', function()
+        map('<leader>l', function()
           require('telescope.builtin').lsp_document_symbols {
             show_line = false,
             symbols = { 'Function', 'Method', 'Class' },
@@ -41,16 +41,16 @@ return {
             symbol_width = 0.7,
             symbol_type_width = 12,
           }
-        end, '[S]earch document [s]ymbols (class/function/method)')
+        end, 'Symbols')
 
         map('<leader>sS', function()
           require('telescope.builtin').lsp_dynamic_workspace_symbols { show_line = false }
-        end, '[S]earch workspace [S]ymbols')
+        end, 'Symbol Workspace')
 
-        map('<leader>cr', vim.lsp.buf.rename, 'Code [R]ename')
-        map('<leader>ca', vim.lsp.buf.code_action, 'Code [A]ction', { 'n', 'x' })
-        map('<leader>cf', vim.lsp.buf.format, 'Code [F]ormat')
-        map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+        map('<leader>cr', vim.lsp.buf.rename, 'Rename')
+        map('<leader>ca', vim.lsp.buf.code_action, 'Code Action', { 'n', 'x' })
+        map('<leader>cf', vim.lsp.buf.format, 'Format Document')
+        map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
 
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
@@ -77,9 +77,9 @@ return {
         end
 
         if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-          map('<leader>th', function()
+          map('<leader>ci', function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-          end, '[T]oggle Inlay [H]ints')
+          end, 'Toggle Inlay Hints')
         end
       end,
     })

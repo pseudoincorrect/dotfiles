@@ -13,6 +13,7 @@ function M.setup()
   vim.keymap.set('n', '<leader>ws', '<C-w>s', { desc = 'Split window horizontally' })
   vim.keymap.set('n', '<leader>wc', '<C-w>c', { desc = 'Close window' })
   vim.keymap.set('n', '<leader>wd', ':bd<CR>', { desc = 'Close current buffer' })
+  vim.keymap.set('n', '<leader>wa', ':%bd<CR>', { desc = 'Close all buffers' })
   vim.keymap.set('n', '<leader>wo', '<C-w>o', { desc = 'Close all other windows' })
   vim.keymap.set('n', '<leader>wq', '<C-w>q', { desc = 'Quit current window' })
   vim.keymap.set('n', '<leader>w=', '<C-w>=', { desc = 'Equalize window sizes' })
@@ -28,7 +29,7 @@ function M.setup()
   -- File operations
   vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true, silent = true, desc = 'Save the current file' })
   vim.api.nvim_set_keymap('i', '<C-s>', '<Esc>:w<CR>', { noremap = true, silent = true, desc = 'Save the current file' })
-  vim.keymap.set('n', '<leader>t', ':vert term<CR>', { noremap = true, silent = true, desc = 'Open a [T]erminal in vsplit' })
+  vim.keymap.set('n', '<leader>v', ':vert term<CR>', { noremap = true, silent = true, desc = 'Open a Terminal in vsplit' })
 
   -- Yanky keybindings
   vim.keymap.set({ 'n', 'x' }, 'p', '<Plug>(YankyPutAfter)')
@@ -39,8 +40,8 @@ function M.setup()
   vim.keymap.set('n', '<c-n>', '<Plug>(YankyNextEntry)')
 
   -- NeoTree
-  vim.keymap.set('n', '<leader>ee', '<Esc>:Neotree toggle<CR>', { noremap = true, desc = 'Open NeoTree files [E]xplor[E]r' })
-  vim.keymap.set('n', '<leader>eb', '<Esc>:Neotree toggle source=buffers<CR>', { noremap = true, desc = 'Open NeoTree [E]xplore [B]uffers' })
+  vim.keymap.set('n', '<leader>ee', '<Esc>:Neotree toggle<CR>', { noremap = true, desc = 'Open NeoTree' })
+  vim.keymap.set('n', '<leader>eb', '<Esc>:Neotree toggle source=buffers<CR>', { noremap = true, desc = 'Open NeoTree Buffers' })
 
   -- Fixed: Change word under cursor with better mapping
   vim.keymap.set('n', '<leader>cw', 'ciw', { desc = 'Change word under cursor' })
@@ -55,11 +56,12 @@ function M.setup()
 
   -- Better defaults
   vim.keymap.set({ 'n', 'v' }, 'U', '<C-r>', { desc = 'Redo' })
-  vim.keymap.set({ 'n', 'v' }, 'gl', 'g_', { desc = 'Go to end of line' })
-  vim.keymap.set({ 'n', 'v' }, 'gh', '^', { desc = 'Go to beginning of line' })
-  vim.keymap.set({ 'n', 'v' }, 'ge', 'G', { desc = 'Go to end of file' })
-  vim.keymap.set('n', 'ga', 'ggVG', { desc = 'Select all' })
-  vim.keymap.set('n', '<leader>a', 'ggVG', { desc = 'Select all' })
+  vim.keymap.set({ 'n', 'v', 'o' }, 'gl', 'g_', { desc = 'Go to end of line' })
+  vim.keymap.set({ 'n', 'v', 'o' }, 'gh', '^', { desc = 'Go to beginning of line' })
+  vim.keymap.set({ 'n', 'v', 'o' }, 'ge', 'G', { desc = 'Go to end of file' })
+  vim.keymap.set({ 'n', 'v', 'o' }, 'ga', 'ggVG', { desc = 'Select all' })
+  vim.keymap.set({ 'n' }, 'ga', 'ggVG', { desc = 'Select all' })
+  vim.keymap.set({ 'v', 'o' }, 'ga', 'gg<Esc>VG', { desc = 'Select all' })
 
   -- Fixed: Better visual mode navigation
   vim.keymap.set('v', 'J', 'j', { desc = 'Move down in visual mode' })
@@ -70,8 +72,8 @@ function M.setup()
   vim.keymap.set('n', 'Q', '@q', { desc = 'Repeat q macro' })
 
   -- Keep f/s scroll navigation as requested
-  vim.keymap.set('n', 'f', '<C-d>', { desc = 'Half page down' })
-  vim.keymap.set('n', 's', '<C-u>', { desc = 'Half page up' })
+  vim.keymap.set('n', '<C-j>', '<C-d>', { desc = 'Half page down' })
+  vim.keymap.set('n', '<C-k>', '<C-u>', { desc = 'Half page up' })
 
   -- Line manipulation
   vim.keymap.set('n', '<leader>o', 'o<Esc>k', { desc = 'Insert line below and stay' })
@@ -81,15 +83,12 @@ function M.setup()
   vim.keymap.set('v', '<leader>y', '"+y', { desc = 'Yank to system clipboard' })
   vim.keymap.set('n', '<leader>Y', '"+yg_', { desc = 'Yank line to system clipboard' })
   vim.keymap.set('n', '<leader>y', '"+y', { desc = 'Yank to system clipboard' })
-  vim.keymap.set('n', '<leader>yy', '"+yy', { desc = 'Yank entire line to system clipboard' })
+  -- vim.keymap.set('n', '<leader>yy', '"+yy', { desc = 'Yank entire line to system clipboard' })
   vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p', { desc = 'Paste from system clipboard' })
   vim.keymap.set({ 'n', 'v' }, '<leader>P', '"+P', { desc = 'Paste before from system clipboard' })
 
   -- LSP
-  vim.keymap.set('n', '<leader>,', vim.lsp.buf.hover, { desc = 'LSP Hover' })
-
-  -- Plugin-specific
-  vim.keymap.set('n', '<leader>cs', '<cmd>AerialNavToggle<CR>', { desc = '[C]ode [S]ymbols (Aerial)' })
+  vim.keymap.set('n', '<leader>ch', vim.lsp.buf.hover, { desc = 'LSP Hover' })
 end
 
 return M
