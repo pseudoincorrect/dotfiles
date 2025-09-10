@@ -28,7 +28,7 @@ function M.setup()
   -- File operations
   vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true, silent = true, desc = 'Save the current file' })
   vim.api.nvim_set_keymap('i', '<C-s>', '<Esc>:w<CR>', { noremap = true, silent = true, desc = 'Save the current file' })
-  vim.keymap.set('n', '<leader>t', ':vert term<CR>', { noremap = true, silent = true, desc = '[O]pen a terminal in vsplit' })
+  vim.keymap.set('n', '<leader>t', ':vert term<CR>', { noremap = true, silent = true, desc = 'Open a [T]erminal in vsplit' })
 
   -- Yanky keybindings
   vim.keymap.set({ 'n', 'x' }, 'p', '<Plug>(YankyPutAfter)')

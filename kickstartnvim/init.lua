@@ -182,8 +182,17 @@ require('lazy').setup(
     {
       'rmagatti/auto-session',
       opts = {
-        auto_restore = false,
+        auto_restore = true,
+        auto_save = true,
+        auto_create = true,
         suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
+        session_lens = {
+          load_on_setup = true,
+          theme_conf = { border = true },
+          previewer = false,
+        },
+        pre_save_cmds = { 'Neotree close' },
+        post_restore_cmds = { 'Neotree filesystem reveal' },
       },
     },
 
