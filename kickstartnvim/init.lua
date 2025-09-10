@@ -101,27 +101,22 @@ require('lazy').setup(
       build = ':TSUpdate',
       main = 'nvim-treesitter.configs',
       opts = {
-        ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+        ensure_installed = { 'bash', 'c', 'diff', 'go', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
         auto_install = true,
         highlight = {
           enable = true,
-          additional_vim_regex_highlighting = { 'ruby' },
         },
         indent = { enable = true, disable = { 'ruby' } },
-      },
-      config = function()
-        require('nvim-treesitter.configs').setup {
-          incremental_selection = {
-            enable = true,
-            keymaps = {
-              init_selection = 'ti',
-              node_incremental = 'tni',
-              scope_incremental = 'tsi',
-              node_decremental = 'tdd',
-            },
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = 'ti',
+            node_incremental = 'tni',
+            scope_incremental = 'tsi',
+            node_decremental = 'tdd',
           },
-        }
-      end,
+        },
+      },
     },
 
     -- Flash motions
