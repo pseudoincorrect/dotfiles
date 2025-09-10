@@ -88,8 +88,8 @@ require('lazy').setup(
       opts = {
         transparent = true,
         styles = {
-          sidebars = "transparent",
-          floats = "transparent",
+          sidebars = 'transparent',
+          floats = 'transparent',
         },
       },
       init = function()
@@ -310,7 +310,6 @@ require('lazy').setup(
     require 'plugins.autopairs',
     require 'plugins.neo-tree',
     require 'plugins.cmp',
-    require 'plugins.codecompanion',
     require 'plugins.copilot',
     require 'plugins.lsp',
     require 'plugins.mini',

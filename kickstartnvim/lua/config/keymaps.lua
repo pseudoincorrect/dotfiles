@@ -59,6 +59,7 @@ function M.setup()
   vim.keymap.set({ 'n', 'v' }, 'gh', '^', { desc = 'Go to beginning of line' })
   vim.keymap.set({ 'n', 'v' }, 'ge', 'G', { desc = 'Go to end of file' })
   vim.keymap.set('n', 'ga', 'ggVG', { desc = 'Select all' })
+  vim.keymap.set('n', '<leader>a', 'ggVG', { desc = 'Select all' })
 
   -- Fixed: Better visual mode navigation
   vim.keymap.set('v', 'J', 'j', { desc = 'Move down in visual mode' })

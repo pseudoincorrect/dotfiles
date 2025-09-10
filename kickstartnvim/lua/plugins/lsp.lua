@@ -34,12 +34,12 @@ return {
         end, '[G]oto [T]ype definition')
 
         map('<leader>ss', function()
-          require('telescope.builtin').lsp_document_symbols { 
+          require('telescope.builtin').lsp_document_symbols {
             show_line = false,
             symbols = { 'Function', 'Method', 'Class' },
             fname_width = 0.3,
             symbol_width = 0.7,
-            symbol_type_width = 12
+            symbol_type_width = 12,
           }
         end, '[S]earch document [s]ymbols (class/function/method)')
 

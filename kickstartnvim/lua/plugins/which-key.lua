@@ -43,7 +43,6 @@ return {
       { '<leader>d', group = '[D]ebug' },
       { '<leader>e', group = 'N[E]otree' },
       { '<leader>w', group = '[W]indow' },
-      { '<leader>a', group = '[A]I Assistant' },
     },
   },
 }
