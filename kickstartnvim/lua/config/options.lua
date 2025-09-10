@@ -14,7 +14,7 @@ function M.setup()
   vim.opt.hlsearch = false
   vim.opt.incsearch = true
   vim.opt.signcolumn = 'yes'
-  vim.opt.updatetime = 250
+  vim.opt.updatetime = 100
   vim.opt.timeoutlen = 300
   vim.opt.splitright = true
   vim.opt.splitbelow = true
@@ -36,8 +36,7 @@ function M.setup()
   vim.opt.swapfile = false
   vim.opt.autowrite = true
   vim.opt.autoread = true
-  vim.opt.lazyredraw = true -- Performance improvement
-  vim.opt.colorcolumn = '80' -- Code line length guide
+  vim.opt.lazyredraw = false
 
   -- Window appearance and borders
   vim.opt.fillchars = {

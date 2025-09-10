@@ -29,9 +29,9 @@ return {
           require('telescope.builtin').lsp_implementations { show_line = false }
         end, '[G]oto [I]mplementation')
 
-        map('gD', function()
+        map('gt', function()
           require('telescope.builtin').lsp_type_definitions { show_line = false }
-        end, '[G]oto Type [D]efinition')
+        end, '[G]oto [T]ype definition')
 
         map('<leader>ss', function()
           require('telescope.builtin').lsp_document_symbols { show_line = false }

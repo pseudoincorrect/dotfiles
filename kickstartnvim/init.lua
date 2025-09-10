@@ -131,7 +131,7 @@ require('lazy').setup(
       opts = { modes = { char = { enabled = false } } },
       keys = {
         {
-          't',
+          '<C-l>',
           mode = { 'n', 'x', 'o' },
           function()
             require('flash').jump()
@@ -139,7 +139,7 @@ require('lazy').setup(
           desc = 'Flash',
         },
         {
-          'T',
+          '<C-S-l>',
           mode = { 'n', 'x', 'o' },
           function()
             require('flash').treesitter()
@@ -183,48 +183,13 @@ require('lazy').setup(
       end,
     },
 
-    -- Session persistence
-    {
-      'folke/persistence.nvim',
-      event = 'BufReadPre',
-      opts = {},
-      keys = {
-        {
-          '<leader>qs',
-          function()
-            require('persistence').load()
-          end,
-          desc = 'Restore Session',
-        },
-        {
-          '<leader>qS',
-          function()
-            require('persistence').select()
-          end,
-          desc = 'Select Session',
-        },
-        {
-          '<leader>ql',
-          function()
-            require('persistence').load { last = true }
-          end,
-          desc = 'Restore Last Session',
-        },
-        {
-          '<leader>qd',
-          function()
-            require('persistence').stop()
-          end,
-          desc = "Don't Save Current Session",
-        },
-      },
-    },
-
-    -- Auto session management
+    -- Session management with auto-session
     {
       'rmagatti/auto-session',
-      lazy = false,
-      opts = { suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' } },
+      opts = {
+        auto_restore = false,
+        suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
+      },
     },
 
     -- Mini.move for moving text
@@ -261,8 +226,8 @@ require('lazy').setup(
       config = function()
         require('aerial').setup {
           on_attach = function(bufnr)
-            vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buffer = bufnr })
-            vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buffer = bufnr })
+            vim.keymap.set('n', '<C-k>', '<cmd>AerialPrev<CR>', { buffer = bufnr })
+            vim.keymap.set('n', '<C-j>', '<cmd>AerialNext<CR>', { buffer = bufnr })
           end,
         }
       end,
@@ -280,6 +245,51 @@ require('lazy').setup(
       'Aasim-A/scrollEOF.nvim',
       event = { 'CursorMoved', 'WinScrolled' },
       opts = {},
+    },
+
+    -- Oil.nvim - file explorer that lets you edit your filesystem like a buffer
+    {
+      'stevearc/oil.nvim',
+      opts = {},
+      dependencies = { 'nvim-tree/nvim-web-devicons' },
+      config = function()
+        require('oil').setup {
+          default_file_explorer = false,
+          keymaps = {
+            ['<C-h>'] = false,
+            ['<C-l>'] = false,
+          },
+        }
+        vim.keymap.set('n', '<leader>l', '<CMD>Oil<CR>', { desc = 'Open Oil file explorer' })
+      end,
+    },
+
+    -- Render markdown.nvim - enhanced markdown rendering
+    {
+      'MeanderingProgrammer/render-markdown.nvim',
+      dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+      ft = { 'markdown' },
+      opts = {},
+      keys = {
+        {
+          '<leader>mt',
+          '<cmd>RenderMarkdown toggle<cr>',
+          desc = 'Toggle Render Markdown',
+          ft = 'markdown',
+        },
+        {
+          '<leader>me',
+          '<cmd>RenderMarkdown enable<cr>',
+          desc = 'Enable Render Markdown',
+          ft = 'markdown',
+        },
+        {
+          '<leader>md',
+          '<cmd>RenderMarkdown disable<cr>',
+          desc = 'Disable Render Markdown',
+          ft = 'markdown',
+        },
+      },
     },
 
     -- Plugin modules
