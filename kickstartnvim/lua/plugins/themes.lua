@@ -1,3 +1,11 @@
+-- Shared function to setup cursor line and visual highlighting
+local function setup_cursor_highlights()
+  -- Custom highlighting for current line
+  vim.cmd.hi 'CursorLine guibg=#063503'
+  -- Lighter visual mode selection for better visibility
+  vim.cmd.hi 'Visual guibg=#4a4a5a'
+end
+
 return {
   -- tokyonight.nvim colorscheme
   {
@@ -12,12 +20,7 @@ return {
     },
     init = function()
       -- Other styles: 'tokyonight-storm', 'tokyonight-moon', 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
       vim.cmd.hi 'Comment gui=none'
-      -- Custom highlighting for current line (green)
-      vim.cmd.hi 'CursorLine guibg=#2d4f3e'
-      -- Lighter visual mode selection for better visibility
-      vim.cmd.hi 'Visual guibg=#4a4a5a'
     end,
   },
 
@@ -51,8 +54,21 @@ return {
     },
     config = function(_, opts)
       require('monokai-pro').setup(opts)
-      -- Uncomment to use Monokai Pro Spectrum instead of Tokyo Night
+    end,
+  },
+
+  -- Theme setup - handles colorscheme selection and custom highlights
+  {
+    '',
+    name = 'theme-setup',
+    priority = 999,
+    config = function()
+      -- Select active colorscheme (uncomment one)
+      -- vim.cmd.colorscheme 'tokyonight-night'
       vim.cmd.colorscheme 'monokai-pro'
+
+      -- Apply custom highlights
+      setup_cursor_highlights()
     end,
   },
 }

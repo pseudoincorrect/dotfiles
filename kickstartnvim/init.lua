@@ -115,14 +115,6 @@ require('lazy').setup(
       opts = { modes = { char = { enabled = false } } },
       keys = {
         {
-          '<C-l>',
-          mode = { 'n', 'x', 'o' },
-          function()
-            require('flash').jump()
-          end,
-          desc = 'Flash',
-        },
-        {
           's',
           mode = { 'n', 'x', 'o' },
           function()
@@ -176,12 +168,12 @@ require('lazy').setup(
       config = function()
         require('mini.move').setup {
           mappings = {
-            left = '<C-S-h>',
-            right = '<C-S-l>',
+            left = '<M-Left>',
+            right = '<M-Right>',
             down = '<M-Down>',
             up = '<M-Up>',
-            line_left = '<C-S-H>',
-            line_right = '<C-S-L>',
+            line_left = '<M-Left>',
+            line_right = '<M-Right>',
             line_down = '<M-Down>',
             line_up = '<M-Up>',
           },
@@ -269,6 +261,23 @@ require('lazy').setup(
       'lukas-reineke/indent-blankline.nvim',
       main = 'ibl',
       opts = {},
+    },
+
+    -- Project-wide search and replace
+    {
+      'nvim-pack/nvim-spectre',
+      build = false,
+      cmd = 'Spectre',
+      opts = { open_cmd = 'noswapfile vnew' },
+      keys = {
+        {
+          '<leader>R',
+          function()
+            require('spectre').open()
+          end,
+          desc = 'Replace in files',
+        },
+      },
     },
 
     -- Plugin modules

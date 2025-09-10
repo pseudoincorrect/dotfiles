@@ -67,19 +67,22 @@ return {
     vim.keymap.set('n', '<leader>st', builtin.colorscheme, { desc = 'Themes' })
     vim.keymap.set('n', '<leader>sj', builtin.jumplist, { desc = 'Jumplist' })
     vim.keymap.set('n', '<leader>su', '<cmd>Telescope undo<cr>', { desc = 'Undos' })
+    vim.keymap.set('n', '<leader>s*', builtin.grep_string, { desc = 'Current word' })
+    vim.keymap.set('v', '<leader>sv', builtin.grep_string, { desc = 'Selection' })
+    vim.keymap.set('n', '<leader>sx', builtin.diagnostics, { desc = 'Problems' })
     vim.keymap.set('n', '<leader>f', builtin.find_files, { desc = 'Files' })
+    vim.keymap.set('n', '<leader>g', builtin.current_buffer_fuzzy_find, { desc = 'Grep Buffer' })
+
     vim.keymap.set('n', '<leader>b', function()
       builtin.buffers { path_display = { 'truncate' }, sort_lastused = true }
     end, { desc = 'Buffers' })
-    vim.keymap.set('n', '<leader>g', builtin.current_buffer_fuzzy_find, { desc = 'Grep Buffer' })
+
     vim.keymap.set('n', '<leader>sg', function()
       require('telescope').extensions.live_grep_args.live_grep_args()
     end, { desc = 'Grep Repo' })
-    vim.keymap.set('n', '<leader>s*', builtin.grep_string, { desc = 'Current word' })
-    vim.keymap.set('v', '<leader>sv', builtin.grep_string, { desc = 'Selection' })
+
     vim.keymap.set('n', '<leader>sn', function()
       builtin.find_files { cwd = vim.fn.stdpath 'config' }
     end, { desc = 'Neovim files' })
-    vim.keymap.set('n', '<leader>sx', builtin.diagnostics, { desc = 'Problems' })
   end,
 }
