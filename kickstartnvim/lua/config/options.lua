@@ -4,7 +4,7 @@ local M = {}
 function M.setup()
   -- [[ Vim Options ]]
   vim.opt.number = true -- Enable line numbers for better navigation
-  vim.opt.relativenumber = false
+  vim.opt.relativenumber = true
   vim.opt.mouse = 'a'
   vim.opt.showmode = false
   vim.opt.breakindent = true

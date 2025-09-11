@@ -50,6 +50,7 @@ return {
         map('<leader>cr', vim.lsp.buf.rename, 'Rename')
         map('<leader>ca', vim.lsp.buf.code_action, 'Code Action', { 'n', 'x' })
         map('<leader>cf', vim.lsp.buf.format, 'Format Document')
+        map('<leader>cd', vim.diagnostic.open_float, 'Show Problem')
         map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
 
         local client = vim.lsp.get_client_by_id(event.data.client_id)

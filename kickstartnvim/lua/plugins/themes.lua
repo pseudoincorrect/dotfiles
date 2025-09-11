@@ -1,7 +1,7 @@
 -- Shared function to setup cursor line and visual highlighting
 local function setup_cursor_highlights()
   -- Custom highlighting for current line
-  vim.cmd.hi 'CursorLine guibg=#063503'
+  vim.cmd.hi 'CursorLine guibg=#0c4e09'
   -- Lighter visual mode selection for better visibility
   vim.cmd.hi 'Visual guibg=#4a4a5a'
 end

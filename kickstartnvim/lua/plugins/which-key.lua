@@ -4,7 +4,7 @@ return {
   event = 'VimEnter',
   opts = {
     icons = {
-      mappings = vim.g.have_nerd_font,
+      mappings = false,
       keys = vim.g.have_nerd_font and {} or {
         Up = '<Up> ',
         Down = '<Down> ',
@@ -38,9 +38,10 @@ return {
     },
     spec = {
       { '<leader>c', group = 'Code', mode = { 'n', 'x' } },
+      { '<leader>e', group = 'Explorer' },
+      { '<leader>m', group = 'Markdown' },
       { '<leader>r', group = 'Surround' },
       { '<leader>s', group = 'Telescope' },
-      { '<leader>e', group = 'Explorer' },
       { '<leader>w', group = 'Window' },
     },
   },

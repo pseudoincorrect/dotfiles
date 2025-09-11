@@ -15,7 +15,7 @@ function M.setup()
   vim.keymap.set('n', '<leader>ws', '<C-w>s', { desc = 'Split window horizontally' })
   vim.keymap.set('n', '<leader>wc', '<C-w>c', { desc = 'Close window' })
   vim.keymap.set('n', '<leader>wd', ':bd<CR>', { desc = 'Close current buffer' })
-  vim.keymap.set('n', '<leader>wa', ':%bd<CR>', { desc = 'Close all buffers' })
+  vim.keymap.set('n', '<leader>wa', ':%bd!<CR>', { desc = 'Close all buffers' })
   vim.keymap.set('n', '<leader>wo', '<C-w>o', { desc = 'Close all other windows' })
   vim.keymap.set('n', '<leader>wq', '<C-w>q', { desc = 'Quit current window' })
   vim.keymap.set('n', '<leader>w=', '<C-w>=', { desc = 'Equalize window sizes' })
@@ -68,7 +68,7 @@ function M.setup()
   -- Fixed: Better visual mode navigation
   vim.keymap.set('v', 'J', 'j', { desc = 'Move down in visual mode' })
   vim.keymap.set('v', 'K', 'k', { desc = 'Move up in visual mode' })
-  vim.keymap.set('n', '<leader>v', 'V', { desc = 'Enter visual line mode' })
+  vim.keymap.set('n', '<leader>v', 'V', { desc = 'Visual line' })
 
   -- macro recording and playback
   vim.keymap.set('n', 'Q', '@q', { desc = 'Repeat q macro' })
@@ -78,16 +78,16 @@ function M.setup()
   vim.keymap.set('n', '<C-k>', '<C-u>', { desc = 'Half page up' })
 
   -- Line manipulation
-  vim.keymap.set('n', '<leader>o', 'o<Esc>k', { desc = 'Insert line below and stay' })
-  vim.keymap.set('n', '<leader>O', 'O<Esc>j', { desc = 'Insert line above and stay' })
+  vim.keymap.set('n', '<leader>o', 'o<Esc>k', { desc = 'Line Below' })
+  vim.keymap.set('n', '<leader>O', 'O<Esc>j', { desc = 'Line Above' })
 
   -- System clipboard
-  vim.keymap.set('v', '<leader>y', '"+y', { desc = 'Yank to system clipboard' })
-  vim.keymap.set('n', '<leader>Y', '"+yg_', { desc = 'Yank line to system clipboard' })
-  vim.keymap.set('n', '<leader>y', '"+y', { desc = 'Yank to system clipboard' })
+  vim.keymap.set('v', '<leader>y', '"+y', { desc = 'Yank' })
+  vim.keymap.set('n', '<leader>Y', '"+yg_', { desc = 'Yank Line' })
+  vim.keymap.set('n', '<leader>y', '"+y', { desc = 'Yank' })
   -- vim.keymap.set('n', '<leader>yy', '"+yy', { desc = 'Yank entire line to system clipboard' })
-  vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p', { desc = 'Paste from system clipboard' })
-  vim.keymap.set({ 'n', 'v' }, '<leader>P', '"+P', { desc = 'Paste before from system clipboard' })
+  vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p', { desc = 'Paste' })
+  vim.keymap.set({ 'n', 'v' }, '<leader>P', '"+P', { desc = 'Paste Before' })
 
   -- LSP
   vim.keymap.set('n', '<leader>ch', vim.lsp.buf.hover, { desc = 'LSP Hover' })

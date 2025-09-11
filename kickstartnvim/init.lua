@@ -108,31 +108,6 @@ require('lazy').setup(
       },
     },
 
-    -- Flash motions
-    {
-      'folke/flash.nvim',
-      event = 'VeryLazy',
-      opts = { modes = { char = { enabled = false } } },
-      keys = {
-        {
-          's',
-          mode = { 'n', 'x', 'o' },
-          function()
-            require('flash').jump()
-          end,
-          desc = 'Flash',
-        },
-        {
-          'S',
-          mode = { 'n', 'x', 'o' },
-          function()
-            require('flash').treesitter()
-          end,
-          desc = 'Flash Treesitter',
-        },
-      },
-    },
-
     -- Vim-surround for text object manipulation
     {
       'kylechui/nvim-surround',
@@ -286,6 +261,7 @@ require('lazy').setup(
     require 'plugins.neo-tree',
     require 'plugins.cmp',
     require 'plugins.copilot',
+    require 'plugins.flash',
     require 'plugins.lsp',
     require 'plugins.mini',
     require 'plugins.multicursor',
