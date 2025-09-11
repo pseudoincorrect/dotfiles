@@ -31,7 +31,7 @@ function M.setup()
   vim.opt.wrapmargin = 0
   vim.opt.wrap = true
   vim.opt.linebreak = true
-  vim.opt.winbar = '  📄  %f'
+  vim.opt.winbar = '%{%v:lua.require("config.options").winbar()%}'
   vim.opt.cmdheight = 1
   vim.opt.swapfile = false
   vim.opt.autowrite = true
@@ -55,6 +55,23 @@ function M.setup()
   vim.schedule(function()
     vim.opt.clipboard = 'unnamedplus'
   end)
+end
+
+-- Expose winbar function for global access
+function M.winbar()
+  local filepath = vim.fn.expand '%:~'
+  if filepath == '' then
+    return ''
+  end
+
+  local dir = vim.fn.fnamemodify(filepath, ':h')
+  local filename = vim.fn.fnamemodify(filepath, ':t')
+
+  if dir == '.' or dir == '' then
+    return '   %#WinBarFilename#' .. filename .. '%*   '
+  else
+    return '   %#WinBarPath#' .. dir .. '/%*%#WinBarFilename#' .. filename .. '%*   '
+  end
 end
 
 return M

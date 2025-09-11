@@ -161,30 +161,24 @@ keybinds {
      shared {
         // bind "Alt h" { GoToPreviousTab; }
         // bind "Alt l" { GoToNextTab; }
-        bind "Alt i" { MoveFocus "up"; }
-        bind "Alt u" { MoveFocus "down"; }
+        // bind "Alt u" { MoveFocus "down"; }
+        // bind "Alt i" { MoveFocus "up"; }
         bind "Alt h" { MoveFocusOrTab "left"; }
         bind "Alt l" { MoveFocusOrTab "right"; }
-        bind "Alt ;" { ToggleFloatingPanes; }
-        bind "Alt [" { PreviousSwapLayout; }
-        bind "Alt ]" { NextSwapLayout; }
-        bind "Alt j" { HalfPageScrollDown; }
-        bind "Alt k" { HalfPageScrollUp; }
-        bind "Alt ," { MoveTab "left"; }
-        bind "Alt ." { MoveTab "right"; }
+        bind "Alt m" { ToggleFloatingPanes; }
+        // bind "Alt [" { PreviousSwapLayout; }
+        bind "Alt n" { NextSwapLayout; }
+        // bind "Alt j" { HalfPageScrollDown; }
+        // bind "Alt k" { HalfPageScrollUp; }
+        bind "Alt j" { MoveTab "left"; }
+        bind "Alt k" { MoveTab "right"; }
         bind "Alt =" "Alt +" { Resize "Increase"; }
         bind "Alt -" { Resize "Decrease"; }
-        bind "Alt 6" { SwitchToMode "RenameTab"; TabNameInput 0; }
-        bind "Alt n" { NewTab; }
-        bind "Alt p" { NewPane; }
-        bind "Alt y" { EditScrollback; SwitchToMode "locked"; }
-        bind "Alt m" {
-            LaunchOrFocusPlugin "file:~/.config/zellij/plugins/room.wasm" {
-                floating false
-                ignore_case true
-                quick_jump false
-            }
-        }
+        bind "Alt 7" { SwitchToMode "RenameTab"; TabNameInput 0; }
+        bind "Alt 6" { NewTab; }
+        bind "Alt q" { Quit; }
+        // bind "Alt p" { NewPane; }
+        // bind "Alt y" { EditScrollback; SwitchToMode "locked"; }
     }
     shared_except "locked" {
         bind "Alt g" { SwitchToMode "Locked"; }

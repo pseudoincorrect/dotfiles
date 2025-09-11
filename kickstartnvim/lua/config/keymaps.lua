@@ -14,8 +14,10 @@ function M.setup()
   vim.keymap.set('n', '<leader>wv', '<C-w>v', { desc = 'Split window vertically' })
   vim.keymap.set('n', '<leader>ws', '<C-w>s', { desc = 'Split window horizontally' })
   vim.keymap.set('n', '<leader>wc', '<C-w>c', { desc = 'Close window' })
-  vim.keymap.set('n', '<leader>wd', ':bd<CR>', { desc = 'Close current buffer' })
+  vim.keymap.set('n', '<leader>wd', ':bp|bd #<CR>', { desc = 'Close current buffer' })
+  vim.keymap.set('n', '<C-w>d', ':bp|bd #<CR>', { desc = 'Close current buffer' })
   vim.keymap.set('n', '<leader>wa', ':%bd!<CR>', { desc = 'Close all buffers' })
+  vim.keymap.set('n', '<C-w>a', ':%bd!<CR>', { desc = 'Close all buffers' })
   vim.keymap.set('n', '<leader>wo', '<C-w>o', { desc = 'Close all other windows' })
   vim.keymap.set('n', '<leader>wq', '<C-w>q', { desc = 'Quit current window' })
   vim.keymap.set('n', '<leader>w=', '<C-w>=', { desc = 'Equalize window sizes' })
@@ -45,6 +47,18 @@ function M.setup()
   vim.keymap.set('n', '<leader>ee', '<Esc>:Neotree toggle<CR>', { noremap = true, desc = 'Open NeoTree' })
   vim.keymap.set('n', '<leader>eb', '<Esc>:Neotree toggle source=buffers<CR>', { noremap = true, desc = 'Open NeoTree Buffers' })
 
+  -- Path copy operations
+  vim.keymap.set('n', '<leader>er', function()
+    local path = vim.fn.expand '%:.'
+    vim.fn.setreg('+', path)
+    print('Copied relative path: ' .. path)
+  end, { desc = 'Copy relative path to clipboard' })
+  vim.keymap.set('n', '<leader>ea', function()
+    local path = vim.fn.expand '%:p'
+    vim.fn.setreg('+', path)
+    print('Copied absolute path: ' .. path)
+  end, { desc = 'Copy absolute path to clipboard' })
+
   -- Fixed: Change word under cursor with better mapping
   vim.keymap.set('n', '<leader>cw', 'ciw', { desc = 'Change word under cursor' })
 
@@ -72,6 +86,13 @@ function M.setup()
 
   -- macro recording and playback
   vim.keymap.set('n', 'Q', '@q', { desc = 'Repeat q macro' })
+
+  -- Note: m key is now handled by flash.nvim for f/F/t/T repeat functionality
+
+  -- Alternative: use comma as backup (normally reverse f/F/t/T search)
+  vim.api.nvim_set_keymap('n', 'm', ';', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('v', 'm', ';', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('o', 'm', ';', { noremap = true, silent = true })
 
   -- Keep f/s scroll navigation as requested
   vim.keymap.set('n', '<C-j>', '<C-d>', { desc = 'Half page down' })

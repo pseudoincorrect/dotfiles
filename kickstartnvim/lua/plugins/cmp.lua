@@ -54,6 +54,7 @@ return {
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         -- ...existing code...
 
+        ['<CR>'] = cmp.mapping.confirm { select = true },
         ['<C-Space>'] = cmp.mapping.confirm {
           behavior = cmp.ConfirmBehavior.Insert,
           select = true,

@@ -132,7 +132,6 @@ require('lazy').setup(
           previewer = false,
         },
         pre_save_cmds = { 'Neotree close' },
-        post_restore_cmds = { 'Neotree filesystem reveal' },
       },
     },
 

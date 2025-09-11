@@ -2,8 +2,8 @@ return {
   'folke/flash.nvim',
   event = 'VeryLazy',
   opts = { modes = { char = { enabled = false } } },
-  config = function()
-    require('flash').setup()
+  config = function(_, opts)
+    require('flash').setup(opts)
   end,
   keys = {
     {
