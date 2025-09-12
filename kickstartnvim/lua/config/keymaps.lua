@@ -79,6 +79,10 @@ function M.setup()
   vim.keymap.set({ 'n' }, 'ga', 'ggVG', { desc = 'Select all' })
   vim.keymap.set({ 'v', 'o' }, 'ga', 'gg<Esc>VG', { desc = 'Select all' })
 
+  -- Wrapped line navigation
+  vim.keymap.set({ 'n', 'v' }, 'j', 'gj', { desc = 'Move down by visual line' })
+  vim.keymap.set({ 'n', 'v' }, 'k', 'gk', { desc = 'Move up by visual line' })
+
   -- Fixed: Better visual mode navigation
   vim.keymap.set('v', 'J', 'j', { desc = 'Move down in visual mode' })
   vim.keymap.set('v', 'K', 'k', { desc = 'Move up in visual mode' })
@@ -87,12 +91,8 @@ function M.setup()
   -- macro recording and playback
   vim.keymap.set('n', 'Q', '@q', { desc = 'Repeat q macro' })
 
-  -- Note: m key is now handled by flash.nvim for f/F/t/T repeat functionality
-
-  -- Alternative: use comma as backup (normally reverse f/F/t/T search)
-  vim.api.nvim_set_keymap('n', 'm', ';', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('v', 'm', ';', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('o', 'm', ';', { noremap = true, silent = true })
+  -- Better repeat motion navigation (I dont use marks)
+  vim.keymap.set({ 'n', 'v', 'o' }, 'm', ';', { desc = 'Repeat motion' })
 
   -- Keep f/s scroll navigation as requested
   vim.keymap.set('n', '<C-j>', '<C-d>', { desc = 'Half page down' })

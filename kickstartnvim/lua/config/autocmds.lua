@@ -13,18 +13,20 @@ function M.setup()
 
   -- Window border and distinction settings
   vim.api.nvim_create_autocmd({ 'WinEnter', 'BufWinEnter' }, {
-    desc = 'Highlight active window border',
+    desc = 'Highlight active window and enable cursor line',
     group = vim.api.nvim_create_augroup('window-distinction', { clear = true }),
     callback = function()
       vim.wo.winhighlight = 'Normal:Normal,NormalNC:NormalNC'
+      vim.wo.cursorline = true
     end,
   })
 
   vim.api.nvim_create_autocmd('WinLeave', {
-    desc = 'Dim inactive window',
+    desc = 'Dim inactive window and disable cursor line',
     group = vim.api.nvim_create_augroup('window-distinction', { clear = false }),
     callback = function()
       vim.wo.winhighlight = 'Normal:NormalNC,NormalNC:NormalNC'
+      vim.wo.cursorline = false
     end,
   })
 
@@ -33,10 +35,8 @@ function M.setup()
     desc = 'Set window border colors',
     group = vim.api.nvim_create_augroup('window-borders', { clear = true }),
     callback = function()
-      vim.api.nvim_set_hl(0, 'FloatBorder', { fg = '#00ff00', bg = 'NONE' })
-      vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#1a1b26' })
-      vim.api.nvim_set_hl(0, 'NormalNC', { bg = '#16161e' })
-      vim.api.nvim_set_hl(0, 'WinSeparator', { fg = '#00ff00', bg = 'NONE' })
+      vim.api.nvim_set_hl(0, 'FloatBorder', { fg = '#00ff00' })
+      vim.api.nvim_set_hl(0, 'WinSeparator', { fg = '#00ff00' })
     end,
   })
 end

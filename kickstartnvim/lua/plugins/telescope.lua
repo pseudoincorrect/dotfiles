@@ -72,6 +72,7 @@ return {
     vim.keymap.set('n', '<leader>sx', builtin.diagnostics, { desc = 'Problems' })
     vim.keymap.set('n', '<leader>f', builtin.find_files, { desc = 'Files' })
     vim.keymap.set('n', '<leader>g', builtin.current_buffer_fuzzy_find, { desc = 'Grep Buffer' })
+    vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find, { desc = 'Grep Buffer' })
 
     vim.keymap.set('n', '<leader>b', function()
       builtin.buffers { path_display = { 'truncate' }, sort_lastused = true }
