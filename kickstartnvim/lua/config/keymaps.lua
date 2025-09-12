@@ -33,7 +33,6 @@ function M.setup()
   -- File operations
   vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true, silent = true, desc = 'Save the current file' })
   vim.api.nvim_set_keymap('i', '<C-s>', '<Esc>:w<CR>', { noremap = true, silent = true, desc = 'Save the current file' })
-  vim.keymap.set('n', '<leader>v', ':vert term<CR>', { noremap = true, silent = true, desc = 'Open a Terminal in vsplit' })
 
   -- Yanky keybindings
   vim.keymap.set({ 'n', 'x' }, 'p', '<Plug>(YankyPutAfter)')
@@ -59,9 +58,6 @@ function M.setup()
     print('Copied absolute path: ' .. path)
   end, { desc = 'Copy absolute path to clipboard' })
 
-  -- Fixed: Change word under cursor with better mapping
-  vim.keymap.set('n', '<leader>cw', 'ciw', { desc = 'Change word under cursor' })
-
   -- Ensure Escape works to exit insert mode
   vim.keymap.set('i', '<Esc>', '<Esc>', { noremap = true, silent = true })
 
@@ -74,7 +70,6 @@ function M.setup()
   vim.keymap.set({ 'n', 'v' }, 'U', '<C-r>', { desc = 'Redo' })
   vim.keymap.set({ 'n', 'v', 'o' }, 'gl', 'g_', { desc = 'Go to end of line' })
   vim.keymap.set({ 'n', 'v', 'o' }, 'gh', '^', { desc = 'Go to beginning of line' })
-  vim.keymap.set({ 'n', 'v', 'o' }, 'ge', 'G', { desc = 'Go to end of file' })
   vim.keymap.set({ 'n', 'v', 'o' }, 'ga', 'ggVG', { desc = 'Select all' })
   vim.keymap.set({ 'n' }, 'ga', 'ggVG', { desc = 'Select all' })
   vim.keymap.set({ 'v', 'o' }, 'ga', 'gg<Esc>VG', { desc = 'Select all' })
@@ -84,17 +79,12 @@ function M.setup()
   vim.keymap.set({ 'n', 'v' }, 'k', 'gk', { desc = 'Move up by visual line' })
 
   -- Fixed: Better visual mode navigation
-  vim.keymap.set('v', 'J', 'j', { desc = 'Move down in visual mode' })
-  vim.keymap.set('v', 'K', 'k', { desc = 'Move up in visual mode' })
   vim.keymap.set('n', '<leader>v', 'V', { desc = 'Visual line' })
 
   -- macro recording and playback
   vim.keymap.set('n', 'Q', '@q', { desc = 'Repeat q macro' })
 
-  -- Better repeat motion navigation (I dont use marks)
-  vim.keymap.set({ 'n', 'v', 'o' }, 'm', ';', { desc = 'Repeat motion' })
-
-  -- Keep f/s scroll navigation as requested
+  -- Keep scroll navigation
   vim.keymap.set('n', '<C-j>', '<C-d>', { desc = 'Half page down' })
   vim.keymap.set('n', '<C-k>', '<C-u>', { desc = 'Half page up' })
 

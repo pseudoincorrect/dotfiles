@@ -10,6 +10,9 @@ local function setup_cursor_highlights()
   vim.cmd.hi 'WinBar guifg=#ffaa44 gui=bold guibg=NONE'
   vim.cmd.hi 'WinBarNC guifg=#cc8833 gui=bold guibg=NONE'
 
+  -- Lighter line numbers for better readability
+  vim.cmd.hi 'LineNr guifg=#555555'
+
   -- Flash plugin highlighting for better visibility
   vim.cmd.hi 'FlashLabel guifg=#ffffff guibg=#ff6b6b gui=bold'
   vim.cmd.hi 'FlashMatch guifg=#ffffff guibg=#4ecdc4 gui=bold'

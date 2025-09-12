@@ -1,6 +1,13 @@
 local wezterm = require("wezterm")
 local config = {}
 
+-- Font configuration - smaller size for zoomed out appearance
+config.font_size = 8.0
+
+-- Disable flow control to prevent Ctrl+S from freezing terminal
+config.enable_kitty_keyboard = true
+config.use_fancy_tab_bar = true
+
 -- Background image and transparency
 -- convert ~/Downloads/vosges-photo-1.jpg -modulate 40,100,100 -blur 0x8 ~/Downloads/vosges-photo-1-dark-blurry.jpg
 config.background = {
@@ -20,18 +27,6 @@ config.keys = {
 		mods = "CTRL|SHIFT",
 		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
 	},
-	-- Next tab
-	{
-		key = "l",
-		mods = "CTRL|SHIFT",
-		action = wezterm.action.ActivateTabRelative(1),
-	},
-	-- Previous tab
-	{
-		key = "h",
-		mods = "CTRL|SHIFT",
-		action = wezterm.action.ActivateTabRelative(-1),
-	},
 	-- Rename tab
 	{
 		key = "r",
@@ -45,6 +40,18 @@ config.keys = {
 			end),
 		}),
 	},
+	-- Next tab
+	{
+		key = "l",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.ActivateTabRelative(1),
+	},
+	-- Previous tab
+	{
+		key = "h",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.ActivateTabRelative(-1),
+	},
 	-- Move tab left
 	{
 		key = "j",
@@ -57,26 +64,16 @@ config.keys = {
 		mods = "CTRL|SHIFT",
 		action = wezterm.action.MoveTabRelative(1),
 	},
-	-- Toggle pane zoom
-	{
-		key = "m",
-		mods = "CTRL|SHIFT",
-		action = wezterm.action.TogglePaneZoomState,
-	},
-	-- Close tab
 	{
 		key = "w",
 		mods = "CTRL|SHIFT",
 		action = wezterm.action.CloseCurrentTab({ confirm = true }),
 	},
-}
-
--- Mouse window dragging (default bindings)
-config.mouse_bindings = {
+	-- Next pane
 	{
-		event = { Drag = { streak = 1, button = "Left" } },
-		mods = "SUPER",
-		action = wezterm.action.StartWindowDrag,
+		key = ">",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.ActivatePaneDirection("Next"),
 	},
 }
 
