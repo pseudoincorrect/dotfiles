@@ -49,8 +49,8 @@
   "git.openRepositoryInParentFolders": "never",
   "github.copilot.enable": {
     "*": true,
-    "plaintext": false,
     "markdown": false,
+    "plaintext": false,
     "scminput": false
   },
   "github.copilot.nextEditSuggestions.enabled": true,
@@ -129,7 +129,6 @@
   "projectManager.openInCurrentWindowIfEmpty": "never",
   "projectManager.openInNewWindowWhenClickingInStatusBar": true,
   "projectManager.projectsLocation": "/home/mclement/git",
-  "regexSearch.contextSize": 7,
   "roo-cline.allowedCommands": [
     "git log",
     "git diff",
@@ -161,8 +160,32 @@
   "window.openFoldersInNewWindow": "off",
   "window.openWithoutArgumentsInNewWindow": "off",
   "window.title": "${rootName}",
+  "window.zoomLevel": -1,
   "window.zoomPerWindow": false,
   "workbench.activityBar.location": "top",
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#b266ff",
+    "activityBar.background": "#b266ff",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#ffbf80",
+    "activityBarBadge.foreground": "#15202b",
+    "commandCenter.border": "#e7e7e799",
+    "editor.lineHighlightBackground": "#0a5206e4",
+    "sash.hoverBorder": "#b266ff",
+    "statusBar.background": "#005f5f",
+    "statusBar.debuggingBackground": "#005f5f",
+    "statusBar.debuggingForeground": "#ffffff",
+    "statusBar.foreground": "#ffffff",
+    "statusBar.noFolderBackground": "#005f5f",
+    "statusBarItem.hoverBackground": "#b266ff",
+    "statusBarItem.remoteBackground": "#9933ff",
+    "statusBarItem.remoteForeground": "#e7e7e7",
+    "titleBar.activeBackground": "#9933ff",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveBackground": "#9933ff99",
+    "titleBar.inactiveForeground": "#e7e7e799"
+  },
   "workbench.colorTheme": "Default Dark+",
   "workbench.editor.showTabs": "single",
   "workbench.editor.tabActionLocation": "left",
@@ -171,9 +194,5 @@
   "workbench.list.smoothScrolling": true,
   "workbench.sideBar.location": "right",
   "workbench.startupEditor": "none",
-  "workbench.tree.indent": 10,
-  "window.zoomLevel": -1,
-  "workbench.colorCustomizations": {
-    "editor.lineHighlightBackground": "#0a5206e4",
-  }
+  "workbench.tree.indent": 10
 }

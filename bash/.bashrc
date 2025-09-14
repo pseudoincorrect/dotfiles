@@ -5,8 +5,9 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=5000
-HISTFILESIZE=10000
+HISTSIZE=10000
+HISTFILESIZE=50000
+export HISTFILE=~/.bash_history
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -140,6 +141,12 @@ function his() {
 		fi
 		rm -f /tmp/his_cmd
 	fi
+}
+
+# deduplicate bash history file
+function history_deduplicate() {
+	tac ~/.bash_history | awk '!seen[$0]++' | tac > ~/.bash_history.tmp && mv ~/.bash_history.tmp ~/.bash_history
+	echo "History deduplicated"
 }
 
 ########################################################################
