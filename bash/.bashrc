@@ -42,8 +42,36 @@ PROMPT_COMMAND="set_window_title_cwd"
 # TAB COMPLETION
 # Only set up key bindings in interactive shells
 if [[ $- == *i* ]]; then
+	# Enable system bash completion if available
+	if ! shopt -oq posix; then
+		if [[ -f /usr/share/bash-completion/bash_completion ]]; then
+			. /usr/share/bash-completion/bash_completion
+		elif [[ -f /etc/bash_completion ]]; then
+			. /etc/bash_completion
+		fi
+	fi
+
+	# Enhanced completion settings
+	bind 'set completion-ignore-case on'
+	bind 'set completion-map-case on'
+	bind 'set show-all-if-ambiguous on'
+	bind 'set show-all-if-unmodified on'
+	bind 'set menu-complete-display-prefix on'
+	bind 'set colored-completion-prefix on'
+	bind 'set colored-stats on'
+	bind 'set visible-stats on'
+	bind 'set mark-symlinked-directories on'
+	bind 'set match-hidden-files off'
+
+	# Key bindings for menu completion
 	bind '"\t": menu-complete'
 	bind '"\e[Z": menu-complete-backward'
+	# Normal history navigation
+	bind '"\e[A": history-search-backward'
+	bind '"\e[B": history-search-forward'
+	# History search with Ctrl+arrows
+	bind '"\e[1;5A": previous-history'
+	bind '"\e[1;5B": next-history'
 fi
 
 ########################################################################
@@ -137,6 +165,10 @@ _fzf_compgen_path() {
 _fzf_compgen_dir() {
 	fd --type d --hidden --follow --exclude ".git" . "$1"
 }
+
+#######################################################################
+# THEFUCK
+eval $(thefuck --alias)
 
 #######################################################################
 # EDITOR

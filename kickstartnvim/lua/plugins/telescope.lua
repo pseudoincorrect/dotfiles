@@ -7,6 +7,7 @@ return {
     'nvim-lua/plenary.nvim',
     'debugloop/telescope-undo.nvim',
     'nvim-telescope/telescope-live-grep-args.nvim',
+    'nvim-telescope/telescope-frecency.nvim',
     {
       'nvim-telescope/telescope-fzf-native.nvim',
       build = 'make',
@@ -47,6 +48,12 @@ return {
             },
           },
         },
+        frecency = {
+          show_scores = false,
+          show_unindexed = true,
+          ignore_patterns = { '*.git/*', '*/tmp/*' },
+          disable_devicons = false,
+        },
       },
     }
 
@@ -54,6 +61,7 @@ return {
     pcall(require('telescope').load_extension, 'ui-select')
     pcall(require('telescope').load_extension, 'undo')
     pcall(require('telescope').load_extension, 'live_grep_args')
+    pcall(require('telescope').load_extension, 'frecency')
 
     local builtin = require 'telescope.builtin'
     vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Help' })
@@ -85,5 +93,9 @@ return {
     vim.keymap.set('n', '<leader>sn', function()
       builtin.find_files { cwd = vim.fn.stdpath 'config' }
     end, { desc = 'Neovim files' })
+
+    vim.keymap.set('n', '<leader>a', function()
+      require('telescope').extensions.frecency.frecency()
+    end, { desc = 'Frequent files' })
   end,
 }

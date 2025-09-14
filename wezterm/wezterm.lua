@@ -5,15 +5,29 @@ local config = {}
 config.font_size = 8.0
 
 -- Disable flow control to prevent Ctrl+S from freezing terminal
-config.enable_kitty_keyboard = true
+-- Disable kitty keyboard protocol to fix DEL key issues in Neovim
+config.enable_kitty_keyboard = false
 config.use_fancy_tab_bar = true
+
+-- Disable all confirmation dialogs
+config.skip_close_confirmation_for_processes_named = {}
+config.window_close_confirmation = "NeverPrompt"
+
+-- Start maximized without window decorations
+config.window_decorations = "NONE"
+config.initial_rows = 24
+config.initial_cols = 80
+wezterm.on("gui-startup", function()
+	local tab, pane, window = wezterm.mux.spawn_window({})
+	window:gui_window():maximize()
+end)
 
 -- Background image and transparency
 -- convert ~/Downloads/vosges-photo-1.jpg -modulate 40,100,100 -blur 0x8 ~/Downloads/vosges-photo-1-dark-blurry.jpg
 config.background = {
 	{
 		source = {
-			File = "Pictures/background/vosges-photo-1-dark-blurry.jpg",
+			File = "/home/mclement/Pictures/background/vosges-photo-1-dark-blurry.jpg",
 		},
 		opacity = 0.99,
 	},
@@ -67,7 +81,7 @@ config.keys = {
 	{
 		key = "w",
 		mods = "CTRL|SHIFT",
-		action = wezterm.action.CloseCurrentTab({ confirm = true }),
+		action = wezterm.action.CloseCurrentTab({ confirm = false }),
 	},
 	-- Next pane
 	{
