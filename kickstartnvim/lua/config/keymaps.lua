@@ -61,6 +61,11 @@ function M.setup()
   -- Ensure Escape works to exit insert mode
   vim.keymap.set('i', '<Esc>', '<Esc>', { noremap = true, silent = true })
 
+  -- Terminal mode keymaps
+  vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+  vim.keymap.set('t', '<C-h>', '<C-\\><C-n><C-w>h', { desc = 'Move to left window from terminal' })
+  vim.keymap.set('t', '<C-l>', '<C-\\><C-n><C-w>l', { desc = 'Move to right window from terminal' })
+
   -- Delete without yanking
   vim.keymap.set({ 'n', 'v' }, 'd', '"_d', { desc = 'Delete without yanking' })
   vim.keymap.set({ 'n', 'v' }, 'x', '"_x', { desc = 'Delete character without yanking' })

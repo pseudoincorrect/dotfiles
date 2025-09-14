@@ -72,6 +72,8 @@ if [[ $- == *i* ]]; then
 	# History search with Ctrl+arrows
 	bind '"\e[1;5A": previous-history'
 	bind '"\e[1;5B": next-history'
+	# Ctrl+Backspace to delete previous word
+	bind '"\C-h": backward-kill-word'
 fi
 
 ########################################################################
