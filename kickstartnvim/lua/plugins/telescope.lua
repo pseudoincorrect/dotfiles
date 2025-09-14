@@ -83,7 +83,14 @@ return {
     vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find, { desc = 'Grep Buffer' })
 
     vim.keymap.set('n', '<leader>b', function()
-      builtin.buffers { path_display = { 'truncate' }, sort_lastused = true }
+      builtin.buffers {
+        path_display = { 'truncate' },
+        sort_lastused = true,
+        attach_mappings = function(prompt_bufnr, map)
+          map('i', '<C-d>', actions.delete_buffer)
+          return true
+        end,
+      }
     end, { desc = 'Buffers' })
 
     vim.keymap.set('n', '<leader>sg', function()
@@ -94,7 +101,7 @@ return {
       builtin.find_files { cwd = vim.fn.stdpath 'config' }
     end, { desc = 'Neovim files' })
 
-    vim.keymap.set('n', '<leader>a', function()
+    vim.keymap.set('n', '<leader>sf', function()
       require('telescope').extensions.frecency.frecency()
     end, { desc = 'Frequent files' })
   end,

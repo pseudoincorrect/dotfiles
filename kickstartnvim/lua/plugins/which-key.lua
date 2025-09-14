@@ -43,6 +43,7 @@ return {
       { '<leader>r', group = 'Surround' },
       { '<leader>s', group = 'Telescope' },
       { '<leader>w', group = 'Window' },
+      { '<leader>y', group = 'Yank Operations' },
     },
   },
 }

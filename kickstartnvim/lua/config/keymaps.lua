@@ -30,7 +30,7 @@ function M.setup()
   vim.keymap.set('n', '<leader>wR', '<C-w>R', { desc = 'Rotate windows reverse' })
   vim.keymap.set('n', '<leader>wx', '<C-w>x', { desc = 'Exchange windows' })
 
-  -- File operations
+  -- Ctrl+s to save
   vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true, silent = true, desc = 'Save the current file' })
   vim.api.nvim_set_keymap('i', '<C-s>', '<Esc>:w<CR>', { noremap = true, silent = true, desc = 'Save the current file' })
 
@@ -43,33 +43,52 @@ function M.setup()
   vim.keymap.set('n', '<c-n>', '<Plug>(YankyNextEntry)')
 
   -- NeoTree
-  vim.keymap.set('n', '<leader>ee', '<Esc>:Neotree toggle<CR>', { noremap = true, desc = 'Open NeoTree' })
-  vim.keymap.set('n', '<leader>eb', '<Esc>:Neotree toggle source=buffers<CR>', { noremap = true, desc = 'Open NeoTree Buffers' })
+  vim.keymap.set('n', '<leader>ee', '<Esc>:Neotree toggle<CR>', { noremap = true, desc = 'NeoTree' })
+  vim.keymap.set('n', '<leader>eb', '<Esc>:Neotree toggle source=buffers<CR>', { noremap = true, desc = 'NeoTree Buffers' })
 
   -- Path copy operations
   vim.keymap.set('n', '<leader>er', function()
     local path = vim.fn.expand '%:.'
     vim.fn.setreg('+', path)
     print('Copied relative path: ' .. path)
-  end, { desc = 'Copy relative path to clipboard' })
+  end, { desc = 'Copy relative path' })
   vim.keymap.set('n', '<leader>ea', function()
     local path = vim.fn.expand '%:p'
     vim.fn.setreg('+', path)
     print('Copied absolute path: ' .. path)
-  end, { desc = 'Copy absolute path to clipboard' })
+  end, { desc = 'Copy absolute path' })
 
   -- Ensure Escape works to exit insert mode
   vim.keymap.set('i', '<Esc>', '<Esc>', { noremap = true, silent = true })
 
   -- Terminal mode keymaps
-  vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
   vim.keymap.set('t', '<C-h>', '<C-\\><C-n><C-w>h', { desc = 'Move to left window from terminal' })
   vim.keymap.set('t', '<C-l>', '<C-\\><C-n><C-w>l', { desc = 'Move to right window from terminal' })
 
-  -- Delete without yanking
-  vim.keymap.set({ 'n', 'v' }, 'd', '"_d', { desc = 'Delete without yanking' })
-  vim.keymap.set({ 'n', 'v' }, 'x', '"_x', { desc = 'Delete character without yanking' })
-  vim.keymap.set({ 'n', 'v' }, 'c', '"_c', { desc = 'Change without yanking' })
+  -- Terminal management
+  vim.keymap.set('n', '<leader>tt', ':term<CR>', { desc = 'Open terminal' })
+  vim.keymap.set('n', '<leader>tv', ':vert term<CR>', { desc = 'Open Vsplit terminal' })
+  vim.keymap.set('n', '<leader>tn', function()
+    local name = vim.fn.input 'Terminal name: '
+    if name ~= '' then
+      vim.cmd('file term://' .. name)
+    end
+  end, { desc = 'Rename terminal' })
+
+  -- No yank operations
+  vim.keymap.set({ 'n', 'v' }, 'd', '"_d', { desc = 'd no yank' })
+  vim.keymap.set({ 'n', 'v' }, 'D', '"_D', { desc = 'D no yank' })
+  vim.keymap.set({ 'n', 'v' }, 'x', '"_x', { desc = 'x no yank' })
+  vim.keymap.set({ 'n', 'v' }, 'c', '"_c', { desc = 'c no yank' })
+  vim.keymap.set({ 'n', 'v' }, 'C', '"_c', { desc = 'C no yank' })
+
+  -- Yank operations
+  vim.keymap.set({ 'n', 'v' }, '<leader>yd', 'd', { desc = 'd yank' })
+  vim.keymap.set({ 'n', 'v' }, '<leader>yD', 'D', { desc = 'D yank' })
+  vim.keymap.set({ 'n', 'v' }, '<leader>yx', 'x', { desc = 'x yank' })
+  vim.keymap.set({ 'n', 'v' }, '<leader>yc', 'c', { desc = 'c yank' })
+  vim.keymap.set({ 'n', 'v' }, '<leader>yC', 'C', { desc = 'C yank' })
+  vim.keymap.set({ 'n', 'v' }, '<leader>ys', 'S', { desc = 'S yank' })
 
   -- Better defaults
   vim.keymap.set({ 'n', 'v' }, 'U', '<C-r>', { desc = 'Redo' })
@@ -96,14 +115,6 @@ function M.setup()
   -- Line manipulation
   vim.keymap.set('n', '<leader>o', 'o<Esc>k', { desc = 'Line Below' })
   vim.keymap.set('n', '<leader>O', 'O<Esc>j', { desc = 'Line Above' })
-
-  -- System clipboard
-  vim.keymap.set('v', '<leader>y', '"+y', { desc = 'Yank' })
-  vim.keymap.set('n', '<leader>Y', '"+yg_', { desc = 'Yank Line' })
-  vim.keymap.set('n', '<leader>y', '"+y', { desc = 'Yank' })
-  -- vim.keymap.set('n', '<leader>yy', '"+yy', { desc = 'Yank entire line to system clipboard' })
-  vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p', { desc = 'Paste' })
-  vim.keymap.set({ 'n', 'v' }, '<leader>P', '"+P', { desc = 'Paste Before' })
 
   -- LSP
   vim.keymap.set('n', '<leader>ch', vim.lsp.buf.hover, { desc = 'LSP Hover' })

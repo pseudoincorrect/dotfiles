@@ -185,7 +185,7 @@ require('lazy').setup(
             ['<C-l>'] = false,
           },
         }
-        vim.keymap.set('n', '<leader>eo', '<CMD>Oil<CR>', { desc = 'Open Oil file explorer' })
+        vim.keymap.set('n', '<leader>eo', '<CMD>Oil<CR>', { desc = 'Oil file explorer' })
       end,
     },
 
