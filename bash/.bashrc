@@ -40,6 +40,16 @@ set_window_title_cwd() {
 PROMPT_COMMAND="set_window_title_cwd"
 
 ########################################################################
+# SET TERMINAL TITLE MANUALLY
+function st() {
+	if [[ -z "$ORIG" ]]; then
+		ORIG=$PS1
+	fi
+	TITLE="\[\e]2;$*\a\]"
+	PS1=${ORIG}${TITLE}
+}
+
+########################################################################
 # TAB COMPLETION
 # Only set up key bindings in interactive shells
 if [[ $- == *i* ]]; then
@@ -63,14 +73,13 @@ if [[ $- == *i* ]]; then
 	bind 'set visible-stats on'
 	bind 'set mark-symlinked-directories on'
 	bind 'set match-hidden-files off'
-
 	# Key bindings for menu completion
 	bind '"\t": menu-complete'
 	bind '"\e[Z": menu-complete-backward'
-	# Normal history navigation
+	# History search with arrows
 	bind '"\e[A": history-search-backward'
 	bind '"\e[B": history-search-forward'
-	# History search with Ctrl+arrows
+	# Normal history navigation with ctrl+arrows
 	bind '"\e[1;5A": previous-history'
 	bind '"\e[1;5B": next-history'
 	# Ctrl+Backspace to delete previous word
@@ -145,7 +154,7 @@ function his() {
 
 # deduplicate bash history file
 function history_deduplicate() {
-	tac ~/.bash_history | awk '!seen[$0]++' | tac > ~/.bash_history.tmp && mv ~/.bash_history.tmp ~/.bash_history
+	tac ~/.bash_history | awk '!seen[$0]++' | tac >~/.bash_history.tmp && mv ~/.bash_history.tmp ~/.bash_history
 	echo "History deduplicated"
 }
 

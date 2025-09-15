@@ -10,7 +10,7 @@ config.enable_kitty_keyboard = false
 config.use_fancy_tab_bar = true
 
 -- Disable all confirmation dialogs
-config.skip_close_confirmation_for_processes_named = {}
+config.skip_close_confirmation_for_processes_named = { 'bash', 'sh', 'zsh', 'fish', 'tmux' }
 config.window_close_confirmation = "NeverPrompt"
 
 -- Start maximized without window decorations

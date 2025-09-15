@@ -2,7 +2,6 @@
 return {
   'nvim-telescope/telescope.nvim',
   event = 'VimEnter',
-  branch = '0.1.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
     'debugloop/telescope-undo.nvim',
@@ -32,6 +31,21 @@ return {
             ['<S-Tab>'] = actions.move_selection_next,
             ['<Tab>'] = actions.move_selection_previous,
           },
+        },
+      },
+      pickers = {
+        marks = {
+          attach_mappings = function(prompt_bufnr, map)
+            map({ 'i', 'n' }, '<C-d>', function()
+              actions.delete_mark(prompt_bufnr)
+            end)
+            return true
+          end,
+        },
+        lsp_document_symbols = {
+          symbol_width = 50,
+          show_line = true,
+          fname_width = 30,
         },
       },
       extensions = {
@@ -76,7 +90,7 @@ return {
     vim.keymap.set('n', '<leader>sj', builtin.jumplist, { desc = 'Jumplist' })
     vim.keymap.set('n', '<leader>su', '<cmd>Telescope undo<cr>', { desc = 'Undos' })
     vim.keymap.set('n', '<leader>s*', builtin.grep_string, { desc = 'Current word' })
-    vim.keymap.set('v', '<leader>sv', builtin.grep_string, { desc = 'Selection' })
+    vim.keymap.set('v', '<leader>sv', builtin.grep_string, { desc = 'Grep Repo Selection' })
     vim.keymap.set('n', '<leader>sx', builtin.diagnostics, { desc = 'Problems' })
     vim.keymap.set('n', '<leader>f', builtin.find_files, { desc = 'Files' })
     vim.keymap.set('n', '<leader>g', builtin.current_buffer_fuzzy_find, { desc = 'Grep Buffer' })
@@ -103,6 +117,6 @@ return {
 
     vim.keymap.set('n', '<leader>sf', function()
       require('telescope').extensions.frecency.frecency()
-    end, { desc = 'Frequent files' })
+    end, { desc = 'Frecency' })
   end,
 }

@@ -38,7 +38,7 @@ return {
     },
     window = {
       position = 'left',
-      width = 40,
+      width = 60,
       mapping_options = {
         noremap = true,
         nowait = true,
@@ -89,6 +89,9 @@ return {
           ['[g'] = 'prev_git_modified',
           [']g'] = 'next_git_modified',
           ['i'] = 'show_file_details',
+          ['l'] = 'toggle_node',
+          ['h'] = 'close_node',
+          ['<cr>'] = 'open',
           ['o'] = { 'show_help', nowait = false, config = { title = 'Order by', prefix_key = 'o' } },
           ['oc'] = { 'order_by_created', nowait = false },
           ['od'] = { 'order_by_diagnostics', nowait = false },

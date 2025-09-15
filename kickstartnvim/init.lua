@@ -52,6 +52,24 @@ require('lazy').setup(
       },
     },
 
+    -- Code outline with Aerial
+    {
+      'stevearc/aerial.nvim',
+      opts = {},
+      dependencies = {
+        'nvim-treesitter/nvim-treesitter',
+        'nvim-tree/nvim-web-devicons',
+      },
+      config = function()
+        require('aerial').setup {
+          on_attach = function(bufnr)
+            vim.keymap.set('n', 'K', '<cmd>AerialPrev<CR>', { buffer = bufnr })
+            vim.keymap.set('n', 'J', '<cmd>AerialNext<CR>', { buffer = bufnr })
+          end,
+        }
+      end,
+    },
+
     -- luvit-meta is a plugin that provides a Lua library for Luvit, a Node.js-like runtime for Lua.
     { 'Bilal2453/luvit-meta', lazy = true },
     {
@@ -170,23 +188,6 @@ require('lazy').setup(
       'Aasim-A/scrollEOF.nvim',
       event = { 'CursorMoved', 'WinScrolled' },
       opts = {},
-    },
-
-    -- Oil.nvim - file explorer that lets you edit your filesystem like a buffer
-    {
-      'stevearc/oil.nvim',
-      opts = {},
-      dependencies = { 'nvim-tree/nvim-web-devicons' },
-      config = function()
-        require('oil').setup {
-          default_file_explorer = false,
-          keymaps = {
-            ['<C-h>'] = false,
-            ['<C-l>'] = false,
-          },
-        }
-        vim.keymap.set('n', '<leader>eo', '<CMD>Oil<CR>', { desc = 'Oil file explorer' })
-      end,
     },
 
     -- Render markdown.nvim - enhanced markdown rendering

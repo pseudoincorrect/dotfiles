@@ -3,10 +3,12 @@ local M = {}
 
 function M.setup()
   -- Window management (Ctrl+w equivalents)
+  vim.keymap.set({ 'n', 'i', 'v' }, '<C-h>', '<Esc><C-w>h', { desc = 'Move to left window' })
+  vim.keymap.set({ 'n', 'i', 'v' }, '<C-l>', '<Esc><C-w>l', { desc = 'Move to right window' })
+  vim.keymap.set('n', '<C-w>a', ':%bd!<CR>', { desc = 'Close all buffers' })
+  vim.keymap.set('n', '<C-w>d', ':bp|bd #<CR>', { desc = 'Close current buffer' })
   vim.keymap.set('n', '<leader>wh', '<C-w>h', { desc = 'Move to left window' })
-  vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Move to left window' })
   vim.keymap.set('n', '<leader>wl', '<C-w>l', { desc = 'Move to right window' })
-  vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Move to right window' })
   vim.keymap.set('n', '<leader>wj', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
   vim.keymap.set('n', '<leader>wk', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
   vim.keymap.set('n', '<leader>ww', '<C-w>w', { desc = 'Switch to next window' })
@@ -15,9 +17,7 @@ function M.setup()
   vim.keymap.set('n', '<leader>ws', '<C-w>s', { desc = 'Split window horizontally' })
   vim.keymap.set('n', '<leader>wc', '<C-w>c', { desc = 'Close window' })
   vim.keymap.set('n', '<leader>wd', ':bp|bd #<CR>', { desc = 'Close current buffer' })
-  vim.keymap.set('n', '<C-w>d', ':bp|bd #<CR>', { desc = 'Close current buffer' })
   vim.keymap.set('n', '<leader>wa', ':%bd!<CR>', { desc = 'Close all buffers' })
-  vim.keymap.set('n', '<C-w>a', ':%bd!<CR>', { desc = 'Close all buffers' })
   vim.keymap.set('n', '<leader>wo', '<C-w>o', { desc = 'Close all other windows' })
   vim.keymap.set('n', '<leader>wq', '<C-w>q', { desc = 'Quit current window' })
   vim.keymap.set('n', '<leader>w=', '<C-w>=', { desc = 'Equalize window sizes' })
@@ -29,6 +29,9 @@ function M.setup()
   vim.keymap.set('n', '<leader>wr', '<C-w>r', { desc = 'Rotate windows' })
   vim.keymap.set('n', '<leader>wR', '<C-w>R', { desc = 'Rotate windows reverse' })
   vim.keymap.set('n', '<leader>wx', '<C-w>x', { desc = 'Exchange windows' })
+
+  -- Redraw screen
+  vim.keymap.set('n', '<leader><leader>', ':redraw<CR>', { desc = 'Redraw' })
 
   -- Ctrl+s to save
   vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true, silent = true, desc = 'Save the current file' })
@@ -43,16 +46,15 @@ function M.setup()
   vim.keymap.set('n', '<c-n>', '<Plug>(YankyNextEntry)')
 
   -- NeoTree
-  vim.keymap.set('n', '<leader>ee', '<Esc>:Neotree toggle<CR>', { noremap = true, desc = 'NeoTree' })
-  vim.keymap.set('n', '<leader>eb', '<Esc>:Neotree toggle source=buffers<CR>', { noremap = true, desc = 'NeoTree Buffers' })
+  vim.keymap.set('n', '<leader>e', '<Esc>:Neotree toggle<CR>', { noremap = true, desc = 'NeoTree' })
 
   -- Path copy operations
-  vim.keymap.set('n', '<leader>er', function()
+  vim.keymap.set('n', '<leader>pr', function()
     local path = vim.fn.expand '%:.'
     vim.fn.setreg('+', path)
     print('Copied relative path: ' .. path)
   end, { desc = 'Copy relative path' })
-  vim.keymap.set('n', '<leader>ea', function()
+  vim.keymap.set('n', '<leader>pa', function()
     local path = vim.fn.expand '%:p'
     vim.fn.setreg('+', path)
     print('Copied absolute path: ' .. path)
@@ -68,7 +70,7 @@ function M.setup()
   -- Terminal management
   vim.keymap.set('n', '<leader>tt', ':term<CR>', { desc = 'Open terminal' })
   vim.keymap.set('n', '<leader>tv', ':vert term<CR>', { desc = 'Open Vsplit terminal' })
-  vim.keymap.set('n', '<leader>tn', function()
+  vim.keymap.set('n', '<leader>tr', function()
     local name = vim.fn.input 'Terminal name: '
     if name ~= '' then
       vim.cmd('file term://' .. name)
@@ -98,10 +100,6 @@ function M.setup()
   vim.keymap.set({ 'n' }, 'ga', 'ggVG', { desc = 'Select all' })
   vim.keymap.set({ 'v', 'o' }, 'ga', 'gg<Esc>VG', { desc = 'Select all' })
 
-  -- Wrapped line navigation
-  vim.keymap.set({ 'n', 'v' }, 'j', 'gj', { desc = 'Move down by visual line' })
-  vim.keymap.set({ 'n', 'v' }, 'k', 'gk', { desc = 'Move up by visual line' })
-
   -- Fixed: Better visual mode navigation
   vim.keymap.set('n', '<leader>v', 'V', { desc = 'Visual line' })
 
@@ -109,12 +107,22 @@ function M.setup()
   vim.keymap.set('n', 'Q', '@q', { desc = 'Repeat q macro' })
 
   -- Keep scroll navigation
-  vim.keymap.set('n', '<C-j>', '<C-d>', { desc = 'Half page down' })
-  vim.keymap.set('n', '<C-k>', '<C-u>', { desc = 'Half page up' })
+  -- vim.keymap.set('n', '<C-j>', '<C-d>zz', { desc = 'Scroll down' })
+  -- vim.keymap.set('n', '<C-k>', '<C-u>zz', { desc = 'Scroll up' })
+  vim.keymap.set('n', '<C-j>', '2jzz', { desc = 'Scroll down' })
+  vim.keymap.set('n', '<C-k>', '2kzz', { desc = 'Scroll up' })
 
   -- Line manipulation
   vim.keymap.set('n', '<leader>o', 'o<Esc>k', { desc = 'Line Below' })
   vim.keymap.set('n', '<leader>O', 'O<Esc>j', { desc = 'Line Above' })
+
+  -- Better movement for wrapped lines
+  vim.keymap.set({ 'n', 'x' }, 'j', function()
+    return vim.v.count > 0 and 'j' or 'gj'
+  end, { noremap = true, expr = true })
+  vim.keymap.set({ 'n', 'x' }, 'k', function()
+    return vim.v.count > 0 and 'k' or 'gk'
+  end, { noremap = true, expr = true })
 
   -- LSP
   vim.keymap.set('n', '<leader>ch', vim.lsp.buf.hover, { desc = 'LSP Hover' })

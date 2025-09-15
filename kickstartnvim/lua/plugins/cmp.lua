@@ -80,19 +80,6 @@ return {
           end
         end,
 
-        -- Think of <c-l> as moving to the right of your snippet expansion.
-        -- <C-l> and <C-h> navigate snippet placeholders forward/backward.
-        ['<C-l>'] = cmp.mapping(function()
-          if luasnip.expand_or_locally_jumpable() then
-            luasnip.expand_or_jump()
-          end
-        end, { 'i', 's' }),
-        ['<C-h>'] = cmp.mapping(function()
-          if luasnip.locally_jumpable(-1) then
-            luasnip.jump(-1)
-          end
-        end, { 'i', 's' }),
-
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         -- See LuaSnip docs for advanced keymaps.
       },
