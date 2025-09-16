@@ -33,7 +33,7 @@ return {
           require('telescope.builtin').lsp_type_definitions { show_line = false }
         end, 'Goto Type definition')
 
-        map('<leader>ss', function()
+        map('gs', function()
           require('telescope.builtin').lsp_document_symbols {
             show_line = false,
             symbols = { 'Function', 'Method', 'Class' },
@@ -51,6 +51,15 @@ return {
         map('<leader>ca', vim.lsp.buf.code_action, 'Code Action', { 'n', 'x' })
         map('<leader>cf', vim.lsp.buf.format, 'Format Document')
         map('<leader>cd', vim.diagnostic.open_float, 'Show Problem')
+        map('<leader>cp', function()
+          local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line '.' - 1 })
+          if #diagnostics > 0 then
+            vim.fn.setreg('+', diagnostics[1].message)
+            vim.notify 'Diagnostic copied to clipboard'
+          else
+            vim.notify 'No diagnostic at cursor'
+          end
+        end, 'Copy Diagnostic')
         map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
 
         local client = vim.lsp.get_client_by_id(event.data.client_id)

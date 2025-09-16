@@ -1,14 +1,17 @@
 return {
   'jake-stewart/multicursor.nvim',
-  lazy = false,
+  event = 'VeryLazy',
   config = function()
     local mc = require 'multicursor-nvim'
     mc.setup()
 
-    vim.keymap.set({ 'n', 'v' }, '<C-d>', function()
+    vim.keymap.set({ 'n', 'v' }, '<C-a>', function()
       mc.addCursor '*'
     end)
-    vim.keymap.set({ 'n', 'v' }, '<C-u>', function()
+    vim.keymap.set({ 'n', 'v' }, '<C-S-a>', function()
+      mc.addCursor()
+    end)
+    vim.keymap.set({ 'n', 'v' }, "<C-'>", function()
       mc.addCursor 'j'
     end)
     vim.keymap.set({ 'n', 'v' }, '<Esc>', function()

@@ -38,8 +38,8 @@ return {
     },
     spec = {
       { '<leader>c', group = 'Code', mode = { 'n', 'v', 'x' } },
+      { '<leader>cm', group = 'Markdown', mode = 'n' },
       { '<leader>p', group = 'Path', mode = 'n' },
-      { '<leader>m', group = 'Markdown', mode = 'n' },
       { '<leader>r', group = 'Surround', mode = { 'n', 'v' } },
       { '<leader>s', group = 'Telescope', mode = { 'n', 'v', 'x' } },
       { '<leader>t', group = 'Terminal', mode = { 'n', 'v', 'x' } },

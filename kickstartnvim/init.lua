@@ -25,21 +25,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup(
   {
     -- tpope/vim-sleuth is a plugin that automatically detects the indentation style of the file.
-    'tpope/vim-sleuth',
-
-    -- gitsigns is a plugin that shows git changes in the sign column.
-    {
-      'lewis6991/gitsigns.nvim',
-      opts = {
-        signs = {
-          add = { text = '+' },
-          change = { text = '~' },
-          delete = { text = '_' },
-          topdelete = { text = '‾' },
-          changedelete = { text = '~' },
-        },
-      },
-    },
+    { 'tpope/vim-sleuth', event = 'VeryLazy' },
 
     -- Plugin for debugging Neovim Lua code
     {
@@ -55,6 +41,7 @@ require('lazy').setup(
     -- Code outline with Aerial
     {
       'stevearc/aerial.nvim',
+      event = 'VeryLazy',
       opts = {},
       dependencies = {
         'nvim-treesitter/nvim-treesitter',
@@ -72,6 +59,8 @@ require('lazy').setup(
 
     -- luvit-meta is a plugin that provides a Lua library for Luvit, a Node.js-like runtime for Lua.
     { 'Bilal2453/luvit-meta', lazy = true },
+
+    -- Conform.nvim for code formatting
     {
       'stevearc/conform.nvim',
       event = { 'BufWritePre' },
@@ -126,16 +115,6 @@ require('lazy').setup(
       },
     },
 
-    -- Vim-surround for text object manipulation
-    {
-      'kylechui/nvim-surround',
-      version = '*',
-      event = 'VeryLazy',
-      config = function()
-        require('nvim-surround').setup {}
-      end,
-    },
-
     -- Session management with auto-session
     {
       'rmagatti/auto-session',
@@ -153,32 +132,13 @@ require('lazy').setup(
       },
     },
 
-    -- Mini.move for moving text
-    {
-      'echasnovski/mini.move',
-      version = '*',
-      config = function()
-        require('mini.move').setup {
-          mappings = {
-            left = '<M-Left>',
-            right = '<M-Right>',
-            down = '<M-Down>',
-            up = '<M-Up>',
-            line_left = '<M-Left>',
-            line_right = '<M-Right>',
-            line_down = '<M-Down>',
-            line_up = '<M-Up>',
-          },
-        }
-      end,
-    },
-
     -- Yank history plugin
-    { 'gbprod/yanky.nvim', opts = {} },
+    { 'gbprod/yanky.nvim', event = 'VeryLazy', opts = {} },
 
     -- TypeScript tools plugin
     {
       'pmizio/typescript-tools.nvim',
+      event = 'VeryLazy',
       dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
       opts = {},
     },
@@ -198,19 +158,19 @@ require('lazy').setup(
       opts = {},
       keys = {
         {
-          '<leader>mt',
+          '<leader>cmt',
           '<cmd>RenderMarkdown toggle<cr>',
           desc = 'Toggle Render Markdown',
           ft = 'markdown',
         },
         {
-          '<leader>me',
+          '<leader>cme',
           '<cmd>RenderMarkdown enable<cr>',
           desc = 'Enable Render Markdown',
           ft = 'markdown',
         },
         {
-          '<leader>md',
+          '<leader>cmd',
           '<cmd>RenderMarkdown disable<cr>',
           desc = 'Disable Render Markdown',
           ft = 'markdown',
@@ -234,6 +194,7 @@ require('lazy').setup(
     -- Add indentation guides even on blank lines
     {
       'lukas-reineke/indent-blankline.nvim',
+      event = 'VeryLazy',
       main = 'ibl',
       opts = {},
     },
@@ -262,6 +223,7 @@ require('lazy').setup(
     require 'plugins.cmp',
     require 'plugins.copilot',
     require 'plugins.flash',
+    require 'plugins.grapple',
     require 'plugins.lsp',
     require 'plugins.mini',
     require 'plugins.multicursor',

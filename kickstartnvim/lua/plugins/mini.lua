@@ -46,5 +46,76 @@ return {
     statusline.section_location = function()
       return '%2l:%-2v'
     end
+
+    -- Mini.files configuration
+    local mini_files = require 'mini.files'
+
+    mini_files.setup {
+      mappings = {
+        close = '<Esc>',
+        go_in = 'l',
+        go_in_plus = '<CR>',
+        go_out = 'h',
+        -- go_out_plus = 'H',
+        reset = '.',
+        reveal_cwd = 'r',
+        show_help = '?',
+        synchronize = 's',
+        trim_left = '<',
+        trim_right = '>',
+        -- go_in_plus = '<CR>',
+      },
+      windows = {
+        max_number = math.huge,
+        preview = true,
+        width_focus = 50,
+        width_nofocus = 15,
+        width_preview = 80,
+      },
+      options = {
+        permanent_delete = true,
+        use_as_default_explorer = true,
+      },
+    }
+
+    -- Key mappings for Mini.files
+
+    vim.keymap.set('n', '<leader>ed', function()
+      local current_file = vim.api.nvim_buf_get_name(0)
+      if current_file ~= '' then
+        mini_files.open(vim.fn.fnamemodify(current_file, ':h'))
+      else
+        mini_files.open()
+      end
+    end, { desc = 'Mini.files (current dir)' })
+
+    vim.keymap.set('n', '<leader>ef', function()
+      mini_files.open(vim.fn.getcwd())
+    end, { desc = 'Mini.files (root)' })
+
+    -- Mini.move for moving text
+    require('mini.move').setup {
+      mappings = {
+        left = '<M-Left>',
+        right = '<M-Right>',
+        down = '<M-Down>',
+        up = '<M-Up>',
+        line_left = '<M-Left>',
+        line_right = '<M-Right>',
+        line_down = '<M-Down>',
+        line_up = '<M-Up>',
+      },
+    }
+
+    -- Mini.diff for visualizing diffs
+    require('mini.diff').setup()
+
+    -- Key mapping for Mini.diff
+    vim.keymap.set('n', '<leader>d', function()
+      require('mini.diff').toggle_overlay()
+    end, { desc = 'Diff view' })
+
+    -- Mini.completion for basic completion
+    require('mini.completion').setup()
   end,
 }

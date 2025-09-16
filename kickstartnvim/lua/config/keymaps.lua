@@ -31,7 +31,7 @@ function M.setup()
   vim.keymap.set('n', '<leader>wx', '<C-w>x', { desc = 'Exchange windows' })
 
   -- Redraw screen
-  vim.keymap.set('n', '<leader><leader>', ':redraw<CR>', { desc = 'Redraw' })
+  vim.keymap.set('n', '<leader><leader>', ':e!<CR>', { desc = 'Reload files' })
 
   -- Ctrl+s to save
   vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true, silent = true, desc = 'Save the current file' })
@@ -46,7 +46,9 @@ function M.setup()
   vim.keymap.set('n', '<c-n>', '<Plug>(YankyNextEntry)')
 
   -- NeoTree
-  vim.keymap.set('n', '<leader>e', '<Esc>:Neotree toggle<CR>', { noremap = true, desc = 'NeoTree' })
+  vim.keymap.set('n', '<leader>ee', '<Esc>:Neotree toggle<CR>', { noremap = true, desc = 'NeoTree Toggle' })
+  vim.keymap.set('n', '<leader>er', '<Esc>:Neotree reveal<CR>', { noremap = true, desc = 'NeoTree Reveal' })
+  vim.keymap.set('n', '<leader>ec', '<Esc>:Neotree close<CR>', { noremap = true, desc = 'NeoTree Close' })
 
   -- Path copy operations
   vim.keymap.set('n', '<leader>pr', function()
@@ -107,10 +109,12 @@ function M.setup()
   vim.keymap.set('n', 'Q', '@q', { desc = 'Repeat q macro' })
 
   -- Keep scroll navigation
-  -- vim.keymap.set('n', '<C-j>', '<C-d>zz', { desc = 'Scroll down' })
-  -- vim.keymap.set('n', '<C-k>', '<C-u>zz', { desc = 'Scroll up' })
-  vim.keymap.set('n', '<C-j>', '2jzz', { desc = 'Scroll down' })
-  vim.keymap.set('n', '<C-k>', '2kzz', { desc = 'Scroll up' })
+  vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll down' })
+  vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll up' })
+  vim.keymap.set('n', '<C-j>', '2<C-e>', { desc = 'Scroll down' })
+  vim.keymap.set('n', '<C-k>', '2<C-y>', { desc = 'Scroll up' })
+  -- vim.keymap.set('n', 'J', '<C-e>', { desc = 'Scroll down' })
+  -- vim.keymap.set('n', 'K', '<C-y>', { desc = 'Scroll up' })
 
   -- Line manipulation
   vim.keymap.set('n', '<leader>o', 'o<Esc>k', { desc = 'Line Below' })
@@ -123,6 +127,10 @@ function M.setup()
   vim.keymap.set({ 'n', 'x' }, 'k', function()
     return vim.v.count > 0 and 'k' or 'gk'
   end, { noremap = true, expr = true })
+
+  -- Visual selection search
+  vim.keymap.set('x', '*', 'y/\\V<C-r>"<CR>', { desc = 'Search visual selection forward' })
+  vim.keymap.set('x', '#', 'y?\\V<C-r>"<CR>', { desc = 'Search visual selection backward' })
 
   -- LSP
   vim.keymap.set('n', '<leader>ch', vim.lsp.buf.hover, { desc = 'LSP Hover' })
