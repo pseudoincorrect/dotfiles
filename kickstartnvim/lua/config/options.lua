@@ -38,6 +38,16 @@ function M.setup()
   vim.opt.autoread = true
   vim.opt.lazyredraw = false
 
+  -- Performance optimizations for large files
+  vim.opt.synmaxcol = 200 -- Limit syntax highlighting to first 200 columns
+  vim.opt.regexpengine = 1 -- Use old regex engine (sometimes faster)
+  vim.opt.maxmempattern = 2000000 -- Increase max memory for patterns
+
+  -- Folding configuration
+  vim.opt.foldmethod = 'indent'
+  vim.opt.foldlevelstart = 99
+  vim.opt.foldenable = true
+
   -- Window appearance and borders
   vim.opt.fillchars = {
     horiz = '━',

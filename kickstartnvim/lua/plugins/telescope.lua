@@ -36,7 +36,7 @@ return {
       pickers = {
         marks = {
           attach_mappings = function(prompt_bufnr, map)
-            map({ 'i', 'n' }, '<C-d>', function()
+            map({ 'i', 'n' }, '<C-k>', function()
               actions.delete_mark(prompt_bufnr)
             end)
             return true
@@ -92,7 +92,11 @@ return {
     vim.keymap.set('n', '<leader>s*', builtin.grep_string, { desc = 'Current word' })
     vim.keymap.set('v', '<leader>sv', builtin.grep_string, { desc = 'Grep Repo Selection' })
     vim.keymap.set('n', '<leader>sx', builtin.diagnostics, { desc = 'Problems' })
-    vim.keymap.set('n', '<leader>f', builtin.find_files, { desc = 'Files' })
+    vim.keymap.set('n', '<leader>f', function()
+      builtin.find_files {
+        path_display = { 'truncate' },
+      }
+    end, { desc = 'Files' })
     vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find, { desc = 'Grep Buffer' })
 
     vim.keymap.set('n', '<leader>b', function()
@@ -100,7 +104,7 @@ return {
         path_display = { 'truncate' },
         sort_lastused = true,
         attach_mappings = function(prompt_bufnr, map)
-          map('i', '<C-d>', actions.delete_buffer)
+          map('i', '<C-k>', actions.delete_buffer)
           return true
         end,
       }

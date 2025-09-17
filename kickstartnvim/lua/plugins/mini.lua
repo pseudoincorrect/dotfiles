@@ -108,7 +108,17 @@ return {
     }
 
     -- Mini.diff for visualizing diffs
-    require('mini.diff').setup()
+    require('mini.diff').setup {
+      mappings = {
+        apply = '',
+        reset = '',
+        textobject = '',
+        goto_first = '',
+        goto_prev = '',
+        goto_next = '',
+        goto_last = '',
+      },
+    }
 
     -- Key mapping for Mini.diff
     vim.keymap.set('n', '<leader>d', function()

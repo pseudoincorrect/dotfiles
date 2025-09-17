@@ -61,6 +61,84 @@ function M.setup()
     group = vim.api.nvim_create_augroup('terminal-auto-close', { clear = true }),
     callback = close_terminal_jobs,
   })
+
+  -- Auto enter insert mode when focusing on terminal
+  vim.api.nvim_create_autocmd({ 'BufEnter', 'WinEnter', 'TermOpen' }, {
+    desc = 'Auto enter insert mode in terminal',
+    group = vim.api.nvim_create_augroup('terminal-insert-mode', { clear = true }),
+    callback = function()
+      if vim.bo.buftype == 'terminal' then
+        vim.cmd 'startinsert'
+      end
+    end,
+  })
+
+  -- Optimize for large files (>1MB)
+  vim.api.nvim_create_autocmd('BufReadPre', {
+    desc = 'Optimize settings for large files',
+    group = vim.api.nvim_create_augroup('large-file-optimization', { clear = true }),
+    callback = function(args)
+      local buf = args.buf
+      local filename = args.match
+      -- Check file size
+      local ok, stats = pcall(vim.loop.fs_stat, filename)
+      if not ok or not stats then
+        return
+      end
+      -- If file is larger than 100kB, optimize for performance
+      if stats.size > 1024 * 100 then
+        vim.b[buf].large_file = true
+        -- Disable syntax highlighting
+        vim.bo[buf].syntax = 'off'
+        -- Disable spell checking
+        vim.wo.spell = false
+        -- Disable relative line numbers (keep absolute)
+        vim.wo.relativenumber = false
+        -- Reduce some expensive options
+        vim.bo[buf].swapfile = false
+        vim.wo.cursorline = false
+        vim.wo.cursorcolumn = false
+        -- Disable some visual effects
+        vim.wo.list = false
+        vim.wo.colorcolumn = ''
+        -- Set faster redraw
+        vim.o.lazyredraw = true
+        -- Disable auto-completion
+        vim.bo[buf].omnifunc = ''
+        vim.bo[buf].completefunc = ''
+      end
+    end,
+  })
+
+  -- Disable LSP and treesitter for large files
+  vim.api.nvim_create_autocmd('BufRead', {
+    desc = 'Disable LSP and treesitter for large files',
+    group = vim.api.nvim_create_augroup('large-file-optimization', { clear = false }),
+    callback = function(args)
+      local buf = args.buf
+      if vim.b[buf].large_file then
+        -- Disable LSP
+        vim.schedule(function()
+          local clients = vim.lsp.get_active_clients { bufnr = buf }
+          for _, client in ipairs(clients) do
+            vim.lsp.buf_detach_client(buf, client.id)
+          end
+        end)
+        -- Disable treesitter
+        local has_ts, ts_configs = pcall(require, 'nvim-treesitter.configs')
+        if has_ts then
+          vim.schedule(function()
+            vim.cmd 'TSBufDisable highlight'
+            vim.cmd 'TSBufDisable indent'
+          end)
+        end
+        -- Show notification
+        vim.schedule(function()
+          vim.notify('Large file detected: Performance optimizations enabled', vim.log.levels.INFO)
+        end)
+      end
+    end,
+  })
 end
 
 return M

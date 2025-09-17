@@ -68,6 +68,7 @@ function M.setup()
   -- Terminal mode keymaps
   vim.keymap.set('t', '<C-h>', '<C-\\><C-n><C-w>h', { desc = 'Move to left window from terminal' })
   vim.keymap.set('t', '<C-l>', '<C-\\><C-n><C-w>l', { desc = 'Move to right window from terminal' })
+  vim.keymap.set('t', '<C-Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode to normal mode' })
 
   -- Terminal management
   vim.keymap.set('n', '<leader>tt', ':term<CR>', { desc = 'Open terminal' })
@@ -99,6 +100,7 @@ function M.setup()
   vim.keymap.set({ 'n', 'v', 'o' }, 'gl', 'g_', { desc = 'Go to end of line' })
   vim.keymap.set({ 'n', 'v', 'o' }, 'gh', '^', { desc = 'Go to beginning of line' })
   vim.keymap.set({ 'n', 'v', 'o' }, 'ga', 'ggVG', { desc = 'Select all' })
+  vim.keymap.set({ 'n', 'v', 'o' }, 'ge', 'G', { desc = 'Select all' })
   vim.keymap.set({ 'n' }, 'ga', 'ggVG', { desc = 'Select all' })
   vim.keymap.set({ 'v', 'o' }, 'ga', 'gg<Esc>VG', { desc = 'Select all' })
 

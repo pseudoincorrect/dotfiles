@@ -89,6 +89,27 @@ config.keys = {
 		mods = "CTRL|SHIFT",
 		action = wezterm.action.ActivatePaneDirection("Next"),
 	},
+	-- Pane navigation with s/d/f/g (same as arrow keys)
+	{
+		key = "s",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.ActivatePaneDirection("Left"),
+	},
+	{
+		key = "d",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.ActivatePaneDirection("Up"),
+	},
+	{
+		key = "f",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.ActivatePaneDirection("Down"),
+	},
+	{
+		key = "g",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.ActivatePaneDirection("Right"),
+	},
 }
 
 return config

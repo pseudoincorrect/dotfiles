@@ -84,6 +84,8 @@ require('lazy').setup(
           lua = { 'stylua' },
           javascript = { 'prettierd', stop_after_first = true },
           typescript = { 'prettierd', stop_after_first = true },
+          bash = { 'shfmt' },
+          sh = { 'shfmt' },
         },
       },
     },
