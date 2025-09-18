@@ -18,6 +18,29 @@ return {
     enable_git_status = true,
     enable_diagnostics = true,
     sort_case_insensitive = false,
+    preview = {
+      enabled = true,
+      use_float = false,
+      use_image_nvim = true,
+    },
+    event_handlers = {
+      {
+        event = 'after_render',
+        handler = function()
+          local state = require('neo-tree.sources.manager').get_state 'filesystem'
+          if not require('neo-tree.sources.common.preview').is_active() then
+            state.config = { use_float = true }
+            state.commands.toggle_preview(state)
+          end
+        end,
+      },
+    },
+    float = {
+      enabled = true,
+      max_width = 80,
+      max_height = 30,
+      open_files_in_last_window = true,
+    },
     default_component_configs = {
       container = {
         enable_character_fade = true,

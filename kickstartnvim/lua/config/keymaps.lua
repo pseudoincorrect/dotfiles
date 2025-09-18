@@ -46,9 +46,9 @@ function M.setup()
   vim.keymap.set('n', '<c-n>', '<Plug>(YankyNextEntry)')
 
   -- NeoTree
-  vim.keymap.set('n', '<leader>ee', '<Esc>:Neotree toggle<CR>', { noremap = true, desc = 'NeoTree Toggle' })
   vim.keymap.set('n', '<leader>er', '<Esc>:Neotree reveal<CR>', { noremap = true, desc = 'NeoTree Reveal' })
   vim.keymap.set('n', '<leader>ec', '<Esc>:Neotree close<CR>', { noremap = true, desc = 'NeoTree Close' })
+  vim.keymap.set('n', '<leader>ee', '<Esc>:Neotree float<CR>', { noremap = true, desc = 'NeoTree Float' })
 
   -- Path copy operations
   vim.keymap.set('n', '<leader>pr', function()
@@ -133,6 +133,12 @@ function M.setup()
   -- Visual selection search
   vim.keymap.set('x', '*', 'y/\\V<C-r>"<CR>', { desc = 'Search visual selection forward' })
   vim.keymap.set('x', '#', 'y?\\V<C-r>"<CR>', { desc = 'Search visual selection backward' })
+
+  -- Custom search behavior - Esc to stay, Ctrl+Esc to cancel
+  vim.keymap.set('n', '/', '/\\V', { desc = 'Search forward and stay on Esc' })
+  vim.keymap.set('n', '?', '?\\V', { desc = 'Search backward and stay on Esc' })
+  vim.keymap.set('c', '<Esc>', '<CR>', { desc = 'Accept search and stay' })
+  vim.keymap.set('c', '<C-Esc>', '<C-c>', { desc = 'Cancel search' })
 
   -- LSP
   vim.keymap.set('n', '<leader>ch', vim.lsp.buf.hover, { desc = 'LSP Hover' })

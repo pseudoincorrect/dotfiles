@@ -2,8 +2,7 @@
 local M = {}
 
 function M.setup()
-  -- [[ Vim Options ]]
-  vim.opt.number = true -- Enable line numbers for better navigation
+  vim.opt.number = true
   vim.opt.relativenumber = true
   vim.opt.mouse = 'a'
   vim.opt.showmode = false
@@ -38,11 +37,6 @@ function M.setup()
   vim.opt.autoread = true
   vim.opt.lazyredraw = false
 
-  -- Performance optimizations for large files
-  vim.opt.synmaxcol = 200 -- Limit syntax highlighting to first 200 columns
-  vim.opt.regexpengine = 1 -- Use old regex engine (sometimes faster)
-  vim.opt.maxmempattern = 2000000 -- Increase max memory for patterns
-
   -- Folding configuration
   vim.opt.foldmethod = 'indent'
   vim.opt.foldlevelstart = 99
@@ -67,7 +61,7 @@ function M.setup()
   end)
 end
 
--- Expose winbar function for global access
+-- Improve the file path display in the winbar
 function M.winbar()
   local filepath = vim.fn.expand '%:~'
   if filepath == '' then

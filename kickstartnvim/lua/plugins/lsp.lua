@@ -33,7 +33,7 @@ return {
           require('telescope.builtin').lsp_type_definitions { show_line = false }
         end, 'Goto Type definition')
 
-        map('gs', function()
+        map('<leader>ss', function()
           require('telescope.builtin').lsp_document_symbols {
             show_line = false,
             symbols = { 'Function', 'Method', 'Class' },

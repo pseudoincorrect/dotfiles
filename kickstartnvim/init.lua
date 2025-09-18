@@ -24,6 +24,28 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup(
   {
+    -- Snacks.nvim - Collection of small QoL plugins
+    {
+      'folke/snacks.nvim',
+      priority = 1000,
+      lazy = false,
+      config = function()
+        require('snacks').setup {
+          -- Big file performance optimizations - preserve folds
+          bigfile = {
+            enabled = true,
+            notify = true,
+            size = 300 * 1024, -- 1.5MB
+            setup = function(ctx)
+              vim.opt_local.foldmethod = 'indent'
+              vim.opt_local.foldenable = true
+              vim.opt_local.foldlevelstart = 99
+            end,
+          },
+        }
+      end,
+    },
+
     -- tpope/vim-sleuth is a plugin that automatically detects the indentation style of the file.
     { 'tpope/vim-sleuth', event = 'VeryLazy' },
 
@@ -224,7 +246,7 @@ require('lazy').setup(
     require 'plugins.neo-tree',
     require 'plugins.cmp',
     require 'plugins.copilot',
-    require 'plugins.flash',
+    -- require 'plugins.flash',
     require 'plugins.grapple',
     require 'plugins.lsp',
     require 'plugins.mini',
