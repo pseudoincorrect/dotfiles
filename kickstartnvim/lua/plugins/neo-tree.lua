@@ -58,10 +58,13 @@ return {
           conflict = '',
         },
       },
+      type = { enabled = false },
+      size = { enabled = false },
+      last_modified = { enabled = false },
     },
     window = {
-      position = 'left',
-      width = 60,
+      position = 'float',
+      width = 80,
       mapping_options = {
         noremap = true,
         nowait = true,
@@ -76,9 +79,9 @@ return {
       use_libuv_file_watcher = false,
       filtered_items = {
         visible = false,
-        hide_dotfiles = true,
-        hide_gitignored = true,
-        hide_hidden = true,
+        hide_dotfiles = false,
+        hide_gitignored = false,
+        hide_hidden = false,
         hide_by_name = {
           '.DS_Store',
           'thumbs.db',
@@ -101,6 +104,7 @@ return {
       window = {
         mappings = {
           ['\\'] = 'close_window',
+          ['<esc>'] = 'close_window',
           ['<bs>'] = 'navigate_up',
           ['.'] = 'set_root',
           ['H'] = 'toggle_hidden',
@@ -124,6 +128,15 @@ return {
           ['os'] = { 'order_by_size', nowait = false },
           ['ot'] = { 'order_by_type', nowait = false },
         },
+      },
+    },
+    -- Configure fuzzy finder popup navigation
+    popup = {
+      mappings = {
+        ['<down>'] = 'move_cursor_down',
+        ['<up>'] = 'move_cursor_up',
+        ['<C-j>'] = 'move_cursor_down',
+        ['<C-k>'] = 'move_cursor_up',
       },
     },
   },

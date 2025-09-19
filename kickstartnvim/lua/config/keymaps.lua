@@ -46,9 +46,8 @@ function M.setup()
   vim.keymap.set('n', '<c-n>', '<Plug>(YankyNextEntry)')
 
   -- NeoTree
-  vim.keymap.set('n', '<leader>er', '<Esc>:Neotree reveal<CR>', { noremap = true, desc = 'NeoTree Reveal' })
-  vim.keymap.set('n', '<leader>ec', '<Esc>:Neotree close<CR>', { noremap = true, desc = 'NeoTree Close' })
-  vim.keymap.set('n', '<leader>ee', '<Esc>:Neotree float<CR>', { noremap = true, desc = 'NeoTree Float' })
+  vim.keymap.set('n', '<leader>r', '<Esc>:Neotree reveal<CR>', { noremap = true, desc = 'NeoTree Reveal' })
+  vim.keymap.set('n', '<leader>e', '<Esc>:Neotree float<CR>', { noremap = true, desc = 'NeoTree' })
 
   -- Path copy operations
   vim.keymap.set('n', '<leader>pr', function()
