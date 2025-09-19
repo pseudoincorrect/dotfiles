@@ -5,7 +5,6 @@ return {
   'nvim-neo-tree/neo-tree.nvim',
   version = '*',
   dependencies = {
-    'nvim-lua/plenary.nvim',
     'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
     'MunifTanjim/nui.nvim',
   },
@@ -108,9 +107,6 @@ return {
           ['<bs>'] = 'navigate_up',
           ['.'] = 'set_root',
           ['H'] = 'toggle_hidden',
-          ['/'] = 'fuzzy_finder',
-          ['D'] = 'fuzzy_finder_directory',
-          ['#'] = 'fuzzy_sorter',
           ['f'] = 'filter_on_submit',
           ['<c-x>'] = 'clear_filter',
           ['[g'] = 'prev_git_modified',
@@ -128,15 +124,6 @@ return {
           ['os'] = { 'order_by_size', nowait = false },
           ['ot'] = { 'order_by_type', nowait = false },
         },
-      },
-    },
-    -- Configure fuzzy finder popup navigation
-    popup = {
-      mappings = {
-        ['<down>'] = 'move_cursor_down',
-        ['<up>'] = 'move_cursor_up',
-        ['<C-j>'] = 'move_cursor_down',
-        ['<C-k>'] = 'move_cursor_up',
       },
     },
   },

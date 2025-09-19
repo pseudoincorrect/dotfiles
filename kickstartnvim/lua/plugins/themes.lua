@@ -1,7 +1,5 @@
 -- Shared function to setup cursor line and visual highlighting
 local function setup_cursor_highlights()
-  -- Custom highlighting for current line
-  vim.cmd.hi 'CursorLine guibg=#0c4e09'
   -- Lighter visual mode selection for better visibility
   vim.cmd.hi 'Visual guibg=#4a4a5a'
   -- Enhanced file path visibility in winbar
@@ -9,15 +7,6 @@ local function setup_cursor_highlights()
   vim.cmd.hi 'WinBarFilename guifg=#ffaa44 gui=bold guibg=NONE'
   vim.cmd.hi 'WinBar guifg=#ffaa44 gui=bold guibg=NONE'
   vim.cmd.hi 'WinBarNC guifg=#cc8833 gui=bold guibg=NONE'
-
-  -- Lighter line numbers for better readability
-  vim.cmd.hi 'LineNr guifg=#555555'
-
-  -- Flash plugin highlighting for better visibility
-  vim.cmd.hi 'FlashLabel guifg=#ffffff guibg=#ff6b6b gui=bold'
-  vim.cmd.hi 'FlashMatch guifg=#ffffff guibg=#4ecdc4 gui=bold'
-  vim.cmd.hi 'FlashCurrent guifg=#000000 guibg=#ffe66d gui=bold'
-  vim.cmd.hi 'FlashBackdrop guifg=#666666'
 end
 
 return {

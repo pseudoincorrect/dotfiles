@@ -10,7 +10,7 @@ config.enable_kitty_keyboard = false
 config.use_fancy_tab_bar = true
 
 -- Disable all confirmation dialogs
-config.skip_close_confirmation_for_processes_named = { 'bash', 'sh', 'zsh', 'fish', 'tmux' }
+config.skip_close_confirmation_for_processes_named = { "bash", "sh", "zsh", "fish", "tmux" }
 config.window_close_confirmation = "NeverPrompt"
 
 -- Start maximized without window decorations
@@ -21,17 +21,6 @@ wezterm.on("gui-startup", function()
 	local tab, pane, window = wezterm.mux.spawn_window({})
 	window:gui_window():maximize()
 end)
-
--- Background image and transparency
--- convert ~/Downloads/vosges-photo-1.jpg -modulate 40,100,100 -blur 0x8 ~/Downloads/vosges-photo-1-dark-blurry.jpg
-config.background = {
-	{
-		source = {
-			File = "/home/mclement/Pictures/background/vosges-photo-1-dark-blurry.jpg",
-		},
-		opacity = 0.99,
-	},
-}
 
 -- Key bindings for tab management
 config.keys = {

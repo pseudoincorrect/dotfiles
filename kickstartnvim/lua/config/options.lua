@@ -20,7 +20,7 @@ function M.setup()
   vim.opt.list = true
   vim.opt.listchars = { tab = '│ ', trail = '·', nbsp = '␣' }
   vim.opt.inccommand = 'split'
-  vim.opt.cursorline = false
+  vim.opt.cursorline = true
   vim.opt.scrolloff = 17
   vim.opt.softtabstop = 2
   vim.opt.shiftwidth = 2

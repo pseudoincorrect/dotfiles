@@ -44,44 +44,11 @@ return {
       completion = { completeopt = 'menu,menuone,noinsert,noselect' },
       -- See :help ins-completion for details on completion mappings.
       mapping = cmp.mapping.preset.insert {
-        -- Select the [n]ext item
         ['<C-n>'] = cmp.mapping.select_next_item(),
-        -- Select the [p]revious item
         ['<C-p>'] = cmp.mapping.select_prev_item(),
-
-        -- Scroll the documentation window [b]ack / [f]orward
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        -- ...existing code...
-
-        ['<CR>'] = cmp.mapping.confirm { select = true },
-        ['<C-Space>'] = cmp.mapping.confirm {
-          behavior = cmp.ConfirmBehavior.Insert,
-          select = true,
-        },
-
-        ['<Tab>'] = function(fallback)
-          if not cmp.select_next_item() then
-            if vim.bo.buftype ~= 'prompt' and has_words_before() then
-              cmp.complete()
-            else
-              fallback()
-            end
-          end
-        end,
-
-        ['<S-Tab>'] = function(fallback)
-          if not cmp.select_prev_item() then
-            if vim.bo.buftype ~= 'prompt' and has_words_before() then
-              cmp.complete()
-            else
-              fallback()
-            end
-          end
-        end,
-
-        -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
-        -- See LuaSnip docs for advanced keymaps.
+        ['<Tab>'] = cmp.mapping.confirm { select = true },
       },
       sources = {
         {
