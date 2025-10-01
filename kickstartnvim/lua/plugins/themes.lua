@@ -40,7 +40,6 @@ return {
       background_clear = {
         'float_win',
         'toggleterm',
-        'telescope',
         'which-key',
         'renamer',
       },

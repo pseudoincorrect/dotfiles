@@ -30,6 +30,12 @@ config.keys = {
 		mods = "CTRL|SHIFT",
 		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
 	},
+	-- Close tab
+	{
+		key = "q",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.CloseCurrentTab({ confirm = false }),
+	},
 	-- Rename tab
 	{
 		key = "r",

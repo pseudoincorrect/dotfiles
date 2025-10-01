@@ -253,7 +253,7 @@ require('lazy').setup(
     require 'plugins.lsp',
     require 'plugins.mini',
     require 'plugins.multicursor',
-    require 'plugins.telescope',
+    require 'plugins.fzf',
     require 'plugins.which-key',
   },
   -- Use default Nerd Font icons

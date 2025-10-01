@@ -17,34 +17,23 @@ return {
           vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = desc })
         end
 
-        map('gd', function()
-          require('telescope.builtin').lsp_definitions { show_line = false }
-        end, 'Goto Definition')
-
-        map('gr', function()
-          require('telescope.builtin').lsp_references { show_line = false }
-        end, 'Goto References')
-
-        map('gi', function()
-          require('telescope.builtin').lsp_implementations { show_line = false }
-        end, 'Goto Implementation')
-
-        map('gt', function()
-          require('telescope.builtin').lsp_type_definitions { show_line = false }
-        end, 'Goto Type definition')
-
+        map('gd', require('fzf-lua').lsp_definitions, 'Goto Definition')
+        map('gr', require('fzf-lua').lsp_references, 'Goto References')
+        map('gi', require('fzf-lua').lsp_implementations, 'Goto Implementation')
+        map('gt', require('fzf-lua').lsp_typedefs, 'Goto Type definition')
         map('<leader>ss', function()
-          require('telescope.builtin').lsp_document_symbols {
-            show_line = false,
-            symbols = { 'Function', 'Method', 'Class' },
-            fname_width = 0.3,
-            symbol_width = 0.7,
-            symbol_type_width = 12,
+          require('fzf-lua').lsp_document_symbols {
+            regex_filter = function(entry)
+              return entry.kind == 'Class' or entry.kind == 'Function' or entry.kind == 'Method'
+            end,
           }
         end, 'Symbols')
-
         map('<leader>sS', function()
-          require('telescope.builtin').lsp_dynamic_workspace_symbols { show_line = false }
+          require('fzf-lua').lsp_workspace_symbols {
+            regex_filter = function(entry)
+              return entry.kind == 'Class' or entry.kind == 'Function' or entry.kind == 'Method'
+            end,
+          }
         end, 'Symbol Workspace')
 
         map('<leader>cr', vim.lsp.buf.rename, 'Rename')
