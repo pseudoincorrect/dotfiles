@@ -69,9 +69,11 @@ return {
       -- Select active colorscheme (uncomment one)
       -- vim.cmd.colorscheme 'tokyonight-night'
       vim.cmd.colorscheme 'monokai-pro'
-
       -- Apply custom highlights
       setup_cursor_highlights()
+      vim.cmd.hi 'Normal guibg=#0d2818' -- dark green
+      -- vim.cmd.hi 'CursorLine guibg=#002060' -- dark blue
+      vim.cmd.hi 'CursorLine guibg=#260f03' -- dark orange
     end,
   },
 }

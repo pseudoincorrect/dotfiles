@@ -81,5 +81,18 @@ return {
 
     -- Mini.completion for basic completion
     require('mini.completion').setup()
+
+    -- Mini.operators for replace operator
+    require('mini.operators').setup {
+      replace = {
+        prefix = 'R',
+      },
+      evaluate = {
+        prefix = 'g=',
+
+        -- Function which does the evaluation
+        func = nil,
+      },
+    }
   end,
 }

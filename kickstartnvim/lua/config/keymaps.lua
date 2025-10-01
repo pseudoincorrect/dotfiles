@@ -45,6 +45,9 @@ function M.setup()
   vim.keymap.set('n', '<c-p>', '<Plug>(YankyPreviousEntry)')
   vim.keymap.set('n', '<c-n>', '<Plug>(YankyNextEntry)')
 
+  -- Visual mode R acts as replace with yanked text
+  vim.keymap.set('x', 'R', 'p', { desc = 'Replace selection with yanked text' })
+
   -- NeoTree
   vim.keymap.set('n', '<leader>r', '<Esc>:Neotree reveal<CR>', { noremap = true, desc = 'NeoTree Reveal' })
   vim.keymap.set('n', '<leader>e', '<Esc>:Neotree float<CR>', { noremap = true, desc = 'NeoTree' })

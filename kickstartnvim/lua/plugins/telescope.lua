@@ -121,5 +121,14 @@ return {
     vim.keymap.set('n', '<leader>sf', function()
       require('telescope').extensions.frecency.frecency()
     end, { desc = 'Frecency' })
+
+    vim.keymap.set('n', '<leader>F', function()
+      builtin.find_files {
+        path_display = { 'truncate' },
+        hidden = true,
+        no_ignore = true,
+        no_ignore_parent = true,
+      }
+    end, { desc = 'Files (all)' })
   end,
 }

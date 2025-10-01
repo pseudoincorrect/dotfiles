@@ -65,8 +65,8 @@ if [[ $- == *i* ]]; then
   # Enhanced completion settings
   bind 'set completion-ignore-case on'
   bind 'set completion-map-case on'
-  bind 'set show-all-if-ambiguous on'
-  bind 'set show-all-if-unmodified on'
+  bind 'set show-all-if-ambiguous off'
+  bind 'set show-all-if-unmodified off'
   bind 'set menu-complete-display-prefix on'
   bind 'set colored-completion-prefix on'
   bind 'set colored-stats on'
@@ -106,7 +106,7 @@ PATH="$HOME/.cargo/bin:$PATH"
 export GOPATH="$HOME/go/global"
 PATH="$GOPATH/bin:$PATH"
 
-export GOROOT="$HOME/go/go1.24.4"
+export GOROOT="$HOME/go/go1.25.1"
 PATH="$GOROOT/bin:$PATH"
 
 export PATH
