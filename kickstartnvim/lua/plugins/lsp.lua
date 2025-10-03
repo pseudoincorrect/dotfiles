@@ -37,7 +37,7 @@ return {
         end, 'Symbol Workspace')
 
         map('<leader>cr', vim.lsp.buf.rename, 'Rename')
-        map('<leader>ca', vim.lsp.buf.code_action, 'Code Action', { 'n', 'x' })
+        map('<leader>ca', require('fzf-lua').lsp_code_actions, 'Code Action', { 'n', 'x' })
         map('<leader>cf', vim.lsp.buf.format, 'Format Document')
         map('<leader>cd', vim.diagnostic.open_float, 'Show Problem')
         map('<leader>cp', function()

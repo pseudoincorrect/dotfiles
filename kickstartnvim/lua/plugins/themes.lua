@@ -1,5 +1,5 @@
 -- Shared function to setup cursor line and visual highlighting
-local function setup_cursor_highlights()
+local function setup_highlights()
   -- Lighter visual mode selection for better visibility
   vim.cmd.hi 'Visual guibg=#4a4a5a'
   -- Enhanced file path visibility in winbar
@@ -7,6 +7,9 @@ local function setup_cursor_highlights()
   vim.cmd.hi 'WinBarFilename guifg=#ffaa44 gui=bold guibg=NONE'
   vim.cmd.hi 'WinBar guifg=#ffaa44 gui=bold guibg=NONE'
   vim.cmd.hi 'WinBarNC guifg=#cc8833 gui=bold guibg=NONE'
+  -- cursor line
+  vim.cmd.hi 'Normal guibg=#101010' -- dark anthracite
+  vim.cmd.hi 'CursorLine guibg=#142a15' -- dark green
 end
 
 return {
@@ -69,10 +72,7 @@ return {
       -- vim.cmd.colorscheme 'tokyonight-night'
       vim.cmd.colorscheme 'monokai-pro'
       -- Apply custom highlights
-      setup_cursor_highlights()
-      vim.cmd.hi 'Normal guibg=#0d2818' -- dark green
-      -- vim.cmd.hi 'CursorLine guibg=#002060' -- dark blue
-      vim.cmd.hi 'CursorLine guibg=#260f03' -- dark orange
+      setup_highlights()
     end,
   },
 }

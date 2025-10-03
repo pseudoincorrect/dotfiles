@@ -225,6 +225,7 @@ alias "gocilint"="golangci-lint run --out-format \"colored-line-number:stdout\""
 alias "gocover"="rm coverage.txt; go test -covermode=atomic -count 1 -coverpkg=./... -coverprofile=coverage.txt ./... ; go tool cover -html=coverage.txt -o coverage.html; /opt/microsoft/msedge/msedge coverage.html"
 # AI
 alias "danger"="claude --dangerously-skip-permissions"
+alias "plan"="claude --permission-mode plan"
 # Kanata
 alias "kan"="sudo /home/mclement/bin/kanata -q --cfg ~/.config/kanata/kanata_hjkl.kbd"
 

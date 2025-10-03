@@ -34,6 +34,15 @@ function M.setup()
       end
     end,
   })
+
+  -- Update title when directory changes
+  vim.api.nvim_create_autocmd('DirChanged', {
+    desc = 'Update title when directory changes',
+    group = vim.api.nvim_create_augroup('update-title', { clear = true }),
+    callback = function()
+      vim.opt.titlestring = vim.fs.basename(vim.fn.getcwd())
+    end,
+  })
 end
 
 return M

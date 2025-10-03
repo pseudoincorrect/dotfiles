@@ -5,6 +5,20 @@ vim.g.maplocalleader = ' '
 -- Nerd Font support
 vim.g.have_nerd_font = true
 
+-- Neovide configuration
+if vim.g.neovide then
+  vim.g.neovide_scale_factor = 0.6
+  vim.g.neovide_scroll_animation_length = 0.2
+  vim.g.neovide_position_animation_length = 0.1
+  vim.keymap.set({ 'n', 'v', 's', 'x', 'o', 'i', 'l', 'c', 't' }, '<C-S-v>', function()
+    vim.api.nvim_paste(vim.fn.getreg '+', true, -1)
+  end, { noremap = true, silent = true })
+  -- vim.g.neovide_cursor_vfx_mode = 'ripple'
+  vim.keymap.set({ 'n', 'v' }, '<C-=>', ':lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>')
+  vim.keymap.set({ 'n', 'v' }, '<C-->', ':lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>')
+  vim.keymap.set({ 'n', 'v' }, '<C-0>', ':lua vim.g.neovide_scale_factor = 1<CR>')
+end
+
 -- Load configuration modules
 require('config.options').setup()
 require('config.keymaps').setup()
@@ -24,28 +38,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup(
   {
-    -- Snacks.nvim - Collection of small QoL plugins
-    {
-      'folke/snacks.nvim',
-      priority = 1000,
-      lazy = false,
-      config = function()
-        require('snacks').setup {
-          -- Big file performance optimizations - preserve folds
-          bigfile = {
-            enabled = true,
-            notify = true,
-            size = 300 * 1024, -- 1.5MB
-            setup = function(ctx)
-              vim.opt_local.foldmethod = 'indent'
-              vim.opt_local.foldenable = true
-              vim.opt_local.foldlevelstart = 99
-            end,
-          },
-        }
-      end,
-    },
-
     -- tpope/vim-sleuth is a plugin that automatically detects the indentation style of the file.
     { 'tpope/vim-sleuth', event = 'VeryLazy' },
 
@@ -60,25 +52,6 @@ require('lazy').setup(
       },
     },
 
-    -- Code outline with Aerial
-    {
-      'stevearc/aerial.nvim',
-      event = 'VeryLazy',
-      opts = {},
-      dependencies = {
-        'nvim-treesitter/nvim-treesitter',
-        'nvim-tree/nvim-web-devicons',
-      },
-      config = function()
-        require('aerial').setup {
-          on_attach = function(bufnr)
-            vim.keymap.set('n', 'K', '<cmd>AerialPrev<CR>', { buffer = bufnr })
-            vim.keymap.set('n', 'J', '<cmd>AerialNext<CR>', { buffer = bufnr })
-          end,
-        }
-      end,
-    },
-
     -- luvit-meta is a plugin that provides a Lua library for Luvit, a Node.js-like runtime for Lua.
     { 'Bilal2453/luvit-meta', lazy = true },
 
@@ -90,7 +63,7 @@ require('lazy').setup(
       opts = {
         notify_on_error = false,
         format_on_save = function(bufnr)
-          local disable_filetypes = { c = true, cpp = true }
+          local disable_filetypes = { c = true, cpp = true, yaml = true, yml = true }
           local lsp_format_opt
           if disable_filetypes[vim.bo[bufnr].filetype] then
             lsp_format_opt = 'never'
@@ -225,6 +198,13 @@ require('lazy').setup(
       opts = {},
     },
 
+    -- Multiple cursors plugin
+    {
+      'mg979/vim-visual-multi',
+      event = 'VeryLazy',
+      branch = 'master',
+    },
+
     -- Project-wide search and replace
     {
       'nvim-pack/nvim-spectre',
@@ -243,6 +223,7 @@ require('lazy').setup(
     },
 
     -- Plugin modules
+    require 'plugins.snacks',
     require 'plugins.themes',
     require 'plugins.lint',
     require 'plugins.neo-tree',
@@ -252,7 +233,6 @@ require('lazy').setup(
     require 'plugins.grapple',
     require 'plugins.lsp',
     require 'plugins.mini',
-    require 'plugins.multicursor',
     require 'plugins.fzf',
     require 'plugins.which-key',
   },

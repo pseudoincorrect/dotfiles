@@ -36,6 +36,8 @@ function M.setup()
   vim.opt.autowrite = true
   vim.opt.autoread = true
   vim.opt.lazyredraw = false
+  vim.opt.title = true
+  vim.opt.titlestring = vim.fs.basename(vim.fn.getcwd())
 
   -- Folding configuration
   vim.opt.foldmethod = 'indent'

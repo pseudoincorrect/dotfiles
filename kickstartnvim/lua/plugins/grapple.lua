@@ -14,6 +14,7 @@ return {
   keys = {
     { '<leader>m', '<cmd>Grapple toggle<cr>', desc = 'Grapple toggle' },
     { '<leader>g', '<cmd>Grapple toggle_tags<cr>', desc = 'Grapple window' },
+    { '<C-g>', '<cmd>Grapple toggle_tags<cr>', desc = 'Grapple window', mode = { 'n', 'i', 't' } },
     { '<leader>l', '<cmd>Grapple cycle_tags next<cr>', desc = 'Grapple next' },
     { '<leader>h', '<cmd>Grapple cycle_tags prev<cr>', desc = 'Grapple prev' },
   },

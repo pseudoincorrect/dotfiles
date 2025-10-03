@@ -94,5 +94,49 @@ return {
         func = nil,
       },
     }
+
+    -- Mini.files for file navigation
+    require('mini.files').setup {
+      mappings = {
+        close = '<Esc>',
+        go_in = 'l',
+        go_in_plus = '<CR>',
+        go_out = 'h',
+        -- go_out_plus = 'H',
+        reset = '.',
+        reveal_cwd = 'r',
+        show_help = '?',
+        synchronize = 's',
+        trim_left = '<',
+        trim_right = '>',
+        -- go_in_plus = '<CR>',
+      },
+      windows = {
+        max_number = math.huge,
+        preview = true,
+        width_focus = 50,
+        width_nofocus = 15,
+        width_preview = 80,
+      },
+      options = {
+        permanent_delete = true,
+        use_as_default_explorer = true,
+      },
+    }
+
+    -- Add ESC mapping to close mini.files
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'MiniFilesBufferCreate',
+      callback = function(args)
+        vim.keymap.set('n', '<Esc>', function()
+          require('mini.files').close()
+        end, { buffer = args.data.buf_id, desc = 'Close mini.files' })
+      end,
+    })
+
+    -- Key mapping for Mini.files to reveal current file
+    vim.keymap.set('n', '<leader>E', function()
+      require('mini.files').open(vim.api.nvim_buf_get_name(0))
+    end, { desc = 'Mini.files' })
   end,
 }

@@ -18,7 +18,7 @@ return {
           wrap = 'nowrap',
           hidden = 'nohidden',
           vertical = 'down:45%',
-          horizontal = 'right:50%',
+          horizontal = 'left:50%',
           layout = 'flex',
           flip_columns = 120,
         },
@@ -60,7 +60,7 @@ return {
         multiprocess = true,
         file_icons = true,
         color_icons = true,
-        git_icons = true,
+        git_icons = false,
         find_opts = [[-type f -not -path '*/\.git/*' -printf '%P\n']],
         fd_opts = [[--color=never --type f --hidden --follow --exclude .git]],
         formatter = 'path.filename_first',
@@ -71,7 +71,7 @@ return {
         multiprocess = true,
         file_icons = true,
         color_icons = true,
-        git_icons = true,
+        git_icons = false,
         rg_opts = '--column --line-number --no-heading --color=always --smart-case --max-columns=4096 -e',
       },
       buffers = {
@@ -134,12 +134,23 @@ return {
     vim.keymap.set('n', '<leader>sj', fzf.jumps, { desc = 'Jumplist' })
     vim.keymap.set('n', '<leader>su', fzf.changes, { desc = 'Undos' })
     vim.keymap.set('n', '<leader>s*', fzf.grep_cword, { desc = 'Current word' })
-    vim.keymap.set('v', '<leader>sv', fzf.grep_visual, { desc = 'Grep Repo Selection' })
+    vim.keymap.set('v', '<leader>sv', fzf.grep_visual, { desc = 'Grep Repo with Selection' })
     vim.keymap.set('n', '<leader>sx', fzf.diagnostics_document, { desc = 'Problems' })
     vim.keymap.set('n', '<leader>f', fzf.files, { desc = 'Files' })
+    vim.keymap.set({ 'n', 'i', 't' }, '<C-f>', fzf.files, { desc = 'Files' })
     vim.keymap.set('n', '<leader>/', fzf.lgrep_curbuf, { desc = 'Grep Buffer' })
     vim.keymap.set('n', '<leader>b', fzf.buffers, { desc = 'Buffers' })
-    vim.keymap.set('n', '<leader>sg', fzf.live_grep, { desc = 'Grep Repo' })
+    vim.keymap.set({ 'n', 'i', 't' }, '<C-b>', fzf.buffers, { desc = 'Buffers' })
+
+    local terminals = function()
+      fzf.buffers {
+        fzf_opts = { ['--query'] = 'term://' },
+      }
+    end
+    vim.keymap.set({ 'n', 'i', 't' }, '<C-t>', terminals, { desc = 'Terminals' })
+    vim.keymap.set('n', '<leader>ts', terminals, { desc = 'Terminals' })
+    vim.keymap.set('n', '<leader>sg', fzf.live_grep, { desc = 'Live Grep' })
+    vim.keymap.set('n', '<leader>sf', fzf.grep_project, { desc = 'Live Fuzzy' })
     vim.keymap.set('n', '<leader>sn', function()
       fzf.files { cwd = vim.fn.stdpath 'config' }
     end, { desc = 'Neovim files' })
@@ -148,5 +159,17 @@ return {
         fd_opts = [[--color=never --type f --hidden --follow --no-ignore]],
       }
     end, { desc = 'Files (all)' })
+    vim.keymap.set('n', '<leader>sG', function()
+      fzf.fzf_exec('go list all', {
+        prompt = 'Go Packages❯ ',
+        actions = {
+          ['default'] = function(selected)
+            if selected and selected[1] then
+              vim.api.nvim_put({ selected[1] }, '', true, true)
+            end
+          end,
+        },
+      })
+    end, { desc = 'Go Packages' })
   end,
 }

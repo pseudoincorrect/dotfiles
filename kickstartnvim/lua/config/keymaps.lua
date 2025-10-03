@@ -5,8 +5,6 @@ function M.setup()
   -- Window management (Ctrl+w equivalents)
   vim.keymap.set({ 'n', 'i', 'v' }, '<C-h>', '<Esc><C-w>h', { desc = 'Move to left window' })
   vim.keymap.set({ 'n', 'i', 'v' }, '<C-l>', '<Esc><C-w>l', { desc = 'Move to right window' })
-  vim.keymap.set('n', '<C-w>a', ':%bd!<CR>', { desc = 'Close all buffers' })
-  vim.keymap.set('n', '<C-w>d', ':bp|bd #<CR>', { desc = 'Close current buffer' })
   vim.keymap.set('n', '<leader>wh', '<C-w>h', { desc = 'Move to left window' })
   vim.keymap.set('n', '<leader>wl', '<C-w>l', { desc = 'Move to right window' })
   vim.keymap.set('n', '<leader>wj', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
@@ -16,8 +14,10 @@ function M.setup()
   vim.keymap.set('n', '<leader>wv', '<C-w>v', { desc = 'Split window vertically' })
   vim.keymap.set('n', '<leader>ws', '<C-w>s', { desc = 'Split window horizontally' })
   vim.keymap.set('n', '<leader>wc', '<C-w>c', { desc = 'Close window' })
-  vim.keymap.set('n', '<leader>wd', ':bp|bd #<CR>', { desc = 'Close current buffer' })
+  vim.keymap.set('n', '<leader>wb', ':bp|bd #<CR>', { desc = 'Close current buffer' })
+  vim.keymap.set('n', '<C-w>b', ':bp|bd #<CR>', { desc = 'Close current buffer' })
   vim.keymap.set('n', '<leader>wa', ':%bd!<CR>', { desc = 'Close all buffers' })
+  vim.keymap.set('n', '<C-w>a', ':%bd!<CR>', { desc = 'Close all buffers' })
   vim.keymap.set('n', '<leader>wo', '<C-w>o', { desc = 'Close all other windows' })
   vim.keymap.set('n', '<leader>wq', '<C-w>q', { desc = 'Quit current window' })
   vim.keymap.set('n', '<leader>w=', '<C-w>=', { desc = 'Equalize window sizes' })
@@ -49,8 +49,8 @@ function M.setup()
   vim.keymap.set('x', 'R', 'p', { desc = 'Replace selection with yanked text' })
 
   -- NeoTree
-  vim.keymap.set('n', '<leader>r', '<Esc>:Neotree reveal<CR>', { noremap = true, desc = 'NeoTree Reveal' })
-  vim.keymap.set('n', '<leader>e', '<Esc>:Neotree float<CR>', { noremap = true, desc = 'NeoTree' })
+  vim.keymap.set('n', '<leader>e', '<Esc>:Neotree reveal<CR>', { noremap = true, desc = 'NeoTree' })
+  vim.keymap.set('n', '<leader>r', '<Esc>:Neotree float<CR>', { noremap = true, desc = 'NeoTree Root' })
 
   -- Path copy operations
   vim.keymap.set('n', '<leader>pr', function()
@@ -110,19 +110,17 @@ function M.setup()
   vim.keymap.set('n', '<leader>v', 'V', { desc = 'Visual line' })
 
   -- macro recording and playback
-  vim.keymap.set('n', 'Q', '@q', { desc = 'Repeat q macro' })
+  vim.keymap.set('n', 'm', '@q', { desc = 'Repeat q macro' })
 
   -- Keep scroll navigation
   vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll down' })
   vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll up' })
   vim.keymap.set('n', '<C-j>', '2<C-e>', { desc = 'Scroll down' })
   vim.keymap.set('n', '<C-k>', '2<C-y>', { desc = 'Scroll up' })
-  -- vim.keymap.set('n', 'J', '<C-e>', { desc = 'Scroll down' })
-  -- vim.keymap.set('n', 'K', '<C-y>', { desc = 'Scroll up' })
 
   -- Line manipulation
-  vim.keymap.set('n', '<leader>o', 'o<Esc>k', { desc = 'Line Below' })
-  vim.keymap.set('n', '<leader>O', 'O<Esc>j', { desc = 'Line Above' })
+  vim.keymap.set('n', 'K', 'o<Esc>k', { desc = 'Line Below' })
+  vim.keymap.set('n', 'J', 'O<Esc>j', { desc = 'Line Above' })
 
   -- Better movement for wrapped lines
   vim.keymap.set({ 'n', 'x' }, 'j', function()

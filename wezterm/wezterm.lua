@@ -3,6 +3,7 @@ local config = {}
 
 -- Font configuration - smaller size for zoomed out appearance
 config.font_size = 8.0
+config.line_height = 1.0
 
 -- Disable flow control to prevent Ctrl+S from freezing terminal
 -- Disable kitty keyboard protocol to fix DEL key issues in Neovim
