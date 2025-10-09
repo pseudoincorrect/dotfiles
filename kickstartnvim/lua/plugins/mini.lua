@@ -79,9 +79,6 @@ return {
       require('mini.diff').toggle_overlay()
     end, { desc = 'Diff view' })
 
-    -- Mini.completion for basic completion
-    require('mini.completion').setup()
-
     -- Mini.operators for replace operator
     require('mini.operators').setup {
       replace = {
