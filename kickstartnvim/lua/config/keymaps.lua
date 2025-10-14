@@ -113,8 +113,8 @@ function M.setup()
   vim.keymap.set('n', 'm', '@q', { desc = 'Repeat q macro' })
 
   -- Keep scroll navigation
-  vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll down' })
-  vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll up' })
+  vim.keymap.set('n', '<C-d>', '<C-d>', { desc = 'Scroll down' })
+  vim.keymap.set('n', '<C-u>', '<C-u>', { desc = 'Scroll up' })
   vim.keymap.set('n', '<C-j>', '2<C-e>', { desc = 'Scroll down' })
   vim.keymap.set('n', '<C-k>', '2<C-y>', { desc = 'Scroll up' })
 

@@ -192,6 +192,38 @@ require('lazy').setup(
       branch = 'master',
     },
 
+    -- Smear cursor animation
+    -- {
+    --   'sphamba/smear-cursor.nvim',
+    --   opts = {
+    --     smear_between_buffers = true, -- Enable smear when switching buffers
+    --     smear_between_neighbor_lines = true, -- Enable smear for adjacent line movements
+    --     scroll_buffer_space = true, -- Extend smear into scroll-off space
+    --     legacy_computing_symbols_support = true, -- Better blending across backgrounds
+    --     stiffness = 0.3, -- Control cursor springiness
+    --     trailing_stiffness = 0.4, -- Control trailing cursor behavior
+    --     trailing_exponent = 5, -- Control how quickly trail fades
+    --     damping = 0.99, -- Make animation settle faster
+    --     hide_target_hack = false, -- Prevent smear from covering target character
+    --     gamma = 0.5, -- Control brightness/contrast of smear
+    --   },
+    -- },
+
+    -- Smooth scrolling
+    -- {
+    --   'karb94/neoscroll.nvim',
+    --   opts = {
+    --     mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>', '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
+    --     hide_cursor = true,
+    --     stop_eof = true,
+    --     respect_scrolloff = false,
+    --     cursor_scrolls_alone = true,
+    --     easing = 'linear',
+    --     performance_mode = false,
+    --     duration_multiplier = 0.5,
+    --   },
+    -- },
+
     -- Project-wide search and replace
     {
       'nvim-pack/nvim-spectre',

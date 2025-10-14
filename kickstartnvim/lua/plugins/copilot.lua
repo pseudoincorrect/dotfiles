@@ -16,11 +16,6 @@ return {
       end
     end, { expr = true, replace_keycodes = false })
 
-    -- Accept suggestion with Ctrl+.
-    vim.keymap.set('i', '<C-.>', function()
-      return vim.fn['copilot#Accept'] '<C-m>'
-    end, { expr = true, replace_keycodes = false, desc = 'Copilot accept suggestion' })
-
     -- Navigate suggestions (using different keys since C-l/C-h don't work)
     vim.keymap.set('i', '<C-j>', '<Plug>(copilot-next)', { desc = 'Copilot next suggestion' })
     vim.keymap.set('i', '<C-k>', '<Plug>(copilot-previous)', { desc = 'Copilot previous suggestion' })
