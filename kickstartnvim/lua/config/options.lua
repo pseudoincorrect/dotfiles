@@ -15,6 +15,7 @@ function M.setup()
   vim.opt.ignorecase = true
   vim.opt.inccommand = 'split'
   vim.opt.incsearch = true
+  vim.opt.wrapscan = false
   vim.opt.laststatus = 3
   vim.opt.lazyredraw = false
   vim.opt.linebreak = true
@@ -22,7 +23,7 @@ function M.setup()
   vim.opt.listchars = { tab = '│ ', trail = '·', nbsp = '␣' }
   vim.opt.mouse = 'a'
   vim.opt.number = true
-  vim.opt.relativenumber = true
+  vim.opt.relativenumber = false
   vim.opt.scrolloff = 17
   vim.opt.shiftwidth = 2
   vim.opt.showmode = true
@@ -42,7 +43,6 @@ function M.setup()
   vim.opt.winbar = '%{%v:lua.require("config.options").winbar()%}'
   vim.opt.wrap = true
   vim.opt.wrapmargin = 0
-  vim.opt.wrapscan = false
   -- Window appearance and borders
   vim.opt.fillchars = {
     horiz = '━',

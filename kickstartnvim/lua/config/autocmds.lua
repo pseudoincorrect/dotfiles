@@ -24,17 +24,6 @@ function M.setup()
     callback = close_terminal_jobs,
   })
 
-  -- Auto enter insert mode when focusing on terminal
-  vim.api.nvim_create_autocmd({ 'BufEnter', 'WinEnter', 'TermOpen' }, {
-    desc = 'Auto enter insert mode in terminal',
-    group = vim.api.nvim_create_augroup('terminal-insert-mode', { clear = true }),
-    callback = function()
-      if vim.bo.buftype == 'terminal' then
-        vim.cmd 'startinsert'
-      end
-    end,
-  })
-
   -- Update title when directory changes
   vim.api.nvim_create_autocmd('DirChanged', {
     desc = 'Update title when directory changes',

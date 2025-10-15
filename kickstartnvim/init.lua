@@ -248,7 +248,7 @@ require('lazy').setup(
     require 'plugins.neo-tree',
     require 'plugins.cmp',
     require 'plugins.copilot',
-    -- require 'plugins.flash',
+    require 'plugins.flash',
     require 'plugins.grapple',
     require 'plugins.lsp',
     require 'plugins.mini',

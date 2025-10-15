@@ -64,6 +64,7 @@ return {
         find_opts = [[-type f -not -path '*/\.git/*' -printf '%P\n']],
         fd_opts = [[--color=never --type f --hidden --follow --exclude .git]],
         formatter = 'path.filename_first',
+        fzf_opts = { ['--scheme'] = 'path' },
       },
       grep = {
         prompt = 'Rg❯ ',
@@ -109,11 +110,9 @@ return {
     vim.keymap.set('v', '<leader>sv', fzf.grep_visual, { desc = 'Grep Repo with Selection' })
     vim.keymap.set('n', '<leader>sx', fzf.diagnostics_document, { desc = 'Problems' })
     vim.keymap.set('n', '<leader>f', fzf.files, { desc = 'Files' })
-    vim.keymap.set({ 'n', 'i', 't' }, '<C-f>', fzf.files, { desc = 'Files' })
     vim.keymap.set('n', '<leader>/', fzf.lgrep_curbuf, { desc = 'Grep Buffer' })
     vim.keymap.set('n', '<leader>b', fzf.buffers, { desc = 'Buffers' })
-    vim.keymap.set({ 'n', 'i', 't' }, '<C-b>', fzf.buffers, { desc = 'Buffers' })
-    vim.keymap.set('n', '<leader>sg', fzf.live_grep, { desc = 'Live Grep' })
+    vim.keymap.set('n', '<leader>s/', fzf.live_grep, { desc = 'Live Grep' })
     vim.keymap.set('n', '<leader>sf', fzf.grep_project, { desc = 'Live Fuzzy' })
 
     -- Open terminal buffers
@@ -122,7 +121,6 @@ return {
         fzf_opts = { ['--query'] = 'term://' },
       }
     end
-    vim.keymap.set({ 'n', 'i', 't' }, '<C-t>', terminals, { desc = 'Terminals' })
     vim.keymap.set('n', '<leader>ts', terminals, { desc = 'Terminals' })
 
     -- Zoxide integration
@@ -152,7 +150,7 @@ return {
     end, { desc = 'Files (all)' })
 
     -- Go Packages
-    vim.keymap.set('n', '<leader>sG', function()
+    vim.keymap.set('n', '<leader>sg', function()
       fzf.fzf_exec('go list all', {
         prompt = 'Go Packages❯ ',
         actions = {

@@ -274,3 +274,6 @@ export NVM_DIR="$HOME/.nvm"
 # cdnvm "$PWD" || exit
 
 source $HOME/.bashrc_tadaweb
+
+# opencode
+export PATH=/home/mclement/.opencode/bin:$PATH

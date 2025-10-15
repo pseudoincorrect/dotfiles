@@ -34,7 +34,7 @@ return {
               return entry.kind == 'Class' or entry.kind == 'Function' or entry.kind == 'Method'
             end,
           }
-        end, 'Symbol Workspace')
+        end, 'Symbol Wspace')
 
         map('<leader>cr', vim.lsp.buf.rename, 'Rename')
         map('<leader>ca', require('fzf-lua').lsp_code_actions, 'Code Action', { 'n', 'x' })

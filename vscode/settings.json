@@ -80,48 +80,6 @@
   "outline.showStrings": false,
   "outline.showTypeParameters": false,
   "outline.showVariables": false,
-  "peacock.favoriteColors": [
-    {
-      "name": "Neon Cyan",
-      "value": "#00ffff"
-    },
-    {
-      "name": "Electric Magenta",
-      "value": "#ff0080"
-    },
-    {
-      "name": "Laser Lime",
-      "value": "#32ff32"
-    },
-    {
-      "name": "Neon Orange",
-      "value": "#ff6600"
-    },
-    {
-      "name": "Electric Purple",
-      "value": "#bf00ff"
-    },
-    {
-      "name": "Neon Yellow",
-      "value": "#ffff33"
-    },
-    {
-      "name": "Electric Blue",
-      "value": "#0066ff"
-    },
-    {
-      "name": "Neon Red",
-      "value": "#ff3333"
-    },
-    {
-      "name": "Electric Teal",
-      "value": "#00ff99"
-    },
-    {
-      "name": "Neon Violet",
-      "value": "#9933ff"
-    }
-  ],
   "projectManager.git.baseFolders": [
     "/home/mclement/git"
   ],
@@ -165,6 +123,11 @@
   "workbench.activityBar.location": "top",
   "workbench.colorCustomizations": {
     "editor.lineHighlightBackground": "#0a5206e4",
+    "statusBar.background": "#005f5f",
+    "statusBar.noFolderBackground": "#005f5f",
+    "statusBar.debuggingBackground": "#005f5f",
+    "statusBar.foreground": "#ffffff",
+    "statusBar.debuggingForeground": "#ffffff"
   },
   "workbench.colorTheme": "Default Dark+",
   "workbench.editor.showTabs": "single",

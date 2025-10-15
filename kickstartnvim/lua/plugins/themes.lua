@@ -10,6 +10,8 @@ local function setup_highlights()
   -- cursor line
   vim.cmd.hi 'Normal guibg=#101010' -- dark anthracite
   vim.cmd.hi 'CursorLine guibg=#142a15' -- dark green
+  -- window borders
+  vim.cmd.hi 'WinSeparator guifg=#39ff14 guibg=NONE' -- neon green
 end
 
 return {
