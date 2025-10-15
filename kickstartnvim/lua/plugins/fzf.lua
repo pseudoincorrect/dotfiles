@@ -11,14 +11,14 @@ return {
     fzf.setup {
       winopts = {
         height = 0.85,
-        width = 0.80,
+        width = 0.90,
         preview = {
           default = 'bat',
           border = 'border',
           wrap = 'nowrap',
           hidden = 'nohidden',
           vertical = 'down:45%',
-          horizontal = 'left:50%',
+          horizontal = 'left:40%',
           layout = 'flex',
           flip_columns = 120,
         },
@@ -103,7 +103,7 @@ return {
     vim.keymap.set('n', '<leader>sr', fzf.resume, { desc = 'Resume' })
     vim.keymap.set('n', '<leader>so', fzf.oldfiles, { desc = 'Old Files' })
     vim.keymap.set('n', '<leader>sc', fzf.command_history, { desc = 'Commands' })
-    vim.keymap.set('n', '<leader>st', fzf.colorschemes, { desc = 'Themes' })
+    vim.keymap.set('n', '<leader>sT', fzf.colorschemes, { desc = 'Themes' })
     vim.keymap.set('n', '<leader>sj', fzf.jumps, { desc = 'Jumplist' })
     vim.keymap.set('n', '<leader>su', fzf.changes, { desc = 'Undos' })
     vim.keymap.set('n', '<leader>s*', fzf.grep_cword, { desc = 'Current word' })
@@ -121,7 +121,7 @@ return {
         fzf_opts = { ['--query'] = 'term://' },
       }
     end
-    vim.keymap.set('n', '<leader>ts', terminals, { desc = 'Terminals' })
+    vim.keymap.set('n', '<leader>st', terminals, { desc = 'Terminals' })
 
     -- Zoxide integration
     vim.keymap.set('n', '<leader>sz', function()
@@ -162,5 +162,8 @@ return {
         },
       })
     end, { desc = 'Go Packages' })
+
+    -- Spelling Suggestions
+    vim.keymap.set('n', '<leader>cs', fzf.spell_suggest, { desc = 'Spelling Suggestions' })
   end,
 }

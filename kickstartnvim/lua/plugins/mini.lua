@@ -2,19 +2,22 @@
 return {
   'echasnovski/mini.nvim',
   config = function()
+    -- Git integration for mini.statusline
+    require('mini.git').setup {}
+
     -- Enhanced textobjects: e.g. va) selects around paren, yinq yanks inside next quote, ci' changes inside quote.
     require('mini.ai').setup { n_lines = 500 }
 
     -- Surround mappings: saiw) add, sd' delete, sr)' replace, etc.
     require('mini.surround').setup {
       mappings = {
-        add = '<leader>da', -- Add surrounding in Normal and Visual modes
-        delete = '<leader>dd', -- Delete surrounding
-        find = '<leader>df', -- Find surrounding (to the right)
-        find_left = '<leader>dF', -- Find surrounding (to the left)
-        highlight = '<leader>dh', -- Highlight surrounding
-        replace = '<leader>dr', -- Replace surrounding
-        update_n_lines = '<leader>dg', -- Update `n_lines`
+        add = '<leader>ra', -- Add surrounding in Normal and Visual modes
+        delete = '<leader>rd', -- Delete surrounding
+        find = '<leader>rf', -- Find surrounding (to the right)
+        find_left = '<leader>rF', -- Find surrounding (to the left)
+        highlight = '<leader>rh', -- Highlight surrounding
+        replace = '<leader>rr', -- Replace surrounding
+        update_n_lines = '<leader>rg', -- Update `n_lines`
       },
     }
 
@@ -24,13 +27,14 @@ return {
       content = {
         active = function()
           local mode, mode_hl = MiniStatusline.section_mode { trunc_width = 120 }
-          local git = MiniStatusline.section_git { trunc_width = 100 }
+          local git = MiniStatusline.section_git { trunc_width = 50 }
           local diagnostics = MiniStatusline.section_diagnostics { trunc_width = 75 }
           local location = MiniStatusline.section_location { trunc_width = 75 }
           local search = MiniStatusline.section_searchcount { trunc_width = 75 }
           return MiniStatusline.combine_groups {
             { hl = mode_hl, strings = { mode } },
-            { hl = 'MiniStatuslineDevinfo', strings = { git, diagnostics } },
+            { hl = 'MiniStatuslineFilename', strings = { git } },
+            { hl = 'MiniStatuslineDevinfo', strings = { diagnostics } },
             '%<', -- Mark general truncate point
             '%=', -- End left alignment
             { hl = mode_hl, strings = { search, location } },
@@ -117,7 +121,7 @@ return {
       },
       options = {
         permanent_delete = true,
-        use_as_default_explorer = true,
+        use_as_default_explorer = false,
       },
     }
 

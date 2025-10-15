@@ -38,9 +38,10 @@ return {
     },
     spec = {
       { '<leader>c', group = 'Code', mode = { 'n', 'v', 'x' } },
+      { '<leader>cs', desc = 'Spelling Suggestions', mode = 'n' },
       { '<leader>cm', group = 'Markdown', mode = 'n' },
       { '<leader>p', group = 'Path', mode = 'n' },
-      { '<leader>d', group = 'Surround', mode = { 'n', 'v' } },
+      { '<leader>r', group = 'Surround', mode = { 'n', 'v' } },
       { '<leader>s', group = 'Search', mode = { 'n', 'v', 'x' } },
       { '<leader>t', group = 'Terminal', mode = { 'n', 'v', 'x' } },
       { '<leader>a', group = 'AI', mode = { 'n', 'v', 'x' } },

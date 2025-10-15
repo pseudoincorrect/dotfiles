@@ -21,7 +21,7 @@ return {
         map('gr', require('fzf-lua').lsp_references, 'Goto References')
         map('gi', require('fzf-lua').lsp_implementations, 'Goto Implementation')
         map('gt', require('fzf-lua').lsp_typedefs, 'Goto Type definition')
-        map('<leader>ss', function()
+        map('<leader>d', function()
           require('fzf-lua').lsp_document_symbols {
             regex_filter = function(entry)
               return entry.kind == 'Class' or entry.kind == 'Function' or entry.kind == 'Method'

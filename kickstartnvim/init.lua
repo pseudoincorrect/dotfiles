@@ -7,16 +7,16 @@ vim.g.have_nerd_font = true
 
 -- Neovide configuration
 if vim.g.neovide then
-  vim.g.neovide_scale_factor = 0.6
-  vim.g.neovide_scroll_animation_length = 0.2
-  vim.g.neovide_position_animation_length = 0.1
+  vim.g.neovide_scale_factor = 0.65
+  -- paste with ctrl+shift+v
   vim.keymap.set({ 'n', 'v', 's', 'x', 'o', 'i', 'l', 'c', 't' }, '<C-S-v>', function()
     vim.api.nvim_paste(vim.fn.getreg '+', true, -1)
   end, { noremap = true, silent = true })
-  -- vim.g.neovide_cursor_vfx_mode = 'ripple'
   vim.keymap.set({ 'n', 'v' }, '<C-=>', ':lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>')
   vim.keymap.set({ 'n', 'v' }, '<C-->', ':lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>')
   vim.keymap.set({ 'n', 'v' }, '<C-0>', ':lua vim.g.neovide_scale_factor = 1<CR>')
+  -- vim.g.neovide_scroll_animation_length = 0.2
+  -- vim.g.neovide_position_animation_length = 0.1
 end
 
 -- Load configuration modules
@@ -94,7 +94,7 @@ require('lazy').setup(
       build = ':TSUpdate',
       main = 'nvim-treesitter.configs',
       opts = {
-        ensure_installed = { 'bash', 'c', 'diff', 'go', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+        ensure_installed = { 'bash', 'c', 'diff', 'go', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'sql', 'vim', 'vimdoc' },
         auto_install = true,
         highlight = {
           enable = true,
@@ -193,36 +193,40 @@ require('lazy').setup(
     },
 
     -- Smear cursor animation
-    -- {
-    --   'sphamba/smear-cursor.nvim',
-    --   opts = {
-    --     smear_between_buffers = true, -- Enable smear when switching buffers
-    --     smear_between_neighbor_lines = true, -- Enable smear for adjacent line movements
-    --     scroll_buffer_space = true, -- Extend smear into scroll-off space
-    --     legacy_computing_symbols_support = true, -- Better blending across backgrounds
-    --     stiffness = 0.3, -- Control cursor springiness
-    --     trailing_stiffness = 0.4, -- Control trailing cursor behavior
-    --     trailing_exponent = 5, -- Control how quickly trail fades
-    --     damping = 0.99, -- Make animation settle faster
-    --     hide_target_hack = false, -- Prevent smear from covering target character
-    --     gamma = 0.5, -- Control brightness/contrast of smear
-    --   },
-    -- },
+    {
+      'sphamba/smear-cursor.nvim',
+      enabled = not vim.g.neovide,
+      opts = {
+        smear_between_buffers = true, -- Enable smear when switching buffers
+        smear_between_neighbor_lines = true, -- Enable smear for adjacent line movements
+        scroll_buffer_space = true, -- Extend smear into scroll-off space
+        legacy_computing_symbols_support = true, -- Better blending across backgrounds
+        stiffness = 0.95, -- Control cursor springiness (higher = faster settling)
+        damping = 1, -- Control cursor oscillation (lower = more oscillation)
+        volume_reduction_exponent = 0,
+        minimum_volume_factor = 1,
+        cursor_color = '#008000',
+        never_draw_over_target = true,
+        distance_stop_animating = 2,
+        max_length = 200,
+      },
+    },
 
     -- Smooth scrolling
-    -- {
-    --   'karb94/neoscroll.nvim',
-    --   opts = {
-    --     mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>', '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
-    --     hide_cursor = true,
-    --     stop_eof = true,
-    --     respect_scrolloff = false,
-    --     cursor_scrolls_alone = true,
-    --     easing = 'linear',
-    --     performance_mode = false,
-    --     duration_multiplier = 0.5,
-    --   },
-    -- },
+    {
+      'karb94/neoscroll.nvim',
+      enabled = not vim.g.neovide,
+      opts = {
+        mappings = { '<C-u>', '<C-d>' },
+        hide_cursor = false,
+        stop_eof = true,
+        respect_scrolloff = true,
+        cursor_scrolls_alone = true,
+        easing = 'linear',
+        -- performance_mode = true,
+        duration_multiplier = 0.7,
+      },
+    },
 
     -- Project-wide search and replace
     {

@@ -81,12 +81,13 @@ function M.setup()
   vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode to normal mode' })
   -- Map ctrl+escape in terminal mode to send escape to terminal
   vim.keymap.set('t', '<C-Esc>', '<Esc>', { desc = 'Send escape to terminal' })
+  vim.keymap.set('t', '<S-Esc>', '<Esc>', { desc = 'Send escape to terminal' })
 
   -- Terminal management
   vim.keymap.set('n', '<leader>tt', ':term<CR>', { desc = 'Open terminal' })
   vim.keymap.set('n', '<leader>tv', ':vertical terminal<CR>', { desc = 'Open Vsplit terminal' })
   -- open a horizontal split terminal
-  vim.keymap.set('n', '<leader>th', ':horizontal terminal<CR>', { desc = 'Open Split terminal' })
+  vim.keymap.set('n', '<leader>ts', ':horizontal terminal<CR>', { desc = 'Open Split terminal' })
   vim.keymap.set('n', '<leader>tr', function()
     local name = vim.fn.input 'Terminal name: '
     if name ~= '' then
@@ -122,17 +123,17 @@ function M.setup()
   vim.keymap.set('n', '<leader>v', 'V', { desc = 'Visual line' })
 
   -- macro recording and playback
-  vim.keymap.set('n', 'm', '@q', { desc = 'Repeat q macro' })
+  vim.keymap.set('n', 'Q', '@q', { desc = 'Repeat q macro' })
 
   -- Keep scroll navigation
   vim.keymap.set('n', '<C-d>', '<C-d>', { desc = 'Scroll down' })
   vim.keymap.set('n', '<C-u>', '<C-u>', { desc = 'Scroll up' })
-  vim.keymap.set('n', '<C-e>', '2<C-e>', { desc = 'Scroll down' })
-  vim.keymap.set('n', '<C-y>', '2<C-y>', { desc = 'Scroll up' })
+  vim.keymap.set('n', 'J', '2<C-e>', { desc = 'Scroll down' })
+  vim.keymap.set('n', 'K', '2<C-y>', { desc = 'Scroll up' })
 
   -- Line manipulation
-  vim.keymap.set('n', 'J', 'o<Esc>k', { desc = 'Line Below' })
-  vim.keymap.set('n', 'K', 'O<Esc>j', { desc = 'Line Above' })
+  vim.keymap.set('n', '<leader>j', 'o<Esc>k', { desc = 'Line Below' })
+  vim.keymap.set('n', '<leader>k', 'O<Esc>j', { desc = 'Line Above' })
 
   -- Better movement for wrapped lines
   vim.keymap.set({ 'n', 'x' }, 'j', function()

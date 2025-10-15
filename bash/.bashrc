@@ -154,8 +154,10 @@ function his() {
 
 # deduplicate bash history file
 function history_deduplicate() {
+  local before=$(wc -l <~/.bash_history)
   tac ~/.bash_history | awk '!seen[$0]++' | tac >~/.bash_history.tmp && mv ~/.bash_history.tmp ~/.bash_history
-  echo "History deduplicated"
+  local after=$(wc -l <~/.bash_history)
+  echo "History deduplication: from $before --> $after lines."
 }
 
 ########################################################################
