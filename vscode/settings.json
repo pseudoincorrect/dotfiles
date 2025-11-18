@@ -15,7 +15,7 @@
     0.1
   ],
   "background.windowBackgrounds": [
-    "/home/mclement/Pictures/background/pexels-christian-heitz-285904-842711.jpg"
+    "/home/mclement/Pictures/background/pexels-sarimphotos-1033729.jpg"
   ],
   "chat.commandCenter.enabled": false,
   "editor.accessibilitySupport": "off",
@@ -137,5 +137,9 @@
   "workbench.list.smoothScrolling": true,
   "workbench.sideBar.location": "right",
   "workbench.startupEditor": "none",
-  "workbench.tree.indent": 10
+  "workbench.tree.indent": 10,
+  "vsicons.dontShowNewVersionMessage": true,
+  "codeium.enableExplainProblem": false,
+  "codeium.enableCommandSideHintEducation": false,
+  "codeium.enableCodeLens": false
 }
