@@ -110,18 +110,26 @@ return {
     vim.keymap.set('v', '<leader>sv', fzf.grep_visual, { desc = 'Grep Repo with Selection' })
     vim.keymap.set('n', '<leader>sx', fzf.diagnostics_document, { desc = 'Problems' })
     vim.keymap.set('n', '<leader>f', fzf.files, { desc = 'Files' })
+    vim.keymap.set({ 'n', 'i', 'v', 't' }, '<C-f>', fzf.files, { desc = 'Files' })
     vim.keymap.set('n', '<leader>/', fzf.lgrep_curbuf, { desc = 'Grep Buffer' })
     vim.keymap.set('n', '<leader>b', fzf.buffers, { desc = 'Buffers' })
+    vim.keymap.set({ 'n', 'i', 'v', 't' }, '<C-b>', fzf.buffers, { desc = 'Buffers' })
     vim.keymap.set('n', '<leader>s/', fzf.live_grep, { desc = 'Live Grep' })
     vim.keymap.set('n', '<leader>sf', fzf.grep_project, { desc = 'Live Fuzzy' })
 
     -- Open terminal buffers
     local terminals = function()
-      fzf.buffers {
-        fzf_opts = { ['--query'] = 'term://' },
-      }
+      -- Exit insert/terminal mode before opening fzf to prevent character leakage
+      vim.cmd 'stopinsert'
+      -- Defer execution to ensure mode transition completes
+      vim.schedule(function()
+        fzf.buffers {
+          fzf_opts = { ['--query'] = 'term://' },
+        }
+      end)
     end
     vim.keymap.set('n', '<leader>st', terminals, { desc = 'Terminals' })
+    vim.keymap.set({ 'n', 'i', 'v', 't' }, '<C-t>', terminals, { desc = 'Terminals' })
 
     -- Zoxide integration
     vim.keymap.set('n', '<leader>sz', function()

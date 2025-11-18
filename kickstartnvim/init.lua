@@ -192,42 +192,6 @@ require('lazy').setup(
       branch = 'master',
     },
 
-    -- Smear cursor animation
-    {
-      'sphamba/smear-cursor.nvim',
-      enabled = not vim.g.neovide,
-      opts = {
-        smear_between_buffers = true, -- Enable smear when switching buffers
-        smear_between_neighbor_lines = true, -- Enable smear for adjacent line movements
-        scroll_buffer_space = true, -- Extend smear into scroll-off space
-        legacy_computing_symbols_support = true, -- Better blending across backgrounds
-        stiffness = 0.95, -- Control cursor springiness (higher = faster settling)
-        damping = 1, -- Control cursor oscillation (lower = more oscillation)
-        volume_reduction_exponent = 0,
-        minimum_volume_factor = 1,
-        cursor_color = '#008000',
-        never_draw_over_target = true,
-        distance_stop_animating = 2,
-        max_length = 200,
-      },
-    },
-
-    -- Smooth scrolling
-    {
-      'karb94/neoscroll.nvim',
-      enabled = not vim.g.neovide,
-      opts = {
-        mappings = { '<C-u>', '<C-d>' },
-        hide_cursor = false,
-        stop_eof = true,
-        respect_scrolloff = true,
-        cursor_scrolls_alone = true,
-        easing = 'linear',
-        -- performance_mode = true,
-        duration_multiplier = 0.7,
-      },
-    },
-
     -- Project-wide search and replace
     {
       'nvim-pack/nvim-spectre',
@@ -251,7 +215,6 @@ require('lazy').setup(
     require 'plugins.lint',
     require 'plugins.neo-tree',
     require 'plugins.cmp',
-    require 'plugins.copilot',
     require 'plugins.flash',
     require 'plugins.grapple',
     require 'plugins.lsp',

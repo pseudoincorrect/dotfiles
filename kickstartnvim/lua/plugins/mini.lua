@@ -11,13 +11,13 @@ return {
     -- Surround mappings: saiw) add, sd' delete, sr)' replace, etc.
     require('mini.surround').setup {
       mappings = {
-        add = '<leader>ra', -- Add surrounding in Normal and Visual modes
-        delete = '<leader>rd', -- Delete surrounding
-        find = '<leader>rf', -- Find surrounding (to the right)
-        find_left = '<leader>rF', -- Find surrounding (to the left)
-        highlight = '<leader>rh', -- Highlight surrounding
-        replace = '<leader>rr', -- Replace surrounding
-        update_n_lines = '<leader>rg', -- Update `n_lines`
+        add = '<leader>da', -- Add surrounding in Normal and Visual modes
+        delete = '<leader>dd', -- Delete surrounding
+        find = '<leader>df', -- Find surrounding (to the right)
+        find_left = '<leader>dF', -- Find surrounding (to the left)
+        highlight = '<leader>dh', -- Highlight surrounding
+        replace = '<leader>dr', -- Replace surrounding
+        update_n_lines = '<leader>dg', -- Update `n_lines`
       },
     }
 

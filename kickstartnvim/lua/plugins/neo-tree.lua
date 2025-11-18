@@ -5,7 +5,7 @@ return {
   'nvim-neo-tree/neo-tree.nvim',
   version = '*',
   dependencies = {
-    'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+    'nvim-tree/nvim-web-devicons',
     'MunifTanjim/nui.nvim',
   },
   cmd = 'Neotree',
@@ -18,27 +18,28 @@ return {
     enable_diagnostics = true,
     sort_case_insensitive = false,
     preview = {
-      enabled = true,
+      enabled = false,
       use_float = false,
       use_image_nvim = true,
     },
-    event_handlers = {
-      {
-        event = 'after_render',
-        handler = function()
-          local state = require('neo-tree.sources.manager').get_state 'filesystem'
-          if not require('neo-tree.sources.common.preview').is_active() then
-            state.config = { use_float = true }
-            state.commands.toggle_preview(state)
-          end
-        end,
-      },
-    },
     float = {
       enabled = true,
-      max_width = 80,
-      max_height = 30,
       open_files_in_last_window = true,
+    },
+    window = {
+      position = 'float',
+      width = 35,
+      popup = {
+        size = {
+          width = '25%',
+          height = '90%',
+        },
+        position = '50%',
+      },
+      mapping_options = {
+        noremap = true,
+        nowait = true,
+      },
     },
     default_component_configs = {
       container = {
@@ -60,14 +61,6 @@ return {
       type = { enabled = false },
       size = { enabled = false },
       last_modified = { enabled = false },
-    },
-    window = {
-      position = 'float',
-      width = 80,
-      mapping_options = {
-        noremap = true,
-        nowait = true,
-      },
     },
     filesystem = {
       bind_to_cwd = false,

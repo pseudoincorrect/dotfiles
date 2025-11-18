@@ -35,6 +35,11 @@ function M.setup()
   vim.keymap.set('n', '<leader>wa', ':%bd!<CR>', { desc = 'Close all buffers' })
   vim.keymap.set('n', '<C-w>a', ':%bd!<CR>', { desc = 'Close all buffers' })
 
+  vim.keymap.set('n', '<leader>h', '10<C-w><', { desc = 'Decrease window width' })
+  vim.keymap.set('n', '<leader>l', '10<C-w>>', { desc = 'Increase window width' })
+  vim.keymap.set('n', '<leader>k', '5<C-w>+', { desc = 'Increase window height' })
+  vim.keymap.set('n', '<leader>j', '5<C-w>-', { desc = 'Decrease window height' })
+
   -- Redraw screen
   vim.keymap.set('n', '<leader><leader>', ':e!<CR>', { desc = 'Reload files' })
 
@@ -130,10 +135,12 @@ function M.setup()
   vim.keymap.set('n', '<C-u>', '<C-u>', { desc = 'Scroll up' })
   vim.keymap.set('n', 'J', '2<C-e>', { desc = 'Scroll down' })
   vim.keymap.set('n', 'K', '2<C-y>', { desc = 'Scroll up' })
+  vim.keymap.set('n', ',', '<C-u>', { desc = 'Scroll up' })
+  vim.keymap.set('n', 'm', '<C-d>', { desc = 'Scroll down' })
 
   -- Line manipulation
-  vim.keymap.set('n', '<leader>j', 'o<Esc>k', { desc = 'Line Below' })
-  vim.keymap.set('n', '<leader>k', 'O<Esc>j', { desc = 'Line Above' })
+  vim.keymap.set('n', '<leader>o', 'o<Esc>k', { desc = 'Line Below' })
+  vim.keymap.set('n', '<leader>O', 'O<Esc>j', { desc = 'Line Above' })
 
   -- Better movement for wrapped lines
   vim.keymap.set({ 'n', 'x' }, 'j', function()
