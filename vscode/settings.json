@@ -18,6 +18,9 @@
     "/home/mclement/Pictures/background/pexels-sarimphotos-1033729.jpg"
   ],
   "chat.commandCenter.enabled": false,
+  "codeium.enableCodeLens": false,
+  "codeium.enableCommandSideHintEducation": false,
+  "codeium.enableExplainProblem": false,
   "editor.accessibilitySupport": "off",
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "editor.cursorBlinking": "phase",
@@ -28,6 +31,7 @@
   "editor.minimap.enabled": false,
   "editor.minimap.showSlider": "always",
   "editor.minimap.side": "left",
+  "editor.quickSuggestionsDelay": 5000,
   "editor.renderLineHighlight": "all",
   "editor.renderLineHighlightOnlyWhenFocus": true,
   "editor.smartSelect.selectLeadingAndTrailingWhitespace": false,
@@ -47,13 +51,6 @@
   },
   "git.blame.statusBarItem.enabled": true,
   "git.openRepositoryInParentFolders": "never",
-  "github.copilot.enable": {
-    "*": true,
-    "markdown": false,
-    "plaintext": false,
-    "scminput": false
-  },
-  "github.copilot.nextEditSuggestions.enabled": true,
   "go.toolsManagement.autoUpdate": true,
   "gopls": {
     "build.buildFlags": [
@@ -87,33 +84,12 @@
   "projectManager.openInCurrentWindowIfEmpty": "never",
   "projectManager.openInNewWindowWhenClickingInStatusBar": true,
   "projectManager.projectsLocation": "/home/mclement/git",
-  "roo-cline.allowedCommands": [
-    "git log",
-    "git diff",
-    "git show",
-    "npm test",
-    "npm install",
-    "tsc"
-  ],
-  "roo-cline.deniedCommands": [],
   "security.workspace.trust.untrustedFiles": "open",
   "terminal.integrated.fontSize": 13,
   "terminal.integrated.scrollback": 5000,
   "terminal.integrated.smoothScrolling": true,
   "terminal.integrated.tabs.location": "left",
-  "vim.enableNeovim": true,
-  "vim.highlightedyank.duration": 350,
-  "vim.highlightedyank.enable": true,
-  "vim.hlsearch": false,
-  "vim.incsearch": true,
-  "vim.leader": " ",
-  "vim.smartRelativeLine": true,
-  "vim.statusBarColorControl": true,
-  "vim.surround": true,
-  "vim.timeout": 300,
-  "vim.useCtrlKeys": false,
-  "vim.useSystemClipboard": true,
-  "vim.vimrc.enable": true,
+  "vsicons.dontShowNewVersionMessage": true,
   "window.customMenuBarAltFocus": false,
   "window.openFoldersInNewWindow": "off",
   "window.openWithoutArgumentsInNewWindow": "off",
@@ -124,10 +100,10 @@
   "workbench.colorCustomizations": {
     "editor.lineHighlightBackground": "#0a5206e4",
     "statusBar.background": "#005f5f",
-    "statusBar.noFolderBackground": "#005f5f",
     "statusBar.debuggingBackground": "#005f5f",
+    "statusBar.debuggingForeground": "#ffffff",
     "statusBar.foreground": "#ffffff",
-    "statusBar.debuggingForeground": "#ffffff"
+    "statusBar.noFolderBackground": "#005f5f"
   },
   "workbench.colorTheme": "Default Dark+",
   "workbench.editor.showTabs": "single",
@@ -137,9 +113,5 @@
   "workbench.list.smoothScrolling": true,
   "workbench.sideBar.location": "right",
   "workbench.startupEditor": "none",
-  "workbench.tree.indent": 10,
-  "vsicons.dontShowNewVersionMessage": true,
-  "codeium.enableExplainProblem": false,
-  "codeium.enableCommandSideHintEducation": false,
-  "codeium.enableCodeLens": false
+  "workbench.tree.indent": 10
 }
