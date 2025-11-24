@@ -27,7 +27,7 @@
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorSurroundingLines": 20,
   "editor.fontSize": 12,
-  "editor.lineNumbers": "relative",
+  "editor.lineNumbers": "interval",
   "editor.minimap.enabled": false,
   "editor.minimap.showSlider": "always",
   "editor.minimap.side": "left",
@@ -105,7 +105,6 @@
     "statusBar.foreground": "#ffffff",
     "statusBar.noFolderBackground": "#005f5f"
   },
-  "workbench.colorTheme": "Default Dark+",
   "workbench.editor.showTabs": "single",
   "workbench.editor.tabActionLocation": "left",
   "workbench.iconTheme": "vscode-icons",
