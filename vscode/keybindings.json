@@ -1,6 +1,6 @@
 [
   {
-    "key": "alt+/",
+    "key": "ctrl+y",
     "command": "editor.action.commentLine",
     "when": "editorTextFocus && !editorReadonly"
   },
@@ -17,11 +17,6 @@
   {
     "command": "workbench.action.navigateLeft",
     "key": "alt+h"
-  },
-  {
-    "command": "bracket-select.select",
-    "key": "alt+i",
-    "when": "editorTextFocus"
   },
   {
     "command": "workbench.action.navigateDown",
@@ -41,33 +36,18 @@
     "when": "editorTextFocus && !editorReadonly"
   },
   {
-    "command": "expandLineSelection",
-    "key": "alt+m",
-    "when": "textInputFocus"
-  },
-  {
     "command": "editor.action.indentLines",
     "key": "alt+right",
     "when": "editorTextFocus && !editorReadonly"
   },
   {
-    "command": "bracket-select.undo-select",
-    "key": "alt+shift+i",
-    "when": "editorTextFocus"
-  },
-  {
-    "command": "editor.action.smartSelect.shrink",
-    "key": "alt+shift+u",
-    "when": "editorTextFocus"
-  },
-  {
-    "command": "editor.action.smartSelect.shrink",
-    "key": "alt+shift+u",
+    "command": "editor.action.smartSelect.expand",
+    "key": "alt+u",
     "when": "textInputFocus"
   },
   {
     "command": "editor.action.smartSelect.expand",
-    "key": "alt+u",
+    "key": "ctrl+'",
     "when": "textInputFocus"
   },
   {
@@ -104,12 +84,30 @@
     "when": "editorTextFocus && !editorReadonly"
   },
   {
-    "command": "workbench.action.quickOpen",
-    "key": "ctrl+b"
+    "command": "workbench.action.toggleAuxiliaryBar",
+    "key": "ctrl+1"
   },
   {
-    "command": "workbench.action.quickOpenNavigateNextInFilePicker",
+    "command": "workbench.action.togglePanel",
+    "key": "ctrl+2"
+  },
+  {
+    "command": "workbench.action.toggleSidebarVisibility",
+    "key": "ctrl+3"
+  },
+  {
+    "command": "bracket-select.select",
     "key": "ctrl+b",
+    "when": "textInputFocus"
+  },
+  {
+    "command": "workbench.action.quickOpenNavigatePreviousInRecentFilesPicker",
+    "key": "ctrl+d",
+    "when": "inQuickOpen && inRecentFilesPicker"
+  },
+  {
+    "command": "workbench.action.quickOpenNavigatePreviousInFilePicker",
+    "key": "ctrl+d",
     "when": "inFilesPicker && inQuickOpen"
   },
   {
@@ -154,8 +152,13 @@
     "key": "ctrl+escape"
   },
   {
-    "command": "quickFind.searchFiles",
+    "command": "workbench.action.quickOpen",
     "key": "ctrl+f"
+  },
+  {
+    "command": "workbench.action.quickOpenNavigateNextInFilePicker",
+    "key": "ctrl+f",
+    "when": "inFilesPicker && inQuickOpen"
   },
   {
     "command": "cursorBottom",
@@ -170,6 +173,10 @@
     "command": "editor.action.revealDefinition",
     "key": "ctrl+g ctrl+d",
     "when": "editorHasDefinitionProvider && editorTextFocus"
+  },
+  {
+    "command": "quickFind.searchFiles",
+    "key": "ctrl+g ctrl+f"
   },
   {
     "command": "editor.action.revealDefinition",
@@ -213,18 +220,6 @@
     "command": "cursorTop",
     "key": "ctrl+g ctrl+t",
     "when": "editorFocus"
-  },
-  {
-    "command": "workbench.action.toggleAuxiliaryBar",
-    "key": "ctrl+h ctrl+1"
-  },
-  {
-    "command": "workbench.action.toggleSidebarVisibility",
-    "key": "ctrl+h ctrl+2"
-  },
-  {
-    "command": "workbench.action.togglePanel",
-    "key": "ctrl+h ctrl+3"
   },
   {
     "command": "workbench.explorer.fileView.focus",
@@ -387,7 +382,7 @@
     "key": "ctrl+r ctrl+w"
   },
   {
-    "command": "editor.action.insertCursorAbove",
+    "command": "editor.action.smartSelect.shrink",
     "key": "ctrl+shift+'",
     "when": "editorTextFocus"
   },
@@ -400,19 +395,9 @@
     "key": "ctrl+shift+1"
   },
   {
-    "command": "workbench.action.quickOpenNavigatePreviousInEditorPicker",
+    "command": "bracket-select.undo-select",
     "key": "ctrl+shift+b",
-    "when": "inEditorsPicker && inQuickOpen"
-  },
-  {
-    "command": "workbench.action.quickOpenNavigatePreviousInRecentFilesPicker",
-    "key": "ctrl+shift+b",
-    "when": "inQuickOpen && inRecentFilesPicker"
-  },
-  {
-    "command": "workbench.action.quickOpenNavigatePreviousInFilePicker",
-    "key": "ctrl+shift+b",
-    "when": "inFilesPicker && inQuickOpen"
+    "when": "textInputFocus"
   },
   {
     "command": "-workbench.action.terminal.openNativeConsole",
@@ -497,11 +482,6 @@
   {
     "command": "-editor.action.insertCursorAbove",
     "key": "ctrl+shift+up",
-    "when": "editorTextFocus"
-  },
-  {
-    "command": "editor.action.insertCursorAbove",
-    "key": "ctrl+shift+z",
     "when": "editorTextFocus"
   },
   {
@@ -616,10 +596,6 @@
     "when": "chatInputHasFocus || filesExplorerFocus || terminalFocus || roo-cline.SidebarProvider.active"
   },
   {
-    "command": "redo",
-    "key": "ctrl+y"
-  },
-  {
     "command": "undo",
     "key": "ctrl+z"
   },
@@ -660,5 +636,14 @@
   {
     "command": "-history.showPrevious",
     "key": "up"
+  },
+  {
+    "key": "ctrl+y",
+    "command": "-redo"
+  },
+  {
+    "key": "ctrl+y",
+    "command": "-chatEditor.action.acceptHunk",
+    "when": "chatEdits.cursorInChangeRange && chatEdits.hasEditorModifications && editorFocus && !chatEdits.isCurrentlyBeingModified || chatEdits.cursorInChangeRange && chatEdits.hasEditorModifications && notebookCellListFocused && !chatEdits.isCurrentlyBeingModified"
   }
 ]
