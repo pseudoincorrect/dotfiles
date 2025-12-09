@@ -102,14 +102,28 @@ PATH="$HOME/.cargo/bin:$PATH"
 . "$HOME/.cargo/env"
 
 ########################################################################
-# GO
-export GOPATH="$HOME/go/global"
-PATH="$GOPATH/bin:$PATH"
+# GO (managed by goenv)
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+eval "$(goenv init -)"
 
-export GOROOT="$HOME/go/go1.25.1"
-PATH="$GOROOT/bin:$PATH"
-
-export PATH
+# Install and use Go version from go.mod
+gouse() {
+  local go_mod="${1:-go.mod}"
+  if [[ ! -f "$go_mod" ]]; then
+    echo "Error: $go_mod not found"
+    return 1
+  fi
+  local version
+  version=$(grep -E '^go [0-9]+\.[0-9]+' "$go_mod" | awk '{print $2}')
+  if [[ -z "$version" ]]; then
+    echo "Error: Could not parse Go version from $go_mod"
+    return 1
+  fi
+  echo "Installing and using Go $version..."
+  goenv install "$version" --skip-existing
+  goenv local "$version"
+}
 
 ########################################################################
 # HELPER FUNCTIONS
