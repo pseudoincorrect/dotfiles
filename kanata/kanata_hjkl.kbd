@@ -1,33 +1,33 @@
 (defsrc
 
-esc            f1   f2   f3   f4             f5    f6    f7    f8          f9   f10  f11   f12
-grv       1      2    3      4      5       6     7      8     9      0       -      =    bspc       
-tab       q      w    e      r      t       y     u      i     o      p       [      ]       \         
-caps      a      s    d      f      g       h     j      k     l      ;       '          enter        
-lsft      z      x    c      v      b       n     m      ,     .      /                   rsft           up 
-lctl      lmet   lalt             spc                  ralt        rmet                   rctl      lft down rght
+esc       f1     f2   f3     f4    f5       f6    f7     f8    f9     f10     f11    f12
+grv       1      2    3      4      5       6     7      8     9      0       -      =     bspc       
+tab       q      w    e      r      t       y     u      i     o      p       [      ]     \         
+caps      a      s    d      f      g       h     j      k     l      ;       '            enter        
+lsft      z      x    c      v      b       n     m      ,     .      /                    rsft           up 
+lctl      lmet   lalt               spc                                       ralt         rctl      lft down rght
 
 )
 
 (deflayer default
 
-esc            f1   f2   f3   f4               f5    f6    f7    f8          f9   f10  f11   f12
+esc       f1     f2   f3     f4      f5      f6    f7     f8    f9     f10     f11    f12
 grv       1      2    3      4       5       6     7      8     9      0       -      =     bspc       
-lalt      q      w    e      r       t       y     u      i     o      p       [      ]     lalt            
-lctl      a      s    d      f       g       h     j      k     l      esc     '           enter        
-lsft      z      x    c      v       b       n     m      ,     .      /                    caps               up
-lctl      lmeta   @nav              spc                 rsft         rmet                   rctl          lft down rght
+lalt      q      w    e      r       t       y     u      i     o      p       rmeta  rmeta rmeta            
+lctl      a      s    d      f       g       h     j      k     l      esc     '            enter        
+lsft      z      x    c      v       b       n     m      ,     .      /                    rsft               up
+lctl      lmeta  @nav                spc                                       rsft         rctl          lft down rght
 
 )
 
 (deflayer nav
 
--             -     -    -    -            -     -    -     -          -    -    -    -
--       S-1    S-2  S-3    S-4    S-5    S-6   S-7    S-8   S-`    S-1    S-1    -    -       
-lalt    S-;    ;    S-[    S-]    =      home  bspc   tab   del    pgup   -      -  lalt          
-lctl    -      S--  S-9    S-0    `      left  down   up    right  end    -           -        
-lsft    \      S-\  S-[    S-]    S-=    pgdn  enter  S-,   S-.    S-/                -         -
--       -      -             -                                      -     -           -       - - -
+esc      -     -    -      -      -      -     -      -     -      -      -      -
+-       S-1    S-2  S-3    S-4    S-5    S-6   S-7    S-8   S-`    S-1    S-1    -     -       
+lalt    S-;    ;    [      ]      =      home  bspc   del   end    -      rmeta  rmeta rmeta          
+lctl    -      S--  S-9    S-0    `      left  down   up    right  esc    -            -        
+lsft    \      S-\  S-[    S-]    S-=    -     enter  S-`   tab    -                   rsft         pgup
+lctl    -      -                  spc                                     lsft         rctl    home pgdn end
 
 )
 

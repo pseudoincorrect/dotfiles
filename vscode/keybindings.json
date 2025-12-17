@@ -336,50 +336,9 @@
     "key": "ctrl+q"
   },
   {
-    "command": "editor.action.commentLine",
-    "key": "ctrl+r ctrl+c"
-  },
-  {
-    "command": "editor.action.formatDocument",
-    "key": "ctrl+r ctrl+f",
-    "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
-  },
-  {
-    "command": "editor.action.formatDocument.none",
-    "key": "ctrl+r ctrl+f",
-    "when": "editorTextFocus && !editorHasDocumentFormattingProvider && !editorReadonly"
-  },
-  {
-    "command": "editor.action.insertLineAfter",
-    "key": "ctrl+r ctrl+j",
-    "when": "editorTextFocus && !editorReadonly"
-  },
-  {
-    "command": "editor.action.insertLineBefore",
-    "key": "ctrl+r ctrl+k",
-    "when": "editorTextFocus && !editorReadonly"
-  },
-  {
-    "command": "editor.action.transformToLowercase",
-    "key": "ctrl+r ctrl+l"
-  },
-  {
-    "command": "workbench.action.editor.changeLanguageMode",
-    "key": "ctrl+r ctrl+m",
-    "when": "!notebookEditorFocused"
-  },
-  {
     "command": "editor.action.rename",
-    "key": "ctrl+r ctrl+r",
+    "key": "ctrl+r",
     "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
-  },
-  {
-    "command": "editor.action.transformToUppercase",
-    "key": "ctrl+r ctrl+u"
-  },
-  {
-    "command": "editor.action.toggleWordWrap",
-    "key": "ctrl+r ctrl+w"
   },
   {
     "command": "editor.action.smartSelect.shrink",

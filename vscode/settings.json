@@ -111,5 +111,6 @@
   "explorer.sortOrderLexicographicOptions": "unicode",
   "window.zoomLevel": -1,
   "editor.minimap.maxColumn": 100,
-  "editor.minimap.renderCharacters": false
+  "editor.minimap.renderCharacters": false,
+  "workbench.list.multiSelectModifier": "alt"
 }
