@@ -24,11 +24,16 @@
     "show": false,
   },
   "terminal": {
+    "font_family": "Agave Nerd Font",
+    "font_size": 10.0,
+    "scrollbar": {
+      "show": "always"
+    },
     "dock": "right",
   },
   "ui_font_size": 11,
   "buffer_font_size": 11,
-  "theme": "Tokyo Night",
+  "theme": "Catppuccin Macchiato (Blur) [Heavy]",
   "collaboration_panel": {
     "button": false,
   },
