@@ -243,7 +243,7 @@ alias "gocover"="rm coverage.txt; go test -covermode=atomic -count 1 -coverpkg=.
 alias "danger"="claude --dangerously-skip-permissions"
 alias "plan"="claude --permission-mode plan"
 # Kanata
-alias "kan"="sudo /home/mclement/bin/kanata -q --cfg ~/.config/kanata/kanata_hjkl.kbd"
+alias "kan"="sudo /home/mclement/bin/kanata -q --cfg ~/git/dotfiles/kanata/kanata_hjkl.kbd"
 
 ########################################################################
 # NODEJS

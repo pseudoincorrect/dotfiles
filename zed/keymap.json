@@ -1,0 +1,160 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+    },
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      // "j k": "vim::NormalBefore"
+    },
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-shift-h": "editor::SelectSmallerSyntaxNode",
+    },
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-h": "editor::SelectLargerSyntaxNode",
+    },
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-j": "editor::LineDown",
+    },
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-k": "editor::LineUp",
+    },
+  },
+  {
+    "bindings": {
+      "ctrl-n": "editor::FindNextMatch",
+    },
+  },
+  {
+    "bindings": {
+      "ctrl-shift-n": "editor::FindPreviousMatch",
+    },
+  },
+  {
+    "context": "(Editor && mode == full)",
+    "bindings": {
+      "ctrl-g ctrl-l": "go_to_line::Toggle",
+    },
+  },
+  {
+    "context": "(Editor && mode == full)",
+    "bindings": {
+      "ctrl-g": null,
+    },
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-g ctrl-g": "editor::GoToDefinition",
+    },
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-g ctrl-i": "editor::GoToImplementation",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-g ctrl-shift-s": "project_symbols::Toggle",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-' ctrl-k": "zed::OpenKeymap",
+    },
+  },
+  {
+    "bindings": {
+      "ctrl-' ctrl-s": "zed::OpenSettings",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-' ctrl-e": "zed::Extensions",
+    },
+  },
+  {
+    "bindings": {
+      "ctrl-b": "tab_switcher::ToggleAll",
+    },
+  },
+  {
+    "context": "ProjectSearchBar",
+    "bindings": {
+      "ctrl-shift-h": null,
+    },
+  },
+  {
+    "context": "ProjectSearchView",
+    "bindings": {
+      "ctrl-shift-h": null,
+    },
+  },
+  {
+    "context": "BufferSearchBar",
+    "bindings": {
+      "ctrl-h": null,
+    },
+  },
+  {
+    "context": "ProjectSearchView",
+    "bindings": {
+      "ctrl-shift-h": null,
+    },
+  },
+  {
+    "context": "(Editor && mode == full)",
+    "bindings": {
+      "ctrl-g ctrl-s": "outline::Toggle"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-1": "project_panel::ToggleFocus"
+    }
+  },
+  {
+    "bindings": {
+      "ctrl-t": "terminal_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-' ctrl-a": "agent::ToggleFocus"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-p": "command_palette::Toggle"
+    }
+  }
+]

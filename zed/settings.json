@@ -1,0 +1,35 @@
+{
+  "autoscroll_on_clicks": true,
+  "sticky_scroll": {
+    "enabled": true,
+  },
+  "scrollbar": {
+    "show": "never",
+  },
+  "minimap": {
+    "show": "always",
+    "max_width_columns": 60,
+  },
+  "soft_wrap": "editor_width",
+  "gutter": {
+    "min_line_number_digits": 3,
+  },
+  "scroll_beyond_last_line": "vertical_scroll_margin",
+  "vertical_scroll_margin": 14.0,
+  "tabs": {
+    "file_icons": false,
+    "show_close_button": "hover",
+  },
+  "tab_bar": {
+    "show": false,
+  },
+  "terminal": {
+    "dock": "right",
+  },
+  "ui_font_size": 11,
+  "buffer_font_size": 11,
+  "theme": "Tokyo Night",
+  "collaboration_panel": {
+    "button": false,
+  },
+}

@@ -112,5 +112,6 @@
   "window.zoomLevel": -1,
   "editor.minimap.maxColumn": 100,
   "editor.minimap.renderCharacters": false,
-  "workbench.list.multiSelectModifier": "alt"
+  "workbench.list.multiSelectModifier": "alt",
+  "claudeCode.preferredLocation": "sidebar"
 }
