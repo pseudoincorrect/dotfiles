@@ -36,8 +36,8 @@ function M.setup()
   vim.opt.tabstop = 2
   vim.opt.textwidth = 0
   vim.opt.timeoutlen = 300
-  vim.opt.title = true
-  vim.opt.titlestring = vim.fs.basename(vim.fn.getcwd())
+  -- vim.opt.title = true
+  -- vim.opt.titlestring = vim.fs.basename(vim.fn.getcwd())
   vim.opt.undofile = true
   vim.opt.updatetime = 100
   vim.opt.winbar = '%{%v:lua.require("config.options").winbar()%}'

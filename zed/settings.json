@@ -27,7 +27,7 @@
     "font_family": "Agave Nerd Font",
     "font_size": 10.0,
     "scrollbar": {
-      "show": "always"
+      "show": "always",
     },
     "dock": "right",
   },

@@ -12,7 +12,7 @@ return {
   event = { 'BufReadPost', 'BufNewFile' },
   cmd = 'Grapple',
   keys = {
-    { '<leader>m', '<cmd>Grapple toggle<cr>', desc = 'Grapple toggle' },
+    { '<leader>G', '<cmd>Grapple toggle<cr>', desc = 'Grapple toggle' },
     { '<leader>g', '<cmd>Grapple toggle_tags<cr>', desc = 'Grapple window' },
     { '<C-g>', '<cmd>Grapple toggle_tags<cr>', desc = 'Grapple window', mode = { 'n', 'i', 't' } },
   },

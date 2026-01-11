@@ -221,6 +221,7 @@ require('lazy').setup(
     require 'plugins.mini',
     require 'plugins.fzf',
     require 'plugins.which-key',
+    require 'plugins.windsurf',
   },
   -- Use default Nerd Font icons
   { ui = { icons = {} } }

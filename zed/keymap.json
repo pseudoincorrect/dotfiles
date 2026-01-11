@@ -17,6 +17,7 @@
   {
     "context": "Editor",
     "bindings": {
+      "alt-r": "editor::ReloadFile",
       "ctrl-h": "editor::SelectLargerSyntaxNode",
       "ctrl-shift-h": "editor::SelectSmallerSyntaxNode",
       "ctrl-j": "editor::LineDown",
@@ -28,13 +29,13 @@
       "ctrl-g ctrl-g": "editor::GoToDefinition",
       "ctrl-g ctrl-i": "editor::GoToImplementation",
       "ctrl-g ctrl-l": "go_to_line::Toggle",
+      "ctrl-g ctrl-r": "editor::FindAllReferences",
       "ctrl-g ctrl-s": "outline::Toggle",
     },
   },
   {
     "context": "Workspace",
     "bindings": {
-      "ctrl-'": null,
       "ctrl-g ctrl-shift-s": "project_symbols::Toggle",
     },
   },

@@ -38,14 +38,25 @@ end
 ########################################################################
 # HELPER FUNCTIONS
 
-# fzf history search - type 'his' instead of Ctrl+R
+# fzf history search - type 'his' instead of Ctrl+R (same as CTRL+R but with edit prompt)
 function his
-    set -l cmd (history | fzf --no-sort --height=40% --reverse --query="$argv")
+    set -l cmd (history -z | fzf --read0 --scheme=history --no-sort --height=40% --reverse --query="$argv" --tiebreak=index)
     if test -n "$cmd"
         read -P "› " -c "$cmd" edited_cmd
         if test -n "$edited_cmd"
+            # Add command to history
+            printf '- cmd: %s\n  when: %d\n' "$edited_cmd" (date +%s) >> ~/.local/share/fish/fish_history
+            history merge
             eval $edited_cmd
         end
+    end
+end
+
+# fcd - fuzzy find directory and cd into it (like fzf alt-c)
+function fcd
+    set -l dir (fd --type d --strip-cwd-prefix --hidden --follow --exclude .git . | fzf --height=40% --reverse)
+    if test -n "$dir"
+        cd "$dir"
     end
 end
 
@@ -63,6 +74,27 @@ function ycd
         cd $cwd
     end
     rm -f $tmp
+end
+
+# set terminal/tab title (use `st` alias)
+function set_title --description "Set the terminal/tab title"
+    if test (count $argv) -eq 0
+        set -e __custom_terminal_title
+        echo "Title reset to default"
+    else
+        set -g __custom_terminal_title "$argv"
+        printf '\033]0;%s\007' "$argv"
+    end
+end
+
+# fish_title is called on each prompt to set terminal title
+# without it, starship would override our custom title
+function fish_title
+    if set -q __custom_terminal_title
+        echo $__custom_terminal_title
+    else
+        echo (status current-command) (__fish_pwd)
+    end
 end
 
 ########################################################################
@@ -88,7 +120,6 @@ alias rm "rm -rf"
 alias "cd.." "cd .."
 alias y yazi
 alias cd z
-alias fcd zi
 # Notes
 alias notes "$EDITOR ~/Documents/notes"
 # Clear the swap storage
@@ -108,6 +139,7 @@ alias solaarnohup "nohup ~/.local/bin/solaar --window=hide &"
 alias bluetoothbattery "bluetoothctl info | grep Battery"
 # Vim
 alias vim nvim
+alias neovide-nohup "setsid -f neovide . >/dev/null 2>&1"
 # Go
 alias gocilint "golangci-lint run --out-format 'colored-line-number:stdout'"
 alias gocover "rm coverage.txt; go test -covermode=atomic -count 1 -coverpkg=./... -coverprofile=coverage.txt ./... ; go tool cover -html=coverage.txt -o coverage.html; /opt/microsoft/msedge/msedge coverage.html"
@@ -116,6 +148,8 @@ alias danger "claude --dangerously-skip-permissions"
 alias plan "claude --permission-mode plan"
 # Kanata
 alias kan "sudo /home/mclement/bin/kanata -q --cfg ~/git/dotfiles/kanata/kanata_hjkl.kbd"
+# Terminal title
+alias st set_title
 
 ########################################################################
 # TADAWEB CONFIG

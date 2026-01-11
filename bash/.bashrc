@@ -143,20 +143,25 @@ function ycd() {
   rm -f -- "$tmp"
 }
 
-# fzf history search - type 'his' instead of Ctrl+R
+# fzf history search - type 'his' instead of Ctrl+R (same as CTRL+R but with edit prompt)
 function his() {
   local selected_command
-  selected_command=$(history | fzf --tac --no-sort --height=40% --reverse --query="$*" | sed 's/^[ ]*[0-9]*[ ]*//')
+  selected_command=$(fc -ln 1 | fzf --scheme=history --no-sort --height=40% --reverse --query="$*" --tiebreak=index --tac)
   if [[ -n "$selected_command" ]]; then
-    # Write the command to a temporary file and use read to get it on command line
-    echo "$selected_command" >/tmp/his_cmd
-    read -e -i "$selected_command" -p "" cmd
+    read -e -i "$selected_command" -p "› " cmd
     if [[ -n "$cmd" ]]; then
       eval "$cmd"
-      # Add the executed command to history
       history -s "$cmd"
     fi
-    rm -f /tmp/his_cmd
+  fi
+}
+
+# fcd - fuzzy find directory and cd into it (like fzf alt-c)
+function fcd() {
+  local dir
+  dir=$(fd --type d --strip-cwd-prefix --hidden --follow --exclude .git . | fzf --height=40% --reverse)
+  if [[ -n "$dir" ]]; then
+    cd "$dir"
   fi
 }
 
@@ -210,7 +215,6 @@ alias rm='rm -rf'
 alias 'cd..'='cd ..'
 alias 'lf'='lfcd'
 alias 'y'='yazi'
-alias 'fcd'='zi'
 # Notes
 alias 'notes'='$EDITOR ~/Documents/notes'
 # Clear the swap storage
@@ -230,6 +234,7 @@ alias "solaarnohup"="nohup ~/.local/bin/solaar --window=hide &"
 alias "bluetoothbattery"="bluetoothctl info | grep Battery"
 # Vim
 alias "vim"="nvim"
+alias "neovide-nohup"="nohup neovide . >/dev/null 2>&1 &"
 # Go
 alias "gocilint"="golangci-lint run --out-format \"colored-line-number:stdout\""
 alias "gocover"="rm coverage.txt; go test -covermode=atomic -count 1 -coverpkg=./... -coverprofile=coverage.txt ./... ; go tool cover -html=coverage.txt -o coverage.html; /opt/microsoft/msedge/msedge coverage.html"

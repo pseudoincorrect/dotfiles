@@ -26,8 +26,8 @@ return {
       keymap = {
         builtin = {
           ['<C-/>'] = 'toggle-help',
-          ['<C-d>'] = 'preview-page-down',
-          ['<C-u>'] = 'preview-page-up',
+          ['<S-Down>'] = 'preview-down',
+          ['<S-Up>'] = 'preview-up',
         },
         fzf = {
           ['tab'] = 'up',
@@ -37,6 +37,8 @@ return {
           ['ctrl-e'] = 'end-of-line',
           ['alt-a'] = 'toggle-all',
           ['ctrl-q'] = 'select-all+accept',
+          ['shift-down'] = 'preview-down',
+          ['shift-up'] = 'preview-up',
         },
       },
       actions = {
@@ -107,6 +109,7 @@ return {
     vim.keymap.set('n', '<leader>sj', fzf.jumps, { desc = 'Jumplist' })
     vim.keymap.set('n', '<leader>su', fzf.changes, { desc = 'Undos' })
     vim.keymap.set('n', '<leader>s*', fzf.grep_cword, { desc = 'Current word' })
+    vim.keymap.set('n', '<leader>sv', fzf.git_status, { desc = 'Changed git files' })
     vim.keymap.set('v', '<leader>sv', fzf.grep_visual, { desc = 'Grep Repo with Selection' })
     vim.keymap.set('n', '<leader>sx', fzf.diagnostics_document, { desc = 'Problems' })
     vim.keymap.set('n', '<leader>f', fzf.files, { desc = 'Files' })

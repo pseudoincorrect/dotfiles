@@ -109,7 +109,6 @@
   "diffEditor.renderSideBySide": false,
   "terminal.integrated.tabs.enabled": false,
   "explorer.sortOrderLexicographicOptions": "unicode",
-  "window.zoomLevel": -1,
   "editor.minimap.maxColumn": 100,
   "editor.minimap.renderCharacters": false,
   "workbench.list.multiSelectModifier": "alt",

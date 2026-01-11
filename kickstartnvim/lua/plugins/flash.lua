@@ -15,7 +15,7 @@ return {
       desc = 'Flash',
     },
     {
-      'S',
+      '<A-s>',
       mode = { 'n', 'x', 'o' },
       function()
         require('flash').treesitter()
@@ -37,6 +37,21 @@ return {
         require('flash').treesitter_search()
       end,
       desc = 'Treesitter Search',
+    },
+    {
+      'S',
+      mode = 'n',
+      function()
+        require('flash').jump {
+          action = function(match, state)
+            state:hide()
+            vim.api.nvim_set_current_win(match.win)
+            vim.api.nvim_win_set_cursor(match.win, match.pos)
+            vim.lsp.buf.definition()
+          end,
+        }
+      end,
+      desc = 'Flash Go to Definition',
     },
   },
 }
