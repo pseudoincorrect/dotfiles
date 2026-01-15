@@ -1,4 +1,5 @@
 {
+  "vim_mode": false,
   "autoscroll_on_clicks": true,
   "sticky_scroll": {
     "enabled": true,
@@ -33,7 +34,7 @@
   },
   "ui_font_size": 11,
   "buffer_font_size": 11,
-  "theme": "Catppuccin Macchiato (Blur) [Heavy]",
+  "theme": "Tokyo Night",
   "collaboration_panel": {
     "button": false,
   },

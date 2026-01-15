@@ -22,20 +22,9 @@ return {
       use_float = false,
       use_image_nvim = true,
     },
-    float = {
-      enabled = true,
-      open_files_in_last_window = true,
-    },
     window = {
-      position = 'float',
-      width = 35,
-      popup = {
-        size = {
-          width = '25%',
-          height = '90%',
-        },
-        position = '50%',
-      },
+      position = 'left',
+      width = 45,
       mapping_options = {
         noremap = true,
         nowait = true,
@@ -96,7 +85,9 @@ return {
       window = {
         mappings = {
           ['\\'] = 'close_window',
-          ['<esc>'] = 'close_window',
+          ['<esc>'] = function()
+            vim.cmd 'wincmd p'
+          end,
           ['<bs>'] = 'navigate_up',
           ['.'] = 'set_root',
           ['H'] = 'toggle_hidden',

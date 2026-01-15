@@ -35,22 +35,23 @@ function M.setup()
     callback = close_terminal_jobs,
   })
 
-  -- Disable spell checking in terminal buffers
-  -- Important if you don't want to see doted lines everywhere on cli tools
-  vim.api.nvim_create_autocmd('TermOpen', {
-    desc = 'Disable spell checking in terminal buffers',
-    group = vim.api.nvim_create_augroup('terminal-no-spell', { clear = true }),
-    callback = function()
-      vim.opt_local.spell = false
-    end,
-  })
-
   -- Update title when directory changes
   vim.api.nvim_create_autocmd('DirChanged', {
     desc = 'Update title when directory changes',
     group = vim.api.nvim_create_augroup('update-title', { clear = true }),
     callback = function()
       vim.opt.titlestring = vim.fs.basename(vim.fn.getcwd())
+    end,
+  })
+
+  -- Open neo-tree on startup
+  vim.api.nvim_create_autocmd('VimEnter', {
+    desc = 'Open neo-tree on startup',
+    group = vim.api.nvim_create_augroup('neotree-on-start', { clear = true }),
+    callback = function()
+      vim.schedule(function()
+        vim.cmd 'Neotree show'
+      end)
     end,
   })
 end

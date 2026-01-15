@@ -17,6 +17,7 @@ set -x PATH $HOME/.cargo/bin $PATH
 set -x GOENV_ROOT $HOME/.goenv
 set -x PATH $GOENV_ROOT/bin $PATH
 status --is-interactive; and source (goenv init - | psub)
+set -x PATH $GOENV_ROOT/shims $PATH
 
 # Install and use Go version from go.mod
 function goenv-use
@@ -103,10 +104,10 @@ zoxide init fish | source
 
 ########################################################################
 # FUZZY SEARCH FZF
-fzf --fish | source
 set -x FZF_DEFAULT_COMMAND 'fd --strip-cwd-prefix --hidden --follow --exclude .git'
 set -x FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
 set -x FZF_ALT_C_COMMAND 'fd --type d --strip-cwd-prefix --hidden --follow --exclude .git'
+fzf --fish | source
 
 ########################################################################
 # EDITOR

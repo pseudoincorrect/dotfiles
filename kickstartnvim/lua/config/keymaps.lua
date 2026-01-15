@@ -59,8 +59,8 @@ function M.setup()
   vim.keymap.set('x', 'R', 'p', { desc = 'Replace selection with yanked text' })
 
   -- NeoTree
-  vim.keymap.set('n', '<leader>e', '<Esc>:Neotree reveal<CR>', { noremap = true, desc = 'NeoTree' })
-  vim.keymap.set('n', '<leader>r', '<Esc>:Neotree float<CR>', { noremap = true, desc = 'NeoTree Root' })
+  vim.keymap.set('n', '<leader>et', '<Esc>:Neotree toggle<CR>', { noremap = true, desc = 'Toggle NeoTree' })
+  vim.keymap.set('n', '<leader>ee', '<Esc>:Neotree reveal<CR>', { noremap = true, desc = 'Reveal in NeoTree' })
 
   -- Path copy operations
   vim.keymap.set('n', '<leader>pr', function()
@@ -83,10 +83,7 @@ function M.setup()
   vim.keymap.set('t', '<C-j>', '<C-\\><C-n><C-w>j', { desc = 'Move to lower window from terminal' })
   vim.keymap.set('t', '<C-k>', '<C-\\><C-n><C-w>k', { desc = 'Move to upper window from terminal' })
   -- Map escape in terminal mode to goto normal mode
-  vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode to normal mode' })
-  -- Map ctrl+escape in terminal mode to send escape to terminal
-  vim.keymap.set('t', '<C-Esc>', '<Esc>', { desc = 'Send escape to terminal' })
-  vim.keymap.set('t', '<S-Esc>', '<Esc>', { desc = 'Send escape to terminal' })
+  vim.keymap.set('t', '<C-y>', '<C-\\><C-n>', { desc = 'Exit terminal mode to normal mode' })
 
   -- Terminal management
   vim.keymap.set('n', '<leader>tt', ':term<CR>', { desc = 'Open terminal' })
