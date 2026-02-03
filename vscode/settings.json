@@ -21,7 +21,6 @@
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorSurroundingLines": 15,
   "editor.fontSize": 12,
-  "editor.lineNumbers": "interval",
   "editor.minimap.showSlider": "always",
   "editor.quickSuggestionsDelay": 300,
   "editor.renderLineHighlight": "all",
@@ -69,7 +68,10 @@
   "outline.showStrings": false,
   "outline.showTypeParameters": false,
   "outline.showVariables": false,
-  "projectManager.git.baseFolders": ["/home/mclement/git"],
+  "projectManager.git.baseFolders": [
+    "/home/mclement/git",
+    "/home/mclement/notes"
+  ],
   "projectManager.git.maxDepthRecursion": 1,
   "projectManager.openInCurrentWindowIfEmpty": "never",
   "projectManager.openInNewWindowWhenClickingInStatusBar": true,
@@ -107,7 +109,6 @@
   "workbench.startupEditor": "none",
   "workbench.tree.indent": 10,
   "diffEditor.renderSideBySide": false,
-  "terminal.integrated.tabs.enabled": false,
   "explorer.sortOrderLexicographicOptions": "unicode",
   "editor.minimap.maxColumn": 100,
   "editor.minimap.renderCharacters": false,

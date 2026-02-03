@@ -106,6 +106,7 @@ PATH="$HOME/.cargo/bin:$PATH"
 export GOENV_ROOT="$HOME/.goenv"
 export PATH="$GOENV_ROOT/bin:$PATH"
 eval "$(goenv init -)"
+export PATH="$(go env GOPATH)/bin:$PATH"
 
 # Install and use Go version from go.mod
 gouse() {

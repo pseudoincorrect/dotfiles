@@ -1,5 +1,6 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
+    bind --erase \ev  # Disable Alt+V (opens vim by default)
 end
 ########################################################################
 # HOMEBREW
@@ -18,6 +19,7 @@ set -x GOENV_ROOT $HOME/.goenv
 set -x PATH $GOENV_ROOT/bin $PATH
 status --is-interactive; and source (goenv init - | psub)
 set -x PATH $GOENV_ROOT/shims $PATH
+set -x PATH (go env GOPATH)/bin $PATH
 
 # Install and use Go version from go.mod
 function goenv-use
@@ -98,6 +100,16 @@ function fish_title
     end
 end
 
+# Manage docker compose services from ~/docker-service
+# Usage: service <name> <docker-compose-args>
+# Examples:
+#   service redis-admin up -d
+function service
+  set -l svc $argv[1]
+  set -l cmd $argv[2..-1]
+  docker compose -f ~/docker-services/$svc/docker-compose.yml $cmd
+end
+
 ########################################################################
 # ZOXIDE (FILE EXPLORER)
 zoxide init fish | source
@@ -130,8 +142,8 @@ alias python python3
 alias sourcevenv "source .venv/bin/activate.fish"
 # edit config files
 alias editrc "$EDITOR ~/.config/fish/config.fish"
-alias sourcerc "source ~/.config/fish/config.fish"
-alias catrc "cat ~/.config/fish/config.fish"
+alias sourcefish "source ~/.config/fish/config.fish"
+alias catfish "bat ~/.config/fish/config.fish"
 # docker compose
 alias dc "docker compose"
 # solaar logitech

@@ -1,8 +1,7 @@
 [
   {
-    "key": "ctrl+y",
-    "command": "editor.action.commentLine",
-    "when": "editorTextFocus && !editorReadonly"
+    "command": "editor.action.rename",
+    "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
   },
   {
     "key": "alt+c",
@@ -10,13 +9,18 @@
     "when": "editorTextFocus && !editorReadonly"
   },
   {
-    "command": "actions.find",
     "key": "alt+f",
-    "when": "editorFocus"
+    "command": "expandLineSelection",
+    "when": "textInputFocus"
   },
   {
     "command": "workbench.action.navigateLeft",
     "key": "alt+h"
+  },
+  {
+    "command": "workbench.action.findInFiles",
+    "key": "alt+h",
+    "when": "editorFocus || editorIsOpen"
   },
   {
     "command": "workbench.action.navigateDown",
@@ -41,47 +45,18 @@
     "when": "editorTextFocus && !editorReadonly"
   },
   {
-    "command": "editor.action.smartSelect.expand",
-    "key": "alt+u",
-    "when": "textInputFocus"
-  },
-  {
-    "command": "editor.action.smartSelect.expand",
-    "key": "ctrl+'",
-    "when": "textInputFocus"
-  },
-  {
-    "command": "quickInput.toggleHover",
-    "key": "ctrl+,",
-    "when": "inQuickInput && quickInputType == 'quickPick'"
-  },
-  {
-    "command": "-workbench.action.openSettings",
-    "key": "ctrl+,"
-  },
-  {
-    "command": "editor.action.quickFix",
-    "key": "ctrl+,",
-    "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
-  },
-  {
-    "command": "quickInput.toggleHover",
-    "key": "ctrl+.",
-    "when": "inQuickInput && quickInputType == 'quickPick'"
+    "command": "projectManager.listProjectsNewWindow",
+    "key": "ctrl+'"
   },
   {
     "command": "editor.action.triggerSuggest",
-    "key": "ctrl+.",
+    "key": "ctrl+,",
     "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly && !suggestWidgetVisible"
   },
   {
-    "command": "quickFind.searchInFile",
-    "key": "ctrl+/"
-  },
-  {
-    "key": "ctrl+/",
-    "command": "-editor.action.commentLine",
-    "when": "editorTextFocus && !editorReadonly"
+    "command": "editor.action.revealDefinition",
+    "key": "ctrl+.",
+    "when": "editorHasDefinitionProvider && editorTextFocus"
   },
   {
     "command": "workbench.action.toggleAuxiliaryBar",
@@ -125,11 +100,11 @@
     "when": "editorTextFocus"
   },
   {
-    "command": "projectManager.listProjectsNewWindow",
+    "command": "workbench.action.quickOpen",
     "key": "ctrl+e"
   },
   {
-    "command": "-workbench.action.quickOpenNavigateNextInFilePicker",
+    "command": "workbench.action.quickOpenNavigateNextInFilePicker",
     "key": "ctrl+e",
     "when": "inFilesPicker && inQuickOpen"
   },
@@ -152,13 +127,9 @@
     "key": "ctrl+escape"
   },
   {
-    "command": "workbench.action.quickOpen",
-    "key": "ctrl+f"
-  },
-  {
-    "command": "workbench.action.quickOpenNavigateNextInFilePicker",
+    "command": "editor.action.smartSelect.expand",
     "key": "ctrl+f",
-    "when": "inFilesPicker && inQuickOpen"
+    "when": "textInputFocus"
   },
   {
     "command": "cursorBottom",
@@ -175,13 +146,18 @@
     "when": "editorHasDefinitionProvider && editorTextFocus"
   },
   {
-    "command": "quickFind.searchFiles",
-    "key": "ctrl+g ctrl+f"
+    "command": "workbench.files.action.showActiveFileInExplorer",
+    "key": "ctrl+g ctrl+e"
   },
   {
     "command": "editor.action.revealDefinition",
     "key": "ctrl+g ctrl+g",
     "when": "editorHasDefinitionProvider && editorTextFocus"
+  },
+  {
+    "command": "quickInput.toggleHover",
+    "key": "ctrl+g ctrl+h",
+    "when": "inQuickInput && quickInputType == 'quickPick'"
   },
   {
     "command": "editor.action.showHover",
@@ -222,29 +198,9 @@
     "when": "editorFocus"
   },
   {
-    "command": "workbench.explorer.fileView.focus",
-    "key": "ctrl+h ctrl+f"
-  },
-  {
-    "command": "workbench.files.action.showActiveFileInExplorer",
-    "key": "ctrl+h ctrl+h"
-  },
-  {
-    "command": "inlineChat.start",
-    "key": "ctrl+h ctrl+i",
-    "when": "editorFocus && inlineChatHasEditsAgent && inlineChatPossible && !editorReadonly && !editorSimpleInput || editorFocus && inlineChatHasProvider && inlineChatPossible && !editorReadonly && !editorSimpleInput"
-  },
-  {
-    "command": "workbench.action.openGlobalKeybindings",
-    "key": "ctrl+h ctrl+k"
-  },
-  {
-    "command": "workbench.action.openView",
-    "key": "ctrl+h ctrl+o"
-  },
-  {
-    "command": "workbench.action.openSettings",
-    "key": "ctrl+h ctrl+s"
+    "command": "actions.find",
+    "key": "ctrl+h",
+    "when": "editorFocus"
   },
   {
     "command": "-cursorTop",
@@ -305,6 +261,11 @@
     "when": "editorFocus"
   },
   {
+    "key": "ctrl+l",
+    "command": "-expandLineSelection",
+    "when": "textInputFocus"
+  },
+  {
     "command": "search.action.focusNextSearchResult",
     "key": "ctrl+m",
     "when": "hasSearchResult || inSearchEditor"
@@ -336,18 +297,8 @@
     "key": "ctrl+q"
   },
   {
-    "command": "editor.action.rename",
-    "key": "ctrl+r",
-    "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
-  },
-  {
-    "command": "editor.action.smartSelect.shrink",
-    "key": "ctrl+shift+'",
-    "when": "editorTextFocus"
-  },
-  {
-    "command": "quickFind.searchInFolder",
-    "key": "ctrl+shift+/"
+    "command": "projectManager.listProjects",
+    "key": "ctrl+shift+'"
   },
   {
     "command": "workbench.files.action.collapseExplorerFolders",
@@ -374,8 +325,9 @@
     "when": "terminalFocusInAny && terminalHasBeenCreated && !terminalAltBufferActive || terminalFocusInAny && terminalProcessSupported && !terminalAltBufferActive"
   },
   {
-    "command": "projectManager.listProjects",
-    "key": "ctrl+shift+e"
+    "command": "workbench.action.quickOpenNavigatePreviousInFilePicker",
+    "key": "ctrl+shift+e",
+    "when": "inFilesPicker && inQuickOpen"
   },
   {
     "command": "-workbench.action.quickOpenNavigatePreviousInFilePicker",
@@ -388,13 +340,9 @@
     "when": "textInputFocus"
   },
   {
-    "command": "workbench.action.findInFiles",
+    "command": "editor.action.smartSelect.shrink",
     "key": "ctrl+shift+f",
-    "when": "editorFocus || editorIsOpen"
-  },
-  {
-    "command": "workbench.action.navigateLeft",
-    "key": "ctrl+shift+h"
+    "when": "editorTextFocus"
   },
   {
     "command": "-cursorTopSelect",
@@ -404,6 +352,10 @@
   {
     "command": "workbench.action.navigateDown",
     "key": "ctrl+shift+j"
+  },
+  {
+    "command": "workbench.action.openGlobalKeybindings",
+    "key": "ctrl+shift+k"
   },
   {
     "command": "workbench.action.navigateUp",
@@ -432,6 +384,10 @@
     "command": "workbench.action.quickOpenLeastRecentlyUsedEditorInGroup",
     "key": "ctrl+shift+r",
     "when": "!activeEditorGroupEmpty"
+  },
+  {
+    "command": "workbench.action.openSettings",
+    "key": "ctrl+shift+s"
   },
   {
     "command": "workbench.action.quickOpenNavigatePreviousInFilePicker",
@@ -555,6 +511,25 @@
     "when": "chatInputHasFocus || filesExplorerFocus || terminalFocus || roo-cline.SidebarProvider.active"
   },
   {
+    "key": "ctrl+y",
+    "command": "-editor.action.commentLine",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+y",
+    "command": "editor.action.commentLine",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+y",
+    "command": "-redo"
+  },
+  {
+    "key": "ctrl+y",
+    "command": "-chatEditor.action.acceptHunk",
+    "when": "chatEdits.cursorInChangeRange && chatEdits.hasEditorModifications && editorFocus && !chatEdits.isCurrentlyBeingModified || chatEdits.cursorInChangeRange && chatEdits.hasEditorModifications && notebookCellListFocused && !chatEdits.isCurrentlyBeingModified"
+  },
+  {
     "command": "undo",
     "key": "ctrl+z"
   },
@@ -595,14 +570,5 @@
   {
     "command": "-history.showPrevious",
     "key": "up"
-  },
-  {
-    "key": "ctrl+y",
-    "command": "-redo"
-  },
-  {
-    "key": "ctrl+y",
-    "command": "-chatEditor.action.acceptHunk",
-    "when": "chatEdits.cursorInChangeRange && chatEdits.hasEditorModifications && editorFocus && !chatEdits.isCurrentlyBeingModified || chatEdits.cursorInChangeRange && chatEdits.hasEditorModifications && notebookCellListFocused && !chatEdits.isCurrentlyBeingModified"
   }
 ]
