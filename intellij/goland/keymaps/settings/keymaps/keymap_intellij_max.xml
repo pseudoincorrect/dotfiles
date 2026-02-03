@@ -1,0 +1,14 @@
+<keymap version="1" name="keymap_intellij_max" parent="Default for GNOME">
+  <action id="GotoFile">
+    <keyboard-shortcut first-keystroke="shift ctrl n" />
+    <keyboard-shortcut first-keystroke="ctrl g" second-keystroke="ctrl f" />
+  </action>
+  <action id="GotoLine" />
+  <action id="GotoRow" />
+  <action id="ShowSettings">
+    <keyboard-shortcut first-keystroke="ctrl alt s" />
+    <keyboard-shortcut first-keystroke="ctrl h" second-keystroke="ctrl s" />
+  </action>
+  <action id="TypeHierarchy" />
+  <action id="TypeHierarchyBase.BaseOnThisType" />
+</keymap>

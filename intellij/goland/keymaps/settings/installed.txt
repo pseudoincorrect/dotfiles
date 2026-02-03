@@ -1,0 +1,7 @@
+com.codeium.intellij
+String Manipulation
+com.nasller.CodeGlancePro
+com.werfad
+com.mallowigi
+izhangzhihao.rainbow.brackets.lite
+com.mituuz.fuzzier
