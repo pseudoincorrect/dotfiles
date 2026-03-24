@@ -1,0 +1,26 @@
+{
+
+ :simlayers {
+             :nav-mode {:key :caps_lock}
+             }
+
+ :main [
+        {:des "nav-mode (from Kanata)"
+         :rules [:nav-mode
+                 [:##y :home]
+                 [:##u :delete_or_backspace]
+                 [:##i :delete_forward]
+                 [:##o :end]
+                 [:##h :left_arrow]
+                 [:##j :down_arrow]
+                 [:##k :up_arrow]
+                 [:##l :right_arrow]
+                 [:##semicolon :delete_forward]
+                 [:##m :return_or_enter]
+                 [:##comma :escape]
+                 [:##period :tab]
+                ]
+        }
+
+ ]
+}
