@@ -100,7 +100,6 @@
     "panel.border": "#00ffff",
     "sideBar.border": "#00ffff",
   },
-  "workbench.editor.showTabs": "single",
   "workbench.editor.tabActionLocation": "left",
   "workbench.iconTheme": "vscode-icons",
   "workbench.layoutControl.enabled": false,
@@ -110,8 +109,11 @@
   "workbench.tree.indent": 10,
   "diffEditor.renderSideBySide": false,
   "explorer.sortOrderLexicographicOptions": "unicode",
-  "editor.minimap.maxColumn": 100,
   "editor.minimap.renderCharacters": false,
   "workbench.list.multiSelectModifier": "alt",
-  "claudeCode.preferredLocation": "sidebar"
+  "claudeCode.preferredLocation": "sidebar",
+  "window.zoomLevel": -1,
+  "workbench.editor.wrapTabs": true,
+  "editor.minimap.scale": 2,
+  "editor.minimap.maxColumn": 80
 }

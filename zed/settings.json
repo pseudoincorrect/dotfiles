@@ -1,4 +1,18 @@
 {
+  "git": {
+    "inline_blame": {
+      "enabled": false
+    }
+  },
+  "icon_theme": "Material Icon Theme",
+  "agent": {
+    "default_model": {
+      "provider": "openrouter",
+      "model": "openrouter/auto"
+    },
+    "favorite_models": [],
+    "model_parameters": []
+  },
   "vim_mode": false,
   "autoscroll_on_clicks": true,
   "sticky_scroll": {
@@ -22,7 +36,7 @@
     "show_close_button": "hover",
   },
   "tab_bar": {
-    "show": false,
+    "show": true,
   },
   "terminal": {
     "font_family": "Agave Nerd Font",
@@ -34,7 +48,7 @@
   },
   "ui_font_size": 11,
   "buffer_font_size": 11,
-  "theme": "Tokyo Night",
+  "theme": "macOS Classic Dark",
   "collaboration_panel": {
     "button": false,
   },
