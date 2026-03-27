@@ -1,10 +1,17 @@
 {
+  "document_symbols": "off",
+  "text_rendering_mode": "platform_default",
+  "ui_font_weight": 400.0,
   "git": {
     "inline_blame": {
       "enabled": false
     }
   },
-  "icon_theme": "Material Icon Theme",
+  "icon_theme": {
+    "mode": "light",
+    "light": "Material Icon Theme",
+    "dark": "Material Icon Theme"
+  },
   "agent": {
     "default_model": {
       "provider": "openrouter",
@@ -40,15 +47,19 @@
   },
   "terminal": {
     "font_family": "Agave Nerd Font",
-    "font_size": 10.0,
+    "font_size": 12.0,
     "scrollbar": {
       "show": "always",
     },
     "dock": "right",
   },
-  "ui_font_size": 11,
-  "buffer_font_size": 11,
-  "theme": "macOS Classic Dark",
+  "ui_font_size": 12.0,
+  "buffer_font_size": 11.0,
+  "theme": {
+    "mode": "dark",
+    "light": "Gruvbox Light Soft",
+    "dark": "Snazzy Theme"
+  },
   "collaboration_panel": {
     "button": false,
   },

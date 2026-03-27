@@ -8,18 +8,18 @@ eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 ########################################################################
 # PATH and other export
-set -x PATH $HOME/Programs/gitkraken $PATH
-set -x PATH $HOME/bin $PATH
-set -x PATH $HOME/.local/bin $PATH
-set -x PATH $HOME/.cargo/bin $PATH
+fish_add_path --path $HOME/Programs/gitkraken
+fish_add_path --path $HOME/bin
+fish_add_path --path $HOME/.local/bin
+fish_add_path --path $HOME/.cargo/bin
 
 ########################################################################
 # GO (managed by goenv)
 set -x GOENV_ROOT $HOME/.goenv
-set -x PATH $GOENV_ROOT/bin $PATH
+fish_add_path --path $GOENV_ROOT/bin
 status --is-interactive; and source (goenv init - | psub)
-set -x PATH $GOENV_ROOT/shims $PATH
-set -x PATH (go env GOPATH)/bin $PATH
+fish_add_path --path $GOENV_ROOT/shims
+fish_add_path --path (go env GOPATH)/bin
 
 # Install and use Go version from go.mod
 function goenv-use
