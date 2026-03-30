@@ -1,7 +1,10 @@
 [
   {
     "bindings": {
+      "alt-a": "workspace::CopyPath",
+      "alt-c": "workspace::CopyPath",
       "alt-k": "zed::OpenKeymap",
+      "alt-r": "workspace::CopyRelativePath",
       "alt-s": "zed::OpenSettings",
       "ctrl-1": "project_panel::ToggleFocus",
       "ctrl-b": "tab_switcher::Toggle",
