@@ -1,0 +1,90 @@
+########################################################################
+# HISTORY
+HISTSIZE=10000
+SAVEHIST=50000
+export HISTFILE=~/.zsh_history
+setopt APPEND_HISTORY       # append to history file, don't overwrite
+setopt INC_APPEND_HISTORY   # write to history immediately
+setopt HIST_REDUCE_BLANKS
+
+########################################################################
+# TAB COMPLETION
+autoload -U compinit && compinit
+setopt MENU_COMPLETE        # tab cycles through completions
+
+########################################################################
+# PATH and other exports
+PATH="$HOME/Programs/gitkraken:$PATH"
+PATH="$HOME/bin:$PATH"
+PATH="$HOME/.local/bin:$PATH"
+PATH="$HOME/.docker/bin:$PATH"
+export GOROOT="$HOME/go/sdk/go1.26.1"
+export GOPATH="$HOME/go"
+export GOBIN="$GOPATH/bin"
+PATH="$GOROOT/bin:$GOBIN:$PATH"
+PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+########################################################################
+# HELPER FUNCTIONS
+# cheat.sh
+function cheat() {
+  curl "https://cheat.sh/$1"
+}
+
+# deduplicate zsh history file
+function history_deduplicate() {
+  local before=$(wc -l <~/.zsh_history)
+  tail -r ~/.zsh_history | awk '!seen[$0]++' | tail -r >~/.zsh_history.tmp && mv ~/.zsh_history.tmp ~/.zsh_history
+  local after=$(wc -l <~/.zsh_history)
+  echo "History deduplication: from $before --> $after lines."
+}
+
+# Manage docker compose services from ~/docker-services
+# Usage: service <name> <docker-compose-args>
+# Examples:
+#   service redis-admin up -d
+function service() {
+  local svc=$1
+  shift
+  docker compose -f ~/docker-services/$svc/docker-compose.yml "$@"
+}
+
+########################################################################
+# EDITOR
+export EDITOR=nvim
+
+########################################################################
+# ALIASES
+# file explorers/management
+alias ll='eza -laT --level 1'
+alias rm='rm -rf'
+alias 'cd..'='cd ..'
+# Notes
+alias 'notes'='$EDITOR ~/notes'
+# make python3 as default
+alias 'python'='python3'
+alias 'sourcevenv'='source .venv/bin/activate'
+# edit .zshrc
+alias "editrc"="$EDITOR ~/.zshrc"
+alias "sourcerc"="source ~/.zshrc"
+alias "catrc"="cat ~/.zshrc"
+# docker compose
+alias 'dc'='docker compose'
+# Vim
+alias "vim"="nvim"
+# AI     
+alias "danger"="claude --dangerously-skip-permissions"
+alias "plan"="claude --permission-mode plan"
+
+
+########################################################################
+# Tadaweb
+[[ -f "$HOME/.zshrc_tadaweb" ]] && source "$HOME/.zshrc_tadaweb" 
+
+########################################################################
+# Docker
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/m.clement/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
