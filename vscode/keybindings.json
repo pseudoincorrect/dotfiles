@@ -586,5 +586,65 @@
   {
     "command": "-workbench.action.openSettings",
     "key": "cmd+,"
-  }
+  },
+  {
+    "key": "ctrl+j",
+    "command": "cursorDown",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "cursorUp",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+u",
+    "command": "deleteLeft",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "cmd+ctrl+u",
+    "command": "deleteWordLeft",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+i",
+    "command": "deleteRight",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "cmd+ctrl+i",
+    "command": "deleteWordRight",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "cursorRight",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "cmd+ctrl+l",
+    "command": "cursorWordEndRight",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+h",
+    "command": "cursorLeft",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "cmd+ctrl+h",
+    "command": "cursorWordLeft",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "cursorHome",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+.",
+    "command": "cursorEnd",
+    "when": "textInputFocus"
+  },
 ]
