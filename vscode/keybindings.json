@@ -598,52 +598,52 @@
     "when": "textInputFocus"
   },
   {
-    "key": "ctrl+u",
+    "key": "ctrl+y",
     "command": "deleteLeft",
     "when": "textInputFocus"
   },
   {
-    "key": "cmd+ctrl+u",
+    "key": "ctrl+u",
     "command": "deleteWordLeft",
     "when": "textInputFocus"
   },
   {
-    "key": "ctrl+i",
+    "key": "ctrl+o",
     "command": "deleteRight",
     "when": "textInputFocus"
   },
   {
-    "key": "cmd+ctrl+i",
+    "key": "ctrl+i",
     "command": "deleteWordRight",
     "when": "textInputFocus"
   },
   {
-    "key": "ctrl+l",
+    "key": "ctrl+.",
     "command": "cursorRight",
     "when": "textInputFocus"
   },
   {
-    "key": "cmd+ctrl+l",
+    "key": "ctrl+l",
     "command": "cursorWordEndRight",
     "when": "textInputFocus"
   },
   {
-    "key": "ctrl+h",
+    "key": "ctrl+n",
     "command": "cursorLeft",
     "when": "textInputFocus"
   },
   {
-    "key": "cmd+ctrl+h",
+    "key": "ctrl+h",
     "command": "cursorWordLeft",
     "when": "textInputFocus"
   },
   {
-    "key": "ctrl+n",
+    "key": "ctrl+m",
     "command": "cursorHome",
     "when": "textInputFocus"
   },
   {
-    "key": "ctrl+.",
+    "key": "ctrl+,",
     "command": "cursorEnd",
     "when": "textInputFocus"
   },
