@@ -9,16 +9,6 @@ export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
 PATH="$GOROOT/bin:$GOBIN:$PATH"
 PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-# PATH="$PATH:$HOME/.local/share/mise/shims"
-
-########################################################################
-# HISTORY
-HISTSIZE=10000
-SAVEHIST=50000
-export HISTFILE=~/.zsh_history
-setopt APPEND_HISTORY
-setopt INC_APPEND_HISTORY
-setopt HIST_REDUCE_BLANKS
 
 ########################################################################
 # DOCKER CLI COMPLETIONS (fpath must be set before compinit/OMZ)
@@ -37,10 +27,10 @@ plugins=(git zsh-autosuggestions)
 DISABLE_AUTO_TITLE="true"
 source $ZSH/oh-my-zsh.sh
 
-
-export MISE_STATE_DIR="$HOME/.mise/state",
-eval "$(mise activate zsh)"  # or bash
-
 ########################################################################
 # CUSTOM CONFIG
-source $HOME/.zshrc_base
+source $HOME/.zshrc_custom
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

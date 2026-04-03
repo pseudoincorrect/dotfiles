@@ -327,7 +327,7 @@
   },
   {
     "key": "ctrl+,",
-    "command": "cursorEnd",
+    "command": "deleteRight",
     "when": "textInputFocus"
   },
   {
@@ -362,7 +362,7 @@
   },
   {
     "key": "ctrl+m",
-    "command": "cursorHome",
+    "command": "deleteLeft",
     "when": "textInputFocus"
   },
   {
@@ -372,7 +372,7 @@
   },
   {
     "key": "ctrl+o",
-    "command": "deleteRight",
+    "command": "cursorEnd",
     "when": "textInputFocus"
   },
   {
@@ -382,7 +382,7 @@
   },
   {
     "key": "ctrl+y",
-    "command": "deleteLeft",
+    "command": "cursorHome",
     "when": "textInputFocus"
   },
   {
