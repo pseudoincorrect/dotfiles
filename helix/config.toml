@@ -1,5 +1,4 @@
-theme = "max_monokai_pro_spectrum_no_underline"
-# theme = "max_catppuccin_latte"
+theme = "monokai_pro_spectrum"
 
 [editor]
 cursorline = true
@@ -16,7 +15,6 @@ completion-timeout = 0
 completion-trigger-len = 1
 auto-pairs = false
 bufferline = "never"
-rainbow-brackets = true
 
 [editor.search]
 wrap-around = false

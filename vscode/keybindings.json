@@ -1,8 +1,23 @@
 [
   {
-    "command": "expandLineSelection",
-    "key": "cmd+m",
-    "when": "textInputFocus"
+    "key": "alt+a",
+    "command": "copyFilePath",
+    "when": "!editorFocus"
+  },
+  {
+    "key": "alt+a",
+    "command": "copyFilePath",
+    "when": "editorFocus"
+  },
+  {
+    "key": "alt+r",
+    "command": "copyRelativeFilePath",
+    "when": "!editorFocus"
+  },
+  {
+    "key": "alt+r",
+    "command": "copyRelativeFilePath",
+    "when": "editorFocus"
   },
   {
     "command": "editor.action.triggerSuggest",
@@ -10,12 +25,17 @@
     "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly && !suggestWidgetVisible"
   },
   {
+    "command": "bracket-select.select",
+    "key": "cmd+,",
+    "when": "textInputFocus"
+  },
+  {
     "command": "editor.action.revealDefinition",
     "key": "cmd+.",
     "when": "editorHasDefinitionProvider && editorTextFocus"
   },
   {
-    "command": "workbench.action.toggleAuxiliaryBar",
+    "command": "workbench.action.toggleSidebarVisibility",
     "key": "cmd+1"
   },
   {
@@ -23,7 +43,7 @@
     "key": "cmd+2"
   },
   {
-    "command": "workbench.action.toggleSidebarVisibility",
+    "command": "workbench.action.toggleAuxiliaryBar",
     "key": "cmd+3"
   },
   {
@@ -153,9 +173,24 @@
     "key": "cmd+i"
   },
   {
+    "key": "cmd+j",
+    "command": "cursorPageDown",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "cmd+k",
+    "command": "cursorPageUp",
+    "when": "textInputFocus"
+  },
+  {
     "command": "jumpy2.toggle",
     "key": "cmd+l",
     "when": "editorFocus"
+  },
+  {
+    "command": "expandLineSelection",
+    "key": "cmd+m",
+    "when": "textInputFocus"
   },
   {
     "command": "workbench.action.navigateBack",
@@ -173,6 +208,11 @@
     "command": "editor.action.startFindReplaceAction",
     "key": "cmd+r cmd+r",
     "when": "editorFocus || editorIsOpen"
+  },
+  {
+    "command": "bracket-select.undo-select",
+    "key": "cmd+shift+,",
+    "when": "textInputFocus"
   },
   {
     "command": "workbench.action.quickOpenNavigatePreviousInEditorPicker",
@@ -203,11 +243,6 @@
   {
     "command": "workbench.action.openSettings",
     "key": "cmd+shift+s"
-  },
-  {
-    "command": "bracket-select.undo-select",
-    "key": "cmd+shift+,",
-    "when": "textInputFocus"
   },
   {
     "command": "workbench.action.terminal.focus",
@@ -287,33 +322,28 @@
     "key": "cmd+y"
   },
   {
-    "command": "bracket-select.select",
-    "key": "cmd+,",
-    "when": "textInputFocus"
-  },
-  {
     "command": "undo",
     "key": "cmd+z"
   },
   {
-    "command": "workbench.action.focusLastEditorGroup",
-    "key": "escape",
-    "when": "terminalFocus || filesExplorerFocus"
+    "key": "ctrl+,",
+    "command": "cursorEnd",
+    "when": "textInputFocus"
   },
   {
-    "command": "workbench.action.terminal.clear",
-    "key": "f1",
-    "when": "terminalFocus"
+    "key": "ctrl+.",
+    "command": "cursorRight",
+    "when": "textInputFocus"
   },
   {
-    "command": "-jumpy2.exit",
-    "key": "shift+enter",
-    "when": "editorTextFocus && jumpy2.jump-mode"
+    "key": "ctrl+h",
+    "command": "cursorWordLeft",
+    "when": "textInputFocus"
   },
   {
-    "command": "-jumpy2.toggle",
-    "key": "shift+enter",
-    "when": "editorTextFocus"
+    "key": "ctrl+i",
+    "command": "deleteWordRight",
+    "when": "textInputFocus"
   },
   {
     "key": "ctrl+j",
@@ -326,43 +356,8 @@
     "when": "textInputFocus"
   },
   {
-    "key": "ctrl+y",
-    "command": "deleteLeft",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+u",
-    "command": "deleteWordLeft",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+o",
-    "command": "deleteRight",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+i",
-    "command": "deleteWordRight",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+.",
-    "command": "cursorRight",
-    "when": "textInputFocus"
-  },
-  {
     "key": "ctrl+l",
     "command": "cursorWordEndRight",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+n",
-    "command": "cursorLeft",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+h",
-    "command": "cursorWordLeft",
     "when": "textInputFocus"
   },
   {
@@ -371,8 +366,43 @@
     "when": "textInputFocus"
   },
   {
-    "key": "ctrl+,",
-    "command": "cursorEnd",
+    "key": "ctrl+n",
+    "command": "cursorLeft",
     "when": "textInputFocus"
   },
+  {
+    "key": "ctrl+o",
+    "command": "deleteRight",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+u",
+    "command": "deleteWordLeft",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+y",
+    "command": "deleteLeft",
+    "when": "textInputFocus"
+  },
+  {
+    "command": "workbench.action.focusLastEditorGroup",
+    "key": "escape",
+    "when": "terminalFocus || filesExplorerFocus"
+  },
+  {
+    "command": "workbench.action.terminal.clear",
+    "key": "f1",
+    "when": "terminalFocus"
+  },
+  {
+    "command": "-jumpy2.toggle",
+    "key": "shift+enter",
+    "when": "editorTextFocus"
+  },
+  {
+    "command": "-jumpy2.exit",
+    "key": "shift+enter",
+    "when": "editorTextFocus && jumpy2.jump-mode"
+  }
 ]

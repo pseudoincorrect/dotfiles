@@ -5,6 +5,16 @@ function cheat() {
   curl "https://cheat.sh/$1"
 }
 
+# use Yazi and exit on cd
+function ycd() {
+  local tmp=$(mktemp -t "yazi-cwd.XXXXXX") cwd
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(<$tmp)" && [[ -n $cwd ]] && [[ $cwd != $PWD ]]; then
+    builtin cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
+}
+
 # deduplicate zsh history file
 function history_deduplicate() {
   local before=$(wc -l <~/.zsh_history)
@@ -23,9 +33,36 @@ function service() {
   docker compose -f ~/docker-services/$svc/docker-compose.yml "$@"
 }
 
+# fzf history search - type 'his' instead of Ctrl+R (same as CTRL+R but with edit prompt)
+function his() {
+  local selected_command
+  selected_command=$(fc -ln 1 | fzf --scheme=history --no-sort --height=40% --reverse --query="$*" --tiebreak=index --tac)
+  if [[ -n "$selected_command" ]]; then
+    local cmd="$selected_command"
+    print -z "$cmd"
+  fi
+}
+
+# set the terminal tab/window title
+function set_terminal_title() {
+  echo -en "\e]2;$@\a"
+}
+
+# sort vscode keybindings.json by key
+function sort_vscode_keybinding() {
+  local file="$HOME/git/dotfiles/vscode/keybindings.json"
+  local tmp=$(mktemp)
+  jq 'sort_by(.key)' "$file" > "$tmp" && mv "$tmp" "$file"
+}
+
+
+########################################################################
+# ZOXIDE
+eval "$(zoxide init zsh --cmd ji)"
+
 ########################################################################
 # EDITOR
-export EDITOR=nvim
+export EDITOR=hx
 
 ########################################################################
 # ALIASES
@@ -49,7 +86,8 @@ alias "vim"="nvim"
 # AI
 alias "danger"="claude --dangerously-skip-permissions"
 alias "plan"="claude --permission-mode plan"
+alias "st"="set_terminal_title"
 
 ########################################################################
-# Tadaweb
-[[ -f "$HOME/.zshrc_tadaweb" ]] && source "$HOME/.zshrc_tadaweb"
+# private
+[[ -f "$HOME/.zshrc_private" ]] && source "$HOME/.zshrc_private"
