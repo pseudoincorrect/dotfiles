@@ -38,23 +38,26 @@
 [pdown]>[rctrl]
 [kp-pdown]>[lctrl]
 
-[caps]>[escape]
-[kp-caps]>[escape]
-[kp-G]>[`]
-[kp-A]>[hyphen]
-[kp-T]>[=]
-[kp-W]>[;]
-[kp-Z]>[\]
 [;]>[bspace]
-[kpplus]>[bspace]
-[\]>[delete]
-[kp-\]>[delete]
+[caps]>[escape]
+[kp-A]>[hyphen]
+[kp-caps]>[escape]
 [kp-E]>[obrack]
+[kp-G]>[`]
 [kp-H]>[left]
+[kp-lshift]>[escape]
 [kp-R]>[cbrack]
 [kp-rctrl]>[enter]
+[kp-rshift]>[escape]
+[kp-T]>[=]
+[kp-W]>[;]
 [kp-Y]>[home]
+[kp-Z]>[\]
+[kpplus]>[bspace]
+[lshift]>[escape]
+[rshift]>[escape]
 
+{kp-B}>{speed7}{-lshift}{=}{+lshift}
 {kp-1}>{speed7}{-lshift}{1}{+lshift}
 {kp-2}>{speed7}{-lshift}{2}{+lshift}
 {kp-3}>{speed7}{-lshift}{3}{+lshift}
@@ -66,8 +69,8 @@
 {kpdiv}>{speed7}{-lshift}{9}{+lshift}
 {kpmult}>{speed7}{-lshift}{0}{+lshift}
 {kp-S}>{speed7}{-lshift}{hyphen}{+lshift}
-{kp-B}>{speed7}{-lshift}{=}{+lshift}
 
+{\}>{speed7}{-lwin}{-lctrl}{q}{+lwin}{+lctrl}
 {kp-'}>{speed7}{-lshift}{'}{+lshift}
 {kp-C}>{speed7}{-lshift}{obrack}{+lshift}
 {kp-D}>{speed7}{-lshift}{9}{+lshift}
