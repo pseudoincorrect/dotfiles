@@ -20,6 +20,10 @@
     "when": "editorFocus"
   },
   {
+    "key": "alt+s",
+    "command": "workbench.action.openGlobalKeybindings"
+  },
+  {
     "command": "editor.action.triggerSuggest",
     "key": "cmd+'",
     "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly && !suggestWidgetVisible"
@@ -47,14 +51,13 @@
     "key": "cmd+3"
   },
   {
-    "command": "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
     "key": "cmd+b",
-    "when": "!activeEditorGroupEmpty"
+    "command": "-workbench.action.toggleSidebarVisibility"
   },
   {
-    "command": "workbench.action.quickOpenNavigateNextInEditorPicker",
     "key": "cmd+b",
-    "when": "inEditorsPicker && inQuickOpen"
+    "command": "claude-vscode.focus",
+    "when": "editorTextFocus && !config.claudeCode.useTerminal"
   },
   {
     "command": "workbench.action.quickOpenNavigatePreviousInRecentFilesPicker",
@@ -92,6 +95,11 @@
   {
     "command": "-workbench.action.chat.cancel",
     "key": "cmd+escape"
+  },
+  {
+    "key": "cmd+escape",
+    "command": "-claude-vscode.focus",
+    "when": "editorTextFocus && !config.claudeCode.useTerminal"
   },
   {
     "command": "actions.find",
@@ -183,6 +191,10 @@
     "when": "textInputFocus"
   },
   {
+    "key": "cmd+k cmd+s",
+    "command": "-workbench.action.openGlobalKeybindings"
+  },
+  {
     "command": "jumpy2.toggle",
     "key": "cmd+l",
     "when": "editorFocus"
@@ -205,6 +217,10 @@
     "key": "cmd+q"
   },
   {
+    "command": "workbench.action.focusLastEditorGroup",
+    "key": "cmd+q"
+  },
+  {
     "command": "editor.action.startFindReplaceAction",
     "key": "cmd+r cmd+r",
     "when": "editorFocus || editorIsOpen"
@@ -213,11 +229,6 @@
     "command": "bracket-select.undo-select",
     "key": "cmd+shift+,",
     "when": "textInputFocus"
-  },
-  {
-    "command": "workbench.action.quickOpenNavigatePreviousInEditorPicker",
-    "key": "cmd+shift+b",
-    "when": "inEditorsPicker && inQuickOpen"
   },
   {
     "command": "-workbench.action.terminal.openNativeConsole",
@@ -313,15 +324,6 @@
     "key": "cmd+w cmd+v"
   },
   {
-    "command": "workbench.action.focusLastEditorGroup",
-    "key": "cmd+w cmd+w",
-    "when": "chatInputHasFocus || filesExplorerFocus || terminalFocus || roo-cline.SidebarProvider.active"
-  },
-  {
-    "command": "projectManager.listProjectsNewWindow",
-    "key": "cmd+y"
-  },
-  {
     "command": "undo",
     "key": "cmd+z"
   },
@@ -376,7 +378,7 @@
     "when": "textInputFocus"
   },
   {
-    "key": "ctrl+u",
+    "key": "ctrl+;",
     "command": "deleteWordLeft",
     "when": "textInputFocus"
   },
@@ -386,14 +388,14 @@
     "when": "textInputFocus"
   },
   {
-    "command": "workbench.action.focusLastEditorGroup",
-    "key": "escape",
-    "when": "terminalFocus || filesExplorerFocus"
-  },
-  {
     "command": "workbench.action.terminal.clear",
     "key": "f1",
     "when": "terminalFocus"
+  },
+  {
+    "key": "shift+cmd+b",
+    "command": "-workbench.action.tasks.build",
+    "when": "taskCommandsRegistered"
   },
   {
     "command": "-jumpy2.toggle",
@@ -404,5 +406,42 @@
     "command": "-jumpy2.exit",
     "key": "shift+enter",
     "when": "editorTextFocus && jumpy2.jump-mode"
+  },
+  {
+    "key": "alt+cmd+p",
+    "command": "-projectManager.listProjects"
+  },
+  {
+    "key": "cmd+y",
+    "command": "workbench.action.openRecent"
+  },
+  {
+    "key": "ctrl+r",
+    "command": "-workbench.action.openRecent"
+  },
+  {
+    "key": "cmd+o",
+    "command": "-workbench.action.files.openFolderViaWorkspace",
+    "when": "!openFolderWorkspaceSupport && workbenchState == 'workspace'"
+  },
+  {
+    "key": "shift+cmd+y",
+    "command": "-workbench.debug.action.toggleRepl",
+    "when": "workbench.panel.repl.view.active"
+  },
+  {
+    "key": "shift+cmd+y",
+    "command": "-chatEditor.action.accept",
+    "when": "chatEdits.hasEditorModifications && editorFocus && !chatEdits.isCurrentlyBeingModified || chatEdits.hasEditorModifications && notebookEditorFocused && !chatEdits.isCurrentlyBeingModified"
+  },
+  {
+    "key": "shift+cmd+y",
+    "command": "workbench.action.files.openFileFolder",
+    "when": "isMacNative && openFolderWorkspaceSupport"
+  },
+  {
+    "key": "cmd+o",
+    "command": "-workbench.action.files.openFileFolder",
+    "when": "isMacNative && openFolderWorkspaceSupport"
   }
 ]

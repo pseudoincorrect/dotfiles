@@ -4,7 +4,7 @@ PATH="$HOME/Programs/gitkraken:$PATH"
 PATH="$HOME/bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
 PATH="$HOME/.docker/bin:$PATH"
-export GOROOT="$HOME/go/sdk/go1.26.1"
+export GOROOT="$HOME/go/sdk/go1.26.2"
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
 PATH="$GOROOT/bin:$GOBIN:$PATH"
@@ -32,5 +32,5 @@ source $ZSH/oh-my-zsh.sh
 source $HOME/.zshrc_custom
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
