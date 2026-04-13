@@ -378,7 +378,7 @@
     "when": "textInputFocus"
   },
   {
-    "key": "ctrl+;",
+    "key": "ctrl+u",
     "command": "deleteWordLeft",
     "when": "textInputFocus"
   },
