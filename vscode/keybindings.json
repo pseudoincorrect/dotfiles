@@ -10,6 +10,10 @@
     "when": "editorFocus"
   },
   {
+    "key": "alt+cmd+p",
+    "command": "-projectManager.listProjects"
+  },
+  {
     "key": "alt+r",
     "command": "copyRelativeFilePath",
     "when": "!editorFocus"
@@ -56,8 +60,13 @@
   },
   {
     "key": "cmd+b",
-    "command": "claude-vscode.focus",
-    "when": "editorTextFocus && !config.claudeCode.useTerminal"
+    "command": "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
+    "when": "!activeEditorGroupEmpty"
+  },
+  {
+    "key": "cmd+b",
+    "command": "workbench.action.quickOpenNavigateNextInEditorPicker",
+    "when": "inEditorsPicker && inQuickOpen"
   },
   {
     "command": "workbench.action.quickOpenNavigatePreviousInRecentFilesPicker",
@@ -95,11 +104,6 @@
   {
     "command": "-workbench.action.chat.cancel",
     "key": "cmd+escape"
-  },
-  {
-    "key": "cmd+escape",
-    "command": "-claude-vscode.focus",
-    "when": "editorTextFocus && !config.claudeCode.useTerminal"
   },
   {
     "command": "actions.find",
@@ -209,6 +213,16 @@
     "key": "cmd+o"
   },
   {
+    "key": "cmd+o",
+    "command": "-workbench.action.files.openFolderViaWorkspace",
+    "when": "!openFolderWorkspaceSupport && workbenchState == 'workspace'"
+  },
+  {
+    "key": "cmd+o",
+    "command": "-workbench.action.files.openFileFolder",
+    "when": "isMacNative && openFolderWorkspaceSupport"
+  },
+  {
     "command": "workbench.action.showCommands",
     "key": "cmd+p"
   },
@@ -229,6 +243,21 @@
     "command": "bracket-select.undo-select",
     "key": "cmd+shift+,",
     "when": "textInputFocus"
+  },
+  {
+    "key": "cmd+shift+b",
+    "command": "-workbench.action.tasks.build",
+    "when": "taskCommandsRegistered"
+  },
+  {
+    "key": "cmd+shift+b",
+    "command": "workbench.action.quickOpenLeastRecentlyUsedEditorInGroup",
+    "when": "!activeEditorGroupEmpty"
+  },
+  {
+    "key": "cmd+shift+b",
+    "command": "workbench.action.quickOpenNavigatePreviousInEditorPicker",
+    "when": "inEditorsPicker && inQuickOpen"
   },
   {
     "command": "-workbench.action.terminal.openNativeConsole",
@@ -254,6 +283,21 @@
   {
     "command": "workbench.action.openSettings",
     "key": "cmd+shift+s"
+  },
+  {
+    "key": "cmd+shift+y",
+    "command": "-workbench.debug.action.toggleRepl",
+    "when": "workbench.panel.repl.view.active"
+  },
+  {
+    "key": "cmd+shift+y",
+    "command": "-chatEditor.action.accept",
+    "when": "chatEdits.hasEditorModifications && editorFocus && !chatEdits.isCurrentlyBeingModified || chatEdits.hasEditorModifications && notebookEditorFocused && !chatEdits.isCurrentlyBeingModified"
+  },
+  {
+    "key": "cmd+shift+y",
+    "command": "workbench.action.files.openFileFolder",
+    "when": "isMacNative && openFolderWorkspaceSupport"
   },
   {
     "command": "workbench.action.terminal.focus",
@@ -324,6 +368,10 @@
     "key": "cmd+w cmd+v"
   },
   {
+    "key": "cmd+y",
+    "command": "workbench.action.openRecent"
+  },
+  {
     "command": "undo",
     "key": "cmd+z"
   },
@@ -378,6 +426,38 @@
     "when": "textInputFocus"
   },
   {
+    "key": "ctrl+r",
+    "command": "-workbench.action.openRecent"
+  },
+  {
+    "key": "ctrl+shift+tab",
+    "command": "workbench.action.showPreviousWindowTab"
+  },
+  {
+    "key": "ctrl+shift+tab",
+    "command": "-workbench.action.quickOpenLeastRecentlyUsedEditorInGroup",
+    "when": "!activeEditorGroupEmpty"
+  },
+  {
+    "key": "ctrl+shift+tab",
+    "command": "-workbench.action.quickOpenNavigatePreviousInEditorPicker",
+    "when": "inEditorsPicker && inQuickOpen"
+  },
+  {
+    "key": "ctrl+tab",
+    "command": "workbench.action.showNextWindowTab"
+  },
+  {
+    "key": "ctrl+tab",
+    "command": "-workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
+    "when": "!activeEditorGroupEmpty"
+  },
+  {
+    "key": "ctrl+tab",
+    "command": "-workbench.action.quickOpenNavigateNextInEditorPicker",
+    "when": "inEditorsPicker && inQuickOpen"
+  },
+  {
     "key": "ctrl+u",
     "command": "deleteWordLeft",
     "when": "textInputFocus"
@@ -393,11 +473,6 @@
     "when": "terminalFocus"
   },
   {
-    "key": "shift+cmd+b",
-    "command": "-workbench.action.tasks.build",
-    "when": "taskCommandsRegistered"
-  },
-  {
     "command": "-jumpy2.toggle",
     "key": "shift+enter",
     "when": "editorTextFocus"
@@ -406,42 +481,5 @@
     "command": "-jumpy2.exit",
     "key": "shift+enter",
     "when": "editorTextFocus && jumpy2.jump-mode"
-  },
-  {
-    "key": "alt+cmd+p",
-    "command": "-projectManager.listProjects"
-  },
-  {
-    "key": "cmd+y",
-    "command": "workbench.action.openRecent"
-  },
-  {
-    "key": "ctrl+r",
-    "command": "-workbench.action.openRecent"
-  },
-  {
-    "key": "cmd+o",
-    "command": "-workbench.action.files.openFolderViaWorkspace",
-    "when": "!openFolderWorkspaceSupport && workbenchState == 'workspace'"
-  },
-  {
-    "key": "shift+cmd+y",
-    "command": "-workbench.debug.action.toggleRepl",
-    "when": "workbench.panel.repl.view.active"
-  },
-  {
-    "key": "shift+cmd+y",
-    "command": "-chatEditor.action.accept",
-    "when": "chatEdits.hasEditorModifications && editorFocus && !chatEdits.isCurrentlyBeingModified || chatEdits.hasEditorModifications && notebookEditorFocused && !chatEdits.isCurrentlyBeingModified"
-  },
-  {
-    "key": "shift+cmd+y",
-    "command": "workbench.action.files.openFileFolder",
-    "when": "isMacNative && openFolderWorkspaceSupport"
-  },
-  {
-    "key": "cmd+o",
-    "command": "-workbench.action.files.openFileFolder",
-    "when": "isMacNative && openFolderWorkspaceSupport"
   }
 ]
