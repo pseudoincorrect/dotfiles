@@ -1,0 +1,54 @@
+-- Which-key for keybind hints
+local gh = function(r)
+  return 'https://github.com/' .. r
+end
+
+vim.pack.add { gh 'folke/which-key.nvim' }
+
+require('which-key').setup {
+  icons = {
+    mappings = false,
+    keys = vim.g.have_nerd_font and {} or {
+      Up = '<Up> ',
+      Down = '<Down> ',
+      Left = '<Left> ',
+      Right = '<Right> ',
+      C = '<C-…> ',
+      M = '<M-…> ',
+      D = '<D-…> ',
+      S = '<S-…> ',
+      CR = '<CR> ',
+      Esc = '<Esc> ',
+      ScrollWheelDown = '<ScrollWheelDown> ',
+      ScrollWheelUp = '<ScrollWheelUp> ',
+      NL = '<NL> ',
+      BS = '<BS> ',
+      Space = '<Space> ',
+      Tab = '<Tab> ',
+      F1 = '<F1>',
+      F2 = '<F2>',
+      F3 = '<F3>',
+      F4 = '<F4>',
+      F5 = '<F5>',
+      F6 = '<F6>',
+      F7 = '<F7>',
+      F8 = '<F8>',
+      F9 = '<F9>',
+      F10 = '<F10>',
+      F11 = '<F11>',
+      F12 = '<F12>',
+    },
+  },
+  spec = {
+    { '<leader>c', group = 'Code', mode = { 'n', 'v', 'x' } },
+    { '<leader>cs', desc = 'Spelling Suggestions', mode = 'n' },
+    { '<leader>cm', group = 'Markdown', mode = 'n' },
+    { '<leader>p', group = 'Path', mode = 'n' },
+    { '<leader>d', group = 'Surround', mode = { 'n', 'v' } },
+    { '<leader>s', group = 'Search', mode = { 'n', 'v', 'x' } },
+    { '<leader>t', group = 'Terminal', mode = { 'n', 'v', 'x' } },
+    { '<leader>a', group = 'AI', mode = { 'n', 'v', 'x' } },
+    { '<leader>w', group = 'Window', mode = 'n' },
+    { '<leader>y', group = 'Yank Operations', mode = { 'n', 'v', 'x' } },
+  },
+}

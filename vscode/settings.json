@@ -27,4 +27,6 @@
     "workbench.editor.tabSizingFixedMinWidth": 100,
     "workbench.editor.wrapTabs": true,
     "workbench.startupEditor": "none",
+    "testing.resultsView.layout": "treeLeft",
+    "git.openRepositoryInParentFolders": "never",
 }

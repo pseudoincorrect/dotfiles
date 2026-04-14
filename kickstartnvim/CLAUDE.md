@@ -1,6 +1,6 @@
 # kickstartnvim File Structure
 
-A modularized Neovim configuration based on kickstart.nvim with organized plugin management and custom configurations.
+A modularized Neovim configuration using the built-in `vim.pack` package manager (Neovim 0.12+).
 
 ## Root Directory
 ```
@@ -8,42 +8,43 @@ A modularized Neovim configuration based on kickstart.nvim with organized plugin
 ├── .gitignore                     # Git ignore patterns for Neovim cache files and temporary data
 ├── .stylua.toml                   # Lua code formatter configuration for consistent styling
 ├── LICENSE.md                     # MIT license for the project
-├── README.md                      # Installation instructions and documentation for kickstart.nvim
+├── README.md                      # Installation instructions and documentation
 ├── Taskfile.yaml                  # Task runner configuration for development workflows
 ├── doc/
 │   ├── kickstart.txt             # Core kickstart.nvim documentation and help file
 │   └── tags                      # Vim help tags index for documentation navigation
-├── init.lua                      # Main entry point - loads config modules and sets up lazy.nvim
-├── lazy-lock.json                # Lazy.nvim plugin lockfile for reproducible builds
+├── init.lua                      # Main entry point - leader keys, vim.loader, config modules, PackChanged hooks
 ├── lua/
-│   ├── config/
-│   │   ├── autocmds.lua         # Vim autocommands for automatic behaviors and file type handling
-│   │   ├── keymaps.lua          # Global key mappings and shortcuts configuration
-│   │   └── options.lua          # Vim options and settings (line numbers, indentation, etc.)
-│   ├── kickstart/
-│   │   └── health.lua           # Health check functions for diagnosing configuration issues
-│   └── plugins/
-│       ├── cmp.lua              # nvim-cmp completion engine configuration and sources
-│       ├── copilot.lua          # GitHub Copilot AI code assistance integration
-│       ├── flash.lua            # Quick navigation and jumping within buffers
-│       ├── lint.lua             # Code linting configuration for various file types
-│       ├── lsp.lua              # Language Server Protocol setup and server configurations
-│       ├── mini.lua             # Mini.nvim plugin suite for various utilities
-│       ├── multicursor.lua      # Multiple cursor editing functionality
-│       ├── neo-tree.lua         # File explorer tree view configuration
-│       ├── telescope.lua        # Fuzzy finder for files, buffers, and project-wide search
-│       ├── themes.lua           # Color scheme and UI theme configurations
-│       └── which-key.lua        # Key binding helper and documentation popup
-└── nvim -> /home/mclement/git/dotfiles/kickstartnvim/  # Symlink to self for linking config
+│   └── config/
+│       ├── autocmds.lua         # Vim autocommands for automatic behaviors and file type handling
+│       ├── keymaps.lua          # Global key mappings and shortcuts configuration
+│       └── options.lua          # Vim options and settings (line numbers, indentation, etc.)
+├── plugin/
+│   ├── cmp.lua                  # nvim-cmp completion engine configuration and sources
+│   ├── conform.lua              # Code formatting with conform.nvim
+│   ├── flash.lua                # Quick navigation and jumping within buffers
+│   ├── fzf.lua                  # Fuzzy finder for files, buffers, and project-wide search
+│   ├── grapple.lua              # Persistent file bookmarks
+│   ├── lint.lua                 # Code linting configuration for various file types
+│   ├── lsp.lua                  # Language Server Protocol setup and server configurations
+│   ├── mini.lua                 # Mini.nvim plugin suite for various utilities
+│   ├── misc.lua                 # Small standalone plugins (sleuth, treesitter, session, etc.)
+│   ├── neo-tree.lua             # File explorer tree view configuration
+│   ├── snacks.lua               # Snacks.nvim QoL plugins (bigfile, indent)
+│   ├── themes.lua               # Color scheme and UI theme configurations
+│   ├── treesitter.lua           # Treesitter syntax highlighting and code navigation
+│   ├── which-key.lua            # Key binding helper and documentation popup
+│   └── windsurf.lua             # Codeium AI code assistance integration
+└── nvim-pack-lock.json           # vim.pack lockfile for reproducible builds (auto-generated)
 ```
 
 ## Architecture
 
-This configuration follows a modular approach where:
-- `init.lua` serves as the main entry point and plugin loader
+This configuration follows a modular approach using Neovim's built-in `vim.pack` package manager:
+- `init.lua` sets leader keys, enables `vim.loader`, loads config modules, and defines `PackChanged` hooks
 - `lua/config/` contains core Neovim configuration (options, keymaps, autocommands)
-- `lua/plugins/` contains individual plugin configurations as separate modules
-- `lua/kickstart/` contains kickstart.nvim specific utilities and health checks
+- `plugin/` contains individual plugin configurations auto-sourced alphabetically after init.lua
+- Each `plugin/*.lua` file calls `vim.pack.add()` for its plugins and configures them
 
 Each plugin configuration is self-contained in its own file, making the setup maintainable and easy to customize.
 - Always run `task format` at the end of a claude task to format all files.
