@@ -55,6 +55,10 @@
     "key": "cmd+3"
   },
   {
+    "command": "claude-vscode.focus",
+    "key": "cmd+5"
+  },
+  {
     "key": "cmd+b",
     "command": "-workbench.action.toggleSidebarVisibility"
   },
@@ -235,7 +239,7 @@
     "key": "cmd+q"
   },
   {
-    "command": "editor.action.startFindReplaceAction",
+    "command": "editor.action.rename",
     "key": "cmd+r cmd+r",
     "when": "editorFocus || editorIsOpen"
   },
