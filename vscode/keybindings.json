@@ -1,17 +1,54 @@
 [
   {
-    "key": "alt+a",
-    "command": "copyFilePath",
-    "when": "!editorFocus"
+    "key": "alt+.",
+    "command": "tab",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "alt+;",
+    "command": "deleteLeft",
+    "when": "textInputFocus"
   },
   {
     "key": "alt+a",
-    "command": "copyFilePath",
-    "when": "editorFocus"
+    "command": "copyFilePath"
   },
   {
     "key": "alt+cmd+p",
     "command": "-projectManager.listProjects"
+  },
+  {
+    "key": "alt+h",
+    "command": "cursorLeft",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "alt+j",
+    "command": "cursorDown",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "alt+k",
+    "command": "cursorUp",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "alt+l",
+    "command": "cursorRight",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "alt+m",
+    "command": "default:type",
+    "args": {
+      "text": "\n"
+    },
+    "when": "editorTextFocus && !suggestWidgetVisible"
+  },
+  {
+    "key": "alt+o",
+    "command": "cursorEnd",
+    "when": "textInputFocus"
   },
   {
     "key": "alt+r",
@@ -26,6 +63,11 @@
   {
     "key": "alt+s",
     "command": "workbench.action.openGlobalKeybindings"
+  },
+  {
+    "key": "alt+y",
+    "command": "cursorHome",
+    "when": "textInputFocus"
   },
   {
     "command": "editor.action.triggerSuggest",
@@ -53,6 +95,10 @@
   {
     "command": "workbench.action.toggleAuxiliaryBar",
     "key": "cmd+3"
+  },
+  {
+    "key": "cmd+4",
+    "command": "workbench.files.action.focusFilesExplorer"
   },
   {
     "command": "claude-vscode.focus",
@@ -181,22 +227,26 @@
     "when": "editorFocus"
   },
   {
-    "command": "workbench.action.quickOpen",
-    "key": "cmd+h"
-  },
-  {
     "command": "workbench.action.navigateForward",
     "key": "cmd+i"
   },
   {
-    "key": "cmd+j",
-    "command": "cursorPageDown",
-    "when": "textInputFocus"
+    "command": "workbench.action.quickOpen",
+    "key": "cmd+j"
   },
   {
+    "command": "workbench.action.quickOpenNavigateNext",
+    "key": "cmd+j",
+    "when": "inQuickOpen"
+  },
+  {
+    "command": "workbench.action.quickOpen",
+    "key": "cmd+k"
+  },
+  {
+    "command": "workbench.action.quickOpenNavigatePrevious",
     "key": "cmd+k",
-    "command": "cursorPageUp",
-    "when": "textInputFocus"
+    "when": "inQuickOpen"
   },
   {
     "key": "cmd+k cmd+s",
@@ -380,58 +430,19 @@
     "key": "cmd+z"
   },
   {
-    "key": "ctrl+,",
-    "command": "deleteRight",
+    "key": "ctrl+shift+a",
+    "command": "-cursorLineStartSelect",
     "when": "textInputFocus"
   },
   {
-    "key": "ctrl+.",
-    "command": "cursorRight",
+    "key": "ctrl+shift+e",
+    "command": "-cursorLineEndSelect",
     "when": "textInputFocus"
   },
   {
-    "key": "ctrl+h",
-    "command": "cursorWordLeft",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+i",
-    "command": "deleteWordRight",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+j",
-    "command": "cursorDown",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+k",
-    "command": "cursorUp",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+l",
-    "command": "cursorWordEndRight",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+m",
-    "command": "deleteLeft",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+n",
-    "command": "cursorLeft",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+o",
-    "command": "cursorEnd",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+r",
-    "command": "-workbench.action.openRecent"
+    "key": "ctrl+shift+g",
+    "command": "-workbench.view.scm",
+    "when": "workbench.scm.active"
   },
   {
     "key": "ctrl+shift+tab",
@@ -472,9 +483,19 @@
     "when": "textInputFocus"
   },
   {
+    "key": "enter",
+    "command": "-renameFile",
+    "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  {
     "command": "workbench.action.terminal.clear",
     "key": "f1",
     "when": "terminalFocus"
+  },
+  {
+    "key": "f2",
+    "command": "renameFile",
+    "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
   },
   {
     "command": "-jumpy2.toggle",

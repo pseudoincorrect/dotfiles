@@ -1,13 +1,13 @@
 * === ARROWS LEFT ===
 [`]>[lshift]
-[intl-\]>[escape]
+{intl-\}>{speed1}{-lwin}{-tab}{+tab}{-lshift}{-tab}{+tab}{+lshift}{+lwin}
 {left}>{speed7}{-lctrl}{left}{+lctrl}
 {right}>{speed7}{-lctrl}{right}{+lctrl}
 
 * === ARROWS RIGHT ===
 {up}>{speed7}{-lctrl}{-lshift}{tab}{+lshift}{+lctrl}
 {down}>{speed7}{-lctrl}{tab}{+lctrl}
-[obrack]>[escape]
+[obrack]>[tab]
 [cbrack]>[lshift]
 
 * === THUMB CLUSTER LEFT ===
@@ -41,7 +41,7 @@
 
 * === PINKIES RIGHT ===
 [;]>[bspace]
-[\]>[delete]
+[\]>[escape]
 [kp-rshift]>[rctrl]
 [rshift]>[rctrl]
 
