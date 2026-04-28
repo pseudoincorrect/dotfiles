@@ -77,7 +77,6 @@
   "terminal.integrated.fontFamily": "\"Maple Mono NF\"",
   "terminal.integrated.initialHint": false,
   "terminal.integrated.tabs.enabled": false,
-  "testing.resultsView.layout": "treeLeft",
   "window.autoDetectColorScheme": true,
   "window.customTitleBarVisibility": "never",
   "window.nativeTabs": true,
@@ -91,4 +90,6 @@
   "workbench.editor.tabSizingFixedMinWidth": 100,
   "workbench.editor.wrapTabs": true,
   "workbench.startupEditor": "none",
+  "C_Cpp.clang_format_fallbackStyle": "Google",
+  "editor.formatOnSave": true,
 }

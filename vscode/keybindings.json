@@ -1,5 +1,10 @@
 [
   {
+    "key": "alt+'",
+    "command": "deleteRight",
+    "when": "textInputFocus"
+  },
+  {
     "key": "alt+.",
     "command": "tab",
     "when": "editorTextFocus"
@@ -225,6 +230,10 @@
     "command": "cursorTop",
     "key": "cmd+g cmd+t",
     "when": "editorFocus"
+  },
+  {
+    "key": "cmd+h",
+    "command": "workbench.action.quickOpen"
   },
   {
     "command": "workbench.action.navigateForward",

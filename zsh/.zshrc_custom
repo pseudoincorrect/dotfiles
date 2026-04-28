@@ -71,6 +71,21 @@ export MISE_STATE_DIR="$HOME/.mise/state"
 eval "$(mise activate zsh)"
 
 ########################################################################
+# NVM (load only when entering a directory that contains a .nvmrc)
+export NVM_DIR="$HOME/.nvm"
+_load_nvm_on_nvmrc() {
+  [[ -f .nvmrc ]] || return 0
+  if [[ -z "$NVM_BIN" ]]; then
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  fi
+  nvm use
+}
+autoload -U add-zsh-hook
+add-zsh-hook chpwd _load_nvm_on_nvmrc
+_load_nvm_on_nvmrc
+
+########################################################################
 # ZOXIDE
 eval "$(zoxide init zsh --cmd z)"
 

@@ -15,9 +15,7 @@ PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 fpath=($HOME/.docker/completions $fpath)
 
 ########################################################################
-# TAB COMPLETION
-autoload -U compinit && compinit
-setopt MENU_COMPLETE
+# TAB COMPLETION (compinit is run by oh-my-zsh; menu options set after OMZ)
 
 ########################################################################
 # ZSH COMPLETION CACHE LOCATION
@@ -31,10 +29,15 @@ plugins=(git zsh-autosuggestions)
 DISABLE_AUTO_TITLE="true"
 source $ZSH/oh-my-zsh.sh
 
+# OMZ unsets MENU_COMPLETE in lib/completion.zsh; re-enable it here.
+# First tab shows the menu AND highlights the first match — arrows to navigate.
+setopt MENU_COMPLETE
+unsetopt AUTO_MENU
+zstyle ':completion:*' menu select
+
+# Put the command on a new line below the prompt
+PROMPT+=$'\n'"%{$fg_bold[green]%}➜  %{$reset_color%}"
+
 ########################################################################
 # CUSTOM CONFIG
 source $HOME/.zshrc_custom
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
