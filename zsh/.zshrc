@@ -26,7 +26,6 @@ export ZSH_COMPDUMP="$HOME/.cache/zsh/zcompdump"
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 plugins=(git zsh-autosuggestions)
-DISABLE_AUTO_TITLE="true"
 source $ZSH/oh-my-zsh.sh
 
 # OMZ unsets MENU_COMPLETE in lib/completion.zsh; re-enable it here.
@@ -34,6 +33,9 @@ source $ZSH/oh-my-zsh.sh
 setopt MENU_COMPLETE
 unsetopt AUTO_MENU
 zstyle ':completion:*' menu select
+
+# Show full path (with ~ for home) instead of just the current folder
+PROMPT="${PROMPT//\%c/%~}"
 
 # Put the command on a new line below the prompt
 PROMPT+=$'\n'"%{$fg_bold[green]%}➜  %{$reset_color%}"

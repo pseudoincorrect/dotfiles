@@ -1,78 +1,7 @@
 [
   {
-    "key": "alt+'",
-    "command": "deleteRight",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "alt+.",
-    "command": "tab",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "alt+;",
-    "command": "deleteLeft",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "alt+a",
-    "command": "copyFilePath"
-  },
-  {
-    "key": "alt+cmd+p",
-    "command": "-projectManager.listProjects"
-  },
-  {
-    "key": "alt+h",
-    "command": "cursorLeft",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "alt+j",
-    "command": "cursorDown",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "alt+k",
-    "command": "cursorUp",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "alt+l",
-    "command": "cursorRight",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "alt+m",
-    "command": "default:type",
-    "args": {
-      "text": "\n"
-    },
-    "when": "editorTextFocus && !suggestWidgetVisible"
-  },
-  {
-    "key": "alt+o",
-    "command": "cursorEnd",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "alt+r",
-    "command": "copyRelativeFilePath",
-    "when": "!editorFocus"
-  },
-  {
-    "key": "alt+r",
-    "command": "copyRelativeFilePath",
-    "when": "editorFocus"
-  },
-  {
     "key": "alt+s",
     "command": "workbench.action.openGlobalKeybindings"
-  },
-  {
-    "key": "alt+y",
-    "command": "cursorHome",
-    "when": "textInputFocus"
   },
   {
     "command": "editor.action.triggerSuggest",
@@ -80,9 +9,9 @@
     "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly && !suggestWidgetVisible"
   },
   {
-    "command": "bracket-select.select",
     "key": "cmd+,",
-    "when": "textInputFocus"
+    "command": "editor.action.smartSelect.expand",
+    "when": "editorTextFocus"
   },
   {
     "command": "editor.action.revealDefinition",
@@ -108,6 +37,10 @@
   {
     "command": "claude-vscode.focus",
     "key": "cmd+5"
+  },
+  {
+    "key": "cmd+`",
+    "command": "workbench.action.showNextWindowTab"
   },
   {
     "key": "cmd+b",
@@ -213,6 +146,10 @@
     "when": "textInputFocus"
   },
   {
+    "key": "cmd+g cmd+o",
+    "command": "outline.focus"
+  },
+  {
     "command": "editor.action.goToReferences",
     "key": "cmd+g cmd+r",
     "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
@@ -303,11 +240,6 @@
     "when": "editorFocus || editorIsOpen"
   },
   {
-    "command": "bracket-select.undo-select",
-    "key": "cmd+shift+,",
-    "when": "textInputFocus"
-  },
-  {
     "key": "cmd+shift+b",
     "command": "-workbench.action.tasks.build",
     "when": "taskCommandsRegistered"
@@ -382,53 +314,8 @@
     "when": "editorTextFocus"
   },
   {
-    "command": "-workbench.action.closeActiveEditor",
-    "key": "cmd+w"
-  },
-  {
-    "command": "workbench.action.evenEditorWidths",
-    "key": "cmd+w cmd+="
-  },
-  {
-    "command": "workbench.action.closeActiveEditor",
-    "key": "cmd+w cmd+c"
-  },
-  {
-    "command": "workbench.action.joinAllGroups",
-    "key": "cmd+w cmd+g"
-  },
-  {
-    "command": "workbench.action.navigateLeft",
-    "key": "cmd+w cmd+h"
-  },
-  {
-    "command": "workbench.action.navigateDown",
-    "key": "cmd+w cmd+j"
-  },
-  {
-    "command": "workbench.action.navigateUp",
-    "key": "cmd+w cmd+k"
-  },
-  {
-    "command": "workbench.action.navigateRight",
-    "key": "cmd+w cmd+l"
-  },
-  {
-    "command": "workbench.action.toggleMaximizeEditorGroup",
-    "key": "cmd+w cmd+m",
-    "when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups"
-  },
-  {
-    "command": "workbench.action.files.newUntitledFile",
-    "key": "cmd+w cmd+n"
-  },
-  {
-    "command": "workbench.action.splitEditorDown",
-    "key": "cmd+w cmd+s"
-  },
-  {
-    "command": "workbench.action.splitEditor",
-    "key": "cmd+w cmd+v"
+    "key": "cmd+w",
+    "command": "workbench.action.quickOpen"
   },
   {
     "key": "cmd+y",
@@ -437,6 +324,107 @@
   {
     "command": "undo",
     "key": "cmd+z"
+  },
+  {
+    "key": "ctrl+.",
+    "command": "tab",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+;",
+    "command": "deleteLeft",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+a",
+    "command": "copyFilePath"
+  },
+  {
+    "key": "ctrl+cmd+p",
+    "command": "-projectManager.listProjects"
+  },
+  {
+    "key": "ctrl+h",
+    "command": "cursorLeft",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+i",
+    "command": "deleteRight",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "cursorDown",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "quickInput.next",
+    "when": "inQuickInput && quickInputType == 'quickPick' || inQuickInput && quickInputType == 'quickTree'"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "selectNextCodeAction",
+    "when": "codeActionMenuVisible"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "selectNextSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus || suggestWidgetVisible && textInputFocus && !suggestWidgetHasFocusedSuggestion"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "showNextParameterHint",
+    "when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "cursorUp",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "quickInput.previous",
+    "when": "inQuickInput && quickInputType == 'quickPick' || inQuickInput && quickInputType == 'quickTree'"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "cursorRight",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+m",
+    "command": "default:type",
+    "args": {
+      "text": "\n"
+    },
+    "when": "editorTextFocus && !suggestWidgetVisible"
+  },
+  {
+    "key": "ctrl+m",
+    "command": "quickInput.accept",
+    "when": "inQuickInput && !isComposing && quickInputType != 'quickWidget'"
+  },
+  {
+    "key": "ctrl+m",
+    "command": "editor.action.nextMatchFindAction",
+    "when": "editorFocus && findInputFocussed"
+  },
+  {
+    "key": "ctrl+o",
+    "command": "cursorEnd",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+r",
+    "command": "copyRelativeFilePath",
+    "when": "!editorFocus"
+  },
+  {
+    "key": "ctrl+r",
+    "command": "copyRelativeFilePath",
+    "when": "editorFocus"
   },
   {
     "key": "ctrl+shift+a",
@@ -454,6 +442,16 @@
     "when": "workbench.scm.active"
   },
   {
+    "key": "ctrl+shift+left",
+    "command": "-editor.action.smartSelect.shrink",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+right",
+    "command": "-editor.action.smartSelect.expand",
+    "when": "editorTextFocus"
+  },
+  {
     "key": "ctrl+shift+tab",
     "command": "workbench.action.showPreviousWindowTab"
   },
@@ -469,10 +467,6 @@
   },
   {
     "key": "ctrl+tab",
-    "command": "workbench.action.showNextWindowTab"
-  },
-  {
-    "key": "ctrl+tab",
     "command": "-workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
     "when": "!activeEditorGroupEmpty"
   },
@@ -482,8 +476,17 @@
     "when": "inEditorsPicker && inQuickOpen"
   },
   {
+    "key": "ctrl+tab",
+    "command": "workbench.action.showNextWindowTab"
+  },
+  {
     "key": "ctrl+u",
-    "command": "deleteWordLeft",
+    "command": "deleteLeft",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+y",
+    "command": "cursorHome",
     "when": "textInputFocus"
   },
   {
@@ -505,6 +508,25 @@
     "key": "f2",
     "command": "renameFile",
     "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "f4",
+    "command": "-search.action.focusNextSearchResult",
+    "when": "hasSearchResult || inSearchEditor"
+  },
+  {
+    "key": "shift+cmd+,",
+    "command": "editor.action.smartSelect.shrink",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+cmd+`",
+    "command": "workbench.action.showPreviousWindowTab"
+  },
+  {
+    "key": "shift+cmd+n",
+    "command": "search.action.focusNextSearchResult",
+    "when": "hasSearchResult || inSearchEditor"
   },
   {
     "command": "-jumpy2.toggle",

@@ -43,9 +43,15 @@ function his() {
   fi
 }
 
-# set the terminal tab/window title
+# set the terminal tab/window title (disables OMZ auto-title so it sticks)
 function set_terminal_title() {
-  echo -en "\e]2;$@\a"
+  DISABLE_AUTO_TITLE="true"
+  echo -en "\e]0;$*\a"
+}
+
+# re-enable OMZ auto-title (undo `st`)
+function auto-st() {
+  unset DISABLE_AUTO_TITLE
 }
 
 # sort vscode keybindings.json by key
@@ -55,6 +61,14 @@ function sort_vscode_keybindings() {
   jq 'sort_by(.key)' "$file" > "$tmp" && mv "$tmp" "$file"
 }
 
+# cd into a directory and list its contents (grid view, capped at 50 entries, visible files first)
+function cs() {
+  cd "$1" || return
+  local all=( *(ND) )
+  local entries=( ${all:#.*} ${(M)all:#.*} )
+  (( ${#entries} > 0 )) && eza -ad --sort=none "${entries[@]:0:50}"
+}
+compdef cs=cd
 
 ########################################################################
 # HISTORY
@@ -71,19 +85,31 @@ export MISE_STATE_DIR="$HOME/.mise/state"
 eval "$(mise activate zsh)"
 
 ########################################################################
-# NVM (load only when entering a directory that contains a .nvmrc)
+# NVM
 export NVM_DIR="$HOME/.nvm"
-_load_nvm_on_nvmrc() {
+
+function _load_nvm() {
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+}
+
+# `nvm` itself is a shell function — stub it so the first call loads nvm.sh
+function nvm() {
+  unset -f nvm
+  _load_nvm
+  nvm "$@"
+}
+
+# Auto `nvm use` when entering a directory that contains a .nvmrc
+function _load_nvm_on_nvmrc() {
   [[ -f .nvmrc ]] || return 0
-  if [[ -z "$NVM_BIN" ]]; then
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-  fi
+  [[ -z "$NVM_BIN" ]] && _load_nvm
   nvm use
 }
 autoload -U add-zsh-hook
 add-zsh-hook chpwd _load_nvm_on_nvmrc
 _load_nvm_on_nvmrc
+
 
 ########################################################################
 # ZOXIDE
@@ -96,10 +122,11 @@ export EDITOR=hx
 ########################################################################
 # ALIASES
 # file explorers/management
+alias 'ls'='eza'
 alias 'll'='eza -laT --level 1'
-alias 'rm'='rm -rf'
 alias 'cd..'='cd ..'
 alias 'y'='yazy_cd'
+alias 'tree'='eza --tree --no-permissions --no-filesize --no-user --no-time'
 # Notes
 alias 'notes'='$EDITOR ~/notes'
 # make python3 as default

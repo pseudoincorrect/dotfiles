@@ -1,5 +1,8 @@
 * === ARROWS LEFT ===
 [`]>[lshift]
+[kp-`]>[lshift]
+[intl-\]>[lwin]
+[kp-insert]>[lwin]
 {intl-\}>{speed1}{-lwin}{-tab}{+tab}{-lshift}{-tab}{+tab}{+lshift}{+lwin}
 {left}>{speed7}{-lctrl}{left}{+lctrl}
 {right}>{speed7}{-lctrl}{right}{+lctrl}
@@ -7,8 +10,10 @@
 * === ARROWS RIGHT ===
 {up}>{speed7}{-lctrl}{-lshift}{tab}{+lshift}{+lctrl}
 {down}>{speed7}{-lctrl}{tab}{+lctrl}
-[obrack]>[tab]
-[cbrack]>[lshift]
+[obrack]>[lwin]
+[kp.]>[lwin]
+[cbrack]>[lwin]
+[kpenter2]>[lwin]
 
 * === THUMB CLUSTER LEFT ===
 [bspace]>[kpshft]
@@ -16,15 +21,15 @@
 [delete]>[lwin]
 [kp-delete]>[lwin]
 [end]>[lshift]
-[home]>[lshift]
+[home]>[bspace]
 [lctrl]>[bspace]
 [lalt]>[delete]
 
 * === THUMB CLUSTER RIGHT ===
 [enter]>[rshift]
 [kp-enter]>[rshift]
-[pup]>[kpshft]
-[kp-pup]>[kpshft]
+[pup]>[enter]
+[kp-pup]>[enter]
 [pdown]>[kpshft]
 [kp-pdown]>[kpshft]
 [kp-space]>[space]
@@ -75,11 +80,12 @@
 [kp6]>[right]
 [kp7]>[bspace]
 [kp8]>[delete]
+[kpenter1]>[pdown]
+[kpmin]>[pup]
 [kpplus]>[bspace]
 {kp9}>{speed7}{-lwin}{right}{+lwin}
 {kp-Y}>{speed7}{-lwin}{left}{+lwin}
 {kp-'}>{speed7}{-lshift}{'}{+lshift}
-{kpenter1}>{speed7}{-lshift}{/}{+lshift}
 
 * === NUMBER ROW ===
 {=}>{speed7}{-lwin}{-lctrl}{q}{+lwin}{+lctrl}
