@@ -1,9 +1,8 @@
 * === ARROWS LEFT ===
-[`]>[lshift]
-[kp-`]>[lshift]
-[intl-\]>[lwin]
-[kp-insert]>[lwin]
-{intl-\}>{speed1}{-lwin}{-tab}{+tab}{-lshift}{-tab}{+tab}{+lshift}{+lwin}
+[`]>[lwin]
+[kp-`]>[lwin]
+[intl-\]>[F9]
+[kp-insert]>[F9]
 {left}>{speed7}{-lctrl}{left}{+lctrl}
 {right}>{speed7}{-lctrl}{right}{+lctrl}
 
@@ -21,7 +20,7 @@
 [delete]>[lwin]
 [kp-delete]>[lwin]
 [end]>[lshift]
-[home]>[bspace]
+[home]>[lshift]
 [lctrl]>[bspace]
 [lalt]>[delete]
 
@@ -41,12 +40,10 @@
 [kp-caps]>[lalt]
 [lshift]>[lctrl]
 [kp-lshift]>[lctrl]
-[kp-`]>[lwin]
-[`]>[lwin]
 
 * === PINKIES RIGHT ===
 [;]>[bspace]
-[\]>[escape]
+[\]>[tab]
 [kp-rshift]>[rctrl]
 [rshift]>[rctrl]
 
@@ -88,7 +85,7 @@
 {kp-'}>{speed7}{-lshift}{'}{+lshift}
 
 * === NUMBER ROW ===
-{=}>{speed7}{-lwin}{-lctrl}{q}{+lwin}{+lctrl}
+[=]>[escape]
 {kp-1}>{speed7}{-lshift}{1}{+lshift}
 {kp-2}>{speed7}{-lshift}{2}{+lshift}
 {kp-3}>{speed7}{-lshift}{3}{+lshift}

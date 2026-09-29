@@ -209,6 +209,11 @@
     "when": "textInputFocus"
   },
   {
+    "key": "cmd+n",
+    "command": "search.action.focusNextSearchResult",
+    "when": "hasSearchResult || inSearchEditor"
+  },
+  {
     "command": "workbench.action.navigateBack",
     "key": "cmd+o"
   },
@@ -525,7 +530,7 @@
   },
   {
     "key": "shift+cmd+n",
-    "command": "search.action.focusNextSearchResult",
+    "command": "search.action.focusPreviousSearchResult",
     "when": "hasSearchResult || inSearchEditor"
   },
   {
@@ -537,5 +542,14 @@
     "command": "-jumpy2.exit",
     "key": "shift+enter",
     "when": "editorTextFocus && jumpy2.jump-mode"
+  },
+  {
+    "key": "shift+f4",
+    "command": "-search.action.focusPreviousSearchResult",
+    "when": "hasSearchResult || inSearchEditor"
+  },
+  {
+    "key": "ctrl+f",
+    "command": "workbench.files.action.collapseExplorerFolders"
   }
 ]
