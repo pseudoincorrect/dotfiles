@@ -9,10 +9,10 @@
 * === ARROWS RIGHT ===
 {up}>{speed7}{-lctrl}{-lshift}{tab}{+lshift}{+lctrl}
 {down}>{speed7}{-lctrl}{tab}{+lctrl}
-[obrack]>[lwin]
-[kp.]>[lwin]
-[cbrack]>[lwin]
-[kpenter2]>[lwin]
+[obrack]>[hyphen]
+[kp.]>[hyphen]
+[cbrack]>[=]
+[kpenter2]>[=]
 
 * === THUMB CLUSTER LEFT ===
 [bspace]>[kpshft]

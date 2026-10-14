@@ -99,7 +99,12 @@
     "when": "editorFocus"
   },
   {
-    "command": "cursorBottom",
+    "command": "editor.action.goToImplementation",
+    "key": "cmd+g cmd+a",
+    "when": "editorHasImplementationProvider && editorTextFocus"
+  },
+  {
+    "command": "workbench.action.navigateBack",
     "key": "cmd+g cmd+b"
   },
   {
@@ -148,6 +153,10 @@
   {
     "key": "cmd+g cmd+o",
     "command": "outline.focus"
+  },
+  {
+    "command": "workbench.action.navigateForward",
+    "key": "cmd+g cmd+q"
   },
   {
     "command": "editor.action.goToReferences",
@@ -236,7 +245,7 @@
     "key": "cmd+q"
   },
   {
-    "command": "workbench.action.focusLastEditorGroup",
+    "command": "workbench.action.navigateBack",
     "key": "cmd+q"
   },
   {
@@ -349,6 +358,10 @@
     "command": "-projectManager.listProjects"
   },
   {
+    "key": "ctrl+f",
+    "command": "workbench.files.action.collapseExplorerFolders"
+  },
+  {
     "key": "ctrl+h",
     "command": "cursorLeft",
     "when": "textInputFocus"
@@ -445,6 +458,26 @@
     "key": "ctrl+shift+g",
     "command": "-workbench.view.scm",
     "when": "workbench.scm.active"
+  },
+  {
+    "key": "ctrl+shift+h",
+    "command": "cursorLeftSelect",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+shift+j",
+    "command": "cursorDownSelect",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+shift+k",
+    "command": "cursorUpSelect",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+shift+l",
+    "command": "cursorRightSelect",
+    "when": "textInputFocus"
   },
   {
     "key": "ctrl+shift+left",
@@ -547,9 +580,5 @@
     "key": "shift+f4",
     "command": "-search.action.focusPreviousSearchResult",
     "when": "hasSearchResult || inSearchEditor"
-  },
-  {
-    "key": "ctrl+f",
-    "command": "workbench.files.action.collapseExplorerFolders"
   }
 ]

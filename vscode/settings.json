@@ -1,4 +1,5 @@
 {
+  "chat.disableAIFeatures": true,
   "breadcrumbs.showArrays": false,
   "breadcrumbs.showBooleans": false,
   "breadcrumbs.showConstants": false,
@@ -76,7 +77,6 @@
   "problems.visibility": true,
   "terminal.integrated.fontFamily": "\"Maple Mono NF\"",
   "terminal.integrated.initialHint": false,
-  "terminal.integrated.tabs.enabled": false,
   "window.autoDetectColorScheme": true,
   "window.customTitleBarVisibility": "never",
   "window.nativeTabs": true,
@@ -101,6 +101,15 @@
   "jumpy2.achievements.active": false,
   "jumpy2.checkered.active": false,
   "editor.gotoLocation.alternativeDefinitionCommand": "editor.action.goToImplementation",
-  "editor.gotoLocation.alternativeDeclarationCommand": "editor.action.goToImplementation",
   "editor.minimap.side": "left",
+  "workbench.colorCustomizations": {
+    "editorCodeLens.foreground": "#FFFFFF"
+  },
+  "claudeAddToChat.showButtonOnSelection": false,
+  "editor.autoClosingBrackets": "never",
+  "editor.autoClosingQuotes": "never",
+  "editor.autoClosingComments": "never",
+  "editor.autoClosingDelete": "never",
+  "editor.autoClosingOvertype": "never",
+  "editor.minimap.enabled": false,
 }
