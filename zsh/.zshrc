@@ -4,10 +4,9 @@ PATH="$HOME/Programs/gitkraken:$PATH"
 PATH="$HOME/bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
 PATH="$HOME/.docker/bin:$PATH"
-export GOROOT="$HOME/go/sdk/go1.27.1"
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
-PATH="$GOROOT/bin:$GOBIN:$PATH"
+PATH="$GOBIN:$PATH"
 PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 ########################################################################

@@ -111,5 +111,5 @@
   "editor.autoClosingComments": "never",
   "editor.autoClosingDelete": "never",
   "editor.autoClosingOvertype": "never",
-  "editor.minimap.enabled": false,
+  "git.confirmSync": false,
 }
