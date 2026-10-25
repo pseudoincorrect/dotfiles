@@ -30,6 +30,13 @@ require('neo-tree').setup {
       noremap = true,
       nowait = true,
     },
+    mappings = {
+      -- Free s/S (default open_vsplit/open_split) so the global flash mappings work in the tree
+      ['s'] = 'none',
+      ['S'] = 'none',
+      ['<c-v>'] = 'open_vsplit',
+      ['<c-s>'] = 'open_split',
+    },
   },
   default_component_configs = {
     container = {
@@ -58,7 +65,7 @@ require('neo-tree').setup {
       enabled = true,
       leave_dirs_open = false,
     },
-    use_libuv_file_watcher = false,
+    use_libuv_file_watcher = true,
     filtered_items = {
       visible = false,
       hide_dotfiles = false,
@@ -88,6 +95,16 @@ require('neo-tree').setup {
         ['\\'] = 'close_window',
         ['<esc>'] = function()
           vim.cmd 'wincmd p'
+        end,
+        ['Y'] = function(state)
+          local path = state.tree:get_node():get_id()
+          vim.fn.setreg('+', path)
+          vim.notify('Copied: ' .. path)
+        end,
+        ['gy'] = function(state)
+          local path = vim.fn.fnamemodify(state.tree:get_node():get_id(), ':.')
+          vim.fn.setreg('+', path)
+          vim.notify('Copied: ' .. path)
         end,
         ['<bs>'] = 'navigate_up',
         ['.'] = 'set_root',

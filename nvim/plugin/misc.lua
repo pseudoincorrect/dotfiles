@@ -15,7 +15,6 @@ vim.pack.add {
   gh 'Aasim-A/scrollEOF.nvim',
   gh 'MeanderingProgrammer/render-markdown.nvim',
   { src = gh 'lukas-reineke/indent-blankline.nvim', name = 'indent-blankline.nvim' },
-  { src = gh 'mg979/vim-visual-multi', version = 'master' },
   gh 'nvim-pack/nvim-spectre',
   gh 'pmizio/typescript-tools.nvim',
 }
