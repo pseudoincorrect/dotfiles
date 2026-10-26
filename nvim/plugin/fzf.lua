@@ -68,7 +68,6 @@ fzf.setup {
     git_icons = false,
     find_opts = [[-type f -not -path '*/\.git/*' -printf '%P\n']],
     fd_opts = [[--color=never --type f --hidden --follow --exclude .git]],
-    formatter = 'path.filename_first',
     fzf_opts = { ['--scheme'] = 'path' },
   },
   grep = {

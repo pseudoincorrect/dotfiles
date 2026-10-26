@@ -103,7 +103,7 @@ $env.PATH = (
   | uniq # filter so the paths are unique
 )
 
-$env.EDITOR = "hx"
+$env.EDITOR = "nvim"
 
 # To load from a custom file you can use:
 source ($nu.default-config-dir | path join "env_tadaweb.nu")

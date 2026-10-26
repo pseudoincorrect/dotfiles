@@ -36,6 +36,9 @@ require('neo-tree').setup {
       ['S'] = 'none',
       ['<c-v>'] = 'open_vsplit',
       ['<c-s>'] = 'open_split',
+      -- Swap default paste (p) and preview (P)
+      ['p'] = { 'toggle_preview', config = { use_float = true, use_image_nvim = true } },
+      ['P'] = 'paste_from_clipboard',
     },
   },
   default_component_configs = {
