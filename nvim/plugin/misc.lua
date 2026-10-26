@@ -52,6 +52,7 @@ require('scrollEOF').setup {}
 -- Enhanced markdown rendering (disabled by default, toggle with keymaps)
 require('render-markdown').setup { enabled = false }
 vim.keymap.set('n', '<leader>cmt', '<cmd>RenderMarkdown toggle<cr>', { desc = 'Toggle Render Markdown' })
+vim.keymap.set('n', '<leader>m', '<cmd>RenderMarkdown toggle<cr>', { desc = 'Toggle Render Markdown' })
 vim.keymap.set('n', '<leader>cme', '<cmd>RenderMarkdown enable<cr>', { desc = 'Enable Render Markdown' })
 vim.keymap.set('n', '<leader>cmd', '<cmd>RenderMarkdown disable<cr>', { desc = 'Disable Render Markdown' })
 

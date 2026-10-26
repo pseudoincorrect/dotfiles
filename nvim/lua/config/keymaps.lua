@@ -157,6 +157,9 @@ function M.setup()
   vim.keymap.set('c', '<Esc>', '<CR>', { desc = 'Accept search and stay' })
   vim.keymap.set('c', '<C-Esc>', '<C-c>', { desc = 'Cancel search' })
 
+  -- Ctrl+; as backspace in insert mode
+  vim.keymap.set('i', '<C-;>', '<BS>', { desc = 'Backspace' })
+
   -- LSP
   vim.keymap.set('n', '<leader>ch', vim.lsp.buf.hover, { desc = 'LSP Hover' })
 end

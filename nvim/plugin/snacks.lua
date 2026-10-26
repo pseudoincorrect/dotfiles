@@ -25,3 +25,18 @@ require('snacks').setup {
     },
   },
 }
+
+-- Interactive JSON viewer (fx) in a floating terminal
+vim.keymap.set('n', '<leader>x', function()
+  local file = vim.api.nvim_buf_get_name(0)
+  if file == '' then
+    vim.notify('fx: buffer has no file', vim.log.levels.WARN)
+    return
+  end
+  if vim.bo.modified then
+    vim.cmd 'silent write'
+  end
+  require('snacks').terminal({ 'fx', file }, {
+    win = { position = 'float', border = 'rounded', width = 0.9, height = 0.9 },
+  })
+end, { desc = 'View file with fx' })
