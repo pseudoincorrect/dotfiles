@@ -21,8 +21,8 @@
 [kp-delete]>[lwin]
 [end]>[lshift]
 [home]>[lshift]
-[lctrl]>[bspace]
-[lalt]>[delete]
+[lctrl]>[escape]
+[lalt]>[bspace]
 
 * === THUMB CLUSTER RIGHT ===
 [enter]>[rshift]

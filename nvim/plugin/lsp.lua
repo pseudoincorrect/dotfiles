@@ -25,7 +25,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('gr', require('fzf-lua').lsp_references, 'Goto References')
     map('gi', require('fzf-lua').lsp_implementations, 'Goto Implementation')
     map('gt', require('fzf-lua').lsp_typedefs, 'Goto Type definition')
-    map('gs', function()
+    map('<leader>s', function()
       require('fzf-lua').lsp_document_symbols {
         regex_filter = function(entry)
           return entry.kind == 'Class' or entry.kind == 'Function' or entry.kind == 'Method'
@@ -56,7 +56,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
 
     local client = vim.lsp.get_client_by_id(event.data.client_id)
-    if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
       local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
       vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
         buffer = event.buf,
@@ -79,7 +79,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       })
     end
 
-    if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
       map('<leader>ci', function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
       end, 'Toggle Inlay Hints')

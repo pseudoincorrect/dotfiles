@@ -8,15 +8,15 @@ auto_switch = false
 status_indicators = "symbols"
 
 [keys]
-prefix = "ctrl+space"
-previous_workspace = ["prefix+k", "ctrl+alt+k"]
-next_workspace     = ["prefix+j", "ctrl+alt+j"]
-previous_tab       = ["prefix+h", "prefix+p", "ctrl+alt+h"]
-next_tab           = ["prefix+l", "prefix+n", "ctrl+alt+l"]
-previous_agent     = ["prefix+i", "ctrl+alt+i"]
-next_agent         = ["prefix+u", "ctrl+alt+u"]
-focus_pane_left    = ["ctrl+alt+y"]
-focus_pane_right   = ["prefix+o", "ctrl+alt+o"]
+prefix = "alt+space"
+previous_workspace = ["prefix+k", "alt+k"]
+next_workspace     = ["prefix+j", "alt+j"]
+previous_tab       = ["prefix+h", "prefix+p", "alt+h"]
+next_tab           = ["prefix+l", "prefix+n", "alt+l"]
+previous_agent     = ["prefix+i", "alt+i"]
+next_agent         = ["prefix+u", "alt+u"]
+focus_pane_left    = ["alt+y"]
+focus_pane_right   = ["prefix+o", "alt+o"]
 new_tab            = ["prefix+t"]
 new_workspace      = ["prefix+w"]
 close_tab          = ["prefix+c"]

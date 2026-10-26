@@ -1,6 +1,6 @@
 gui:
   showFileTree: false
 git:
-  pagers:
-    - pager: delta --dark --paging=never --line-numbers
-    - pager: delta --dark --paging=never --line-numbers --side-by-side
+  diffRenderers:
+    - command: delta --dark --paging=never --line-numbers
+    - command: delta --dark --paging=never --line-numbers --side-by-side

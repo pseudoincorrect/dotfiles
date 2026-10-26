@@ -24,7 +24,7 @@ function M.setup()
   vim.opt.mouse = 'a'
   vim.opt.number = true
   vim.opt.relativenumber = false
-  vim.opt.scrolloff = 17
+  vim.opt.scrolloff = 10
   vim.opt.shiftwidth = 2
   vim.opt.showmode = true
   vim.opt.signcolumn = 'yes'
