@@ -1,2 +1,3 @@
 macos-option-as-alt = true
-keybind = ctrl+comma=csi:27u
+keybind = ctrl+space=csi:27u
+keybind = ctrl+semicolon=text:\x7f

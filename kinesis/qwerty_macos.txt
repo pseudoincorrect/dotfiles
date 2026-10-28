@@ -21,8 +21,8 @@
 [kp-delete]>[lwin]
 [end]>[lshift]
 [home]>[lshift]
-[lctrl]>[escape]
-[lalt]>[bspace]
+[lctrl]>[bspace]
+[lalt]>[delete]
 
 * === THUMB CLUSTER RIGHT ===
 [enter]>[rshift]
@@ -31,15 +31,15 @@
 [kp-pup]>[enter]
 [pdown]>[kpshft]
 [kp-pdown]>[kpshft]
-[kp-space]>[space]
+[kp0]>[escape]
 [rctrl]>[enter]
-[k0-rctrl]>[enter]
+[kp-rctrl]>[enter]
 
 * === PINKIES LEFT ===
-[caps]>[lalt]
-[kp-caps]>[lalt]
-[lshift]>[lctrl]
-[kp-lshift]>[lctrl]
+[caps]>[lctrl]
+[kp-caps]>[lctrl]
+[lshift]>[lalt]
+[kp-lshift]>[lalt]
 
 * === PINKIES RIGHT ===
 [;]>[bspace]
@@ -68,7 +68,6 @@
 {kp-X}>{speed7}{-lshift}{\}{+lshift}
 
 * === KP-LAYER RIGHT ===
-[kp0]>[space]
 [kp1]>[enter]
 [kp2]>[escape]
 [kp3]>[tab]
@@ -96,4 +95,4 @@
 {kp=}>{speed7}{-lshift}{8}{+lshift}
 {kpdiv}>{speed7}{-lshift}{9}{+lshift}
 {kpmult}>{speed7}{-lshift}{0}{+lshift}
-{hyphen}>{speed7}{-lwin}{-lctrl}{q}{+lwin}{+lctrl}
+{hyphen}>{speed7}{-escape}{+escape}{-escape}{+escape}{-lwin}{-lctrl}{q}{+lwin}{+lctrl}

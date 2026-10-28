@@ -135,9 +135,9 @@ function M.setup()
   vim.keymap.set('n', ',', '<C-u>', { desc = 'Scroll up' })
   vim.keymap.set('n', 'm', '<C-d>', { desc = 'Scroll down' })
 
-  -- Line manipulation
-  vim.keymap.set('n', '<leader>o', 'o<Esc>k', { desc = 'Line Below' })
-  vim.keymap.set('n', '<leader>O', 'O<Esc>j', { desc = 'Line Above' })
+  -- Jump list
+  vim.keymap.set('n', '<leader>o', '<C-o>', { desc = 'Go Back' })
+  vim.keymap.set('n', '<leader>i', '<C-i>', { desc = 'Go Forward' })
 
   -- Better movement for wrapped lines
   vim.keymap.set({ 'n', 'x' }, 'j', function()

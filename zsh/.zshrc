@@ -27,6 +27,9 @@ ZSH_THEME="robbyrussell"
 plugins=(git zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 
+# Ctrl+, accepts the autosuggestion (Ghostty sends it as CSI 44;5u)
+bindkey '^[[44;5u' autosuggest-accept
+
 # OMZ unsets MENU_COMPLETE in lib/completion.zsh; re-enable it here.
 # First tab shows the menu AND highlights the first match — arrows to navigate.
 setopt MENU_COMPLETE

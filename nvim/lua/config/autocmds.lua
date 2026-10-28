@@ -44,6 +44,26 @@ function M.setup()
     end,
   })
 
+  -- Organize Go imports via gopls before the save-time format
+  vim.api.nvim_create_autocmd('BufWritePre', {
+    desc = 'Organize Go imports on save',
+    group = vim.api.nvim_create_augroup('go-organize-imports', { clear = true }),
+    pattern = '*.go',
+    callback = function(event)
+      local params = vim.lsp.util.make_range_params(0, 'utf-16')
+      params.context = { only = { 'source.organizeImports' } }
+      local res = vim.lsp.buf_request_sync(event.buf, 'textDocument/codeAction', params, 1000)
+      for client_id, r in pairs(res or {}) do
+        local client = vim.lsp.get_client_by_id(client_id)
+        for _, action in ipairs(r.result or {}) do
+          if action.edit and client then
+            vim.lsp.util.apply_workspace_edit(action.edit, client.offset_encoding)
+          end
+        end
+      end
+    end,
+  })
+
   -- Open neo-tree on startup
   vim.api.nvim_create_autocmd('VimEnter', {
     desc = 'Open neo-tree on startup',
