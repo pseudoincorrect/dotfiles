@@ -82,7 +82,7 @@ require('mini.diff').setup {
 }
 
 -- Key mapping for Mini.diff
-vim.keymap.set('n', '<leader>-', function()
+vim.keymap.set('n', '<leader>co', function()
   require('mini.diff').toggle_overlay()
 end, { desc = 'Diff view' })
 

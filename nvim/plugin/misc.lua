@@ -14,6 +14,7 @@ vim.pack.add {
   gh 'gbprod/yanky.nvim',
   gh 'Aasim-A/scrollEOF.nvim',
   gh 'MeanderingProgrammer/render-markdown.nvim',
+  gh 'iamcco/markdown-preview.nvim',
   { src = gh 'lukas-reineke/indent-blankline.nvim', name = 'indent-blankline.nvim' },
   gh 'nvim-pack/nvim-spectre',
   gh 'pmizio/typescript-tools.nvim',
@@ -55,6 +56,11 @@ vim.keymap.set('n', '<leader>cmt', '<cmd>RenderMarkdown toggle<cr>', { desc = 'T
 vim.keymap.set('n', '<leader>m', '<cmd>RenderMarkdown toggle<cr>', { desc = 'Toggle Render Markdown' })
 vim.keymap.set('n', '<leader>cme', '<cmd>RenderMarkdown enable<cr>', { desc = 'Enable Render Markdown' })
 vim.keymap.set('n', '<leader>cmd', '<cmd>RenderMarkdown disable<cr>', { desc = 'Disable Render Markdown' })
+
+-- Live markdown preview in the browser (mermaid, KaTeX, images)
+vim.g.mkdp_auto_close = 1
+vim.g.mkdp_theme = 'dark'
+vim.keymap.set('n', '<leader>M', '<cmd>MarkdownPreviewToggle<cr>', { desc = 'Toggle Markdown Preview (browser)' })
 
 -- Indentation guides
 require('ibl').setup {}

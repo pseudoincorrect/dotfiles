@@ -35,5 +35,9 @@ vim.api.nvim_create_autocmd('PackChanged', {
       end
       vim.cmd 'TSUpdate'
     end
+    -- Download the prebuilt preview server binary
+    if ev.data.spec.name == 'markdown-preview.nvim' and ev.data.kind ~= 'delete' then
+      vim.system({ 'bash', ev.data.path .. '/app/install.sh' }):wait()
+    end
   end,
 })

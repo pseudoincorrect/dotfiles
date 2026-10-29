@@ -35,10 +35,10 @@ function M.setup()
   vim.keymap.set('n', '<leader>wa', ':%bd!<CR>', { desc = 'Close all buffers' })
   vim.keymap.set('n', '<C-w>a', ':%bd!<CR>', { desc = 'Close all buffers' })
 
-  vim.keymap.set('n', '<leader>h', '10<C-w><', { desc = 'Decrease window width' })
-  vim.keymap.set('n', '<leader>l', '10<C-w>>', { desc = 'Increase window width' })
-  vim.keymap.set('n', '<leader>k', '5<C-w>+', { desc = 'Increase window height' })
-  vim.keymap.set('n', '<leader>j', '5<C-w>-', { desc = 'Decrease window height' })
+  vim.keymap.set('n', '<leader>-', '10<C-w><', { desc = 'Decrease window width' })
+  vim.keymap.set('n', '<leader>=', '10<C-w>>', { desc = 'Increase window width' })
+  vim.keymap.set('n', '<leader>+', '5<C-w>+', { desc = 'Increase window height' })
+  vim.keymap.set('n', '<leader>_', '5<C-w>-', { desc = 'Decrease window height' })
 
   -- Redraw screen
   vim.keymap.set('n', '<leader><leader>', ':e!<CR>', { desc = 'Reload files' })

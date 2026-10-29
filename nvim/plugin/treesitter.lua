@@ -6,7 +6,7 @@ end
 vim.pack.add { gh 'nvim-treesitter/nvim-treesitter' }
 
 -- Install parsers (async)
-local parsers = { 'bash', 'c', 'diff', 'go', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'sql', 'vim', 'vimdoc' }
+local parsers = { 'bash', 'c', 'diff', 'go', 'html', 'json', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'sql', 'vim', 'vimdoc', 'yaml' }
 require('nvim-treesitter.install').install(parsers)
 
 -- Enable treesitter highlighting and indentation for all filetypes with a parser
