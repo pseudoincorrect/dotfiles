@@ -60,6 +60,8 @@ vim.keymap.set('n', '<leader>cmd', '<cmd>RenderMarkdown disable<cr>', { desc = '
 -- Live markdown preview in the browser (mermaid, KaTeX, images)
 vim.g.mkdp_auto_close = 1
 vim.g.mkdp_theme = 'dark'
+vim.g.mkdp_echo_preview_url = 1
+vim.g.mkdp_combine_preview = 1 -- one browser tab that follows the current markdown buffer
 vim.keymap.set('n', '<leader>M', '<cmd>MarkdownPreviewToggle<cr>', { desc = 'Toggle Markdown Preview (browser)' })
 
 -- Indentation guides

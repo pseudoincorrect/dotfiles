@@ -152,7 +152,6 @@ alias solaarnohup "nohup ~/.local/bin/solaar --window=hide &"
 alias bluetoothbattery "bluetoothctl info | grep Battery"
 # Vim
 alias vim nvim
-alias neovide-nohup "setsid -f neovide . >/dev/null 2>&1"
 # Go
 alias gocilint "golangci-lint run --out-format 'colored-line-number:stdout'"
 alias gocover "rm coverage.txt; go test -covermode=atomic -count 1 -coverpkg=./... -coverprofile=coverage.txt ./... ; go tool cover -html=coverage.txt -o coverage.html; /opt/microsoft/msedge/msedge coverage.html"

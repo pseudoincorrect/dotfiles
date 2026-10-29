@@ -46,6 +46,7 @@ function M.setup()
   -- Ctrl+s to save
   vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true, silent = true, desc = 'Save the current file' })
   vim.api.nvim_set_keymap('i', '<C-s>', '<Esc>:w<CR>', { noremap = true, silent = true, desc = 'Save the current file' })
+  vim.keymap.set('n', '<leader>l', ':w<CR>', { silent = true, desc = 'Save the current file' })
 
   -- Yanky keybindings
   vim.keymap.set({ 'n', 'x' }, 'p', '<Plug>(YankyPutAfter)')

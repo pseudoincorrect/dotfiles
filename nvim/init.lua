@@ -8,18 +8,6 @@ vim.g.have_nerd_font = true
 -- Enable bytecode cache for faster startup
 vim.loader.enable()
 
--- Neovide configuration
-if vim.g.neovide then
-  vim.g.neovide_scale_factor = 0.65
-  -- paste with ctrl+shift+v
-  vim.keymap.set({ 'n', 'v', 's', 'x', 'o', 'i', 'l', 'c', 't' }, '<C-S-v>', function()
-    vim.api.nvim_paste(vim.fn.getreg '+', true, -1)
-  end, { noremap = true, silent = true })
-  vim.keymap.set({ 'n', 'v' }, '<C-=>', ':lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>')
-  vim.keymap.set({ 'n', 'v' }, '<C-->', ':lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>')
-  vim.keymap.set({ 'n', 'v' }, '<C-0>', ':lua vim.g.neovide_scale_factor = 1<CR>')
-end
-
 -- Load configuration modules
 require('config.options').setup()
 require('config.keymaps').setup()
