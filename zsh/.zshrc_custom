@@ -33,14 +33,19 @@ function service() {
   docker compose -f ~/docker-services/$svc/docker-compose.yml "$@"
 }
 
-# fzf history search - type 'his' instead of Ctrl+R (same as CTRL+R but with edit prompt)
+# fzf history search ranked by frecency (frequency weighted by recency) - type 'his' instead of Ctrl+R
 function his() {
   local selected_command
-  selected_command=$(fc -ln 1 | fzf --scheme=history --no-sort --height=40% --reverse --query="$*" --tiebreak=index --tac)
-  if [[ -n "$selected_command" ]]; then
-    local cmd="$selected_command"
-    print -z "$cmd"
-  fi
+  selected_command=$(
+    fc -lnt '%s' 1 |
+      awk -v now="$(date +%s)" '{
+        ts = $1; cmd = $0; sub(/^[0-9]+ +/, "", cmd)
+        score[cmd] += 1 / (1 + (now - ts) / 86400 / 7)   # a use from 1 week ago counts half
+      } END { for (c in score) printf "%f\t%s\n", score[c], c }' |
+      sort -t$'\t' -k1,1 -rn | cut -f2- |
+      fzf --scheme=history --height=40% --reverse --query="$*" --tiebreak=index
+  )
+  [[ -n "$selected_command" ]] && print -z "$selected_command"
 }
 
 # set the terminal tab/window title (disables OMZ auto-title so it sticks)

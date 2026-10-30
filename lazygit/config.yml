@@ -1,6 +1,14 @@
 gui:
   showFileTree: false
+  scrollHeight: 15 # lines per scroll in the main view (ctrl-u/ctrl-d, J/K)
 git:
   diffRenderers:
     - command: delta --dark --paging=never --line-numbers
     - command: delta --dark --paging=never --line-numbers --side-by-side
+    # Whole file: git passes `path old-file old-hex old-mode new-file ...` to the external diff
+    - name: delta full file
+      type: extDiff
+      command: 'f() { diff -U1000000 --label "a/$1" --label "b/$1" "$2" "$5" | delta --dark --paging=never --line-numbers --width={{width}}; }; f'
+  allBranchesLogCmds:
+    - git log --graph --all --topo-order --color=always --date=short --format='%C(auto)%(decorate:prefix=,suffix= ,separator=%x2C )%C(blue)%ad%C(reset) %<|(70,trunc)%s %C(green)%an%C(reset)'
+  branchLogCmd: git log --graph --topo-order --color=always --date=short --format='%C(auto)%(decorate:prefix=,suffix= ,separator=%x2C )%C(blue)%ad%C(reset) %<|(70,trunc)%s %C(green)%an%C(reset)' {{branchName}} --

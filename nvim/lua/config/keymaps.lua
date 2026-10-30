@@ -4,8 +4,8 @@ local M = {}
 function M.setup()
   -- Window management (Ctrl+w equivalents)
   vim.keymap.set({ 'n', 'i', 'v' }, '<C-h>', '<Esc><C-w>h', { desc = 'Move to left window' })
-  vim.keymap.set({ 'n', 'i', 'v' }, '<C-j>', '<Esc><C-w>j', { desc = 'Move to down window' })
-  vim.keymap.set({ 'n', 'i', 'v' }, '<C-k>', '<Esc><C-w>k', { desc = 'Move to up window' })
+  vim.keymap.set({ 'n', 'i', 'v' }, '<C-S-j>', '<Esc><C-w>j', { desc = 'Move to down window' })
+  vim.keymap.set({ 'n', 'i', 'v' }, '<C-S-k>', '<Esc><C-w>k', { desc = 'Move to up window' })
   vim.keymap.set({ 'n', 'i', 'v' }, '<C-l>', '<Esc><C-w>l', { desc = 'Move to right window' })
 
   vim.keymap.set('n', '<leader>wh', '<C-w>h', { desc = 'Move to left window' })
@@ -81,8 +81,8 @@ function M.setup()
   -- Terminal mode keymaps
   vim.keymap.set('t', '<C-h>', '<C-\\><C-n><C-w>h', { desc = 'Move to left window from terminal' })
   vim.keymap.set('t', '<C-l>', '<C-\\><C-n><C-w>l', { desc = 'Move to right window from terminal' })
-  vim.keymap.set('t', '<C-j>', '<C-\\><C-n><C-w>j', { desc = 'Move to lower window from terminal' })
-  vim.keymap.set('t', '<C-k>', '<C-\\><C-n><C-w>k', { desc = 'Move to upper window from terminal' })
+  vim.keymap.set('t', '<C-S-j>', '<C-\\><C-n><C-w>j', { desc = 'Move to lower window from terminal' })
+  vim.keymap.set('t', '<C-S-k>', '<C-\\><C-n><C-w>k', { desc = 'Move to upper window from terminal' })
   -- Map escape in terminal mode to goto normal mode
   vim.keymap.set('t', '<C-y>', '<C-\\><C-n>', { desc = 'Exit terminal mode to normal mode' })
 
