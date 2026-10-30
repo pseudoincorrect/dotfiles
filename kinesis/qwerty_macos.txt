@@ -43,9 +43,8 @@
 
 * === PINKIES RIGHT ===
 [;]>[bspace]
-[\]>[']
-[']>[enter]
-[kp-']>[enter]
+[\]>[escape]
+[kp-']>[escape]
 [kp-rshift]>[lctrl]
 [rshift]>[lctrl]
 

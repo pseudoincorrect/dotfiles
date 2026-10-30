@@ -110,6 +110,19 @@ autoload -U add-zsh-hook
 add-zsh-hook chpwd _load_nvm_on_nvmrc
 _load_nvm_on_nvmrc
 
+# Open the terminal scrollback in nvim
+# herdr app: `sb`; ghostty: `sb ` then cmd+shift+s pastes the scrollback file path
+function sb() {
+  local nvim_view=(nvim -c "set buftype=nofile" -c "normal G")
+  if [[ -n "$1" ]]; then
+    "${nvim_view[@]}" "$1"
+  elif [[ -n "$HC_TERMINAL_ID" ]]; then
+    hc read "$HC_TERMINAL_ID" --lines 100000 | "${nvim_view[@]}" -
+  else
+    echo "sb: outside herdr, type 'sb ' then press cmd+shift+s" >&2
+    return 1
+  fi
+}
 
 ########################################################################
 # ZOXIDE

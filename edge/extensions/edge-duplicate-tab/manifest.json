@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Duplicate Tab",
+  "version": "1.0",
+  "background": { "service_worker": "background.js" },
+  "commands": {
+    "duplicate-tab": {
+      "suggested_key": { "default": "Ctrl+Shift+K", "mac": "Command+Shift+K" },
+      "description": "Duplicate the current tab"
+    }
+  }
+}

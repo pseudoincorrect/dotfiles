@@ -2,3 +2,4 @@ macos-option-as-alt = true
 keybind = ctrl+space=csi:27u
 keybind = ctrl+semicolon=text:\x7f
 keybind = ctrl+m=text:\r
+keybind = cmd+shift+s=write_scrollback_file:paste
