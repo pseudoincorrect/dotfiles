@@ -1,0 +1,10 @@
+{
+  "zoom": 0.8,
+  "sounds": {
+    "enabled": true
+  },
+  "minimum_contrast": 1.0,
+  "option_as_alt": "on",
+  "appearance": "dark",
+  "theme": "gruvbox"
+}

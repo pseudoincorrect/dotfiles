@@ -126,3 +126,39 @@
           (interpreted_string_literal_content) @injection.content)))))
  (#lua-match? @_var "[Ss][Qq][Ll]")
  (#set! injection.language "sql"))
+
+; Struct field: Statement{SQL: `SELECT ...`}
+((keyed_element
+  key: (literal_element (identifier) @_var)
+  value: (literal_element
+    [
+      (raw_string_literal (raw_string_literal_content) @injection.content)
+      (interpreted_string_literal (interpreted_string_literal_content) @injection.content)
+    ]))
+ (#lua-match? @_var "[Ss][Qq][Ll]")
+ (#set! injection.language "sql"))
+
+; Struct field with concatenation: Statement{SQL: "INSERT ..." + `VALUES ...`}
+((keyed_element
+  key: (literal_element (identifier) @_var)
+  value: (literal_element
+    (binary_expression
+      [
+        (raw_string_literal (raw_string_literal_content) @injection.content)
+        (interpreted_string_literal (interpreted_string_literal_content) @injection.content)
+      ])))
+ (#lua-match? @_var "[Ss][Qq][Ll]")
+ (#set! injection.language "sql"))
+
+; Struct field with longer concatenation: Statement{SQL: "..." + "..." + `...`}
+((keyed_element
+  key: (literal_element (identifier) @_var)
+  value: (literal_element
+    (binary_expression
+      (binary_expression
+        [
+          (raw_string_literal (raw_string_literal_content) @injection.content)
+          (interpreted_string_literal (interpreted_string_literal_content) @injection.content)
+        ]))))
+ (#lua-match? @_var "[Ss][Qq][Ll]")
+ (#set! injection.language "sql"))

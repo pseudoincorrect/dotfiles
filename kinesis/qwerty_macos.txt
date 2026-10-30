@@ -27,8 +27,8 @@
 * === THUMB CLUSTER RIGHT ===
 [enter]>[rshift]
 [kp-enter]>[rshift]
-[pup]>[enter]
-[kp-pup]>[enter]
+[pup]>[kpshft]
+[kp-pup]>[kpshft]
 [pdown]>[kpshft]
 [kp-pdown]>[kpshft]
 [kp0]>[escape]
@@ -43,9 +43,11 @@
 
 * === PINKIES RIGHT ===
 [;]>[bspace]
-[\]>[tab]
-[kp-rshift]>[rctrl]
-[rshift]>[rctrl]
+[\]>[']
+[']>[enter]
+[kp-']>[enter]
+[kp-rshift]>[lctrl]
+[rshift]>[lctrl]
 
 * === KP-LAYER LEFT ===
 [kp-A]>[hyphen]
@@ -81,7 +83,7 @@
 [kpplus]>[bspace]
 {kp9}>{speed7}{-lwin}{right}{+lwin}
 {kp-Y}>{speed7}{-lwin}{left}{+lwin}
-{kp-'}>{speed7}{-lshift}{'}{+lshift}
+{kp-\}>{speed7}{-lshift}{'}{+lshift}
 
 * === NUMBER ROW ===
 [=]>[escape]

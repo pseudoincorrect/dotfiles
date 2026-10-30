@@ -59,7 +59,7 @@ require('neo-tree').setup {
       },
     },
     type = { enabled = false },
-    size = { enabled = false },
+    file_size = { enabled = false },
     last_modified = { enabled = false },
   },
   filesystem = {
