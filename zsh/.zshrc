@@ -7,6 +7,7 @@ PATH="$HOME/.docker/bin:$PATH"
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
 PATH="$GOBIN:$PATH"
+PATH="$HOME/go/sdk/current/bin:$PATH" # symlink maintained by go_update
 PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 ########################################################################

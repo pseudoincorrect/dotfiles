@@ -43,9 +43,11 @@ function M.setup()
   -- Redraw screen
   vim.keymap.set('n', '<leader><leader>', ':e!<CR>', { desc = 'Reload files' })
 
-  -- Ctrl+s to save
-  vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true, silent = true, desc = 'Save the current file' })
-  vim.api.nvim_set_keymap('i', '<C-s>', '<Esc>:w<CR>', { noremap = true, silent = true, desc = 'Save the current file' })
+  -- Ctrl+s / Cmd+s to save (Ghostty sends Cmd+s as CSI 115;9u, i.e. <D-s>)
+  for _, key in ipairs({ '<C-s>', '<D-s>' }) do
+    vim.api.nvim_set_keymap('n', key, ':w<CR>', { noremap = true, silent = true, desc = 'Save the current file' })
+    vim.api.nvim_set_keymap('i', key, '<Esc>:w<CR>', { noremap = true, silent = true, desc = 'Save the current file' })
+  end
   vim.keymap.set('n', '<leader>l', ':w<CR>', { silent = true, desc = 'Save the current file' })
 
   -- Yanky keybindings

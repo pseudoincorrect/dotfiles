@@ -1,11 +1,12 @@
 {
-  "zoom": 0.9,
+  "zoom": 1.0,
   "sounds": {
     "enabled": true
   },
-  "minimum_contrast": 1,
+  "font_size": 11.0,
+  "font_ligatures": false,
+  "minimum_contrast": 1.0,
   "option_as_alt": "on",
   "appearance": "dark",
-  "theme": "gruvbox",
-  "font_size": 11
+  "theme": "gruvbox"
 }

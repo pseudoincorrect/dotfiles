@@ -31,7 +31,7 @@
 [kp-pup]>[kpshft]
 [pdown]>[kpshft]
 [kp-pdown]>[kpshft]
-[kp0]>[escape]
+[kp0]>[space]
 [rctrl]>[enter]
 [kp-rctrl]>[enter]
 

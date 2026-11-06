@@ -33,6 +33,43 @@ function service() {
   docker compose -f ~/docker-services/$svc/docker-compose.yml "$@"
 }
 
+# check the latest stable Go release and install it into ~/go/sdk/<version>
+# ~/go/sdk/current points to the latest version (its bin/ is on PATH in .zshrc)
+function go_update() {
+  local json version os arch file sha tmp
+  json=$(curl -fsS 'https://go.dev/dl/?mode=json') || { echo "go_update: cannot fetch release list" >&2; return 1; }
+  version=$(jq -r '.[0].version' <<<"$json")
+  os=$(uname -s | tr '[:upper:]' '[:lower:]')
+  arch=$(uname -m)
+  [[ $arch == x86_64 ]] && arch=amd64
+
+  if [[ -x ~/go/sdk/$version/bin/go ]]; then
+    ln -sfn ~/go/sdk/$version ~/go/sdk/current
+    echo "go_update: $version already installed in ~/go/sdk/$version (current -> $version)"
+    return 0
+  fi
+
+  file=$(jq -r --arg v "$version" --arg os "$os" --arg arch "$arch" \
+    '.[0].files[] | select(.kind=="archive" and .os==$os and .arch==$arch) | .filename' <<<"$json")
+  sha=$(jq -r --arg f "$file" '.[0].files[] | select(.filename==$f) | .sha256' <<<"$json")
+  [[ -n $file && -n $sha ]] || { echo "go_update: no archive for $os/$arch" >&2; return 1; }
+
+  tmp=$(mktemp -d) || return 1
+  echo "go_update: downloading $file"
+  if ! curl -fsSL -o "$tmp/$file" "https://go.dev/dl/$file"; then
+    echo "go_update: download failed" >&2; rm -rf "$tmp"; return 1
+  fi
+  if [[ $(shasum -a 256 "$tmp/$file" | cut -d' ' -f1) != $sha ]]; then
+    echo "go_update: checksum mismatch" >&2; rm -rf "$tmp"; return 1
+  fi
+  tar -xzf "$tmp/$file" -C "$tmp" && mkdir -p ~/go/sdk && mv "$tmp/go" ~/go/sdk/$version || {
+    echo "go_update: install failed" >&2; rm -rf "$tmp"; return 1
+  }
+  rm -rf "$tmp"
+  ln -sfn ~/go/sdk/$version ~/go/sdk/current
+  echo "go_update: installed ~/go/sdk/$version (current -> $version)"
+}
+
 # fzf history search ranked by frecency (frequency weighted by recency) - type 'his' instead of Ctrl+R
 function his() {
   local selected_command
@@ -158,6 +195,8 @@ alias "catrc"="cat ~/.zshrc"
 alias 'dc'='docker compose'
 # Vim
 alias "vim"="nvim"
+# Git
+alias "sq"="git-squid"
 # AI
 alias "danger"="claude --dangerously-skip-permissions"
 alias "plan"="claude --permission-mode plan"
