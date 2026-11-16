@@ -124,7 +124,7 @@ setopt HIST_REDUCE_BLANKS
 ########################################################################
 # MISE
 export MISE_STATE_DIR="$HOME/.mise/state"
-eval "$(mise activate zsh)"
+eval "$(mise activate zsh --shims)"
 
 ########################################################################
 # NVM

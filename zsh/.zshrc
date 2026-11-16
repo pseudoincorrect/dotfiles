@@ -1,3 +1,5 @@
+typeset -U path PATH # keep only the first copy of each PATH entry
+
 ########################################################################
 # PATH (set before OMZ so plugins can use them)
 PATH="$HOME/Programs/gitkraken:$PATH"

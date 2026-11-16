@@ -40,6 +40,9 @@ function M.setup()
   vim.keymap.set('n', '<leader>+', '5<C-w>+', { desc = 'Increase window height' })
   vim.keymap.set('n', '<leader>_', '5<C-w>-', { desc = 'Decrease window height' })
 
+  -- kj to exit insert mode
+  vim.keymap.set('i', 'kj', '<Esc>', { desc = 'Exit insert mode' })
+
   -- Redraw screen
   vim.keymap.set('n', '<leader><leader>', ':e!<CR>', { desc = 'Reload files' })
 
@@ -49,6 +52,9 @@ function M.setup()
     vim.api.nvim_set_keymap('i', key, '<Esc>:w<CR>', { noremap = true, silent = true, desc = 'Save the current file' })
   end
   vim.keymap.set('n', '<leader>l', ':w<CR>', { silent = true, desc = 'Save the current file' })
+
+  -- Alt+q to quit everything without saving
+  vim.keymap.set({ 'n', 'i', 'v', 't' }, '<M-q>', '<Cmd>qa!<CR>', { desc = 'Quit all without saving' })
 
   -- Yanky keybindings
   vim.keymap.set({ 'n', 'x' }, 'p', '<Plug>(YankyPutAfter)')

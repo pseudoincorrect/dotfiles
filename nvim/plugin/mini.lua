@@ -59,12 +59,12 @@ require('mini.move').setup {
   mappings = {
     left = '<M-Left>',
     right = '<M-Right>',
-    down = '<M-Down>',
-    up = '<M-Up>',
+    down = '<M-j>',
+    up = '<M-k>',
     line_left = '<M-Left>',
     line_right = '<M-Right>',
-    line_down = '<M-Down>',
-    line_up = '<M-Up>',
+    line_down = '<M-j>',
+    line_up = '<M-k>',
   },
 }
 
