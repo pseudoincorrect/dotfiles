@@ -11,13 +11,23 @@ mc.setup()
 
 local set = vim.keymap.set
 
+-- Run a match function with 'wrapscan' on, so the search cycles past the end
+-- (or the start) of the buffer. options.lua sets wrapscan = false.
+local function wrapped(fn, direction)
+  return function()
+    local ws = vim.o.wrapscan
+    vim.o.wrapscan = true
+    local ok, err = pcall(fn, direction)
+    vim.o.wrapscan = ws
+    if not ok then
+      error(err)
+    end
+  end
+end
+
 -- Add / skip cursors by matching the word under cursor (or the visual selection)
-set({ 'n', 'x' }, '<C-A-n>', function()
-  mc.matchAddCursor(1)
-end, { desc = 'MC: add next match' })
-set({ 'n', 'x' }, '<C-A-x>', function()
-  mc.matchSkipCursor(1)
-end, { desc = 'MC: skip to next match' })
+set({ 'n', 'x' }, '<C-A-n>', wrapped(mc.matchAddCursor, 1), { desc = 'MC: add next match' })
+set({ 'n', 'x' }, '<C-A-x>', wrapped(mc.matchSkipCursor, 1), { desc = 'MC: skip to next match' })
 set({ 'n', 'x' }, '<C-A-a>', mc.matchAllAddCursors, { desc = 'MC: add all matches' })
 
 -- Add cursors on adjacent lines

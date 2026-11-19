@@ -3,10 +3,10 @@ local M = {}
 
 function M.setup()
   -- Window management (Ctrl+w equivalents)
-  vim.keymap.set({ 'n', 'i', 'v' }, '<C-h>', '<Esc><C-w>h', { desc = 'Move to left window' })
+  vim.keymap.set({ 'n', 'i', 'v' }, '<C-S-h>', '<Esc><C-w>h', { desc = 'Move to left window' })
   vim.keymap.set({ 'n', 'i', 'v' }, '<C-S-j>', '<Esc><C-w>j', { desc = 'Move to down window' })
   vim.keymap.set({ 'n', 'i', 'v' }, '<C-S-k>', '<Esc><C-w>k', { desc = 'Move to up window' })
-  vim.keymap.set({ 'n', 'i', 'v' }, '<C-l>', '<Esc><C-w>l', { desc = 'Move to right window' })
+  vim.keymap.set({ 'n', 'i', 'v' }, '<C-S-l>', '<Esc><C-w>l', { desc = 'Move to right window' })
 
   vim.keymap.set('n', '<leader>wh', '<C-w>h', { desc = 'Move to left window' })
   vim.keymap.set('n', '<leader>wj', '<C-w>j', { desc = 'Move to lower window' })
@@ -40,8 +40,15 @@ function M.setup()
   vim.keymap.set('n', '<leader>+', '5<C-w>+', { desc = 'Increase window height' })
   vim.keymap.set('n', '<leader>_', '5<C-w>-', { desc = 'Decrease window height' })
 
-  -- kj to exit insert mode
-  vim.keymap.set('i', 'kj', '<Esc>', { desc = 'Exit insert mode' })
+  -- Ctrl+; acts as Escape in all modes (remap: it also runs the <Esc> keymaps)
+  vim.keymap.set({ 'n', 'i', 'v', 's', 'o', 'c', 't' }, '<C-;>', '<Esc>', { remap = true, desc = 'Escape' })
+
+  -- On an empty line, start insert mode at the correct indent
+  for _, key in ipairs { 'A', 'a', 'i', 'I' } do
+    vim.keymap.set('n', key, function()
+      return vim.fn.getline('.'):match '^%s*$' and '"_cc' or key
+    end, { expr = true, desc = 'Insert with correct indent on empty line' })
+  end
 
   -- Redraw screen
   vim.keymap.set('n', '<leader><leader>', ':e!<CR>', { desc = 'Reload files' })
@@ -87,8 +94,8 @@ function M.setup()
   vim.keymap.set('i', '<Esc>', '<Esc>', { noremap = true, silent = true })
 
   -- Terminal mode keymaps
-  vim.keymap.set('t', '<C-h>', '<C-\\><C-n><C-w>h', { desc = 'Move to left window from terminal' })
-  vim.keymap.set('t', '<C-l>', '<C-\\><C-n><C-w>l', { desc = 'Move to right window from terminal' })
+  vim.keymap.set('t', '<C-S-h>', '<C-\\><C-n><C-w>h', { desc = 'Move to left window from terminal' })
+  vim.keymap.set('t', '<C-S-l>', '<C-\\><C-n><C-w>l', { desc = 'Move to right window from terminal' })
   vim.keymap.set('t', '<C-S-j>', '<C-\\><C-n><C-w>j', { desc = 'Move to lower window from terminal' })
   vim.keymap.set('t', '<C-S-k>', '<C-\\><C-n><C-w>k', { desc = 'Move to upper window from terminal' })
   -- Map escape in terminal mode to goto normal mode
@@ -165,9 +172,6 @@ function M.setup()
   vim.keymap.set('n', '?', '?\\V', { desc = 'Search backward and stay on Esc' })
   vim.keymap.set('c', '<Esc>', '<CR>', { desc = 'Accept search and stay' })
   vim.keymap.set('c', '<C-Esc>', '<C-c>', { desc = 'Cancel search' })
-
-  -- Ctrl+; as backspace in insert mode
-  vim.keymap.set('i', '<C-;>', '<BS>', { desc = 'Backspace' })
 
   -- LSP
   vim.keymap.set('n', '<leader>ch', vim.lsp.buf.hover, { desc = 'LSP Hover' })
