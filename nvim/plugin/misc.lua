@@ -41,7 +41,13 @@ require('auto-session').setup {
     theme_conf = { border = true },
     previewer = false,
   },
-  pre_save_cmds = { 'Neotree close' },
+  pre_save_cmds = {
+    function()
+      for _, picker in ipairs(Snacks.picker.get { source = 'explorer' }) do
+        picker:close()
+      end
+    end,
+  },
 }
 
 -- Yank history

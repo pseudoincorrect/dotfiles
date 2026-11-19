@@ -74,9 +74,14 @@ function M.setup()
   -- Visual mode R acts as replace with yanked text
   vim.keymap.set('x', 'R', 'p', { desc = 'Replace selection with yanked text' })
 
-  -- NeoTree
-  vim.keymap.set('n', '<leader>et', '<Esc>:Neotree toggle<CR>', { noremap = true, desc = 'Toggle NeoTree' })
-  vim.keymap.set('n', '<leader>ee', '<Esc>:Neotree reveal<CR>', { noremap = true, desc = 'Reveal in NeoTree' })
+  -- Explorer (snacks)
+  vim.keymap.set('n', '<leader>e', function()
+    local explorer = Snacks.picker.get({ source = 'explorer' })[1]
+    Snacks.explorer.reveal() -- opens the explorer with focus on the list if closed
+    if explorer then
+      explorer:focus 'list'
+    end
+  end, { desc = 'Focus explorer (reveal current file)' })
 
   -- Path copy operations
   vim.keymap.set('n', '<leader>pr', function()

@@ -64,13 +64,17 @@ function M.setup()
     end,
   })
 
-  -- Open neo-tree on startup
+  -- Open the explorer on startup, keep focus in the main window
   vim.api.nvim_create_autocmd('VimEnter', {
-    desc = 'Open neo-tree on startup',
-    group = vim.api.nvim_create_augroup('neotree-on-start', { clear = true }),
+    desc = 'Open explorer on startup',
+    group = vim.api.nvim_create_augroup('explorer-on-start', { clear = true }),
     callback = function()
       vim.schedule(function()
-        vim.cmd 'Neotree show'
+        Snacks.explorer.open {
+          on_show = function(picker)
+            vim.api.nvim_set_current_win(picker.main)
+          end,
+        }
       end)
     end,
   })
