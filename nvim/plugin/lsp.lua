@@ -21,27 +21,31 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = desc })
     end
 
-    map('gd', require('fzf-lua').lsp_definitions, 'Goto Definition')
-    map('gr', require('fzf-lua').lsp_references, 'Goto References')
-    map('gi', require('fzf-lua').lsp_implementations, 'Goto Implementation')
-    map('gt', require('fzf-lua').lsp_typedefs, 'Goto Type definition')
+    -- Show only classes, functions and methods in the symbol pickers
+    local kinds = { 'Class', 'Function', 'Method' }
+    local symbol_filter = { default = kinds, lua = kinds }
+
+    map('gd', function()
+      Snacks.picker.lsp_definitions()
+    end, 'Goto Definition')
+    map('gr', function()
+      Snacks.picker.lsp_references()
+    end, 'Goto References')
+    map('gi', function()
+      Snacks.picker.lsp_implementations()
+    end, 'Goto Implementation')
+    map('gt', function()
+      Snacks.picker.lsp_type_definitions()
+    end, 'Goto Type definition')
     map('<leader>s', function()
-      require('fzf-lua').lsp_document_symbols {
-        regex_filter = function(entry)
-          return entry.kind == 'Class' or entry.kind == 'Function' or entry.kind == 'Method'
-        end,
-      }
+      Snacks.picker.lsp_symbols { filter = symbol_filter }
     end, 'Symbols')
     map('<leader>sS', function()
-      require('fzf-lua').lsp_workspace_symbols {
-        regex_filter = function(entry)
-          return entry.kind == 'Class' or entry.kind == 'Function' or entry.kind == 'Method'
-        end,
-      }
+      Snacks.picker.lsp_workspace_symbols { filter = symbol_filter }
     end, 'Symbol Wspace')
 
     map('<leader>cr', vim.lsp.buf.rename, 'Rename')
-    map('<leader>ca', require('fzf-lua').lsp_code_actions, 'Code Action', { 'n', 'x' })
+    map('<leader>ca', vim.lsp.buf.code_action, 'Code Action', { 'n', 'x' })
     map('<leader>cf', vim.lsp.buf.format, 'Format Document')
     map('<leader>cd', vim.diagnostic.open_float, 'Show Problem')
     map('<leader>cp', function()

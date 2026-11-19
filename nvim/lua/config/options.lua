@@ -40,7 +40,17 @@ function M.setup()
   -- vim.opt.titlestring = vim.fs.basename(vim.fn.getcwd())
   vim.opt.undofile = true
   vim.opt.updatetime = 100
-  vim.opt.winbar = '%{%v:lua.require("config.options").winbar()%}'
+  -- Set the winbar per window, not globally. For a global-local option, an empty local
+  -- value means "use the global value", so other plugins (snacks) cannot remove a global winbar.
+  vim.api.nvim_create_autocmd({ 'VimEnter', 'BufWinEnter', 'WinNew' }, {
+    group = vim.api.nvim_create_augroup('winbar', { clear = true }),
+    callback = function()
+      local win = vim.api.nvim_get_current_win()
+      if vim.api.nvim_win_get_config(win).relative == '' and not vim.bo.filetype:match '^snacks_' then
+        vim.wo[win].winbar = '%{%v:lua.require("config.options").winbar()%}'
+      end
+    end,
+  })
   vim.opt.wrap = true
   vim.opt.wrapmargin = 0
   -- Window appearance and borders
@@ -61,19 +71,41 @@ function M.setup()
   end)
 end
 
+-- Winbar colors (monokai-pro spectrum): a bold light path and a bright file name.
+-- The NC groups are for the windows that do not have the focus.
+local function winbar_highlights()
+  local hl = function(name, opts)
+    vim.api.nvim_set_hl(0, name, opts)
+  end
+  hl('WinBarPath', { fg = '#d0cfd1', bold = true })
+  hl('WinBarFilename', { fg = '#fce566', bold = true })
+  hl('WinBarPathNC', { fg = '#727072' })
+  hl('WinBarFilenameNC', { fg = '#a9a7aa' })
+end
+winbar_highlights()
+vim.api.nvim_create_autocmd('ColorScheme', {
+  group = vim.api.nvim_create_augroup('winbar-highlights', { clear = true }),
+  callback = winbar_highlights,
+})
+
 -- Improve the file path display in the winbar
 function M.winbar()
   local filepath = vim.fn.expand '%:~'
   if filepath == '' then
     return ''
   end
+  -- While Neovim draws the winbar, the current window is the drawn window,
+  -- and g:actual_curwin is the window that has the focus.
+  local active = vim.api.nvim_get_current_win() == tonumber(vim.g.actual_curwin)
+  local nc = active and '' or 'NC'
   local dir = vim.fn.fnamemodify(filepath, ':h')
   local filename = vim.fn.fnamemodify(filepath, ':t')
-  if dir == '.' or dir == '' then
-    return '   %#WinBarFilename#' .. filename .. '%*   '
-  else
-    return '   %#WinBarPath#' .. dir .. '/%*%#WinBarFilename#' .. filename .. '%*   '
+  local path = ''
+  if dir ~= '.' and dir ~= '' then
+    path = '%#WinBarPath' .. nc .. '#' .. dir:gsub('%%', '%%%%') .. '/'
   end
+  local paren = '%#WinBarPath' .. nc .. '#'
+  return '  ' .. paren .. '( ' .. path .. '%#WinBarFilename' .. nc .. '#' .. filename:gsub('%%', '%%%%') .. paren .. ' )%*  '
 end
 
 return M
