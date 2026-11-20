@@ -25,6 +25,19 @@ require('monokai-pro').setup {
   devicons = true,
   filter = 'spectrum',
   inc_search = 'background',
+  -- Remove the sidebar background that the theme sets on the snacks explorer and picker
+  override = function(c)
+    return {
+      -- Directory names (explorer, mini.files) had a background too
+      Directory = { fg = c.statusBar.foreground, bg = 'NONE' },
+      SnacksTitle = { fg = c.base.yellow, bold = true },
+      SnacksPickerTree = { fg = c.editorIndentGuide.background },
+      SnacksPickerInputBorder = { fg = c.sideBar.foreground },
+      SnacksPickerTitle = { fg = c.base.yellow, bold = true },
+      SnacksPickerPrompt = { fg = c.base.blue },
+      SnacksPickerBorder = { fg = c.sideBar.foreground },
+    }
+  end,
   background_clear = {
     'float_win',
     'toggleterm',
