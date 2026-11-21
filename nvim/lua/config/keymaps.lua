@@ -145,9 +145,6 @@ function M.setup()
   -- Fixed: Better visual mode navigation
   vim.keymap.set('n', '<leader>v', 'V', { desc = 'Visual line' })
 
-  -- macro recording and playback
-  vim.keymap.set('n', 'Q', '@q', { desc = 'Repeat q macro' })
-
   -- Keep scroll navigation
   vim.keymap.set('n', '<C-d>', '<C-d>', { desc = 'Scroll down' })
   vim.keymap.set('n', '<C-u>', '<C-u>', { desc = 'Scroll up' })

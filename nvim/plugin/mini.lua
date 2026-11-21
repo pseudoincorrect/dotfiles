@@ -8,9 +8,6 @@ vim.pack.add { gh 'echasnovski/mini.nvim' }
 -- Git integration for mini.statusline
 require('mini.git').setup {}
 
--- Enhanced textobjects: e.g. va) selects around paren, yinq yanks inside next quote, ci' changes inside quote.
-require('mini.ai').setup { n_lines = 500 }
-
 -- Surround mappings: saiw) add, sd' delete, sr)' replace, etc.
 require('mini.surround').setup {
   mappings = {

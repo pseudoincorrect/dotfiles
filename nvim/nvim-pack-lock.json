@@ -25,7 +25,7 @@
       "src": "https://github.com/j-hui/fidget.nvim"
     },
     "flash.nvim": {
-      "rev": "fcea7ff883235d9024dc41e638f164a450c14ca2",
+      "rev": "5f0f270fdc7c5b0c21d903ee85b9cb06f2ac636a",
       "src": "https://github.com/folke/flash.nvim"
     },
     "grapple.nvim": {
@@ -67,11 +67,6 @@
     "monokai-pro.nvim": {
       "rev": "d8884d4473667c48bd17a68d08383d38839136a3",
       "src": "https://github.com/loctvl842/monokai-pro.nvim"
-    },
-    "multicursor.nvim": {
-      "rev": "c574bfc1f7e63dfea3e64b8453c9f7c660127238",
-      "src": "https://github.com/jake-stewart/multicursor.nvim",
-      "version": "'1.0'"
     },
     "nvim-cmp": {
       "rev": "a1d504892f2bc56c2e79b65c6faded2fd21f3eca",

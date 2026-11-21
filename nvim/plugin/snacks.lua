@@ -73,8 +73,6 @@ require('snacks').setup {
           preview = false,
           layout = {
             position = 'left',
-            width = 60,
-            min_width = 60,
             -- No winbar: the winbar adds an empty row at the top of the sidebar
             wo = { winbar = '' },
           },
