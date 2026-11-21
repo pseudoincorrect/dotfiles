@@ -14,7 +14,7 @@ require('snacks').setup {
     enabled = true,
     notify = true,
     size = 300 * 1024, -- 1.5MB
-    setup = function(ctx)
+    setup = function()
       vim.opt_local.foldmethod = 'indent'
       vim.opt_local.foldenable = true
       vim.opt_local.foldlevelstart = 99
@@ -60,7 +60,8 @@ require('snacks').setup {
     sources = {
       -- Show the picker at once, not after the first `fd` results.
       -- Not global: LSP pickers (gd) would flash open before the auto jump.
-      files = { show_delay = 0 },
+      -- hidden: also list dotfiles (.zshrc, ...)
+      files = { show_delay = 0, hidden = true },
       buffers = {
         win = { input = { keys = { ['<c-k>'] = { 'bufdelete', mode = { 'n', 'i' } } } } },
       },
@@ -70,6 +71,8 @@ require('snacks').setup {
         exclude = { '.git', '.DS_Store', 'thumbs.db', '.null-ls_*' },
         layout = {
           preset = 'sidebar',
+          -- snacks accepts false (see its own explorer source), but types it as "main"?
+          ---@diagnostic disable-next-line: assign-type-mismatch
           preview = false,
           layout = {
             position = 'left',

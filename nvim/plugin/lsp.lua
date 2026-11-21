@@ -110,16 +110,16 @@ local servers = {
   rust_analyzer = {},
 
   lua_ls = {
+    -- Plugins in plugin/*.lua after this file are not yet on the runtimepath here.
+    -- Read the runtimepath when the server starts, after all plugins are loaded.
+    on_init = function(client)
+      local lua = client.config.settings.Lua --[[@as table]]
+      lua.workspace.library = vim.list_extend({ '${3rd}/luv/library' }, vim.api.nvim_get_runtime_file('', true))
+    end,
     settings = {
       Lua = {
         runtime = { version = 'LuaJIT' },
-        workspace = {
-          checkThirdParty = false,
-          library = {
-            '${3rd}/luv/library',
-            unpack(vim.api.nvim_get_runtime_file('', true)),
-          },
-        },
+        workspace = { checkThirdParty = false },
         completion = {
           callSnippet = 'Replace',
         },
@@ -139,12 +139,11 @@ vim.list_extend(ensure_installed, {
 })
 require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
-require('mason-lspconfig').setup {
-  handlers = {
-    function(server_name)
-      local server = servers[server_name] or {}
-      server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-      require('lspconfig')[server_name].setup(server)
-    end,
-  },
-}
+-- mason-lspconfig v2 ignores `handlers`: register the configs with vim.lsp.config,
+-- then mason-lspconfig enables the installed servers (automatic_enable).
+for name, server in pairs(servers) do
+  server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+  vim.lsp.config(name, server)
+end
+
+require('mason-lspconfig').setup {}

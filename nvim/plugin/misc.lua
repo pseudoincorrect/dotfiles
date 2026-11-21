@@ -39,7 +39,6 @@ require('auto-session').setup {
   session_lens = {
     load_on_setup = true,
     theme_conf = { border = true },
-    previewer = false,
   },
   pre_save_cmds = {
     function()

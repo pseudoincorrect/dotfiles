@@ -98,3 +98,23 @@ map(
   }),
   { desc = 'Go Packages' }
 )
+
+-- Find a file or directory and reveal it in the explorer (not open it)
+map(
+  'n',
+  '<leader>E',
+  pick('files', {
+    title = 'Reveal in Explorer',
+    cmd = 'fd',
+    args = { '--type', 'd' }, -- also list directories
+    confirm = function(picker, item)
+      picker:close()
+      if not item then
+        return
+      end
+      local explorer = Snacks.explorer.reveal { file = Snacks.picker.util.path(item) }
+      explorer:focus 'list'
+    end,
+  }),
+  { desc = 'Reveal in Explorer' }
+)

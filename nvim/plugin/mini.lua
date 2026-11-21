@@ -80,7 +80,7 @@ require('mini.diff').setup {
 
 -- Key mapping for Mini.diff
 vim.keymap.set('n', '<leader>co', function()
-  require('mini.diff').toggle_overlay()
+  require('mini.diff').toggle_overlay(0)
 end, { desc = 'Diff view' })
 
 -- Mini.operators for replace operator
@@ -132,8 +132,3 @@ vim.api.nvim_create_autocmd('User', {
     end, { buffer = args.data.buf_id, desc = 'Close mini.files' })
   end,
 })
-
--- Key mapping for Mini.files to reveal current file
-vim.keymap.set('n', '<leader>E', function()
-  require('mini.files').open(vim.api.nvim_buf_get_name(0))
-end, { desc = 'Mini.files' })

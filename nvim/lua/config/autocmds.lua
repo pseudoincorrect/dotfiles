@@ -50,7 +50,7 @@ function M.setup()
     group = vim.api.nvim_create_augroup('go-organize-imports', { clear = true }),
     pattern = '*.go',
     callback = function(event)
-      local params = vim.lsp.util.make_range_params(0, 'utf-16')
+      local params = vim.lsp.util.make_range_params(0, 'utf-16') --[[@as lsp.CodeActionParams]]
       params.context = { only = { 'source.organizeImports' } }
       local res = vim.lsp.buf_request_sync(event.buf, 'textDocument/codeAction', params, 1000)
       for client_id, r in pairs(res or {}) do
