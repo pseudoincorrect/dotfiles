@@ -1,18 +1,22 @@
 * === ARROWS LEFT ===
-[`]>[lwin]
-[kp-`]>[lwin]
-[intl-\]>[F9]
-[kp-insert]>[F9]
-{left}>{speed7}{-lctrl}{left}{+lctrl}
-{right}>{speed7}{-lctrl}{right}{+lctrl}
+[`]>[lshift]
+[kp-`]>[lshift]
+[intl-\]>[lalt]
+[kp-insert]>[lalt]
+[left]>[lctrl]
+[kp-left]>[lctrl]
+[right]>[lwin]
+[kp-right]>[lwin]
 
 * === ARROWS RIGHT ===
-{up}>{speed7}{-lctrl}{-lshift}{tab}{+lshift}{+lctrl}
-{down}>{speed7}{-lctrl}{tab}{+lctrl}
-[obrack]>[hyphen]
-[kp.]>[hyphen]
-[cbrack]>[=]
-[kpenter2]>[=]
+[up]>[rwin]
+[kp-up]>[rwin]
+[down]>[rctrl]
+[kp-down]>[rctrl]
+[obrack]>[ralt]
+[kp.]>[ralt]
+[cbrack]>[rshift]
+[kpenter2]>[rshift]
 
 * === THUMB CLUSTER LEFT ===
 [bspace]>[kpshft]

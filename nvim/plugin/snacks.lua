@@ -71,9 +71,10 @@ require('snacks').setup {
         exclude = { '.git', '.DS_Store', 'thumbs.db', '.null-ls_*' },
         layout = {
           preset = 'sidebar',
-          -- snacks accepts false (see its own explorer source), but types it as "main"?
+          -- Preview hidden at start; `p` shows it in the main window, not in the small sidebar.
+          -- snacks accepts this table (see config/init.lua), but types it as "main"?
           ---@diagnostic disable-next-line: assign-type-mismatch
-          preview = false,
+          preview = { enabled = false, main = true },
           layout = {
             position = 'left',
             -- No winbar: the winbar adds an empty row at the top of the sidebar
@@ -81,7 +82,18 @@ require('snacks').setup {
           },
         },
         actions = {
+          -- toggle_preview, but first point the preview to the current main window.
+          -- snacks keeps the main window id from when the explorer opened.
+          -- If that window closed, the default toggle fails with "Invalid window id".
+          toggle_preview_main = function(picker)
+            picker.preview:update(picker)
+            picker:toggle 'preview'
+          end,
+          -- Close the preview first, so the main window shows its own buffer again
           focus_main = function(picker)
+            if not picker.layout:is_hidden 'preview' then
+              picker:toggle('preview', { enable = false })
+            end
             vim.api.nvim_set_current_win(picker.main)
           end,
           copy_abs_path = function(_, item)
@@ -101,11 +113,13 @@ require('snacks').setup {
             keys = {
               ['<esc>'] = 'focus_main',
               ['\\'] = 'close',
-              ['ga'] = 'copy_abs_path',
-              ['gr'] = 'copy_rel_path',
+              ['ya'] = { 'copy_abs_path', desc = 'Copy absolute path' },
+              ['yr'] = { 'copy_rel_path', desc = 'Copy relative path' },
+              ['yy'] = { 'explorer_yank', desc = 'Yank file' },
+              ['y'] = false,
               ['f'] = 'focus_input',
               -- Swap default paste (p) and preview (P)
-              ['p'] = 'toggle_preview',
+              ['p'] = 'toggle_preview_main',
               ['P'] = 'explorer_paste',
             },
           },

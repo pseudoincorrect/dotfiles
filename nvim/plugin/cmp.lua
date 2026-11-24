@@ -5,7 +5,6 @@ end
 
 vim.pack.add {
   gh 'hrsh7th/cmp-nvim-lsp',
-  gh 'hrsh7th/cmp-path',
   gh 'hrsh7th/nvim-cmp',
 }
 
@@ -22,7 +21,13 @@ cmp.setup {
     ['<CR>'] = cmp.mapping.confirm { select = true },
   },
   sources = {
-    { name = 'nvim_lsp' },
-    { name = 'path' },
+    -- LSP only. Drop snippet items, and word items (kind "Text": words from the file)
+    {
+      name = 'nvim_lsp',
+      entry_filter = function(entry)
+        local kind = entry:get_kind()
+        return kind ~= cmp.lsp.CompletionItemKind.Snippet and kind ~= cmp.lsp.CompletionItemKind.Text
+      end,
+    },
   },
 }

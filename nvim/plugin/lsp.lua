@@ -101,6 +101,8 @@ end
 -- Extend LSP capabilities with nvim-cmp for better completion support
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+-- No snippets: servers send plain text for completions (no placeholders)
+capabilities.textDocument.completion.completionItem.snippetSupport = false
 
 -- LSP servers configuration
 local servers = {
@@ -120,9 +122,8 @@ local servers = {
       Lua = {
         runtime = { version = 'LuaJIT' },
         workspace = { checkThirdParty = false },
-        completion = {
-          callSnippet = 'Replace',
-        },
+        -- No word items (words from the file or the workspace) in the completion
+        completion = { showWord = 'Disable', workspaceWord = false },
         diagnostics = {
           disable = { 'missing-fields' },
         },

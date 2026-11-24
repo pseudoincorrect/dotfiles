@@ -6,6 +6,13 @@ end
 vim.pack.add { gh 'folke/which-key.nvim' }
 
 require('which-key').setup {
+  -- Auto triggers skip single letters like `y`. Add `y` by hand, so the popup
+  -- shows buffer-local `y…` keys (`ya`, `yr` in the snacks explorer).
+  -- In buffers with no `y…` keys, which-key adds no trigger and `y` stays a normal operator.
+  triggers = {
+    { '<auto>', mode = 'nxso' },
+    { 'y', mode = 'n' },
+  },
   icons = {
     mappings = false,
     keys = vim.g.have_nerd_font and {} or {
