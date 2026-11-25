@@ -112,6 +112,62 @@ function cs() {
 }
 compdef cs=cd
 
+# remap Right Command -> Right Shift on the built-in keyboard (no sudo)
+# hidutil without root only remaps modifier keys (since macOS 14.2, ';' etc. need root)
+# `on`/`off` apply now (hidutil) and at each login (LaunchAgent)
+# Usage: keyboard-remap on|off|status
+function keyboard-remap() {
+  # HID key usages: 0x7000000E7 Right Command -> 0x7000000E5 Right Shift
+  local map='{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x7000000E7,"HIDKeyboardModifierMappingDst":0x7000000E5}]}'
+  local match='{"Built-In":1,"PrimaryUsagePage":1,"PrimaryUsage":6}'
+  local label=com.local.keyboard-remap
+  local agent=~/Library/LaunchAgents/$label.plist
+
+  case $1 in
+    on)
+      hidutil property --matching "$match" --set "$map" >/dev/null || return 1
+      mkdir -p ${agent:h}
+      cat >$agent <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>$label</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/hidutil</string>
+    <string>property</string>
+    <string>--matching</string><string>$match</string>
+    <string>--set</string><string>$map</string>
+  </array>
+  <key>RunAtLoad</key><true/>
+</dict>
+</plist>
+EOF
+      echo "keyboard-remap: on (Right Command -> Right Shift)"
+      ;;
+    off)
+      hidutil property --matching "$match" --set '{"UserKeyMapping":[]}' >/dev/null
+      launchctl bootout gui/$UID/$label 2>/dev/null
+      rm -f $agent
+      echo "keyboard-remap: off"
+      ;;
+    status)
+      # 30064771303 = 0x7000000E7 (Right Command)
+      if hidutil property --matching "$match" --get UserKeyMapping | grep -q "Src = 30064771303"; then
+        echo "live:  on"
+      else
+        echo "live:  off"
+      fi
+      [[ -f $agent ]] && echo "login: on" || echo "login: off"
+      ;;
+    *)
+      echo "Usage: keyboard-remap on|off|status" >&2
+      return 1
+      ;;
+  esac
+}
+
 ########################################################################
 # HISTORY
 HISTSIZE=10000
