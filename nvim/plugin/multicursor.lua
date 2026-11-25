@@ -89,7 +89,6 @@ set('n', '<C-A-l>', ']C', { desc = 'MC: next cursor' })
 set('n', '<C-A-d>', ']C2Q', { desc = 'MC: delete cursor' })
 
 -- <Esc> clears the cursors when there are some (same as the default CTRL-L).
--- Do not use <C-L> here: bufcycle.lua maps <C-l> to a different action.
 set('n', '<Esc>', function()
   return has_cursors() and '<Cmd>call nvim_buf_clear_namespace(0, nvim_create_namespace("nvim.multicursor"), 0, -1)<CR>' or '<Esc>'
 end, { expr = true, remap = true, desc = 'MC: clear cursors' })

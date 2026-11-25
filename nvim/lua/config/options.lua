@@ -106,8 +106,11 @@ function M.winbar()
     path = '%#WinBarPath' .. nc .. '#' .. dir:gsub('%%', '%%%%') .. '/'
   end
   local paren = '%#WinBarPath' .. nc .. '#'
-  -- Pin mark for the files pinned in the buffer cycle (<C-h>, see plugin/bufcycle.lua)
-  local pin = vim.b.bufcycle_pinned and ('%#WinBarPinned#' .. (vim.g.have_nerd_font and '󰐃 ' or '[pin] ')) or ''
+  -- Tag mark for the files tagged in grapple (<leader>G, see plugin/grapple.lua)
+  local ok, tagged = pcall(function()
+    return require('grapple').exists()
+  end)
+  local pin = ok and tagged and ('%#WinBarPinned#' .. (vim.g.have_nerd_font and '󰐃 ' or '[pin] ')) or ''
   -- A '%=' on each side puts the same space on the left and on the right: the text is centered.
   return '%=' .. pin .. paren .. '[ ' .. path .. '%#WinBarFilename' .. nc .. '#' .. filename:gsub('%%', '%%%%') .. paren .. ' ]%*%='
 end
