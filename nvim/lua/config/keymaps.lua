@@ -13,7 +13,7 @@ function M.setup()
   vim.keymap.set('n', '<leader>wk', '<C-w>k', { desc = 'Move to upper window' })
   vim.keymap.set('n', '<leader>wl', '<C-w>l', { desc = 'Move to right window' })
 
-  vim.keymap.set('n', '<leader>ww', '<C-w>w', { desc = 'Switch to next window' })
+  vim.keymap.set('n', '<leader>wn', '<C-w>w', { desc = 'Switch to next window' })
   vim.keymap.set('n', '<leader>wp', '<C-w>p', { desc = 'Switch to previous window' })
   vim.keymap.set('n', '<leader>wv', '<C-w>v', { desc = 'Split window vertically' })
   vim.keymap.set('n', '<leader>ws', '<C-w>s', { desc = 'Split window horizontally' })
@@ -34,6 +34,7 @@ function M.setup()
   vim.keymap.set('n', '<C-w>b', ':bp|bd #<CR>', { desc = 'Close current buffer' })
   vim.keymap.set('n', '<leader>wa', ':%bd!<CR>', { desc = 'Close all buffers' })
   vim.keymap.set('n', '<C-w>a', ':%bd!<CR>', { desc = 'Close all buffers' })
+  vim.keymap.set('n', '<leader>ww', '<cmd>setlocal wrap!<CR>', { desc = 'Toggle word wrap' })
 
   vim.keymap.set('n', '<leader>-', '10<C-w><', { desc = 'Decrease window width' })
   vim.keymap.set('n', '<leader>=', '10<C-w>>', { desc = 'Increase window width' })
@@ -148,8 +149,14 @@ function M.setup()
   -- Keep scroll navigation
   vim.keymap.set('n', '<C-d>', '<C-d>', { desc = 'Scroll down' })
   vim.keymap.set('n', '<C-u>', '<C-u>', { desc = 'Scroll up' })
-  vim.keymap.set('n', 'J', '2<C-e>', { desc = 'Scroll down' })
-  vim.keymap.set('n', 'K', '2<C-y>', { desc = 'Scroll up' })
+  vim.keymap.set('n', 'J', '5<C-e>', { desc = 'Scroll down' })
+  vim.keymap.set('n', 'K', '5<C-y>', { desc = 'Scroll up' })
+  vim.keymap.set('n', 'H', function()
+    return vim.wo.wrap and 'H' or '5zh'
+  end, { expr = true, desc = 'Scroll left (no wrap)' })
+  vim.keymap.set('n', 'L', function()
+    return vim.wo.wrap and 'L' or '5zl'
+  end, { expr = true, desc = 'Scroll right (no wrap)' })
   vim.keymap.set('n', ',', '<C-u>', { desc = 'Scroll up' })
   vim.keymap.set('n', 'm', '<C-d>', { desc = 'Scroll down' })
 

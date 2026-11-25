@@ -1,0 +1,9 @@
+map s LinkHints.activate
+map S LinkHints.activateOpenInNewTab
+map J nextTab
+map K previousTab
+map t Vomnibar.activateTabs
+map T createTab
+map p Vomnibar.activate
+map o goBack
+map i goForward
