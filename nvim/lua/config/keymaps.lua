@@ -59,7 +59,6 @@ function M.setup()
     vim.api.nvim_set_keymap('n', key, ':w<CR>', { noremap = true, silent = true, desc = 'Save the current file' })
     vim.api.nvim_set_keymap('i', key, '<Esc>:w<CR>', { noremap = true, silent = true, desc = 'Save the current file' })
   end
-  vim.keymap.set('n', '<leader>l', ':w<CR>', { silent = true, desc = 'Save the current file' })
 
   -- Alt+q to quit everything without saving
   vim.keymap.set({ 'n', 'i', 'v', 't' }, '<M-q>', '<Cmd>qa!<CR>', { desc = 'Quit all without saving' })
@@ -138,10 +137,10 @@ function M.setup()
   vim.keymap.set({ 'n', 'v' }, 'U', '<C-r>', { desc = 'Redo' })
   vim.keymap.set({ 'n', 'v', 'o' }, 'gl', 'g_', { desc = 'Go to end of line' })
   vim.keymap.set({ 'n', 'v', 'o' }, 'gh', '^', { desc = 'Go to beginning of line' })
-  vim.keymap.set({ 'n', 'v', 'o' }, 'ga', 'ggVG', { desc = 'Select all' })
   vim.keymap.set({ 'n', 'v', 'o' }, 'ge', 'G', { desc = 'Select all' })
-  vim.keymap.set({ 'n' }, 'ga', 'ggVG', { desc = 'Select all' })
-  vim.keymap.set({ 'v', 'o' }, 'ga', 'gg<Esc>VG', { desc = 'Select all' })
+  -- Text object for the entire buffer: vae selects it, yae yanks it, =ae indents it...
+  vim.keymap.set('x', 'ae', '<Esc>ggVG', { desc = 'Entire buffer' })
+  vim.keymap.set('o', 'ae', '<Cmd>normal! ggVG<CR>', { desc = 'Entire buffer' })
 
   -- Fixed: Better visual mode navigation
   vim.keymap.set('n', '<leader>v', 'V', { desc = 'Visual line' })

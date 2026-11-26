@@ -26,9 +26,12 @@ local function toggle()
 end
 
 vim.keymap.set('n', '<leader>G', toggle, { desc = 'Grapple toggle' })
-vim.keymap.set('n', '<C-h>', toggle, { desc = 'Grapple toggle' })
-vim.keymap.set('n', '<C-l>', '<cmd>Grapple toggle_tags<cr>', { desc = 'Grapple window' })
-vim.keymap.set('n', '<C-j>', '<cmd>Grapple cycle_tags next<cr>', { desc = 'Grapple next tag' })
-vim.keymap.set('n', '<C-k>', '<cmd>Grapple cycle_tags prev<cr>', { desc = 'Grapple previous tag' })
+-- Same actions on <C-x> and <leader>x
+for _, key in ipairs { '<C-%s>', '<leader>%s' } do
+  vim.keymap.set('n', key:format 'h', toggle, { desc = 'Grapple toggle' })
+  vim.keymap.set('n', key:format 'l', '<cmd>Grapple toggle_tags<cr>', { desc = 'Grapple window' })
+  vim.keymap.set('n', key:format 'j', '<cmd>Grapple cycle_tags next<cr>', { desc = 'Grapple next tag' })
+  vim.keymap.set('n', key:format 'k', '<cmd>Grapple cycle_tags prev<cr>', { desc = 'Grapple previous tag' })
+end
 vim.keymap.set('n', '<leader>g', '<cmd>Grapple toggle_tags<cr>', { desc = 'Grapple window' })
 vim.keymap.set({ 'n', 'i', 't' }, '<C-g>', '<cmd>Grapple toggle_tags<cr>', { desc = 'Grapple window' })

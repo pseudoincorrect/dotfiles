@@ -46,6 +46,8 @@
 [kp-lshift]>[lalt]
 
 * === PINKIES RIGHT ===
+[\]>[enter] 
+[kp-\]>[enter] 
 [;]>[escape]
 [kpplus]>[escape]
 [kp-rshift]>[lctrl]
