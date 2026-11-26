@@ -83,6 +83,7 @@
     "cmd-right": "send:\u0005",
     "cmd-backspace": "send:\u0015",
     "cmd-s": "send:\u0013",
-    "ctrl-;": "send:\u001b"
+    "ctrl-;": "send:\u001b",
+    "cmd-e": "mod.open:copymode"
   }
 }
