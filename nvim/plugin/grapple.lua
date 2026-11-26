@@ -18,6 +18,11 @@ local function toggle()
   require('grapple').toggle()
   -- Show or hide the tag mark in the winbar (lua/config/options.lua)
   vim.cmd 'redrawstatus!'
+  -- Show or hide the tag mark in the explorer (plugin/snacks.lua)
+  for _, picker in ipairs(Snacks.picker.get { source = 'explorer' }) do
+    picker.list.dirty = true
+    picker.list:update()
+  end
 end
 
 vim.keymap.set('n', '<leader>G', toggle, { desc = 'Grapple toggle' })

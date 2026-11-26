@@ -69,6 +69,28 @@ require('snacks').setup {
         hidden = true,
         ignored = true,
         exclude = { '.git', '.DS_Store', 'thumbs.db', '.null-ls_*' },
+        -- Default file format, plus a pin mark and the tag index for files tagged in grapple
+        format = function(item, picker)
+          local ret = Snacks.picker.format.file(item, picker)
+          if item.dir then
+            return ret
+          end
+          local ok, index = pcall(function()
+            return require('grapple').name_or_index { path = item.file }
+          end)
+          if ok and index then
+            local pin = vim.g.have_nerd_font and '󰐃' or '[pin]'
+            -- Right-aligned, so all the pins are in one column. Insert it first: the
+            -- first right_align extmark goes at the right edge, the git status goes before it.
+            table.insert(ret, 1, {
+              col = 0,
+              virt_text = { { pin .. ' ' .. index .. ' ', 'Comment' } },
+              virt_text_pos = 'right_align',
+              hl_mode = 'combine',
+            })
+          end
+          return ret
+        end,
         layout = {
           preset = 'sidebar',
           -- Preview hidden at start; `p` shows it in the main window, not in the small sidebar.
@@ -96,6 +118,16 @@ require('snacks').setup {
             end
             vim.api.nvim_set_current_win(picker.main)
           end,
+          -- Tag or untag the file under the cursor in grapple
+          grapple_toggle = function(picker, item)
+            if not item or item.dir then
+              return
+            end
+            require('grapple').toggle { path = item.file }
+            picker.list.dirty = true
+            picker.list:update()
+            vim.cmd 'redrawstatus!'
+          end,
           copy_abs_path = function(_, item)
             vim.fn.setreg('+', item.file)
             vim.notify('Copied: ' .. item.file)
@@ -116,6 +148,7 @@ require('snacks').setup {
               ['ya'] = { 'copy_abs_path', desc = 'Copy absolute path' },
               ['yr'] = { 'copy_rel_path', desc = 'Copy relative path' },
               ['yy'] = { 'explorer_yank', desc = 'Yank file' },
+              ['<C-h>'] = { 'grapple_toggle', desc = 'Grapple toggle' },
               ['y'] = false,
               ['f'] = 'focus_input',
               -- Swap default paste (p) and preview (P)
