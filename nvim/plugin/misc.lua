@@ -58,7 +58,7 @@ require('scrollEOF').setup {}
 -- Enhanced markdown rendering (disabled by default, toggle with keymaps)
 require('render-markdown').setup { enabled = false }
 vim.keymap.set('n', '<leader>cmt', '<cmd>RenderMarkdown toggle<cr>', { desc = 'Toggle Render Markdown' })
-vim.keymap.set('n', '<leader>m', '<cmd>RenderMarkdown toggle<cr>', { desc = 'Toggle Render Markdown' })
+vim.keymap.set('n', '<leader>M', '<cmd>RenderMarkdown toggle<cr>', { desc = 'Toggle Render Markdown' })
 vim.keymap.set('n', '<leader>cme', '<cmd>RenderMarkdown enable<cr>', { desc = 'Enable Render Markdown' })
 vim.keymap.set('n', '<leader>cmd', '<cmd>RenderMarkdown disable<cr>', { desc = 'Disable Render Markdown' })
 
@@ -67,7 +67,7 @@ vim.g.mkdp_auto_close = 1
 vim.g.mkdp_theme = 'dark'
 vim.g.mkdp_echo_preview_url = 1
 vim.g.mkdp_combine_preview = 1 -- one browser tab that follows the current markdown buffer
-vim.keymap.set('n', '<leader>M', '<cmd>MarkdownPreviewToggle<cr>', { desc = 'Toggle Markdown Preview (browser)' })
+vim.keymap.set('n', '<leader>m', '<cmd>MarkdownPreviewToggle<cr>', { desc = 'Toggle Markdown Preview (browser)' })
 
 -- Indentation guides
 require('ibl').setup {}

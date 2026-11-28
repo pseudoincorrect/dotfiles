@@ -44,6 +44,10 @@ function M.setup()
   -- Ctrl+; acts as Escape in all modes (remap: it also runs the <Esc> keymaps)
   vim.keymap.set({ 'n', 'i', 'v', 's', 'o', 'c', 't' }, '<C-;>', '<Esc>', { remap = true, desc = 'Escape' })
 
+  -- kj and jk exit insert mode
+  vim.keymap.set('i', 'kj', '<Esc>', { desc = 'Exit insert mode' })
+  vim.keymap.set('i', 'jk', '<Esc>', { desc = 'Exit insert mode' })
+
   -- On an empty line, start insert mode at the correct indent
   for _, key in ipairs { 'A', 'a', 'i', 'I' } do
     vim.keymap.set('n', key, function()
